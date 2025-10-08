@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Honors - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --purple: #9b59b6;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --bronze: #cd7f32;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gold), #ffed4e);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .highlight-box h2 {
+            color: var(--dark);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        /* Award Cards */
+        .awards-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 6px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .award-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .award-content {
+            flex: 1;
+        }
+
+        .award-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-institution {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .award-year {
+            color: #666;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .award-description {
+            color: #555;
+            margin-top: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold), var(--orange));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .year {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-top: 3rem;
+        }
+
+        .category-section h3 {
+            color: var(--secondary);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .award-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .award-icon {
+                min-width: auto;
+            }
+
+            .timeline-item {
+                padding-left: 70px;
+            }
+
+            .timeline::before {
+                left: 25px;
+            }
+
+            .timeline-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Awards & Honors</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Highlight -->
+        <div class="highlight-box fade-in">
+            <h2>🏆 Recognized for Excellence in Research, Teaching, and Academic Achievement</h2>
+            <p>A lifetime of dedication to advancing knowledge and inspiring the next generation</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card fade-in">
+                <h3>4.0</h3>
+                <p>GPA (Both MS & PhD)</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>4.52/5</h3>
+                <p>Teaching Evaluation</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>15+</h3>
+                <p>Awards & Honors</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>10+</h3>
+                <p>Years of Scholarships</p>
+            </div>
+        </div>
+
+        <!-- Academic Excellence Awards -->
+        <div class="section fade-in">
+            <h2>Academic Excellence Awards</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-content">
+                        <div class="award-title">Outstanding Academic Achievement Award</div>
+                        <div class="award-institution">Illinois Institute of Technology</div>
+                        <div class="award-year">2010</div>
+                        <div class="award-description">
+                            Awarded for exceptional academic performance in Ph.D. program with perfect 4.0/4.0 GPA. 
+                            Recognized for groundbreaking doctoral research applying communications theory to biological systems.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-content">
+                        <div class="award-title">Outstanding Academic Achievement Award</div>
+                        <div class="award-institution">Illinois Institute of Technology</div>
+                        <div class="award-year">2006</div>
+                        <div class="award-description">
+                            Awarded for superior distinction in Master's degree program with perfect 4.0/4.0 GPA 
+                            in Electrical and Computer Engineering.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-content">
+                        <div class="award-title">First Position - ECE Poster Competition</div>
+                        <div class="award-institution">Illinois Institute of Technology</div>
+                        <div class="award-year">2007</div>
+                        <div class="award-description">
+                            Received first place in the Electrical and Computer Engineering Department's poster 
+                            competition for innovative research presentation.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">⭐</div>
+                    <div class="award-content">
+                        <div class="award-title">Who's Who Among Students in American Universities and Colleges</div>
+                        <div class="award-institution">National Recognition</div>
+                        <div class="award-year">2006</div>
+                        <div class="award-description">
+                            National recognition for outstanding academic achievement, leadership, and service to 
+                            the university community.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎓</div>
+                    <div class="award-content">
+                        <div class="award-title">Undergraduate Academic Achievement - High Honors</div>
+                        <div class="award-institution">Yarmouk University, Jordan</div>
+                        <div class="award-year">1997-2003</div>
+                        <div class="award-description">
+                            Graduated with high honors in Telecommunications Engineering. Consistently placed on 
+                            Dean's List throughout undergraduate studies for exceptional academic performance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarships & Fellowships -->
+        <div class="section fade-in">
+            <h2>Scholarships & Fellowships</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">💰</div>
+                    <div class="award-content">
+                        <div class="award-title">AAAEA College Scholarship</div>
+                        <div class="award-institution">Arab American Association of Engineers and Architects</div>
+                        <div class="award-year">2008 & 2010</div>
+                        <div class="award-description">
+                            Competitive scholarship awarded twice in recognition of academic excellence and 
+                            contributions to engineering research. Supported doctoral studies at Illinois Institute of Technology.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🔬</div>
+                    <div class="award-content">
+                        <div class="award-title">Research Assistantship</div>
+                        <div class="award-institution">Illinois Institute of Technology</div>
+                        <div class="award-year">2006-2010</div>
+                        <div class="award-description">
+                            Fully funded research assistantship supporting Ph.D. studies and research on applying 
+                            communications theory to genomic analysis. Included stipend, tuition waiver, and research funding.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎓</div>
+                    <div class="award-content">
+                        <div class="award-title">Scholarship for Graduate Studies</div>
+                        <div class="award-institution">Yarmouk University, Jordan (Sponsor)</div>
+                        <div class="award-year">2004-2009</div>
+                        <div class="award-description">
+                            Full scholarship for M.S. and Ph.D. studies at Illinois Institute of Technology, USA. 
+                            Awarded based on undergraduate academic excellence and competitive selection process.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teaching Recognition -->
+        <div class="section fade-in">
+            <h2>Teaching Recognition</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">⭐</div>
+                    <div class="award-content">
+                        <div class="award-title">Excellent Rating - Faculty Evaluation</div>
+                        <div class="award-institution">United Arab Emirates University</div>
+                        <div class="award-year">2020-2022</div>
+                        <div class="award-description">
+                            Received "Excellent" rating in comprehensive faculty evaluation covering teaching, 
+                            research, and service contributions during 2020-2022 evaluation cycle.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <div class="award-title">Outstanding Student Evaluations</div>
+                        <div class="award-institution">United Arab Emirates University</div>
+                        <div class="award-year">2020-Present</div>
+                        <div class="award-description">
+                            Consistently achieved student evaluation average of 4.52/5.0, exceeding departmental 
+                            average of 4.43. Recognized for innovative teaching methods and student engagement.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🏅</div>
+                    <div class="award-content">
+                        <div class="award-title">Outstanding Field Training Award</div>
+                        <div class="award-institution">Egyptian Telephone Company (QuickTel)</div>
+                        <div class="award-year">2001</div>
+                        <div class="award-description">
+                            Recognized for exceptional performance during telecommunications engineering internship, 
+                            demonstrating strong technical skills and professional conduct.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Recognition Timeline -->
+        <div class="section fade-in">
+            <h2>Professional Recognition & Leadership</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <div class="timeline-content">
+                        <h4>Digital Liaison for Educational Technology</h4>
+                        <div class="year">2025</div>
+                        <p>Selected to lead digital transformation initiatives in the College of Engineering at UAEU, 
+                        promoting innovative teaching technologies.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">🏛️</div>
+                    <div class="timeline-content">
+                        <h4>Department Head</h4>
+                        <div class="year">2018-2020</div>
+                        <p>Led Telecommunications Engineering Department at Yarmouk University, managing faculty 
+                        of 15+ members and overseeing curriculum development.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">✅</div>
+                    <div class="timeline-content">
+                        <h4>ABET Accreditation Chair</h4>
+                        <div class="year">2015-2018</div>
+                        <p>Successfully led ABET accreditation process for BS Telecommunications Engineering program 
+                        at Yarmouk University.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">🇪🇺</div>
+                    <div class="timeline-content">
+                        <h4>Tempus Project Leader</h4>
+                        <div class="year">2011-2014</div>
+                        <p>Led 1 million Euro EU Tempus grant for MSc program modernization, including course 
+                        development and two new specialization tracks.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">📈</div>
+                    <div class="timeline-content">
+                        <h4>Promotion to Associate Professor</h4>
+                        <div class="year">2018</div>
+                        <p>Promoted to Associate Professor at Yarmouk University in recognition of outstanding 
+                        research, teaching, and service contributions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Funding Recognition -->
+        <div class="section fade-in">
+            <h2>Research Funding Success</h2>
+            <div class="category-section">
+                <h3>Total Research Funding Secured: 470,000+ AED</h3>
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-icon">💎</div>
+                        <div class="award-content">
+                            <div class="award-title">Start-up Grant - Principal Investigator</div>
+                            <div class="award-institution">United Arab Emirates University</div>
+                            <div class="award-year">2023-2025</div>
+                            <div class="award-description">
+                                Secured 367,000 AED for research on "Gene and Regulatory Sequence Identification 
+                                using Communications Theory." Successfully completed with 20+ publications.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="award-card">
+                        <div class="award-icon">🔬</div>
+                        <div class="award-content">
+                            <div class="award-title">Multiple SDG and SURE Plus Grants</div>
+                            <div class="award-institution">United Arab Emirates University</div>
+                            <div class="award-year">2023-2026</div>
+                            <div class="award-description">
+                                Supervised multiple undergraduate research grants totaling 111,820+ AED for 
+                                assistive technology projects supporting visually impaired individuals.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Development -->
+        <div class="section fade-in">
+            <h2>Professional Development & Certifications</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">📚</div>
+                    <div class="award-content">
+                        <div class="award-title">Faculty Teaching Academy Program (FTAP)</div>
+                        <div class="award-institution">United Arab Emirates University</div>
+                        <div class="award-year">2023-2024</div>
+                        <div class="award-description">
+                            Completed comprehensive faculty development program focusing on Constructivist Learning 
+                            Theory implementation and evidence-based teaching practices.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">✓</div>
+                    <div class="award-content">
+                        <div class="award-title">Quality Matters Certification</div>
+                        <div class="award-institution">Quality Matters Program</div>
+                        <div class="award-year">Scheduled September 2025</div>
+                        <div class="award-description">
+                            Enrolled in "Applying the QM Rubric" certification program for course design excellence 
+                            and online learning quality assurance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
