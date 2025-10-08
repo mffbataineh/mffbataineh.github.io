@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students & Mentorship - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --purple: #9b59b6;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--green), var(--secondary));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .section h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Student Cards */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .student-card {
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--green);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .student-card h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-card .thesis-title {
+            color: var(--secondary);
+            font-style: italic;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .student-card .year {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Opportunities Box */
+        .opportunities-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 6px solid var(--green);
+            margin: 2rem 0;
+        }
+
+        .opportunities-box h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+        }
+
+        .opportunities-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .opportunities-list li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: #444;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .opportunities-list li:last-child {
+            border-bottom: none;
+        }
+
+        .opportunities-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .opportunities-list li strong {
+            color: var(--primary);
+        }
+
+        /* Research Areas */
+        .research-topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 4px solid var(--orange);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Table */
+        .supervision-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .supervision-table th,
+        .supervision-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .supervision-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .supervision-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .supervision-table {
+                font-size: 0.9rem;
+            }
+
+            .supervision-table th,
+            .supervision-table td {
+                padding: 0.7rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Students & Mentorship</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card fade-in">
+                <h3>57+</h3>
+                <p>Current Advisees</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>5</h3>
+                <p>Master's Theses Supervised</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>10+</h3>
+                <p>Undergraduate Projects</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>15+</h3>
+                <p>Years of Mentorship</p>
+            </div>
+        </div>
+
+        <!-- Current Students -->
+        <div class="section fade-in">
+            <h2>Current Student Supervision</h2>
+            
+            <h3>PhD Advisory Committees</h3>
+            <div class="students-grid">
+                <div class="student-card">
+                    <h4>Rola Abdallah</h4>
+                    <p class="thesis-title">Research Area: Electrical Engineering - Communications</p>
+                    <p class="year">PhD Candidate</p>
+                    <p style="margin-top: 0.5rem; color: #666;">Member, PhD Advisory Committee</p>
+                </div>
+
+                <div class="student-card">
+                    <h4>Hanan Abdelmotagally</h4>
+                    <p class="thesis-title">Research Area: AI and Machine Learning in Cyber-Physical Systems</p>
+                    <p class="year">PhD Candidate</p>
+                    <p style="margin-top: 0.5rem; color: #666;">Member, PhD Prospectus Exam Committee</p>
+                </div>
+            </div>
+
+            <h3>Graduation Projects (GP I & GP II)</h3>
+            <p style="margin-top: 1rem; color: #555; line-height: 1.8;">
+                Currently supervising multiple senior graduation projects in areas including wireless communications, 
+                machine learning applications, IoT systems, and assistive technologies. These projects allow students 
+                to apply their knowledge to solve real-world engineering problems and develop practical solutions.
+            </p>
+
+            <h3>SURE Plus Grant Students</h3>
+            <p style="margin-top: 1rem; color: #555; line-height: 1.8;">
+                Mentoring undergraduate researchers through SURE Plus grants, focusing on computer vision, 
+                assistive technologies, and machine learning applications. Current projects include offline 
+                assistive systems with stereo vision for visually impaired individuals.
+            </p>
+
+            <h3>Academic Advising</h3>
+            <p style="margin-top: 1rem; color: #555; line-height: 1.8;">
+                Serving as academic advisor for <strong>57+ undergraduate students</strong>, including Communication 
+                Engineering cadets at Zayed Military College. Providing guidance on course selection, career planning, 
+                research opportunities, and academic success strategies.
+            </p>
+        </div>
+
+        <!-- Completed Master's Theses -->
+        <div class="section fade-in">
+            <h2>Completed Master's Theses (Yarmouk University)</h2>
+            <div class="students-grid">
+                <div class="student-card">
+                    <h4>Dima F. Turki</h4>
+                    <p class="thesis-title">"The Capacity of a Gaussian Broadcast Channel Using Relays"</p>
+                    <p class="year">2019</p>
+                </div>
+
+                <div class="student-card">
+                    <h4>Laith M. Al-Hawari</h4>
+                    <p class="thesis-title">"Capacity of Parallel Relay Channel with Orthogonal Components"</p>
+                    <p class="year">2015</p>
+                </div>
+
+                <div class="student-card">
+                    <h4>Monther Alrawashdeh</h4>
+                    <p class="thesis-title">"Capacity of Cascade Relay Channel with Orthogonal Components"</p>
+                    <p class="year">2015</p>
+                </div>
+
+                <div class="student-card">
+                    <h4>Bassam M. Alrawashdeh</h4>
+                    <p class="thesis-title">"Canny Edge Detection Enhancement by Scale Multiplication"</p>
+                    <p class="year">2013</p>
+                </div>
+
+                <div class="student-card">
+                    <h4>Ali T. Alzawahreh</h4>
+                    <p class="thesis-title">"Enhanced Image Segmentation Algorithms"</p>
+                    <p class="year">2013</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PhD & Master's Examination Committees -->
+        <div class="section fade-in">
+            <h2>PhD & Master's Examination Committees</h2>
+            <p style="margin-bottom: 1.5rem; color: #555; line-height: 1.8;">
+                Actively serving as examiner and committee member for PhD and Master's degree candidates at UAEU and other institutions.
+            </p>
+
+            <table class="supervision-table">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PhD Defense Committees</strong></td>
+                        <td>External examiner for doctoral dissertation defenses in electrical engineering and communications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PhD Prospectus Committees</strong></td>
+                        <td>Member of prospectus examination committees evaluating research proposals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PhD Comprehensive Exams</strong></td>
+                        <td>Chair and member of comprehensive examination committees</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Master's Thesis Committees</strong></td>
+                        <td>Examiner for Master's thesis defenses</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Graduation Project Committees</strong></td>
+                        <td>Member of GPII examination committees at UAEU</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Research Topics Available -->
+        <div class="section fade-in">
+            <h2>Available Research Topics for Students</h2>
+            <div class="research-topics">
+                <div class="topic-card">
+                    <h4>📡 Wireless Communications</h4>
+                    <p>RIS-assisted systems, mmWave MIMO, channel estimation, 5G/6G technologies</p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🤖 Machine Learning</h4>
+                    <p>Neural networks, antenna optimization, signal processing, computer vision</p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🧬 Computational Biology</h4>
+                    <p>Genomic signal processing, gene identification, bioinformatics algorithms</p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>♿ Assistive Technologies</h4>
+                    <p>Smart glasses, computer vision for accessibility, IoT-based assistance systems</p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🌐 IoT & Smart Systems</h4>
+                    <p>Smart cities, digital twins, cybersecurity, network optimization</p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>📊 Signal Processing</h4>
+                    <p>Digital image processing, information theory, coding theory applications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opportunities -->
+        <div class="section fade-in">
+            <h2>Opportunities for Prospective Students</h2>
+            <div class="opportunities-box">
+                <h3>Join My Research Group!</h3>
+                <ul class="opportunities-list">
+                    <li>
+                        <strong>Undergraduate Research (SURE Plus):</strong> Apply for funded research grants 
+                        (40,000 AED) to work on cutting-edge projects in machine learning, computer vision, 
+                        and assistive technologies
+                    </li>
+                    <li>
+                        <strong>Senior Graduation Projects (GP I & GP II):</strong> Multiple project opportunities 
+                        available in wireless communications, IoT, AI applications, and computational biology
+                    </li>
+                    <li>
+                        <strong>Master's Programs:</strong> Accepting Master's students interested in communications 
+                        theory, signal processing, and interdisciplinary research
+                    </li>
+                    <li>
+                        <strong>PhD Opportunities:</strong> Limited positions available for highly motivated PhD 
+                        candidates with strong backgrounds in electrical engineering, communications, or computer science
+                    </li>
+                    <li>
+                        <strong>Academic Advising:</strong> Open to advising motivated students in electrical 
+                        engineering and communications programs
+                    </li>
+                    <li>
+                        <strong>Research Assistantships:</strong> Opportunities may be available through active 
+                        research grants for qualified graduate students
+                    </li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 2rem;">What I Look For in Students</h3>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Strong foundation</strong> in mathematics, programming, and electrical engineering fundamentals
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Curiosity and passion</strong> for research and learning
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Self-motivation</strong> and ability to work independently
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Good communication skills</strong> in English (written and verbal)
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Programming experience</strong> in MATLAB, Python, or similar tools
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative; color: #555;">
+                    <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">▸</span>
+                    <strong>Interest in interdisciplinary research</strong> combining multiple fields
+                </li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box fade-in">
+            <h3>Interested in Working with Me?</h3>
+            <p>
+                I'm always looking for talented and motivated students to join my research group. 
+                Whether you're an undergraduate looking for a graduation project, a Master's student 
+                seeking a thesis advisor, or a PhD candidate interested in cutting-edge research, 
+                I encourage you to reach out.
+            </p>
+            <a href="index.html#contact" class="cta-button">Contact Me</a>
+            <a href="research-projects.html" class="cta-button">View Research Projects</a>
+        </div>
+    </div>
+</body>
+</html>
