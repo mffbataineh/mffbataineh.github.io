@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Publications - Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --red: #e74c3c;
+            --orange: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Filter Tags */
+        .active-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .filter-tag {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-tag button {
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .clear-filters {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .clear-filters:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* Results Info */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .sort-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .sort-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sort-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .sort-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Publications Grid */
+        .publications-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .publication-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--accent);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .publication-type {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .type-journal {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .type-conference {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .type-book {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .publication-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .publication-venue {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .publication-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .meta-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .year-badge {
+            background: var(--primary);
+            color: white;
+        }
+
+        .if-badge {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .citations-badge {
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .pdf-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .pdf-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .doi-btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .doi-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 191, 219, 0.3);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-results h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .results-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .sort-options {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Research Publications</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <h3 id="totalPubs">45</h3>
+                <p>Total Publications</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="journalPubs">28</h3>
+                <p>Journal Articles</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="confPubs">15</h3>
+                <p>Conference Papers</p>
+            </div>
+            <div class="stat-card">
+                <h3>6.1</h3>
+                <p>Highest IF</p>
+            </div>
+            <div class="stat-card">
+                <h3>12.2</h3>
+                <p>Highest CiteScore</p>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search by title, author, keyword, journal...">
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Publication Type</label>
+                    <select id="typeFilter">
+                        <option value="all">All Types</option>
+                        <option value="journal">Journal Articles</option>
+                        <option value="conference">Conference Papers</option>
+                        <option value="book">Book Chapters</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Year</label>
+                    <select id="yearFilter">
+                        <option value="all">All Years</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Institution</label>
+                    <select id="institutionFilter">
+                        <option value="all">All Institutions</option>
+                        <option value="UAEU">UAEU</option>
+                        <option value="YU">Yarmouk University</option>
+                        <option value="IIT">Illinois Institute of Technology</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="active-filters" id="activeFilters"></div>
+        </div>
+
+        <!-- Results Info -->
+        <div class="results-info">
+            <div id="resultsCount">Showing all 45 publications</div>
+            <div class="sort-options">
+                <button class="sort-btn active" data-sort="year-desc">Newest First</button>
+                <button class="sort-btn" data-sort="year-asc">Oldest First</button>
+                <button class="sort-btn" data-sort="citations">Most Cited</button>
+            </div>
+        </div>
+
+        <!-- Publications Grid -->
+        <div class="publications-grid" id="publicationsGrid"></div>
+    </div>
+
+    <script>
+        const publications = [
+            {
+                title: "Adaptive beam pairing and local interpolation for robust analytical beam training in RIS-assisted wideband THz systems",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh, A. M. Alshorman",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 0,
+                pdfNum: 1,
+                doi: ""
+            },
+            {
+                title: "Enhancing impedance control in microstrip lines using the Taguchi approach",
+                authors: "M. H. Alrashdan, Z. Al-qudah, M. Al Bataineh",
+                venue: "Journal of King Saud University--Engineering Sciences",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 2.16,
+                citescore: 12.1,
+                citations: 0,
+                pdfNum: 2,
+                doi: "10.1007/s44444-025-00043-5"
+            },
+            {
+                title: "Securing AIoT surveillance: Techniques, challenges, and solutions",
+                authors: "K. Khurshid, K. Khurshid, M. U. Hadi, M. Al Bataineh, N. Saeed",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 0,
+                pdfNum: 3,
+                doi: ""
+            },
+            {
+                title: "Comparative analysis of machine learning algorithms for antenna alignments",
+                authors: "M. Al Bataineh, D. I. A. Abdoun, M. Al Ahmad",
+                venue: "IEEE Access",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9.0,
+                citations: 0,
+                pdfNum: 4,
+                doi: ""
+            },
+            {
+                title: "Two-stage power allocation for IRS-assisted downlink NOMA: Intra-group optimization and inter-group allocation",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh",
+                venue: "IEEE Access",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9.0,
+                citations: 1,
+                pdfNum: 5,
+                doi: ""
+            },
+            {
+                title: "Advanced 5G channel estimation in mmWave MIMO systems: Leveraging compressive sensing for enhanced performance",
+                authors: "Z. Albataineh, M. Al Bataineh, K. F. Hayajneh, R. Al Athamneh",
+                venue: "IEEE Access",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9.0,
+                citations: 1,
+                pdfNum: 6,
+                doi: ""
+            },
+            {
+                title: "Atomic solutions to Bateman--Burgers type equation via tensor products",
+                authors: "A. Alhawatmeh, M. Al Bataineh, N. Alashqar, R. Khalil",
+                venue: "Partial Differential Equations in Applied Mathematics",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 2.476,
+                citescore: 5.9,
+                citations: 1,
+                pdfNum: 7,
+                doi: ""
+            },
+            {
+                title: "An architecture and realization of a smart city digital twin with eHealth case studies",
+                authors: "N. Jayachandran, A. Abdrabou, M. Al Bataineh, K. A. Noordin",
+                venue: "IET Smart Cities",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 2.3,
+                citescore: 5.2,
+                citations: 0,
+                pdfNum: 8,
+                doi: ""
+            },
+            {
+                title: "Adaptive machine learning-enhanced channel estimation for RIS-assisted mmWave systems: A hybrid approach",
+                authors: "Z. Albataineh, K. Hayajneh, H. Shakhatreh, R. Al Athamneh, M. Al Bataineh",
+                venue: "Cluster Computing",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 4.1,
+                citescore: 8.7,
+                citations: 0,
+                pdfNum: 9,
+                doi: ""
+            },
+            {
+                title: "Cybersecurity activities for education and curriculum design: A survey",
+                authors: "M. Ismail, N. T. Madathil, M. Alalawi, S. Alrabaee, M. Al Bataineh, S. Melhem, D. Mouheb",
+                venue: "Computers in Human Behavior Reports",
+                year: 2024,
+                type: "journal",
+                institution: "UAEU",
+                if: 5.8,
+                citescore: 0,
+                citations: 19,
+                pdfNum: 10,
+                doi: "10.1016/j.chbr.2024.100501"
+            },
+            {
+                title: "Microstrip patch antenna directivity optimization via Taguchi method",
+                authors: "M. H. Alrashdan, Z. Al-qudah, M. Al Bataineh",
+                venue: "Ain Shams Engineering Journal",
+                year: 2024,
+                type: "journal",
+                institution: "UAEU",
+                if: 5.9,
+                citescore: 12.2,
+                citations: 6,
+                pdfNum: 11,
+                doi: "10.1016/j.asej.2024.102923"
+            },
+            {
+                title: "Abolishing single-use plastic water bottles in Dubai hotels as a voluntary act---scenarios and environmental impacts",
+                authors: "S. Al-Shihabi, R. Aydin, Z. C. Araci, F. Dweiri, M. Obeidat, M. F. Al Bataineh",
+                venue: "Sustainability",
+                year: 2024,
+                type: "journal",
+                institution: "UAEU",
+                if: 5.1,
+                citescore: 7.7,
+                citations: 1,
+                pdfNum: 12,
+                doi: "10.3390/su16083121"
+            },
+            {
+                title: "Head impact detection using machine learning algorithms",
+                authors: "M. Al Bataineh, D. I. A. Abdoun, H. Alnuaimi, Z. Al-Qudah, Z. Albataineh, M. Al Ahmad",
+                venue: "IEEE Access",
+                year: 2024,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9.0,
+                citations: 4,
+                pdfNum: 13,
+                doi: "10.1109/ACCESS.2023.3349212"
+            },
+            {
+                title: "Classification and prediction of communication cables length based on S-parameters using a machine-learning method",
+                authors: "M. Al Bataineh, M. M. Umar, A. Moin, M. I. Hussein, M. Al Ahmad",
+                venue: "IEEE Access",
+                year: 2023,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9.0,
+                citations: 4,
+                pdfNum: 14,
+                doi: "10.1109/ACCESS.2023.3319134"
+            },
+            {
+                title: "Managing energy consumption of devices with multiconnectivity by deep learning and software-defined networking",
+                authors: "R. Shams, A. Abdrabou, M. Al Bataineh, K. A. Noordin",
+                venue: "Sensors",
+                year: 2023,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.5,
+                citescore: 8.2,
+                citations: 2,
+                pdfNum: 15,
+                doi: "10.3390/s23187699"
+            },
+            {
+                title: "Geometric probability analysis of meeting probability and intersection duration for triple event concurrency",
+                authors: "M. Al Bataineh, Z. Al-qudah, A. Abdrabou, A. N. Sandokah",
+                venue: "Mathematics",
+                year: 2023,
+                type: "journal",
+                institution: "UAEU",
+                if: 2.3,
+                citescore: 4.6,
+                citations: 0,
+                pdfNum: 16,
+                doi: "10.3390/math11122708"
+            },
+            {
+                title: "A novel multiple access diamond channel model",
+                authors: "Z. Al-qudah, M. Al Bataineh, A. Musa",
+                venue: "International Journal of Communication Systems",
+                year: 2020,
+                type: "journal",
+                institution: "UAEU",
+                if: 1.8,
+                citescore: 6.1,
+                citations: 3,
+                pdfNum: 17,
+                doi: "10.1002/dac.4616"
+            },
+            {
+                title: "Parallel relay network with orthogonal components: Capacity and power allocation",
+                authors: "Z. Al-Qudah, L. Al-Hawary, M. Alrwashdeh, M. Al Bataineh",
+                venue: "Wireless Personal Communications",
+                year: 2017,
+                type: "journal",
+                institution: "YU",
+                if: 2.2,
+                citescore: 6.6,
+                citations: 2,
+                pdfNum: 18,
+                doi: "10.1007/s11277-017-4717-7"
+            },
+            {
+                title: "Allocation of resources for the Gaussian multiple access channel with practical partial cooperation",
+                authors: "Z. Al-qudah, M. Al Bataineh",
+                venue: "AEU--International Journal of Electronics and Communications",
+                year: 2017,
+                type: "journal",
+                institution: "YU",
+                if: 3.2,
+                citescore: 6.7,
+                citations: 7,
+                pdfNum: 19,
+                doi: "10.1016/j.aeue.2017.01.015"
+            },
+            {
+                title: "A novel gene identification algorithm with Bayesian classification",
+                authors: "M. Al Bataineh, Z. Al-qudah",
+                venue: "Biomedical Signal Processing and Control",
+                year: 2017,
+                type: "journal",
+                institution: "YU",
+                if: 4.9,
+                citescore: 11.5,
+                citations: 10,
+                pdfNum: 20,
+                doi: "10.1016/j.bspc.2016.10.005"
+            },
+            {
+                title: "Iterative sequential Monte Carlo algorithm for motif discovery",
+                authors: "M. Al Bataineh, Z. Al-qudah, A. Al-Zaben",
+                venue: "IET Signal Processing",
+                year: 2016,
+                type: "journal",
+                institution: "YU",
+                if: 1.4,
+                citescore: 3.0,
+                citations: 5,
+                pdfNum: 21,
+                doi: "10.1049/iet-spr.2015.0420"
+            },
+            {
+                title: "On the capacity of a relay network with orthogonal components",
+                authors: "Z. Al-Qudah, M. Alrwashdeh, L. Al-Hawary, M. Al Bataineh",
+                venue: "AEU--International Journal of Electronics and Communications",
+                year: 2016,
+                type: "journal",
+                institution: "YU",
+                if: 3.2,
+                citescore: 6.7,
+                citations: 4,
+                pdfNum: 22,
+                doi: "10.1016/j.aeue.2016.02.012"
+            },
+            {
+                title: "Temperature compensation of fiber Bragg gratings manometry catheter using Kalman filter",
+                authors: "A. Al-Zaben, M. Al Bataineh, S. Al-Refaie",
+                venue: "International Journal of Pharmaceutical, Medical and Biological Sciences",
+                year: 2016,
+                type: "journal",
+                institution: "YU",
+                if: 0.98,
+                citescore: 0,
+                citations: 3,
+                pdfNum: 23,
+                doi: ""
+            },
+            {
+                title: "A masters programme in telecommunications management -- demand-based curriculum design",
+                authors: "K. M. Gharaibeh, H. Kaylani, N. Murphy, et al.",
+                venue: "European Journal of Engineering Education",
+                year: 2015,
+                type: "journal",
+                institution: "YU",
+                if: 2.8,
+                citescore: 8.1,
+                citations: 2,
+                pdfNum: 24,
+                doi: "10.1080/03043797.2014.944102"
+            },
+            {
+                title: "Cognitive interference channel: Achievable rate region and power allocation",
+                authors: "Z. Al-qudah, M. Al Bataineh",
+                venue: "IET Communications",
+                year: 2015,
+                type: "journal",
+                institution: "YU",
+                if: 1.6,
+                citescore: 4.4,
+                citations: 5,
+                pdfNum: 25,
+                doi: "10.1049/iet-com.2014.0267"
+            },
+            {
+                title: "On optimal power allocation for Gaussian broadcast channel",
+                authors: "Z. Al-qudah, M. Al Bataineh, W. Abu Shehab",
+                venue: "Innovative Systems Design and Engineering",
+                year: 2016,
+                type: "journal",
+                institution: "YU",
+                if: 0,
+                citescore: 0,
+                citations: 0,
+                pdfNum: 26,
+                doi: ""
+            },
+            {
+                title: "Bayesian classification of ribosome binding sites in prokaryotic genome sequences: A communications theory approach",
+                authors: "M. F. Al Bataineh, Z. J. Al-Qudah",
+                venue: "International Journal of Bioscience, Biochemistry and Bioinformatics",
+                year: 2017,
+                type: "journal",
+                institution: "YU",
+                if: 0,
+                citescore: 0,
+                citations: 1,
+                pdfNum: 27,
+                doi: "10.17706/ijbbb.2017.7.3.133-142"
+            },
+            {
+                title: "Analysis of gene translation using a communications theory approach",
+                authors: "M. A. Bataineh, L. Huang, M. Alonso, N. Menhart, G. E. Atkin",
+                venue: "Advances in Experimental Medicine and Biology",
+                year: 2010,
+                type: "journal",
+                institution: "IIT",
+                if: 3.65,
+                citescore: 4.5,
+                citations: 9,
+                pdfNum: 28,
+                doi: "10.1007/978-1-4419-5913-3_43"
+            },
+            {
+                title: "A comparative analysis of computational approaches for gene detection",
+                authors: "M. Al Bataineh, D. I. Abu-Abdoun, S. Al-Shihabi, K. Muhammad",
+                venue: "International Conference on Biomedical Engineering and Technology (ICBET)",
+                year: 2025,
+                type: "conference",
+                institution: "UAEU",
+                citations: 0,
+                pdfNum: 29,
+                doi: ""
+            },
+            {
+                title: "Enhanced detection and localization of zinc finger proteins using advanced neural network techniques",
+                authors: "M. F. Al Bataineh",
+                venue: "International Conference on Biomedical Engineering and Technology (ICBET)",
+                year: 2024,
+                type: "conference",
+                institution: "UAEU",
+                citations: 1,
+                pdfNum: 30,
+                doi: "10.1109/ICBET61859.2024.10583035"
+            },
+            {
+                title: "Communications theory-inspired algorithms for detecting protein-coding regions in prokaryotic genomes: A comparative study",
+                authors: "M. F. Al Bataineh",
+                venue: "International Conference on Biomedical Engineering and Technology (ICBET)",
+                year: 2023,
+                type: "conference",
+                institution: "UAEU",
+                citations: 0,
+                pdfNum: 31,
+                doi: "10.1109/ICBET56821.2023.10201468"
+            },
+            {
+                title: "Identification of coding regions in prokaryotic DNA sequences using Bayesian classification",
+                authors: "M. Al Bataineh",
+                venue: "International Work-Conference on Bioinformatics and Biomedical Engineering (IWBBIO)",
+                year: 2020,
+                type: "conference",
+                institution: "YU",
+                citations: 1,
+                pdfNum: 32,
+                doi: "10.1007/978-3-030-45385-5_1"
+            },
+            {
+                title: "Transcription factor binding site detection algorithm using distance metrics based on a position frequency matrix concept",
+                authors: "M. Al Bataineh, L. Huang, G. E. Atkin",
+                venue: "International Work-Conference on Bioinformatics and Biomedical Engineering (IWBBIO)",
+                year: 2014,
+                type: "conference",
+                institution: "YU",
+                citations: 1,
+                pdfNum: 33,
+                doi: ""
+            },
+            {
+                title: "TFBS detection algorithm using distance metrics based on center of mass and polyphase mapping",
+                authors: "M. Al Bataineh, L. Huang, G. Atkin",
+                venue: "International Symposium on Health Informatics and Bioinformatics",
+                year: 2012,
+                type: "conference",
+                institution: "YU",
+                citations: 4,
+                pdfNum: 34,
+                doi: "10.1109/HIBIT.2012.6209036"
+            },
+            {
+                title: "Temperature compensation of fiber Bragg gratings manometry catheter using Kalman filter",
+                authors: "A. Al-Zaben, M. Al Bataineh, S. Al-Refaie",
+                venue: "International Conference on Biomedical Engineering and Technology",
+                year: 2016,
+                type: "conference",
+                institution: "YU",
+                citations: 0,
+                pdfNum: 35,
+                doi: ""
+            },
+            {
+                title: "Identification of transcriptional promoter sequence based on statistical filter bank model",
+                authors: "L. Huang, M. Al Bataineh, A. F. Acedo, G. Atkin, X. Deng, W. Zhang",
+                venue: "IEEE International Conference on Electro/Information Technology",
+                year: 2010,
+                type: "conference",
+                institution: "IIT",
+                citations: 0,
+                pdfNum: 36,
+                doi: "10.1109/EIT.2010.5612145"
+            },
+            {
+                title: "An augmented block code model for protein translation using free energy based distance decoders",
+                authors: "M. Al Bataineh, L. Huang, A. F. Acedo, G. Atkin, N. Menhart",
+                venue: "IEEE International Conference on Electro/Information Technology",
+                year: 2010,
+                type: "conference",
+                institution: "IIT",
+                citations: 0,
+                pdfNum: 37,
+                doi: "10.1109/EIT.2010.5612122"
+            },
+            {
+                title: "Identification of transcription factor binding sites based on the chi-square distance of a probabilistic vector model",
+                authors: "L. Huang, M. Al Bataineh, G. E. Atkin, et al.",
+                venue: "International Conference on Future BioMedical Information Engineering (FBIE)",
+                year: 2009,
+                type: "conference",
+                institution: "IIT",
+                citations: 5,
+                pdfNum: 38,
+                doi: "10.1109/FBIE.2009.5174853"
+            },
+            {
+                title: "Effect of mutations on the detection of translational signals based on a communications theory approach",
+                authors: "M. A. Bataineh, M. Alonso, L. Huang, G. E. Atkin, N. Menhart",
+                venue: "IEEE EMBS Annual International Conference",
+                year: 2009,
+                type: "conference",
+                institution: "IIT",
+                citations: 3,
+                pdfNum: 39,
+                doi: "10.1109/IEMBS.2009.5334806"
+            },
+            {
+                title: "A novel gene detection method based on period-3 property",
+                authors: "L. Huang, M. A. Bataineh, G. E. Atkin, S. Wang, W. Zhang",
+                venue: "IEEE EMBS Annual International Conference",
+                year: 2009,
+                type: "conference",
+                institution: "IIT",
+                citations: 9,
+                pdfNum: 40,
+                doi: "10.1109/IEMBS.2009.5334807"
+            },
+            {
+                title: "Gene expression analysis using communications, coding and information theory based models",
+                authors: "M. Al Bataineh, L. Huang, I. Muhamed, N. Menhart, G. E. Atkin",
+                venue: "BIOCOMP",
+                year: 2009,
+                type: "conference",
+                institution: "IIT",
+                citations: 9,
+                pdfNum: 41,
+                doi: ""
+            },
+            {
+                title: "An optimized ribosome binding model using communication theory concepts",
+                authors: "M. Al Bataineh, M. Alonso, G. E. Atkin, S. Wang, W. Zhang",
+                venue: "BIOCOMP",
+                year: 2007,
+                type: "conference",
+                institution: "IIT",
+                citations: 7,
+                pdfNum: 42,
+                doi: ""
+            },
+            {
+                title: "Ribosome binding model using a codebook and exponential metric",
+                authors: "M. Al Bataineh, M. Alonso, S. Wang, W. Zhang, G. Atkin",
+                venue: "IEEE International Conference on Electro/Information Technology",
+                year: 2007,
+                type: "conference",
+                institution: "IIT",
+                citations: 9,
+                pdfNum: 43,
+                doi: "10.1109/EIT.2007.4374551"
+            },
+            {
+                title: "Analysis of gene translation using a communications theory approach",
+                authors: "M. Al Bataineh, L. Huang, M. Alonso, N. Menhart, G. E. Atkin",
+                venue: "Advances in Computational Biology (Springer LNCS)",
+                year: 2010,
+                type: "book",
+                institution: "IIT",
+                if: 3.65,
+                citescore: 4.5,
+                citations: 9,
+                pdfNum: 44,
+                doi: "10.1007/978-1-4419-5913-3_43"
+            },
+            {
+                title: "Analysis of Genomic Translation Using a Communications Theory Approach",
+                authors: "M. Al Bataineh",
+                venue: "Ph.D. Dissertation, Illinois Institute of Technology",
+                year: 2010,
+                type: "book",
+                institution: "IIT",
+                citations: 4,
+                pdfNum: 45,
+                doi: ""
+            }
+        ];
+
+        let filteredPublications = [...publications];
+        let currentSort = 'year-desc';
+
+        function init() {
+            populateYearFilter();
+            renderPublications();
+            setupEventListeners();
+            updateStats();
+        }
+
+        function populateYearFilter() {
+            const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a);
+            const yearFilter = document.getElementById('yearFilter');
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearFilter.appendChild(option);
+            });
+        }
+
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterPublications);
+            document.getElementById('typeFilter').addEventListener('change', filterPublications);
+            document.getElementById('yearFilter').addEventListener('change', filterPublications);
+            document.getElementById('institutionFilter').addEventListener('change', filterPublications);
+
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentSort = e.target.dataset.sort;
+                    sortAndRender();
+                });
+            });
+        }
+
+        function filterPublications() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const institutionFilter = document.getElementById('institutionFilter').value;
+
+            filteredPublications = publications.filter(pub => {
+                const matchesSearch = !searchTerm || 
+                    pub.title.toLowerCase().includes(searchTerm) ||
+                    pub.authors.toLowerCase().includes(searchTerm) ||
+                    pub.venue.toLowerCase().includes(searchTerm);
+
+                const matchesType = typeFilter === 'all' || pub.type === typeFilter;
+                const matchesYear = yearFilter === 'all' || pub.year == yearFilter;
+                const matchesInstitution = institutionFilter === 'all' || pub.institution === institutionFilter;
+
+                return matchesSearch && matchesType && matchesYear && matchesInstitution;
+            });
+
+            updateActiveFilters();
+            sortAndRender();
+        }
+
+        function updateActiveFilters() {
+            const activeFilters = document.getElementById('activeFilters');
+            const filters = [];
+
+            const searchTerm = document.getElementById('searchInput').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const institutionFilter = document.getElementById('institutionFilter').value;
+
+            if (searchTerm) filters.push({ type: 'search', value: 'Search: ' + searchTerm });
+            if (typeFilter !== 'all') filters.push({ type: 'type', value: 'Type: ' + typeFilter });
+            if (yearFilter !== 'all') filters.push({ type: 'year', value: 'Year: ' + yearFilter });
+            if (institutionFilter !== 'all') filters.push({ type: 'institution', value: 'Institution: ' + institutionFilter });
+
+            activeFilters.innerHTML = filters.map(f => 
+                '<div class="filter-tag">' + f.value + ' <button onclick="removeFilter(\'' + f.type + '\')">×</button></div>'
+            ).join('');
+
+            if (filters.length > 0) {
+                activeFilters.innerHTML += '<button class="clear-filters" onclick="clearAllFilters()">Clear All</button>';
+            }
+        }
+
+        function removeFilter(type) {
+            if (type === 'search') document.getElementById('searchInput').value = '';
+            if (type === 'type') document.getElementById('typeFilter').value = 'all';
+            if (type === 'year') document.getElementById('yearFilter').value = 'all';
+            if (type === 'institution') document.getElementById('institutionFilter').value = 'all';
+            filterPublications();
+        }
+
+        function clearAllFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('typeFilter').value = 'all';
+            document.getElementById('yearFilter').value = 'all';
+            document.getElementById('institutionFilter').value = 'all';
+            filterPublications();
+        }
+
+        function sortAndRender() {
+            const sorted = [...filteredPublications];
+
+            if (currentSort === 'year-desc') {
+                sorted.sort((a, b) => b.year - a.year);
+            } else if (currentSort === 'year-asc') {
+                sorted.sort((a, b) => a.year - b.year);
+            } else if (currentSort === 'citations') {
+                sorted.sort((a, b) => b.citations - a.citations);
+            }
+
+            renderPublications(sorted);
+        }
+
+        function renderPublications(pubs = filteredPublications) {
+            const grid = document.getElementById('publicationsGrid');
+            const resultsCount = document.getElementById('resultsCount');
+
+            resultsCount.textContent = 'Showing ' + pubs.length + ' of ' + publications.length + ' publications';
+
+            if (pubs.length === 0) {
+                grid.innerHTML = '<div class="no-results"><h3>No publications found</h3><p>Try adjusting your search criteria or filters</p></div>';
+                return;
+            }
+
+            grid.innerHTML = pubs.map(pub => {
+                let linksHtml = '<div class="publication-links">';
+                linksHtml += '<a href="PDF/' + pub.pdfNum + '.pdf" class="link-btn pdf-btn" target="_blank">📄 PDF</a>';
+                if (pub.doi) {
+                    linksHtml += '<a href="https://doi.org/' + pub.doi + '" class="link-btn doi-btn" target="_blank">🔗 DOI</a>';
+                }
+                linksHtml += '</div>';
+
+                return '<div class="publication-card">' +
+                    '<div class="publication-header">' +
+                        '<div style="flex: 1;">' +
+                            '<div class="publication-type type-' + pub.type + '">' +
+                                (pub.type === 'journal' ? '📄 Journal' : pub.type === 'conference' ? '🎤 Conference' : '📚 Book Chapter') +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="publication-title">' + pub.title + '</div>' +
+                    '<div class="publication-authors">' + pub.authors + '</div>' +
+                    '<div class="publication-venue">' + pub.venue + '</div>' +
+                    '<div class="publication-meta">' +
+                        '<span class="meta-badge year-badge">' + pub.year + '</span>' +
+                        (pub.if ? '<span class="meta-badge if-badge">IF: ' + pub.if + '</span>' : '') +
+                        (pub.citescore ? '<span class="meta-badge if-badge">CiteScore: ' + pub.citescore + '</span>' : '') +
+                        (pub.citations > 0 ? '<span class="meta-badge citations-badge">📊 ' + pub.citations + ' citations</span>' : '') +
+                    '</div>' +
+                    linksHtml +
+                '</div>';
+            }).join('');
+        }
+
+        function updateStats() {
+            const journals = publications.filter(p => p.type === 'journal').length;
+            const conferences = publications.filter(p => p.type === 'conference').length;
+
+            document.getElementById('totalPubs').textContent = publications.length;
+            document.getElementById('journalPubs').textContent = journals;
+            document.getElementById('confPubs').textContent = conferences;
+        }
+
+        window.removeFilter = removeFilter;
+        window.clearAllFilters = clearAllFilters;
+
+        init();
+    </script>
+</body>
+</html>
