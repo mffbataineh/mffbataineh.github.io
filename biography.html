@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biography - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .bio-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .bio-card h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .bio-card p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            color: #444;
+        }
+
+        .bio-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c3dfe2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--green);
+            margin: 2rem 0;
+        }
+
+        .highlight h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .highlight ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlight li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .highlight li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .timeline-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-section h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item {
+            padding: 1rem 0;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .bio-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem 2rem;
+            }
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Biography</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <div class="bio-card fade-in">
+            <h2>Early Life and Education</h2>
+            <p>
+                Mohammad Al Bataineh, a native of Irbid, Jordan, was born in 1979. He began his academic journey at the Hijjawi Faculty for Engineering Technology, Yarmouk University, Jordan, where he graduated with high honors, obtaining a Bachelor of Science degree in Telecommunications Engineering in 2003. His academic excellence throughout his undergraduate studies was recognized by consistent placement on the Dean's List. Following his graduation, Al Bataineh served as a Teaching Assistant at Yarmouk University from 2003 to 2004, earning a scholarship that would propel him to further his academic pursuits in the United States.
+            </p>
+        </div>
+
+        <div class="bio-card fade-in">
+            <h2>Graduate Studies in the United States</h2>
+            <p>
+                At the Illinois Institute of Technology (IIT), he completed his Master's degree in Electrical Engineering with superior distinction, maintaining a perfect 4.0 GPA in 2006. Al Bataineh remained at IIT from 2006 to 2010 as a Ph.D. candidate and Research Assistant, eventually earning his doctorate in Electrical Engineering with the highest distinction in May 2010, again maintaining a perfect 4.0 GPA. His doctoral research centered on the application of communications, coding theory, and information theory to the interpretation and understanding of information flow in biological systems, particularly gene expression.
+            </p>
+            <p>
+                While pursuing his Ph.D., Al Bataineh also gained practical experience as a Research Assistant at Argonne National Laboratories in Chicago, Illinois, and subsequently as a Research and Development Engineer at MicroSun Technologies, Lisle, Illinois.
+            </p>
+        </div>
+
+        <div class="bio-card fade-in">
+            <h2>Academic Career at Yarmouk University</h2>
+            <p>
+                In September 2010, Al Bataineh returned to his alma mater, Yarmouk University, as an Assistant Professor in the Telecommunications Engineering Department at the Hijjawi Faculty for Engineering Technology. His exceptional performance led to his promotion to Associate Professor in February 2018, and he subsequently served as Department Head from 2018 to 2020, demonstrating strong leadership and administrative capabilities.
+            </p>
+            
+            <div class="highlight">
+                <h3>Key Achievements at Yarmouk University</h3>
+                <ul>
+                    <li>Promoted to Associate Professor (2018)</li>
+                    <li>Served as Department Head (2018-2020)</li>
+                    <li>Led successful ABET accreditation</li>
+                    <li>Led 1 million Euro EU Tempus Project for curriculum modernization</li>
+                    <li>Supervised 5 Master's theses and 10+ undergraduate projects</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bio-card fade-in">
+            <h2>United Arab Emirates University</h2>
+            <p>
+                In August 2020, Al Bataineh joined the United Arab Emirates University (UAEU) as an Assistant Professor in the Electrical and Communication Engineering Department, bringing his expertise to contribute to the institution's growing research excellence and academic programs.
+            </p>
+            <p>
+                During his tenure at UAEU, he has demonstrated remarkable achievements across teaching, research, and service. His research portfolio has expanded significantly, securing multiple grants including a 367,000 AED Start-up Grant, SDG Research Grants, and SURE Plus Grants totaling over 470,000 AED as Principal Investigator. His publication record has grown to over 45 peer-reviewed articles in high-impact journals and prestigious conferences, with notable publications in journals with impact factors exceeding 6.0 and CiteScores above 10.0.
+            </p>
+            
+            <div class="highlight">
+                <h3>Achievements at UAEU</h3>
+                <ul>
+                    <li>Secured 470,000+ AED in research funding as Principal Investigator</li>
+                    <li>Published 20+ high-impact papers since joining</li>
+                    <li>Maintained exceptional teaching evaluations (4.52/5.0)</li>
+                    <li>Serves as Digital Liaison for Educational Technology</li>
+                    <li>Chair of Department Travel Committee</li>
+                    <li>Academic advisor for 57+ undergraduate students</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bio-card fade-in">
+            <h2>Teaching Excellence and Innovation</h2>
+            <p>
+                Al Bataineh's commitment to teaching excellence is evidenced by consistently high student evaluations averaging 4.52 out of 5.0, surpassing departmental averages. He has pioneered innovative teaching methodologies, including iPad-integrated interactive lectures, recorded sessions for flexible learning, and comprehensive digital course management.
+            </p>
+            <p>
+                Throughout his career, Al Bataineh has taught a diverse range of undergraduate courses including Signals and Systems, Probability and Random Processes, Digital Image Processing, and Information Theory and Coding, as well as graduate-level courses such as Artificial Neural Networks and Digital Signal Processing.
+            </p>
+        </div>
+
+        <div class="bio-card fade-in">
+            <h2>Research Evolution and Impact</h2>
+            <p>
+                His research portfolio has evolved significantly during his tenure at UAEU, expanding from his foundational work in bioinformatics and communications theory to encompass advanced wireless communications including RIS-assisted systems and mmWave MIMO technologies, machine learning applications for antenna optimization and network management, IoT security and cybersecurity education, smart city digital twin architectures, and mathematical modeling of complex systems.
+            </p>
+            <p>
+                His continued work in computational biology now incorporates advanced neural network techniques for protein detection and gene identification. This diverse interdisciplinary approach demonstrates his ability to apply communications theory principles across emerging technological domains, from 5G/6G wireless systems and smart cities to healthcare applications and environmental challenges, positioning him as a versatile scholar who addresses contemporary engineering problems through innovative computational and theoretical approaches.
+            </p>
+        </div>
+
+        <div class="timeline-section fade-in">
+            <h3>Career Timeline</h3>
+            
+            <div class="timeline-item">
+                <h4>2020 - Present</h4>
+                <p><strong>Assistant Professor</strong> | United Arab Emirates University</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>2018 - 2020</h4>
+                <p><strong>Associate Professor & Department Head</strong> | Yarmouk University</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>2010 - 2018</h4>
+                <p><strong>Assistant Professor</strong> | Yarmouk University</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>2006 - 2010</h4>
+                <p><strong>Ph.D. in Electrical Engineering</strong> | Illinois Institute of Technology (GPA: 4.0/4.0)</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>2004 - 2006</h4>
+                <p><strong>M.S. in Electrical Engineering</strong> | Illinois Institute of Technology (GPA: 4.0/4.0)</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h4>2003</h4>
+                <p><strong>B.S. in Telecommunications Engineering</strong> | Yarmouk University (High Honors)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
