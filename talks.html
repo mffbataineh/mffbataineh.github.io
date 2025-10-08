@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talks & Presentations - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --purple: #9b59b6;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--purple), var(--secondary));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Presentation Cards */
+        .presentations-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .presentation-card {
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 6px solid var(--purple);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .presentation-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .presentation-card.invited {
+            border-left-color: var(--orange);
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+        }
+
+        .presentation-card.keynote {
+            border-left-color: var(--red);
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+        }
+
+        .presentation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .presentation-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .presentation-type {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .type-conference {
+            background: var(--purple);
+            color: white;
+        }
+
+        .type-invited {
+            background: var(--orange);
+            color: white;
+        }
+
+        .type-keynote {
+            background: var(--red);
+            color: white;
+        }
+
+        .type-session {
+            background: var(--green);
+            color: white;
+        }
+
+        .presentation-meta {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            color: #666;
+        }
+
+        .presentation-meta div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .presentation-description {
+            line-height: 1.8;
+            color: #444;
+            margin-top: 1rem;
+        }
+
+        .presentation-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .video-btn {
+            background: #ff0000;
+            color: white;
+        }
+
+        .video-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+        }
+
+        .slides-btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .slides-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 191, 219, 0.3);
+        }
+
+        /* Featured Talk */
+        .featured-talk {
+            background: linear-gradient(135deg, var(--orange), var(--red));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-talk h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-talk p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-talk .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--red);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .featured-talk .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Timeline by Year */
+        .year-section {
+            margin-top: 3rem;
+        }
+
+        .year-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .presentation-header {
+                flex-direction: column;
+            }
+
+            .presentation-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Talks & Presentations</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card fade-in">
+                <h3>45+</h3>
+                <p>Conference Presentations</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>15+</h3>
+                <p>International Venues</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>5+</h3>
+                <p>Invited Talks</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>3</h3>
+                <p>Continents</p>
+            </div>
+        </div>
+
+        <!-- Featured Talk -->
+        <div class="featured-talk fade-in">
+            <h3>🎤 Featured Talk: Exponential Thinking and Disruptive Innovations</h3>
+            <p>
+                Keynote presentation on exponential technologies and their impact on society, delivered at 
+                multiple universities and conferences. This popular talk explores how emerging technologies 
+                are reshaping industries and creating new possibilities for innovation.
+            </p>
+            <a href="https://www.youtube.com/watch?v=B5REqwjwwII&t=288s" target="_blank" class="cta-button">
+                🎥 Watch on YouTube
+            </a>
+        </div>
+
+        <!-- Invited Talks & Keynotes -->
+        <div class="section fade-in">
+            <h2>Invited Talks & Keynote Presentations</h2>
+            <div class="presentations-grid">
+                <div class="presentation-card keynote">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Youth & Future Technologies</div>
+                        <span class="presentation-type type-keynote">Plenary Speaker</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2018</div>
+                        <div>📍 HTU Conference</div>
+                        <div>🌍 Jordan</div>
+                    </div>
+                    <div class="presentation-description">
+                        Plenary keynote address exploring the role of emerging technologies in shaping youth 
+                        opportunities and career paths. Discussed exponential technologies, AI, and the future 
+                        of engineering education.
+                    </div>
+                </div>
+
+                <div class="presentation-card invited">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Exponential Thinking and Disruptive Innovations</div>
+                        <span class="presentation-type type-invited">Invited Talk Series</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2015-2018</div>
+                        <div>📍 Multiple Universities</div>
+                        <div>🌍 Jordan & UAE</div>
+                    </div>
+                    <div class="presentation-description">
+                        Series of invited presentations delivered at various universities exploring how 
+                        exponential technologies are transforming industries, society, and education. 
+                        Covered topics including AI, biotechnology, renewable energy, and digital transformation.
+                    </div>
+                    <div class="presentation-links">
+                        <a href="https://www.youtube.com/watch?v=B5REqwjwwII&t=288s" target="_blank" class="link-btn video-btn">
+                            🎥 Watch Video
+                        </a>
+                    </div>
+                </div>
+
+                <div class="presentation-card invited">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Singularity University Summit</div>
+                        <span class="presentation-type type-invited">Summit Participation</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2017</div>
+                        <div>📍 Berlin, Germany</div>
+                        <div>🌍 Europe</div>
+                    </div>
+                    <div class="presentation-description">
+                        Participated in Singularity University Summit in Berlin, presenting on applications 
+                        of exponential technologies in telecommunications and discussing future trends in 
+                        technology convergence.
+                    </div>
+                    <div class="presentation-links">
+                        <a href="https://www.youtube.com" target="_blank" class="link-btn video-btn">
+                            🎥 Available on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Conference Presentations (2023-2025) -->
+        <div class="section fade-in">
+            <h2>Recent Conference Presentations</h2>
+            
+            <div class="year-section">
+                <div class="year-header">2025</div>
+                <div class="presentations-grid">
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <div class="presentation-title">A Comparative Analysis of Computational Approaches for Gene Detection</div>
+                            <span class="presentation-type type-conference">Conference Paper</span>
+                        </div>
+                        <div class="presentation-meta">
+                            <div>📅 2025</div>
+                            <div>📍 ICBET 2025</div>
+                            <div>🏛️ International Conference on Biomedical Engineering and Technology</div>
+                        </div>
+                        <div class="presentation-description">
+                            Presented comparative study of various computational methods for gene detection, 
+                            including communications theory-based approaches and machine learning techniques.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-section">
+                <div class="year-header">2024</div>
+                <div class="presentations-grid">
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <div class="presentation-title">Enhanced Detection and Localization of Zinc Finger Proteins Using Advanced Neural Network Techniques</div>
+                            <span class="presentation-type type-conference">Conference Paper</span>
+                        </div>
+                        <div class="presentation-meta">
+                            <div>📅 2024</div>
+                            <div>📍 ICBET 2024</div>
+                            <div>🏛️ 14th International Conference on Biomedical Engineering and Technology</div>
+                        </div>
+                        <div class="presentation-description">
+                            Presented novel neural network approaches for detecting and localizing zinc finger 
+                            proteins in genomic sequences, demonstrating improved accuracy over traditional methods.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-section">
+                <div class="year-header">2023</div>
+                <div class="presentations-grid">
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <div class="presentation-title">Communications Theory-Inspired Algorithms for Detecting Protein-Coding Regions in Prokaryotic Genomes</div>
+                            <span class="presentation-type type-conference">Conference Paper</span>
+                        </div>
+                        <div class="presentation-meta">
+                            <div>📅 2023</div>
+                            <div>📍 ICBET 2023</div>
+                            <div>🏛️ 13th International Conference on Biomedical Engineering and Technology</div>
+                        </div>
+                        <div class="presentation-description">
+                            Comparative study of correlation-based algorithms and Bayesian classifiers using 
+                            communications theory for gene detection in prokaryotic genomes.
+                        </div>
+                    </div>
+
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <div class="presentation-title">Session Chair: Medical Imaging and Biomedical Image Processing</div>
+                            <span class="presentation-type type-session">Session Chair</span>
+                        </div>
+                        <div class="presentation-meta">
+                            <div>📅 2023</div>
+                            <div>📍 ICBET 2023, Tokyo, Japan</div>
+                            <div>🎭 Leadership Role</div>
+                        </div>
+                        <div class="presentation-description">
+                            Chaired technical session on medical imaging and biomedical image processing, 
+                            facilitating discussions and managing presentations from international researchers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earlier Conference Presentations -->
+        <div class="section fade-in">
+            <h2>Selected Earlier Presentations (2007-2020)</h2>
+            <div class="presentations-grid">
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Identification of Coding Regions in Prokaryotic DNA Sequences Using Bayesian Classification</div>
+                        <span class="presentation-type type-conference">Conference Paper</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2020</div>
+                        <div>📍 IWBBIO 2020</div>
+                        <div>🏛️ International Work-Conference on Bioinformatics and Biomedical Engineering</div>
+                    </div>
+                </div>
+
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Transcription Factor Binding Site Detection Algorithm</div>
+                        <span class="presentation-type type-conference">Conference Paper</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2014</div>
+                        <div>📍 IWBBIO 2014</div>
+                        <div>🏛️ International Work-Conference on Bioinformatics and Biomedical Engineering</div>
+                    </div>
+                    <div class="presentation-description">
+                        Presented distance metrics based on position frequency matrix concept for detecting 
+                        transcription factor binding sites in genomic sequences.
+                    </div>
+                </div>
+
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">TFBS Detection Algorithm Using Distance Metrics</div>
+                        <span class="presentation-type type-conference">Conference Paper</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2012</div>
+                        <div>📍 HIBIT 2012</div>
+                        <div>🏛️ International Symposium on Health Informatics and Bioinformatics</div>
+                    </div>
+                    <div class="presentation-description">
+                        Presented novel algorithm using center of mass and polyphase mapping for transcription 
+                        factor binding site detection.
+                    </div>
+                </div>
+
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Gene Expression Analysis Using Communications Theory</div>
+                        <span class="presentation-type type-conference">Conference Paper</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2009</div>
+                        <div>📍 IEEE EMBS Annual Conference</div>
+                        <div>🏛️ IEEE Engineering in Medicine and Biology Society</div>
+                    </div>
+                    <div class="presentation-description">
+                        Multiple presentations at IEEE EMBS conference on applying communications, coding, 
+                        and information theory to gene expression analysis.
+                    </div>
+                </div>
+
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Ribosome Binding Model Using Communication Theory</div>
+                        <span class="presentation-type type-conference">Conference Paper</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2007</div>
+                        <div>📍 BIOCOMP 2007</div>
+                        <div>🏛️ International Conference on Bioinformatics & Computational Biology</div>
+                    </div>
+                    <div class="presentation-description">
+                        First major conference presentation on applying communication theory concepts to 
+                        biological systems, specifically ribosome binding site identification.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- International Venues -->
+        <div class="section fade-in">
+            <h2>International Conference Venues</h2>
+            <p style="margin-bottom: 1.5rem; color: #555; line-height: 1.8;">
+                Presented research at prestigious international conferences across multiple continents:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--secondary);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🇯🇵 Asia</h4>
+                    <p style="color: #555;">Tokyo, Japan • Various locations</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #f3e5f5, #e1bee7); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--purple);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🇪🇺 Europe</h4>
+                    <p style="color: #555;">Berlin, Germany • Spain</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--green);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🇺🇸 North America</h4>
+                    <p style="color: #555;">USA (Chicago, Dallas, various)</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--orange);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🌍 Middle East</h4>
+                    <p style="color: #555;">UAE, Jordan, Saudi Arabia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organizing Committee Roles -->
+        <div class="section fade-in">
+            <h2>Conference Organization & Leadership</h2>
+            <div class="presentations-grid">
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Organizing Committee Administrator</div>
+                        <span class="presentation-type type-session">Leadership Role</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2025</div>
+                        <div>📍 IEEE BioCAS 2025</div>
+                        <div>🌍 Abu Dhabi, UAE</div>
+                    </div>
+                    <div class="presentation-description">
+                        Serving as Organizing Committee Administrator for IEEE BioCAS (Biomedical Circuits 
+                        and Systems) conference in Abu Dhabi, managing logistics and coordination.
+                    </div>
+                </div>
+
+                <div class="presentation-card">
+                    <div class="presentation-header">
+                        <div class="presentation-title">Technical Program Committee Member</div>
+                        <span class="presentation-type type-session">Committee Member</span>
+                    </div>
+                    <div class="presentation-meta">
+                        <div>📅 2025</div>
+                        <div>📍 IEEE AICT 2025</div>
+                        <div>🌍 Al Ain, UAE</div>
+                    </div>
+                    <div class="presentation-description">
+                        Member of Technical Program Committee for IEEE AICT (Advanced Information and 
+                        Communication Technology), reviewing papers and shaping conference program.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
