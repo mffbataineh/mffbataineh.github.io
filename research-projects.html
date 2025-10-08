@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Projects - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --purple: #9b59b6;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--purple), var(--secondary));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--green);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card.completed {
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .project-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-active {
+            background: var(--green);
+            color: white;
+        }
+
+        .status-completed {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+        }
+
+        .meta-item strong {
+            color: var(--primary);
+        }
+
+        .project-description {
+            line-height: 1.8;
+            color: #444;
+            margin-top: 1rem;
+        }
+
+        .project-funding {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Research Areas Grid */
+        .research-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-area-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .research-area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-area-card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .research-area-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-area-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .research-area-card li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* Collaborators */
+        .collaborators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .collaborator-card {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--orange);
+            transition: all 0.3s ease;
+        }
+
+        .collaborator-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .collaborator-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .collaborator-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Opportunities Section */
+        .opportunities-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 6px solid var(--green);
+            margin-top: 2rem;
+        }
+
+        .opportunities-box h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunities-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .opportunities-box li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .opportunities-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .project-header {
+                flex-direction: column;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Research Projects</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card fade-in">
+                <h3>470K+</h3>
+                <p>AED Research Funding</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>5+</h3>
+                <p>Active Projects</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>45+</h3>
+                <p>Publications</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>15+</h3>
+                <p>Years Research Experience</p>
+            </div>
+        </div>
+
+        <!-- Active Projects -->
+        <div class="section fade-in">
+            <h2>Active Research Projects</h2>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Gene and Regulatory Sequence Identification using Communications Theory</div>
+                    <span class="project-status status-completed">Completed 2025</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> 2023-2025
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Principal Investigator
+                    </div>
+                    <div class="meta-item">
+                        <strong>Type:</strong> Start-up Grant (UAEU)
+                    </div>
+                </div>
+                <div class="project-description">
+                    This pioneering project applies advanced communications theory, coding theory, and information theory principles to identify genes and regulatory sequences in genomic data. By treating DNA sequences as communication channels, the research develops novel algorithms for detecting protein-coding regions, transcription factor binding sites, and other regulatory elements with improved accuracy and efficiency.
+                </div>
+                <div class="project-funding">Funding: 367,000 AED</div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Offline Assistive System with Stereo Vision for Visually Impaired</div>
+                    <span class="project-status status-active">Active</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> 2025-2026
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Supervisor
+                    </div>
+                    <div class="meta-item">
+                        <strong>Type:</strong> SURE Plus Grant
+                    </div>
+                </div>
+                <div class="project-description">
+                    Development of an innovative offline assistive system utilizing stereo vision technology to aid visually impaired individuals. The system employs computer vision algorithms and machine learning to provide real-time environmental awareness and obstacle detection without requiring internet connectivity.
+                </div>
+                <div class="project-funding">Funding: 40,000 AED</div>
+            </div>
+
+            <div class="project-card completed">
+                <div class="project-header">
+                    <div class="project-title">Innovative Sight-Assist Glasses with CNN-LSTM Architecture</div>
+                    <span class="project-status status-completed">Completed 2025</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> 2024-2025
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Supervisor
+                    </div>
+                    <div class="meta-item">
+                        <strong>Type:</strong> SURE Plus Grant
+                    </div>
+                </div>
+                <div class="project-description">
+                    Smart assistive glasses incorporating Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) networks for real-time scene understanding and object recognition. The system provides audio feedback to help visually impaired users navigate their environment safely and independently.
+                </div>
+                <div class="project-funding">Funding: 40,000 AED</div>
+            </div>
+
+            <div class="project-card completed">
+                <div class="project-header">
+                    <div class="project-title">Assistive Smart Glasses for Visually Impaired</div>
+                    <span class="project-status status-completed">Completed 2023</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> Feb-May 2023
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Supervisor
+                    </div>
+                    <div class="meta-item">
+                        <strong>Type:</strong> SDG Grant
+                    </div>
+                </div>
+                <div class="project-description">
+                    Initial prototype of smart glasses designed to assist visually impaired individuals through computer vision and audio feedback systems. This project laid the foundation for subsequent advanced assistive technology research.
+                </div>
+                <div class="project-funding">Funding: 31,820 AED</div>
+            </div>
+        </div>
+
+        <!-- Research Areas -->
+        <div class="section fade-in">
+            <h2>Research Areas & Expertise</h2>
+            <div class="research-areas-grid">
+                <div class="research-area-card">
+                    <h3>🔗 Advanced Wireless Communications</h3>
+                    <ul>
+                        <li>RIS/IRS-Assisted Systems</li>
+                        <li>mmWave and THz Technologies</li>
+                        <li>Machine Learning-Enhanced Channel Estimation</li>
+                        <li>5G/6G Wireless Systems</li>
+                        <li>MIMO Systems Optimization</li>
+                    </ul>
+                </div>
+
+                <div class="research-area-card">
+                    <h3>🤖 Applied Machine Learning & AI</h3>
+                    <ul>
+                        <li>Neural Networks for Engineering</li>
+                        <li>Antenna Optimization Algorithms</li>
+                        <li>Network Management Systems</li>
+                        <li>Computer Vision Applications</li>
+                        <li>Deep Learning Architectures</li>
+                    </ul>
+                </div>
+
+                <div class="research-area-card">
+                    <h3>🧬 Computational Biology</h3>
+                    <ul>
+                        <li>Genomic Signal Processing</li>
+                        <li>Communications Theory in Biology</li>
+                        <li>Gene Identification Algorithms</li>
+                        <li>Protein Detection Methods</li>
+                        <li>Regulatory Sequence Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="research-area-card">
+                    <h3>🌐 Smart Systems & IoT</h3>
+                    <ul>
+                        <li>Cybersecurity Education</li>
+                        <li>Smart City Technologies</li>
+                        <li>Digital Twin Architectures</li>
+                        <li>IoT Security Solutions</li>
+                        <li>Healthcare IoT Applications</li>
+                    </ul>
+                </div>
+
+                <div class="research-area-card">
+                    <h3>📊 Applied Mathematics</h3>
+                    <ul>
+                        <li>Optimization Theory</li>
+                        <li>Statistical Signal Processing</li>
+                        <li>Information Theory</li>
+                        <li>Coding Theory Applications</li>
+                        <li>Mathematical Modeling</li>
+                    </ul>
+                </div>
+
+                <div class="research-area-card">
+                    <h3>♿ Assistive Technologies</h3>
+                    <ul>
+                        <li>Computer Vision for Accessibility</li>
+                        <li>Smart Glasses Development</li>
+                        <li>Real-time Object Detection</li>
+                        <li>Audio Feedback Systems</li>
+                        <li>Offline AI Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Collaborators -->
+        <div class="section fade-in">
+            <h2>Research Collaborators</h2>
+            <div class="collaborators-grid">
+                <div class="collaborator-card">
+                    <h4>Dr. Haythem Bany Salameh</h4>
+                    <p>Wireless Communications & RIS Systems</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4>Dr. Zouhair Al-qudah</h4>
+                    <p>Information Theory & Network Optimization</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4>Dr. Zaid Albataineh</h4>
+                    <p>5G/6G Communications & Machine Learning</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4>Dr. Mohamoud Al Ahmad</h4>
+                    <p>Machine Learning & Signal Processing</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4>Dr. Atef Abdrabou</h4>
+                    <p>Smart Systems & Network Management</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4>International Collaborations</h4>
+                    <p>Researchers from Jordan, Malaysia, KSA, and USA</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Past Projects -->
+        <div class="section fade-in">
+            <h2>Notable Past Research (IIT & Argonne National Lab)</h2>
+            <div class="project-card completed">
+                <div class="project-header">
+                    <div class="project-title">Genomic Translation Analysis Using Communications Theory</div>
+                    <span class="project-status status-completed">Completed 2010</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> 2007-2010
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Ph.D. Research Assistant
+                    </div>
+                    <div class="meta-item">
+                        <strong>Institution:</strong> Illinois Institute of Technology
+                    </div>
+                </div>
+                <div class="project-description">
+                    Doctoral research developing novel approaches to analyze gene expression and protein translation by applying communications theory, coding theory, and information theory to biological systems. This groundbreaking work established the foundation for using signal processing techniques in genomics.
+                </div>
+                <div class="project-funding">Funding: $25,000+ (Research Assistantship)</div>
+            </div>
+
+            <div class="project-card completed">
+                <div class="project-header">
+                    <div class="project-title">High-Performance Computing for Biological Data Analysis</div>
+                    <span class="project-status status-completed">Completed 2009</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Period:</strong> 2008-2009
+                    </div>
+                    <div class="meta-item">
+                        <strong>Role:</strong> Research Assistant
+                    </div>
+                    <div class="meta-item">
+                        <strong>Institution:</strong> Argonne National Laboratory
+                    </div>
+                </div>
+                <div class="project-description">
+                    Collaborated on high-performance computing applications for processing and analyzing large-scale biological datasets. Developed efficient algorithms for genomic data analysis utilizing parallel computing architectures.
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Opportunities -->
+        <div class="section fade-in">
+            <h2>Research Opportunities for Students</h2>
+            <div class="opportunities-box">
+                <h3>Join Our Research Team!</h3>
+                <ul>
+                    <li><strong>Undergraduate Research:</strong> SURE Plus grants available for senior students interested in machine learning, computer vision, and assistive technologies</li>
+                    <li><strong>Graduation Projects:</strong> Multiple GP I and GP II projects available in wireless communications, IoT, and AI applications</li>
+                    <li><strong>Master's Programs:</strong> Opportunities to work on cutting-edge research in communications theory and computational biology</li>
+                    <li><strong>Ph.D. Supervision:</strong> Currently accepting Ph.D. students interested in interdisciplinary research combining communications, ML, and bioinformatics</li>
+                    <li><strong>Collaboration Opportunities:</strong> Open to collaborations with researchers from industry and academia</li>
+                </ul>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html#contact" class="cta-button">Contact Me About Research Opportunities</a>
+                <a href="publications.html" class="cta-button">View Publications</a>
+            </div>
+        </div>
+
+        <!-- Pending Proposals -->
+        <div class="section fade-in">
+            <h2>Pending Grant Proposals</h2>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Modular Assistive System with Stereo Vision</div>
+                    <span class="project-status" style="background: var(--orange); color: white;">Under Review</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Type:</strong> UPAR Proposal
+                    </div>
+                    <div class="meta-item">
+                        <strong>Status:</strong> Under Review
+                    </div>
+                </div>
+                <div class="project-description">
+                    Advanced modular assistive system incorporating stereo vision for enhanced depth perception and spatial awareness for visually impaired users.
+                </div>
+                <div class="project-funding">Proposed Funding: 348,000 AED</div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Hybrid AI-DSP Framework for Gene Detection</div>
+                    <span class="project-status" style="background: var(--orange); color: white;">Under Review</span>
+                </div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <strong>Type:</strong> AUA-UAEU Joint Proposal
+                    </div>
+                    <div class="meta-item">
+                        <strong>Status:</strong> Under Review
+                    </div>
+                </div>
+                <div class="project-description">
+                    Innovative framework combining artificial intelligence with digital signal processing techniques for improved gene detection and regulatory sequence identification in genomic data.
+                </div>
+                <div class="project-funding">Proposed Funding: 500,000 AED</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
