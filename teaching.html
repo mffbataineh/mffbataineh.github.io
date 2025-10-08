@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--green), var(--secondary));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .section h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, #f5f7fa, #e8f5e9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--green);
+        }
+
+        .course-code {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .course-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-level {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--orange);
+            margin: 2rem 0;
+        }
+
+        .philosophy-box p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        /* Innovation Cards */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .innovation-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--green);
+            transition: all 0.3s ease;
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .innovation-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-card h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .innovation-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Resources Section */
+        .resources-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources-list li {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--orange);
+            transition: all 0.3s ease;
+        }
+
+        .resources-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resources-list li strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .resources-list li a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .resources-list li a:hover {
+            color: var(--primary);
+        }
+
+        /* YouTube Section */
+        .youtube-section {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .youtube-section h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .youtube-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .youtube-stat {
+            text-align: center;
+        }
+
+        .youtube-stat h4 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .youtube-stat p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .youtube-btn {
+            display: inline-block;
+            background: white;
+            color: #cc0000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .youtube-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .courses-grid,
+            .innovation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Teaching Excellence</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-card fade-in">
+                <h3>4.52/5.0</h3>
+                <p>Student Evaluation Average</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>15+</h3>
+                <p>Years Teaching Experience</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>400+</h3>
+                <p>Educational Videos</p>
+            </div>
+            <div class="stat-card fade-in">
+                <h3>10.8K</h3>
+                <p>YouTube Subscribers</p>
+            </div>
+        </div>
+
+        <!-- Teaching Philosophy -->
+        <div class="section fade-in">
+            <h2>Teaching Philosophy</h2>
+            <div class="philosophy-box">
+                <p>
+                    My teaching philosophy centers on creating an engaging, interactive learning environment where students are not passive recipients of information but active participants in their educational journey. I believe in bridging theoretical concepts with practical applications, making complex engineering principles accessible and relevant to real-world challenges.
+                </p>
+                <p>
+                    Through innovative use of technology—including iPad-integrated lectures, recorded sessions for flexible learning, and comprehensive digital course management—I strive to accommodate diverse learning styles and create opportunities for students to learn at their own pace. My goal is not just to teach formulas and theories, but to inspire critical thinking, problem-solving skills, and a passion for lifelong learning in electrical engineering and communications.
+                </p>
+                <p>
+                    I am committed to maintaining the highest standards of teaching excellence, as evidenced by my consistent student evaluations (4.52/5.0) that exceed departmental averages, and my continuous pursuit of professional development through programs like the Faculty Teaching Academy Program (FTAP) and Quality Matters certification.
+                </p>
+            </div>
+        </div>
+
+        <!-- Current Courses at UAEU -->
+        <div class="section fade-in">
+            <h2>Current Courses at UAEU</h2>
+            <h3>Undergraduate Courses</h3>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">ECOM 320</div>
+                    <div class="course-title">Probability and Random Processes</div>
+                    <p>Fundamental concepts of probability theory, random variables, and stochastic processes essential for communication systems analysis.</p>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ELEC 360</div>
+                    <div class="course-title">Signals and Systems</div>
+                    <p>Analysis of continuous-time and discrete-time signals and systems using time-domain and frequency-domain techniques.</p>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ELEC 380</div>
+                    <div class="course-title">Analytical Methods for EE</div>
+                    <p>Mathematical tools and analytical techniques essential for solving electrical engineering problems.</p>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ECOM 561</div>
+                    <div class="course-title">Information Theory and Coding</div>
+                    <p>Fundamentals of information theory, source coding, channel coding, and error control coding techniques.</p>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ELEC 551</div>
+                    <div class="course-title">Digital Image Processing</div>
+                    <p>Image enhancement, restoration, compression, and analysis techniques using digital signal processing methods.</p>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">ELEC 585/590</div>
+                    <div class="course-title">Graduation Projects</div>
+                    <p>Capstone design projects integrating knowledge from multiple courses to solve real-world engineering problems.</p>
+                    <span class="course-level">Senior Project</span>
+                </div>
+            </div>
+
+            <h3>Graduate Courses</h3>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">ELEC 644</div>
+                    <div class="course-title">Artificial Neural Networks</div>
+                    <p>Advanced study of neural network architectures, training algorithms, and applications in engineering systems.</p>
+                    <span class="course-level" style="background: var(--orange);">Graduate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Previous Courses at Yarmouk University -->
+        <div class="section fade-in">
+            <h2>Courses Previously Taught at Yarmouk University</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-code">CME 312</div>
+                    <div class="course-title">Signals and Systems</div>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CME 314</div>
+                    <div class="course-title">Probability and Random Processes</div>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CME 452</div>
+                    <div class="course-title">Digital Communications</div>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CME 456</div>
+                    <div class="course-title">Communication Systems</div>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CME 612</div>
+                    <div class="course-title">Digital Signal Processing</div>
+                    <span class="course-level" style="background: var(--orange);">Graduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">CME 616</div>
+                    <div class="course-title">Information Theory and Coding</div>
+                    <span class="course-level" style="background: var(--orange);">Graduate</span>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">BME 152</div>
+                    <div class="course-title">Introduction to Engineering</div>
+                    <span class="course-level">Undergraduate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teaching Innovations -->
+        <div class="section fade-in">
+            <h2>Teaching Innovations & Methodologies</h2>
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <div class="innovation-icon">📱</div>
+                    <h4>iPad-Integrated Lectures</h4>
+                    <p>Interactive lectures using iPad technology for real-time problem-solving, annotations, and dynamic visualizations that enhance student engagement.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">🎥</div>
+                    <h4>Recorded Sessions</h4>
+                    <p>All lectures recorded and made available for students, enabling flexible learning, review, and accommodating different learning paces.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">💻</div>
+                    <h4>Digital Course Management</h4>
+                    <p>Comprehensive online platforms using MS Teams for seamless communication, assignment submission, and resource sharing.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">🤖</div>
+                    <h4>AI-Enhanced Learning</h4>
+                    <p>Integration of NotebookLM and AI tools to provide additional learning support and personalized study materials.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">📊</div>
+                    <h4>Constructivist Learning</h4>
+                    <p>Implementation of constructivist learning theory from Faculty Teaching Academy Program (FTAP) for active student participation.</p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">✅</div>
+                    <h4>Quality Matters Framework</h4>
+                    <p>Applying Quality Matters standards for course design, ensuring accessibility, alignment, and evidence-based practices.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- YouTube Channel -->
+        <div class="section fade-in">
+            <div class="youtube-section">
+                <h3>📺 Educational YouTube Channel</h3>
+                <p>Access hundreds of educational videos covering electrical engineering and communications topics</p>
+                <div class="youtube-stats">
+                    <div class="youtube-stat">
+                        <h4>400+</h4>
+                        <p>Educational Videos</p>
+                    </div>
+                    <div class="youtube-stat">
+                        <h4>10.8K</h4>
+                        <p>Subscribers</p>
+                    </div>
+                    <div class="youtube-stat">
+                        <h4>1000s</h4>
+                        <p>Hours of Content</p>
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/mffbataineh" target="_blank" class="youtube-btn">Visit YouTube Channel</a>
+            </div>
+        </div>
+
+        <!-- Student Resources -->
+        <div class="section fade-in">
+            <h2>Student Resources</h2>
+            <ul class="resources-list">
+                <li>
+                    <strong>YouTube Channel:</strong> Over 400 educational videos covering course topics, problem-solving techniques, and supplementary materials. 
+                    <a href="https://www.youtube.com/mffbataineh" target="_blank">Visit Channel →</a>
+                </li>
+                <li>
+                    <strong>Office Hours:</strong> Available for student consultations and academic advising. Currently advising 57+ undergraduate students including Communication Engineering cadets at Zayed Military College.
+                </li>
+                <li>
+                    <strong>MS Teams:</strong> All course materials, announcements, and recorded lectures available through MS Teams platform for enrolled students.
+                </li>
+                <li>
+                    <strong>Research Opportunities:</strong> Opportunities available for undergraduate and graduate students to participate in research projects. Contact for more information about SURE Plus grants and graduation projects.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Teaching Recognition -->
+        <div class="section fade-in">
+            <h2>Teaching Recognition & Professional Development</h2>
+            <div class="philosophy-box">
+                <h4 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 1rem;">Awards & Ratings</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Student Evaluation Average:</strong> 4.52/5.0 (Exceeds departmental average of 4.43)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Faculty Evaluation:</strong> Excellent Rating (2020-2022 cycle at UAEU)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Teaching Load:</strong> 22-27 credit hours annually
+                    </li>
+                </ul>
+
+                <h4 style="color: var(--primary); font-size: 1.2rem; margin: 2rem 0 1rem 0;">Professional Development</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Faculty Teaching Academy Program (FTAP):</strong> Completed with focus on Constructivist Learning Theory
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Quality Matters Certification:</strong> "Applying the QM Rubric" (Scheduled September 2025)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>Digital Liaison:</strong> Educational Technology Integration (2025)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--green); font-weight: bold;">✓</span>
+                        <strong>AI in Higher Education Workshop:</strong> University-wide professional development (March 2025)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
