@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-box p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Main Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Contact Info */
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card h4 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card .icon {
+            font-size: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.8rem 0;
+            color: #555;
+        }
+
+        .info-item strong {
+            color: var(--primary);
+            min-width: 80px;
+        }
+
+        .info-item a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Office Hours */
+        .office-hours {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .office-hours h5 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Best Ways */
+        .best-ways {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .best-ways h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .way-card {
+            background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--green);
+        }
+
+        .way-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .way-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .way-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .way-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .priority {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Social Links */
+        .social-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .social-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.5);
+        }
+
+        .social-link span {
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .map-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .location-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-card p {
+            color: #555;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .ways-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact Me</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="intro-box fade-in">
+            <h2>📧 Let's Connect</h2>
+            <p>Whether you're a student, researcher, or collaborator, I'm always happy to hear from you. Choose the best way to reach out below!</p>
+        </div>
+
+        <!-- Best Ways to Reach -->
+        <div class="best-ways fade-in">
+            <h3>🎯 Best Ways to Reach Me</h3>
+            <div class="ways-grid">
+                <div class="way-card">
+                    <div class="icon">📧</div>
+                    <h4>Email</h4>
+                    <p>For general inquiries, research collaboration, or detailed questions</p>
+                    <span class="priority">⚡ Response: 24-48 hours</span>
+                </div>
+                <div class="way-card">
+                    <div class="icon">🏢</div>
+                    <h4>Office Hours</h4>
+                    <p>For students: Schedule a meeting during office hours or by appointment</p>
+                    <span class="priority">✅ Best for Students</span>
+                </div>
+                <div class="way-card">
+                    <div class="icon">💬</div>
+                    <h4>MS Teams</h4>
+                    <p>For UAEU students: Quick questions via Teams chat or video call</p>
+                    <span class="priority">⚡ Fastest Response</span>
+                </div>
+                <div class="way-card">
+                    <div class="icon">📱</div>
+                    <h4>WhatsApp</h4>
+                    <p>For current students in my courses: Course-related WhatsApp groups</p>
+                    <span class="priority">🎓 Course Students</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-section fade-in">
+                <h3>📝 Send Me a Message</h3>
+                
+                <form action="https://formspree.io/f/xgvnlqgd" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">I am a... *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="student">Current Student</option>
+                            <option value="prospective">Prospective Student</option>
+                            <option value="researcher">Researcher/Academic</option>
+                            <option value="industry">Industry Professional</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <!-- FormSpree Configuration -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - Website">
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info-section fade-in">
+                <!-- UAEU Contact -->
+                <div class="info-card">
+                    <h4><span class="icon">🏛️</span> UAEU Contact</h4>
+                    <div class="info-item">
+                        <strong>Email:</strong>
+                        <a href="mailto:mffbataineh@uaeu.ac.ae">mffbataineh@uaeu.ac.ae</a>
+                    </div>
+                    <div class="info-item">
+                        <strong>Phone:</strong>
+                        <span>+971-3-7135146</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Mobile:</strong>
+                        <span>+971-502030221</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Office:</strong>
+                        <span>F3-1-161, College of Engineering</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Address:</strong>
+                        <span>P.O. Box 15551, Al Ain, UAE</span>
+                    </div>
+
+                    <div class="office-hours">
+                        <h5>📅 Office Hours (Fall 2024)</h5>
+                        <div class="hours-item">
+                            <span>Sunday & Tuesday</span>
+                            <strong>11:00 AM - 1:00 PM</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Wednesday</span>
+                            <strong>2:00 PM - 4:00 PM</strong>
+                        </div>
+                        <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #666;">
+                            📧 For appointments outside office hours, please email in advance
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Yarmouk Contact -->
+                <div class="info-card" style="border-left-color: var(--green);">
+                    <h4><span class="icon">🏛️</span> Yarmouk University</h4>
+                    <div class="info-item">
+                        <strong>Email:</strong>
+                        <a href="mailto:mohamadfa@yu.edu.jo">mohamadfa@yu.edu.jo</a>
+                    </div>
+                    <div class="info-item">
+                        <strong>Phone:</strong>
+                        <span>+962-2-721-1111 (Ext. 4539)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Website:</strong>
+                        <a href="http://faculty.yu.edu.jo/mfbataineh" target="_blank">Faculty Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-section fade-in">
+            <h3>🌐 Connect on Social Media</h3>
+            <div class="social-links">
+                <a href="https://scholar.google.com/citations?user=vXVMff8AAAAJ&hl=en" target="_blank" class="social-link" title="Google Scholar">
+                    📚<span>Scholar</span>
+                </a>
+                <a href="https://orcid.org/0000-0003-0148-7618" target="_blank" class="social-link" title="ORCID">
+                    🆔<span>ORCID</span>
+                </a>
+                <a href="https://www.researchgate.net/profile/Mohammad-Al-Bataineh" target="_blank" class="social-link" title="ResearchGate">
+                    🔬<span>RG</span>
+                </a>
+                <a href="https://www.linkedin.com/in/mffbataineh/" target="_blank" class="social-link" title="LinkedIn">
+                    💼<span>LinkedIn</span>
+                </a>
+                <a href="https://www.youtube.com/mffbataineh" target="_blank" class="social-link" title="YouTube">
+                    ▶️<span>YouTube</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Locations -->
+        <div class="map-section fade-in">
+            <h3>📍 Find Me</h3>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h4>🇦🇪 United Arab Emirates University</h4>
+                    <p><strong>Building:</strong> F3 (Faculty of Engineering)</p>
+                    <p><strong>Office:</strong> F3-1-161</p>
+                    <p><strong>City:</strong> Al Ain, Abu Dhabi, UAE</p>
+                    <p><strong>Campus:</strong> Main Campus</p>
+                </div>
+                <div class="location-card" style="border-left-color: var(--green);">
+                    <h4>🇯🇴 Yarmouk University</h4>
+                    <p><strong>Faculty:</strong> Hijjawi Faculty for Engineering Technology</p>
+                    <p><strong>Department:</strong> Telecommunications Engineering</p>
+                    <p><strong>City:</strong> Irbid, Jordan</p>
+                    <p><strong>Status:</strong> Associate Professor (on leave)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission with redirect
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Redirect to thank you page
+                    window.location.href = 'thank-you.html';
+                } else {
+                    submitBtn.textContent = 'Error - Try Again';
+                    submitBtn.disabled = false;
+                    alert('Oops! There was a problem submitting your form. Please try again.');
+                }
+            } catch (error) {
+                submitBtn.textContent = 'Error - Try Again';
+                submitBtn.disabled = false;
+                alert('Oops! There was a problem submitting your form. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
