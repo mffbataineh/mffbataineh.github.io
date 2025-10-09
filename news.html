@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --purple: #9b59b6;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Filter Buttons */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 77, 104, 0.3);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* News Cards */
+        .news-card {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .news-card.left {
+            flex-direction: row;
+        }
+
+        .news-card.right {
+            flex-direction: row-reverse;
+        }
+
+        .news-date {
+            flex: 0 0 200px;
+            text-align: right;
+            padding-top: 1rem;
+        }
+
+        .news-card.right .news-date {
+            text-align: left;
+        }
+
+        .news-date .year {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .news-date .month-day {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-top: 0.3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.2);
+        }
+
+        .news-content {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+        }
+
+        .news-card.right .news-content {
+            border-left: none;
+            border-right: 5px solid;
+        }
+
+        .news-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Category Colors */
+        .news-content.publication {
+            border-left-color: var(--purple);
+        }
+
+        .news-card.right .news-content.publication {
+            border-right-color: var(--purple);
+        }
+
+        .news-content.conference {
+            border-left-color: var(--secondary);
+        }
+
+        .news-card.right .news-content.conference {
+            border-right-color: var(--secondary);
+        }
+
+        .news-content.grant {
+            border-left-color: var(--green);
+        }
+
+        .news-card.right .news-content.grant {
+            border-right-color: var(--green);
+        }
+
+        .news-content.award {
+            border-left-color: var(--orange);
+        }
+
+        .news-card.right .news-content.award {
+            border-right-color: var(--orange);
+        }
+
+        .news-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .category-publication {
+            background: #f3e5f5;
+            color: var(--purple);
+        }
+
+        .category-conference {
+            background: #e3f2fd;
+            color: var(--secondary);
+        }
+
+        .category-grant {
+            background: #e8f5e9;
+            color: var(--green);
+        }
+
+        .category-award {
+            background: #fff3e0;
+            color: var(--orange);
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .news-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-link {
+            display: inline-block;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .news-link:hover {
+            color: var(--primary);
+        }
+
+        /* Highlight Box */
+        .highlight-recent {
+            background: linear-gradient(135deg, var(--orange), var(--red));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-recent h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-recent p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .news-card.left,
+            .news-card.right {
+                flex-direction: column;
+                padding-left: 50px;
+            }
+
+            .news-date {
+                text-align: left !important;
+            }
+
+            .news-content {
+                border-left: 5px solid !important;
+                border-right: none !important;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>News & Updates</h1>
+        <p>Dr. Mohammad Fayez Al Bataineh</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Highlight Recent -->
+        <div class="highlight-recent fade-in">
+            <h3>🎯 Latest Activity</h3>
+            <p>Stay updated with my recent publications, conference presentations, awards, and grants</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar fade-in">
+            <button class="filter-btn active" data-filter="all">All Updates</button>
+            <button class="filter-btn" data-filter="publication">📚 Publications</button>
+            <button class="filter-btn" data-filter="conference">🎤 Conferences</button>
+            <button class="filter-btn" data-filter="grant">💰 Grants</button>
+            <button class="filter-btn" data-filter="award">🏆 Awards</button>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <!-- 2025 Publications -->
+            <div class="news-card left fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2025</div>
+                    <div class="month-day">January</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">New Paper in IEEE Open Journal of Communications Society</h3>
+                    <p class="news-description">
+                        Published "Adaptive beam pairing and local interpolation for robust analytical beam training in RIS-assisted wideband THz systems" in IEEE Open Journal of the Communications Society.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 6.1</span>
+                        <span>📈 CiteScore: 10.5</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2025</div>
+                    <div class="month-day">January</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">Paper in Journal of King Saud University</h3>
+                    <p class="news-description">
+                        "Enhancing impedance control in microstrip lines using the Taguchi approach" published in Journal of King Saud University - Engineering Sciences.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 2.16</span>
+                        <span>📈 CiteScore: 12.1</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="conference">
+                <div class="news-date">
+                    <div class="year">2025</div>
+                    <div class="month-day">Upcoming</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content conference">
+                    <span class="news-category category-conference">🎤 Conference</span>
+                    <h3 class="news-title">Paper Accepted at ICBET 2025</h3>
+                    <p class="news-description">
+                        Paper titled "A Comparative Analysis of Computational Approaches for Gene Detection" accepted for presentation at the International Conference on Biomedical Engineering and Technology 2025.
+                    </p>
+                    <div class="news-meta">
+                        <span>📍 International Conference</span>
+                        <span>🗓️ 2025</span>
+                    </div>
+                    <a href="talks.html" class="news-link">View Conference Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="grant">
+                <div class="news-date">
+                    <div class="year">2025</div>
+                    <div class="month-day">May - Ongoing</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content grant">
+                    <span class="news-category category-grant">💰 Grant</span>
+                    <h3 class="news-title">SURE Plus Grant Awarded</h3>
+                    <p class="news-description">
+                        Secured SURE Plus Grant (40,000 AED) for "Offline Assistive System with Stereo Vision for Visually Impaired" - supervising undergraduate research project.
+                    </p>
+                    <div class="news-meta">
+                        <span>💵 40,000 AED</span>
+                        <span>⏱️ May 2025 - May 2026</span>
+                    </div>
+                    <a href="research-projects.html" class="news-link">View Project Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="award">
+                <div class="news-date">
+                    <div class="year">2025</div>
+                    <div class="month-day">February</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content award">
+                    <span class="news-category category-award">🏆 Award</span>
+                    <h3 class="news-title">Digital Liaison Appointment</h3>
+                    <p class="news-description">
+                        Appointed as Digital Liaison for Educational Technology in the College of Engineering, leading digital transformation initiatives and promoting innovative teaching technologies.
+                    </p>
+                    <div class="news-meta">
+                        <span>🎯 Leadership Role</span>
+                        <span>🏛️ UAEU</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="news-card right fade-in" data-category="grant">
+                <div class="news-date">
+                    <div class="year">2024</div>
+                    <div class="month-day">December</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content grant">
+                    <span class="news-category category-grant">💰 Grant</span>
+                    <h3 class="news-title">Start-up Grant Successfully Completed</h3>
+                    <p class="news-description">
+                        Successfully completed 367,000 AED Start-up Grant for "Gene and Regulatory Sequence Identification using Communications Theory" with 20+ publications produced.
+                    </p>
+                    <div class="news-meta">
+                        <span>💵 367,000 AED</span>
+                        <span>✅ Completed</span>
+                        <span>📄 20+ Publications</span>
+                    </div>
+                    <a href="research-projects.html" class="news-link">View Project Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2024</div>
+                    <div class="month-day">September</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">Paper in Ain Shams Engineering Journal</h3>
+                    <p class="news-description">
+                        "Microstrip patch antenna directivity optimization via Taguchi method" published in Ain Shams Engineering Journal with 6 citations.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 5.9</span>
+                        <span>📈 CiteScore: 12.2</span>
+                        <span>📑 Citations: 6</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="conference">
+                <div class="news-date">
+                    <div class="year">2024</div>
+                    <div class="month-day">June</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content conference">
+                    <span class="news-category category-conference">🎤 Conference</span>
+                    <h3 class="news-title">Presented at ICBET 2024</h3>
+                    <p class="news-description">
+                        Presented "Enhanced Detection and Localization of Zinc Finger Proteins Using Advanced Neural Network Techniques" at the 14th International Conference on Biomedical Engineering and Technology.
+                    </p>
+                    <div class="news-meta">
+                        <span>📍 International Conference</span>
+                        <span>📑 1 Citation</span>
+                    </div>
+                    <a href="talks.html" class="news-link">View Presentation Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2024</div>
+                    <div class="month-day">January</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">Cybersecurity Education Survey Published</h3>
+                    <p class="news-description">
+                        Published comprehensive survey "Cybersecurity Activities for Education and Curriculum Design" in Computers in Human Behavior Reports - highly cited with 19 citations.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 5.8</span>
+                        <span>📑 Citations: 19</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="grant">
+                <div class="news-date">
+                    <div class="year">2024</div>
+                    <div class="month-day">May</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content grant">
+                    <span class="news-category category-grant">💰 Grant</span>
+                    <h3 class="news-title">SURE Plus Grant for Sight-Assist Glasses</h3>
+                    <p class="news-description">
+                        Awarded 40,000 AED SURE Plus Grant for "Innovative Sight-Assist Glasses with CNN-LSTM Architecture" project.
+                    </p>
+                    <div class="news-meta">
+                        <span>💵 40,000 AED</span>
+                        <span>✅ Completed May 2025</span>
+                    </div>
+                    <a href="research-projects.html" class="news-link">View Project Details →</a>
+                </div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="news-card left fade-in" data-category="conference">
+                <div class="news-date">
+                    <div class="year">2023</div>
+                    <div class="month-day">June</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content conference">
+                    <span class="news-category category-conference">🎤 Conference</span>
+                    <h3 class="news-title">Session Chair at ICBET 2023 Tokyo</h3>
+                    <p class="news-description">
+                        Served as Session Chair for "Medical Imaging and Biomedical Image Processing" at ICBET 2023 in Tokyo, Japan, and presented research paper.
+                    </p>
+                    <div class="news-meta">
+                        <span>📍 Tokyo, Japan</span>
+                        <span>🎯 Leadership Role</span>
+                    </div>
+                    <a href="talks.html" class="news-link">View Conference Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="grant">
+                <div class="news-date">
+                    <div class="year">2023</div>
+                    <div class="month-day">January</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content grant">
+                    <span class="news-category category-grant">💰 Grant</span>
+                    <h3 class="news-title">Start-up Grant Awarded</h3>
+                    <p class="news-description">
+                        Awarded 367,000 AED Start-up Grant as Principal Investigator for groundbreaking research on "Gene and Regulatory Sequence Identification using Communications Theory."
+                    </p>
+                    <div class="news-meta">
+                        <span>💵 367,000 AED</span>
+                        <span>🎯 Principal Investigator</span>
+                        <span>⏱️ 2023-2025</span>
+                    </div>
+                    <a href="research-projects.html" class="news-link">View Project Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="grant">
+                <div class="news-date">
+                    <div class="year">2023</div>
+                    <div class="month-day">February</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content grant">
+                    <span class="news-category category-grant">💰 Grant</span>
+                    <h3 class="news-title">SDG Research Grant</h3>
+                    <p class="news-description">
+                        Awarded 31,820 AED SDG Research Grant for "Assistive Smart Glasses for Visually Impaired" project, completed April 2023.
+                    </p>
+                    <div class="news-meta">
+                        <span>💵 31,820 AED</span>
+                        <span>✅ Completed</span>
+                    </div>
+                    <a href="research-projects.html" class="news-link">View Project Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="award">
+                <div class="news-date">
+                    <div class="year">2022</div>
+                    <div class="month-day">June</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content award">
+                    <span class="news-category category-award">🏆 Award</span>
+                    <h3 class="news-title">Excellent Faculty Evaluation</h3>
+                    <p class="news-description">
+                        Received "Excellent" rating in comprehensive faculty evaluation covering teaching, research, and service contributions during 2020-2022 evaluation cycle at UAEU.
+                    </p>
+                    <div class="news-meta">
+                        <span>⭐ Excellent Rating</span>
+                        <span>🏛️ UAEU</span>
+                    </div>
+                    <a href="awards.html" class="news-link">View All Awards →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                newsCards.forEach(card => {
+                    if (filterValue === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
