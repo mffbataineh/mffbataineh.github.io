@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Dr. Mohammad Fayez Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --secondary: #05bfdb;
+            --accent: #00d9ff;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --green: #00a86b;
+            --orange: #f39c12;
+            --red: #e74c3c;
+            --purple: #9b59b6;
+            --yellow: #f1c40f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 15s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-box p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        .resource-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2.5rem;
+        }
+
+        .resource-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-section .icon {
+            font-size: 2rem;
+        }
+
+        /* Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Resource Card */
+        .resource-card {
+            background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+            padding: 1.8rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .resource-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-card h4 .emoji {
+            font-size: 1.5rem;
+        }
+
+        .resource-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-card a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .resource-card a::after {
+            content: ' →';
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .resource-card a:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge.free {
+            background: var(--green);
+            color: white;
+        }
+
+        .badge.paid {
+            background: var(--orange);
+            color: white;
+        }
+
+        .badge.recommended {
+            background: var(--purple);
+            color: white;
+        }
+
+        .badge.essential {
+            background: var(--red);
+            color: white;
+        }
+
+        /* Special Cards */
+        .highlight-card {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-top-color: var(--orange);
+        }
+
+        .premium-card {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-top-color: var(--green);
+        }
+
+        .pro-card {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-top-color: var(--purple);
+        }
+
+        /* List Style */
+        .resource-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .resource-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list li::before {
+            content: '📌';
+            font-size: 1.2rem;
+        }
+
+        .resource-list a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .resource-list a:hover {
+            color: var(--primary);
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .download-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .download-btn {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid var(--accent);
+            border-radius: 25px;
+            color: var(--primary);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover, .tab.active {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .quick-link {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+        .fade-in:nth-child(6) { animation-delay: 0.6s; }
+        .fade-in:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resources Hub</h1>
+        <p>Tools, Links, and Materials for Students & Researchers</p>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="intro-box fade-in">
+            <h2>📚 Academic & Professional Resources</h2>
+            <p>Curated collection of essential tools, software, links, and materials to support your academic journey and research endeavors in Electrical & Computer Engineering.</p>
+        </div>
+
+        <!-- Student Resources -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">🎓</span> Student Resources</h3>
+            <div class="resource-grid">
+                <div class="resource-card premium-card">
+                    <h4><span class="emoji">📖</span> UAEU Library</h4>
+                    <p>Access thousands of journals, books, and research papers through the university library system.</p>
+                    <a href="https://www.uaeu.ac.ae/en/library/" target="_blank">Visit Library</a>
+                    <span class="badge free">Free Access</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📝</span> Blackboard LMS</h4>
+                    <p>Course materials, assignments, grades, and announcements for UAEU students.</p>
+                    <a href="https://elearn.uaeu.ac.ae" target="_blank">Login to Blackboard</a>
+                    <span class="badge essential">Essential</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🔬</span> IEEE Xplore</h4>
+                    <p>Leading resource for electrical engineering, computer science, and electronics research papers.</p>
+                    <a href="https://ieeexplore.ieee.org" target="_blank">Access IEEE Xplore</a>
+                    <span class="badge recommended">Recommended</span>
+                </div>
+
+                <div class="resource-card highlight-card">
+                    <h4><span class="emoji">📊</span> Grammarly</h4>
+                    <p>Writing assistant for improving your academic papers, reports, and thesis writing.</p>
+                    <a href="https://www.grammarly.com" target="_blank">Get Grammarly</a>
+                    <span class="badge free">Free + Premium</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📚</span> Google Scholar</h4>
+                    <p>Search academic papers, citations, and research across all disciplines.</p>
+                    <a href="https://scholar.google.com" target="_blank">Search Scholar</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🎯</span> Mendeley</h4>
+                    <p>Reference manager and academic social network for organizing research papers.</p>
+                    <a href="https://www.mendeley.com" target="_blank">Get Mendeley</a>
+                    <span class="badge free">Free</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Software & Tools -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">💻</span> Software & Engineering Tools</h3>
+            <div class="resource-grid">
+                <div class="resource-card pro-card">
+                    <h4><span class="emoji">📐</span> MATLAB</h4>
+                    <p>Industry-standard software for numerical computing, simulation, and algorithm development.</p>
+                    <a href="https://www.mathworks.com/products/matlab.html" target="_blank">Learn More</a>
+                    <span class="badge essential">Essential</span>
+                </div>
+
+                <div class="resource-card premium-card">
+                    <h4><span class="emoji">🐍</span> Python + Anaconda</h4>
+                    <p>Programming language and distribution for data science, machine learning, and scientific computing.</p>
+                    <a href="https://www.anaconda.com" target="_blank">Download Anaconda</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">⚡</span> Simulink</h4>
+                    <p>Block diagram environment for simulation and model-based design of dynamic systems.</p>
+                    <a href="https://www.mathworks.com/products/simulink.html" target="_blank">Explore Simulink</a>
+                    <span class="badge recommended">Recommended</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📡</span> NS-3 Network Simulator</h4>
+                    <p>Discrete-event network simulator for Internet systems research and education.</p>
+                    <a href="https://www.nsnam.org" target="_blank">Get NS-3</a>
+                    <span class="badge free">Open Source</span>
+                </div>
+
+                <div class="resource-card highlight-card">
+                    <h4><span class="emoji">🔌</span> LTspice</h4>
+                    <p>High-performance SPICE simulator for analog circuits design and analysis.</p>
+                    <a href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html" target="_blank">Download LTspice</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🎨</span> Overleaf (LaTeX)</h4>
+                    <p>Online LaTeX editor for writing and collaborating on scientific documents.</p>
+                    <a href="https://www.overleaf.com" target="_blank">Start Writing</a>
+                    <span class="badge free">Free + Premium</span>
+                </div>
+
+                <div class="resource-card pro-card">
+                    <h4><span class="emoji">🌐</span> Wireshark</h4>
+                    <p>Network protocol analyzer for troubleshooting and analysis of network communications.</p>
+                    <a href="https://www.wireshark.org" target="_blank">Download Wireshark</a>
+                    <span class="badge free">Open Source</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📊</span> Jupyter Notebook</h4>
+                    <p>Interactive computing environment for creating and sharing documents with live code.</p>
+                    <a href="https://jupyter.org" target="_blank">Get Jupyter</a>
+                    <span class="badge free">Open Source</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🔧</span> Git & GitHub</h4>
+                    <p>Version control system and platform for code collaboration and project management.</p>
+                    <a href="https://github.com" target="_blank">Join GitHub</a>
+                    <span class="badge free">Free</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Materials -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">📖</span> Recommended Textbooks & Materials</h3>
+            
+            <div class="download-section">
+                <h4>📚 Key Textbooks in My Courses</h4>
+                <ul class="resource-list">
+                    <li>
+                        <strong>Wireless Communications:</strong> 
+                        <a href="https://www.amazon.com/Wireless-Communications-Principles-Practice-2nd/dp/0130422320" target="_blank">
+                            Rappaport - Wireless Communications: Principles and Practice
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Digital Communications:</strong> 
+                        <a href="https://www.amazon.com/Digital-Communications-5th-John-Proakis/dp/0072957166" target="_blank">
+                            Proakis & Salehi - Digital Communications
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Communication Systems:</strong> 
+                        <a href="https://www.amazon.com/Communication-Systems-4th-Simon-Haykin/dp/0471178691" target="_blank">
+                            Simon Haykin - Communication Systems
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Signal Processing:</strong> 
+                        <a href="https://www.amazon.com/Digital-Signal-Processing-Alan-Oppenheim/dp/0131988425" target="_blank">
+                            Oppenheim & Schafer - Discrete-Time Signal Processing
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Network Security:</strong> 
+                        <a href="https://www.amazon.com/Network-Security-Essentials-Applications-Standards/dp/0134527801" target="_blank">
+                            Stallings - Network Security Essentials
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="resource-grid" style="margin-top: 2rem;">
+                <div class="resource-card">
+                    <h4><span class="emoji">🎥</span> MIT OpenCourseWare</h4>
+                    <p>Free lecture notes, exams, and videos from MIT courses on signal processing and communications.</p>
+                    <a href="https://ocw.mit.edu" target="_blank">Browse Courses</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card premium-card">
+                    <h4><span class="emoji">📺</span> Khan Academy</h4>
+                    <p>Free online courses covering mathematics, physics, and electrical engineering fundamentals.</p>
+                    <a href="https://www.khanacademy.org" target="_blank">Start Learning</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card highlight-card">
+                    <h4><span class="emoji">💡</span> Coursera</h4>
+                    <p>Online courses from top universities in machine learning, signal processing, and networking.</p>
+                    <a href="https://www.coursera.org" target="_blank">Explore Courses</a>
+                    <span class="badge free">Free Audit</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry Connections -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">🏢</span> Professional Organizations & Industry Resources</h3>
+            <div class="resource-grid">
+                <div class="resource-card pro-card">
+                    <h4><span class="emoji">⚡</span> IEEE</h4>
+                    <p>Institute of Electrical and Electronics Engineers - world's largest technical professional organization.</p>
+                    <a href="https://www.ieee.org" target="_blank">Join IEEE</a>
+                    <span class="badge recommended">Membership</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📡</span> IEEE ComSoc</h4>
+                    <p>IEEE Communications Society - focused on telecommunications and networking technologies.</p>
+                    <a href="https://www.comsoc.org" target="_blank">Visit ComSoc</a>
+                    <span class="badge recommended">Specialized</span>
+                </div>
+
+                <div class="resource-card premium-card">
+                    <h4><span class="emoji">🌐</span> ACM</h4>
+                    <p>Association for Computing Machinery - premier organization for computing professionals.</p>
+                    <a href="https://www.acm.org" target="_blank">Explore ACM</a>
+                    <span class="badge recommended">Membership</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📊</span> LinkedIn Learning</h4>
+                    <p>Professional development courses in engineering, programming, and business skills.</p>
+                    <a href="https://www.linkedin.com/learning" target="_blank">Start Learning</a>
+                    <span class="badge paid">Subscription</span>
+                </div>
+
+                <div class="resource-card highlight-card">
+                    <h4><span class="emoji">🎓</span> ResearchGate</h4>
+                    <p>Social networking site for scientists and researchers to share papers and collaborate.</p>
+                    <a href="https://www.researchgate.net" target="_blank">Join Network</a>
+                    <span class="badge free">Free</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🔗</span> LinkedIn</h4>
+                    <p>Professional networking platform to connect with industry professionals and recruiters.</p>
+                    <a href="https://www.linkedin.com" target="_blank">Build Network</a>
+                    <span class="badge free">Free</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Databases -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">🔍</span> Research Databases & Journals</h3>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h4><span class="emoji">📄</span> ScienceDirect</h4>
+                    <p>Leading platform of peer-reviewed literature with over 16 million articles and book chapters.</p>
+                    <a href="https://www.sciencedirect.com" target="_blank">Search Articles</a>
+                    <span class="badge recommended">Via UAEU</span>
+                </div>
+
+                <div class="resource-card premium-card">
+                    <h4><span class="emoji">📚</span> Scopus</h4>
+                    <p>Largest abstract and citation database of peer-reviewed literature.</p>
+                    <a href="https://www.scopus.com" target="_blank">Access Scopus</a>
+                    <span class="badge recommended">Via UAEU</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">🔬</span> Web of Science</h4>
+                    <p>Research intelligence platform with citation indexing and analytics.</p>
+                    <a href="https://www.webofscience.com" target="_blank">Visit WoS</a>
+                    <span class="badge recommended">Via UAEU</span>
+                </div>
+
+                <div class="resource-card highlight-card">
+                    <h4><span class="emoji">📖</span> arXiv</h4>
+                    <p>Open-access archive for preprints in physics, mathematics, computer science, and engineering.</p>
+                    <a href="https://arxiv.org" target="_blank">Browse arXiv</a>
+                    <span class="badge free">Open Access</span>
+                </div>
+
+                <div class="resource-card pro-card">
+                    <h4><span class="emoji">📑</span> SpringerLink</h4>
+                    <p>Access to millions of scientific documents from journals, books, and more.</p>
+                    <a href="https://link.springer.com" target="_blank">Explore Springer</a>
+                    <span class="badge recommended">Via UAEU</span>
+                </div>
+
+                <div class="resource-card">
+                    <h4><span class="emoji">📘</span> MDPI</h4>
+                    <p>Open access publisher of peer-reviewed journals including Electronics and Sensors.</p>
+                    <a href="https://www.mdpi.com" target="_blank">Browse MDPI</a>
+                    <span class="badge free">Open Access</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="resource-section fade-in">
+            <h3><span class="icon">⚡</span> Quick Links</h3>
+            <div class="quick-links">
+                <a href="https://www.uaeu.ac.ae" target="_blank" class="quick-link">🏛️ UAEU Homepage</a>
+                <a href="https://www.uaeu.ac.ae/en/coe/" target="_blank" class="quick-link">🎓 College of Engineering</a>
+                <a href="https://elearn.uaeu.ac.ae" target="_blank" class="quick-link">📚 Blackboard</a>
+                <a href="https://library.uaeu.ac.ae" target="_blank" class="quick-link">📖 Library</a>
+                <a href="https://www.ieee.org" target="_blank" class="quick-link">⚡ IEEE</a>
+                <a href="https://scholar.google.com" target="_blank" class="quick-link">🔍 Google Scholar</a>
+                <a href="https://www.mathworks.com" target="_blank" class="quick-link">📐 MATLAB</a>
+                <a href="https://github.com" target="_blank" class="quick-link">💻 GitHub</a>
+            </div>
+        </div>
+
+        <!-- Note Section -->
+        <div class="download-section fade-in" style="margin-top: 2rem;">
+            <h4>📌 Important Notes</h4>
+            <p style="color: #555; line-height: 1.8; margin-top: 1rem;">
+                <strong>For UAEU Students:</strong> Most paid resources like IEEE Xplore, Scopus, Web of Science, and ScienceDirect are available free through the university library. Use your UAEU credentials to access them.
+            </p>
+            <p style="color: #555; line-height: 1.8; margin-top: 1rem;">
+                <strong>Software Licenses:</strong> MATLAB and other engineering software may be available through university licenses. Check with the IT department or your college for campus agreements.
+            </p>
+            <p style="color: #555; line-height: 1.8; margin-top: 1rem;">
+                <strong>Need Help?</strong> If you can't access any of these resources or need guidance on using them, feel free to reach out during office hours or via email.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
