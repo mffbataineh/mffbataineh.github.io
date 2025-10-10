@@ -31,9 +31,9 @@
         nav {
             position: fixed;
             width: 100%;
-            background: rgba(10, 77, 104, 0.95);
+            background: rgba(10, 77, 104, 0.98);
             backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            padding: 0;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
@@ -43,22 +43,138 @@
             justify-content: center;
             list-style: none;
             flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav > ul > li {
+            position: relative;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 25px;
+            padding: 1.2rem 1.5rem;
+            display: block;
             transition: all 0.3s ease;
             font-weight: 500;
         }
 
-        nav a:hover {
+        nav > ul > li > a:hover {
             background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+            color: var(--dark);
+        }
+
+        /* Dropdown indicator */
+        .has-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            padding-left: 2rem;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav > ul > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                background: rgba(5, 191, 219, 0.2);
+            }
+
+            .has-dropdown.active .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                padding-left: 3rem;
+            }
+
+            nav a {
+                padding: 1rem 1.5rem;
+            }
         }
 
         /* Hero Section */
@@ -394,11 +510,6 @@
                 font-size: 1.2rem;
             }
 
-            nav a {
-                padding: 0.3rem 1rem;
-                font-size: 0.9rem;
-            }
-
             section {
                 padding: 3rem 1rem;
             }
@@ -418,26 +529,45 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-<nav>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="biography.html">Biography</a></li>
-        <li><a href="news.html">News</a></li>  <!-- NEW -->
-        <li><a href="Curriculum%20Vitae.pdf" target="_blank">CV</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="students.html">Students</a></li>
-        <li><a href="awards.html">Awards</a></li>
-        <li><a href="talks.html">Talks</a></li>  <!-- NEW -->
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <!--<li><a href="#contact">Contact</a></li>-->
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+    <!-- Navigation with Dropdowns -->
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        <ul id="mainMenu">
+            <li><a href="#home">Home</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#about" onclick="toggleDropdown(event, this)">About</a>
+                <ul class="dropdown">
+                    <li><a href="biography.html">Biography</a></li>
+                    <li><a href="Curriculum%20Vitae.pdf" target="_blank">CV / Resume</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="#research" onclick="toggleDropdown(event, this)">Research</a>
+                <ul class="dropdown">
+                    <li><a href="#research">Research Areas</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="talks.html">Talks & Presentations</a></li>
+                    <li><a href="research-projects.html">Projects & Funding</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="teaching.html" onclick="toggleDropdown(event, this)">Teaching</a>
+                <ul class="dropdown">
+                    <li><a href="teaching.html">Courses</a></li>
+                    <li><a href="students.html">Students & Supervision</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -448,7 +578,7 @@
             <p class="tagline">United Arab Emirates University</p>
             <p style="margin-bottom: 2rem; font-style: italic;">"Bridging Communications Theory with Biological Systems and Advanced Technologies"</p>
             <div>
-                <a href="#contact" class="cta-button">Get in Touch</a>
+                <a href="contact.html" class="cta-button">Get in Touch</a>
                 <a href="#research" class="cta-button">Explore Research</a>
             </div>
         </div>
@@ -613,6 +743,9 @@
                 <a href="http://faculty.yu.edu.jo/mfbataineh" target="_blank">Faculty Page</a>
             </div>
         </div>
+        <div style="margin-top: 2rem;">
+            <a href="contact.html" class="cta-button">Contact Form</a>
+        </div>
         <div class="social-links">
             <a href="https://scholar.google.com/citations?user=vXVMff8AAAAJ&hl=en" target="_blank" title="Google Scholar">GS</a>
             <a href="https://orcid.org/0000-0003-0148-7618" target="_blank" title="ORCID">OR</a>
@@ -624,6 +757,32 @@
     </section>
 
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Mobile dropdown toggle
+        function toggleDropdown(event, element) {
+            if (window.innerWidth <= 968) {
+                event.preventDefault();
+                const parent = element.parentElement;
+                parent.classList.toggle('active');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('mainMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
+
         // Photo loading with fallback
         const photo = document.getElementById('profilePhoto');
         
@@ -659,6 +818,11 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu if open
+                    const menu = document.getElementById('mainMenu');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                    }
                 }
             });
         });
