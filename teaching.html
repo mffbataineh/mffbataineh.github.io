@@ -175,6 +175,15 @@
             border-left-color: var(--green);
         }
 
+	.course-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .course-link:hover .course-card {
+            cursor: pointer;
+        }
         .course-code {
             color: var(--secondary);
             font-weight: bold;
@@ -432,6 +441,15 @@
             <h2>Current Courses at UAEU</h2>
             <h3>Undergraduate Courses</h3>
             <div class="courses-grid">
+                <a href="elec360.html" class="course-link">
+                    <div class="course-card">
+                        <div class="course-code">ELEC 360</div>
+                        <div class="course-title">Signals and Systems</div>
+                        <p>Analysis of continuous-time and discrete-time signals and systems using time-domain and frequency-domain techniques.</p>
+                        <span class="course-level">Undergraduate</span>
+                    </div>
+                </a>
+
                 <div class="course-card">
                     <div class="course-code">ECOM 320</div>
                     <div class="course-title">Probability and Random Processes</div>
@@ -439,12 +457,6 @@
                     <span class="course-level">Undergraduate</span>
                 </div>
 
-                <div class="course-card">
-                    <div class="course-code">ELEC 360</div>
-                    <div class="course-title">Signals and Systems</div>
-                    <p>Analysis of continuous-time and discrete-time signals and systems using time-domain and frequency-domain techniques.</p>
-                    <span class="course-level">Undergraduate</span>
-                </div>
 
                 <div class="course-card">
                     <div class="course-code">ELEC 380</div>

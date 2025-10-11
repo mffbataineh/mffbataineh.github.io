@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Tutorial - ELEC 360 | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --code-bg: #282c34;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #21252b;
+            color: #abb2bf;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .toc {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .back-to-top {
+            float: right;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .section-header h2 {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+            .section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+	<header id="top">
+            <div class="breadcrumb">
+                <a href="#">ELEC 360</a> / MATLAB Tutorial
+            </div>
+            <h1>MATLAB Tutorial</h1>
+            <p class="subtitle">Complete Guide for Signals and Systems Analysis</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#getting-started">1. Getting Started with MATLAB</a></li>
+                <li><a href="#basics">2. MATLAB Basics</a></li>
+                <li><a href="#plotting">3. Plotting Signals</a></li>
+                <li><a href="#signals">4. Signal Operations</a></li>
+                <li><a href="#systems">5. System Analysis</a></li>
+                <li><a href="#fourier">6. Fourier Analysis</a></li>
+                <li><a href="#examples">7. Course-Specific Examples</a></li>
+                <li><a href="#tips">8. Tips & Best Practices</a></li>
+            </ul>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="section" id="getting-started">
+            <div class="section-header">
+    		<h2>1️⃣ Getting Started with MATLAB</h2>
+    				<a href="#top" class="back-to-top">↑ Go Back</a>
+	</div>
+            
+            <h3>Accessing MATLAB at UAEU</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🖥️ On Campus</h4>
+                    <p>MATLAB is installed on all engineering lab computers. Visit any computer lab in the College of Engineering.</p>
+                </div>
+                <div class="card">
+                    <h4>💻 Personal Computer</h4>
+                    <p>Download MATLAB through UAEU's campus license. Contact IT support for installation instructions.</p>
+                </div>
+                <div class="card">
+                    <h4>🌐 MATLAB Online</h4>
+                    <p>Access MATLAB through your web browser at <a href="https://matlab.mathworks.com" target="_blank">matlab.mathworks.com</a> using your UAEU credentials.</p>
+                </div>
+            </div>
+
+            <h3>MATLAB Interface Overview</h3>
+            <p>When you open MATLAB, you'll see several key windows:</p>
+            <ul>
+                <li><strong>Command Window:</strong> Where you type commands and see results</li>
+                <li><strong>Workspace:</strong> Shows all variables currently in memory</li>
+                <li><strong>Current Folder:</strong> Displays files in your working directory</li>
+                <li><strong>Editor:</strong> For writing and saving scripts (.m files)</li>
+            </ul>
+        </div>
+
+        <!-- MATLAB Basics -->
+        <div class="section" id="basics">
+            <div class="section-header">
+    		<h2>2️⃣ MATLAB Basics</h2>
+    				<a href="#top" class="back-to-top">↑ Go Back</a>
+	</div>
+
+            <h3>Basic Operations</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Basic arithmetic
+a = 5;              % Assignment (semicolon suppresses output)
+b = 3;
+sum = a + b         % Addition (no semicolon shows result)
+difference = a - b; % Subtraction
+product = a * b;    % Multiplication
+quotient = a / b;   % Division
+power = a^2;        % Exponentiation
+
+% Useful commands
+clear              % Clear all variables
+clc                % Clear command window
+close all          % Close all figures</code></pre>
+
+            <h3>Vectors and Arrays</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Creating vectors
+t = 0:0.1:10;              % Time vector from 0 to 10, step 0.1
+t = linspace(0, 10, 100);  % 100 points from 0 to 10
+x = [1 2 3 4 5];           % Row vector
+y = [1; 2; 3; 4; 5];       % Column vector
+
+% Array operations (element-by-element)
+a = [1 2 3];
+b = [4 5 6];
+c = a .* b;      % Element-by-element multiplication [4 10 18]
+d = a .^ 2;      % Element-by-element power [1 4 9]
+
+% Useful array functions
+length(x)        % Number of elements
+size(x)          % Dimensions
+max(x)           % Maximum value
+min(x)           % Minimum value
+sum(x)           % Sum of elements
+mean(x)          % Average value</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> Always use <code>.*</code>, <code>./</code>, and <code>.^</code> for element-by-element operations on arrays. This is crucial for signal processing!
+            </div>
+
+            <h3>Common Mathematical Functions</h3>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>MATLAB Code</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Sine</td>
+                    <td><code>sin(x)</code></td>
+                    <td>Sine function</td>
+                </tr>
+                <tr>
+                    <td>Cosine</td>
+                    <td><code>cos(x)</code></td>
+                    <td>Cosine function</td>
+                </tr>
+                <tr>
+                    <td>Exponential</td>
+                    <td><code>exp(x)</code></td>
+                    <td>e^x</td>
+                </tr>
+                <tr>
+                    <td>Natural Log</td>
+                    <td><code>log(x)</code></td>
+                    <td>ln(x)</td>
+                </tr>
+                <tr>
+                    <td>Absolute Value</td>
+                    <td><code>abs(x)</code></td>
+                    <td>|x|</td>
+                </tr>
+                <tr>
+                    <td>Square Root</td>
+                    <td><code>sqrt(x)</code></td>
+                    <td>√x</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Plotting -->
+        <div class="section" id="plotting">
+            <div class="section-header">
+    					<h2>3️⃣ Plotting Signals</h2>
+    					<a href="#top" class="back-to-top">↑ Go Back</a>
+	</div>
+
+            <h3>Basic Plotting</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Simple plot
+t = 0:0.01:2*pi;
+y = sin(t);
+plot(t, y)
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Sine Wave')
+grid on
+
+% Multiple plots on same figure
+t = 0:0.01:2*pi;
+y1 = sin(t);
+y2 = cos(t);
+plot(t, y1, 'b-', t, y2, 'r--')
+legend('sin(t)', 'cos(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+title('Sine and Cosine')
+grid on</code></pre>
+
+            <h3>Subplot</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Create multiple plots in one figure
+t = 0:0.01:2*pi;
+
+subplot(2,1,1)
+plot(t, sin(t))
+title('Sine Wave')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(2,1,2)
+plot(t, cos(t))
+title('Cosine Wave')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <h3>Plot Customization</h3>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Code</th>
+                    <th>Effect</th>
+                </tr>
+                <tr>
+                    <td>Line Color</td>
+                    <td><code>'r'</code>, <code>'b'</code>, <code>'g'</code>, <code>'k'</code></td>
+                    <td>Red, Blue, Green, Black</td>
+                </tr>
+                <tr>
+                    <td>Line Style</td>
+                    <td><code>'-'</code>, <code>'--'</code>, <code>':'</code>, <code>'-.'</code></td>
+                    <td>Solid, Dashed, Dotted, Dash-dot</td>
+                </tr>
+                <tr>
+                    <td>Marker</td>
+                    <td><code>'o'</code>, <code>'*'</code>, <code>'+'</code>, <code>'x'</code></td>
+                    <td>Circle, Star, Plus, Cross</td>
+                </tr>
+                <tr>
+                    <td>Line Width</td>
+                    <td><code>'LineWidth', 2</code></td>
+                    <td>Thicker line</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <strong>💡 Tip:</strong> Use <code>figure</code> command to create new figure windows: <code>figure; plot(x,y)</code>
+            </div>
+        </div>
+
+        <!-- Signal Operations - EXPANDED -->
+        <div class="section" id="signals">
+            <div class="section-header">
+   					 <h2>4️⃣ Signal Operations</h2>
+   					 <a href="#top" class="back-to-top">↑ Go Back</a>
+	</div>
+
+            <h3>Creating Basic Signals</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Unit Step Function
+t = -5:0.01:5;
+u = (t >= 0);        % Unit step at t=0
+figure;
+plot(t, u, 'LineWidth', 2)
+title('Unit Step Function u(t)')
+xlabel('Time (s)')
+ylabel('u(t)')
+grid on
+ylim([-0.2 1.2])
+
+% Shifted Unit Step
+u_shifted = (t >= 2);  % Step at t=2
+figure;
+plot(t, u, 'b-', t, u_shifted, 'r--', 'LineWidth', 2)
+legend('u(t)', 'u(t-2)')
+title('Unit Step and Shifted Step')
+xlabel('Time (s)')
+grid on
+
+% Rectangular Pulse
+t = -5:0.01:5;
+rect = ((t >= -1) & (t <= 1));
+figure;
+plot(t, rect, 'LineWidth', 2)
+title('Rectangular Pulse')
+xlabel('Time (s)')
+ylabel('rect(t)')
+grid on
+ylim([-0.2 1.2])
+
+% Exponential Signals
+t = 0:0.01:5;
+figure;
+subplot(2,1,1)
+x1 = exp(-t);        % Decaying exponential
+plot(t, x1, 'LineWidth', 2)
+title('Decaying Exponential: e^{-t}')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(2,1,2)
+x2 = exp(-2*t);      % Faster decay
+plot(t, x2, 'r', 'LineWidth', 2)
+title('Faster Decay: e^{-2t}')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <h3>Signal Transformations</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Time Shifting (Delay)
+t = -5:0.01:5;
+x = exp(-abs(t));    % Original signal
+
+% Different time shifts
+x_shift1 = exp(-abs(t-1));   % Shifted right by 1
+x_shift2 = exp(-abs(t+1));   % Shifted left by 1
+
+figure;
+plot(t, x, 'b-', 'LineWidth', 2)
+hold on
+plot(t, x_shift1, 'r--', 'LineWidth', 2)
+plot(t, x_shift2, 'g-.', 'LineWidth', 2)
+legend('x(t)', 'x(t-1)', 'x(t+1)')
+title('Time Shifting')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+% Time Scaling (Compression and Expansion)
+t = -5:0.01:5;
+x = exp(-abs(t)) .* sin(2*pi*t);
+
+figure;
+subplot(3,1,1)
+plot(t, x, 'LineWidth', 2)
+title('Original: x(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(3,1,2)
+x_compressed = exp(-abs(2*t)) .* sin(2*pi*2*t);
+plot(t, x_compressed, 'r', 'LineWidth', 2)
+title('Compressed: x(2t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(3,1,3)
+x_expanded = exp(-abs(0.5*t)) .* sin(2*pi*0.5*t);
+plot(t, x_expanded, 'g', 'LineWidth', 2)
+title('Expanded: x(t/2)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <h3>Even and Odd Decomposition</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Decompose signal into even and odd parts
+% x(t) = x_e(t) + x_o(t)
+% x_e(t) = [x(t) + x(-t)]/2  (even part)
+% x_o(t) = [x(t) - x(-t)]/2  (odd part)
+
+t = -5:0.01:5;
+x = exp(-abs(t)) .* sin(t);  % Original signal
+
+% Create x(-t) by flipping
+x_reversed = fliplr(x);
+
+% Even and odd parts
+x_even = (x + x_reversed) / 2;
+x_odd = (x - x_reversed) / 2;
+
+figure;
+subplot(4,1,1)
+plot(t, x, 'LineWidth', 2)
+title('Original Signal x(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,2)
+plot(t, x_even, 'r', 'LineWidth', 2)
+title('Even Part: x_e(t) = [x(t) + x(-t)]/2')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,3)
+plot(t, x_odd, 'g', 'LineWidth', 2)
+title('Odd Part: x_o(t) = [x(t) - x(-t)]/2')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,4)
+plot(t, x, 'b-', t, x_even + x_odd, 'r--', 'LineWidth', 2)
+legend('x(t)', 'x_e(t) + x_o(t)')
+title('Verification: x(t) = x_e(t) + x_o(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <div class="tip-box">
+                <strong>💡 Key Concepts:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Time Shifting:</strong> x(t-t₀) delays signal by t₀</li>
+                    <li><strong>Time Scaling:</strong> x(at) compresses signal if a>1, expands if 0<a<1</li>
+                    <li><strong>Time Reversal:</strong> x(-t) flips signal about t=0</li>
+                </ul>
+            </div>
+        </div>
+        <!-- System Analysis -->
+        <div class="section" id="systems">
+            <div class="section-header">
+    <h2>5️⃣ System Analysis</h2>
+    <a href="#top" class="back-to-top">↑ Go Back</a>
+</div>
+
+            <h3>Convolution - Graphical Method</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Convolution: y(t) = x(t) * h(t) = ∫x(τ)h(t-τ)dτ
+
+% Define signals
+t = -2:0.01:5;
+x = (t >= 0 & t <= 1);      % Rectangular pulse
+h = exp(-2*t) .* (t >= 0);  % Exponential
+
+% Method 1: Using conv function
+dt = 0.01;
+y_conv = conv(x, h, 'same') * dt;
+
+% Method 2: Manual convolution (for understanding)
+y_manual = zeros(size(t));
+for i = 1:length(t)
+    tau = t;
+    h_shifted = exp(-2*(t(i)-tau)) .* ((t(i)-tau) >= 0);
+    y_manual(i) = sum(x .* h_shifted) * dt;
+end
+
+% Plot results
+figure;
+subplot(3,1,1)
+plot(t, x, 'LineWidth', 2)
+title('Input Signal: x(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(3,1,2)
+plot(t, h, 'r', 'LineWidth', 2)
+title('Impulse Response: h(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(3,1,3)
+plot(t, y_conv, 'b-', t, y_manual, 'r--', 'LineWidth', 2)
+legend('Using conv()', 'Manual calculation')
+title('Output: y(t) = x(t) * h(t)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <h3>Differential Equations - Zero-Input and Zero-State Response</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Solving: dy/dt + ay = x(t)
+% Total response = Zero-Input Response + Zero-State Response
+
+a = 2;  % System parameter
+t = 0:0.01:5;
+dt = 0.01;
+
+% Input signal
+x = sin(2*pi*t);
+
+% Initial condition
+y0 = 1;
+
+% Zero-Input Response (x(t) = 0, y(0) = y0)
+y_zi = y0 * exp(-a*t);
+
+% Zero-State Response (y(0) = 0)
+h = exp(-a*t);  % Impulse response
+y_zs = conv(x, h, 'same') * dt;
+
+% Total Response
+y_total = y_zi + y_zs;
+
+% Plot
+figure;
+subplot(4,1,1)
+plot(t, x, 'LineWidth', 2)
+title('Input: x(t) = sin(2πt)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,2)
+plot(t, y_zi, 'r', 'LineWidth', 2)
+title('Zero-Input Response')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,3)
+plot(t, y_zs, 'g', 'LineWidth', 2)
+title('Zero-State Response')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(4,1,4)
+plot(t, y_total, 'b', 'LineWidth', 2)
+title('Total Response = ZIR + ZSR')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on</code></pre>
+
+            <h3>Second-Order System Analysis</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Second-order system: d²y/dt² + 2ζωn(dy/dt) + ωn²y = ωn²x(t)
+
+wn = 2*pi;  % Natural frequency
+zeta_values = [0.1, 0.5, 0.7, 1.0, 2.0];  % Damping ratios
+
+t = 0:0.01:5;
+figure;
+hold on
+
+for i = 1:length(zeta_values)
+    zeta = zeta_values(i);
+    num = wn^2;
+    den = [1, 2*zeta*wn, wn^2];
+    sys = tf(num, den);
+    [y, t_step] = step(sys, t);
+    plot(t_step, y, 'LineWidth', 2, 'DisplayName', ['\zeta = ' num2str(zeta)])
+end
+
+title('Step Response of Second-Order System')
+xlabel('Time (s)')
+ylabel('Amplitude')
+legend('show')
+grid on
+hold off</code></pre>
+
+            <div class="success-box">
+                <strong>✅ Key System Analysis Tools:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><code>conv(x, h)</code> - Convolution of two signals</li>
+                    <li><code>tf(num, den)</code> - Create transfer function</li>
+                    <li><code>step(sys, t)</code> - Step response</li>
+                    <li><code>impulse(sys, t)</code> - Impulse response</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+<!-- Fourier Analysis -->
+        <div class="section" id="fourier">
+            <div class="section-header">
+                <h2>6️⃣ Fourier Analysis</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Fourier Series - Trigonometric Form</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Fourier Series: x(t) = a0 + Σ[an*cos(nω0t) + bn*sin(nω0t)]
+
+% Square Wave Example
+T = 2;           % Period
+f0 = 1/T;        % Fundamental frequency
+w0 = 2*pi*f0;    % Angular frequency
+t = -2*T:0.001:2*T;
+
+% Number of harmonics
+N_values = [1, 3, 5, 10, 50];
+figure;
+
+for idx = 1:length(N_values)
+    N = N_values(idx);
+    x = zeros(size(t));
+    
+    % Fourier series for square wave (odd harmonics only)
+    for n = 1:2:N
+        bn = 4/(n*pi);
+        x = x + bn * sin(n*w0*t);
+    end
+    
+    subplot(3,2,idx)
+    plot(t, x, 'LineWidth', 2)
+    ylim([-1.5 1.5])
+    title(['N = ' num2str(N) ' harmonics'])
+    xlabel('Time (s)')
+    ylabel('Amplitude')
+    grid on
+end
+
+subplot(3,2,6)
+N = 100;
+x = zeros(size(t));
+for n = 1:2:N
+    bn = 4/(n*pi);
+    x = x + bn * sin(n*w0*t);
+end
+plot(t, x, 'LineWidth', 2)
+ylim([-1.5 1.5])
+title(['N = ' num2str(N) ' harmonics'])
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+fprintf('Notice Gibbs phenomenon at discontinuities!\n');</code></pre>
+
+            <h3>Fourier Series - Exponential Form</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Exponential Fourier Series: x(t) = Σ cn*exp(jnω0t)
+
+% Sawtooth Wave Example
+T = 2;
+w0 = 2*pi/T;
+t = -2*T:0.001:2*T;
+N = 20;  % Number of harmonics
+
+% Compute Fourier coefficients
+n = -N:N;
+cn = zeros(size(n));
+for i = 1:length(n)
+    if n(i) == 0
+        cn(i) = 0;  % DC component
+    else
+        cn(i) = 1j/(pi*n(i)) * (-1)^n(i);
+    end
+end
+
+% Reconstruct signal
+x = zeros(size(t));
+for i = 1:length(n)
+    x = x + cn(i) * exp(1j*n(i)*w0*t);
+end
+x = real(x);
+
+% Plot
+figure;
+subplot(2,1,1)
+plot(t, x, 'LineWidth', 2)
+title(['Sawtooth Wave - Exponential Fourier Series (N = ' num2str(N) ')'])
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(2,1,2)
+stem(n, abs(cn), 'filled')
+title('Magnitude Spectrum |c_n|')
+xlabel('Harmonic number n')
+ylabel('|c_n|')
+grid on</code></pre>
+
+            <h3>Fast Fourier Transform (FFT)</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% FFT Example: Multi-component signal analysis
+
+Fs = 1000;        % Sampling frequency (Hz)
+T = 1/Fs;         % Sampling period
+L = 1024;         % Length of signal
+t = (0:L-1)*T;   % Time vector
+
+% Create signal with multiple frequencies
+f1 = 50;   % Hz
+f2 = 120;  % Hz
+f3 = 200;  % Hz
+
+x = 1.0*sin(2*pi*f1*t) + 0.5*sin(2*pi*f2*t) + 0.3*sin(2*pi*f3*t);
+
+% Add noise
+x = x + 0.2*randn(size(t));
+
+% Compute FFT
+Y = fft(x);
+L_half = floor(L/2) + 1;
+
+% Single-sided spectrum
+P2 = abs(Y/L);
+P1 = P2(1:L_half);
+P1(2:end-1) = 2*P1(2:end-1);
+f = Fs*(0:L_half-1)/L;
+
+% Plot results
+figure;
+subplot(2,1,1)
+plot(t(1:200), x(1:200), 'LineWidth', 1.5)
+title('Time Domain Signal (first 200 samples)')
+xlabel('Time (s)')
+ylabel('Amplitude')
+grid on
+
+subplot(2,1,2)
+plot(f, P1, 'LineWidth', 2)
+title('Single-Sided Magnitude Spectrum')
+xlabel('Frequency (Hz)')
+ylabel('|P1(f)|')
+xlim([0 Fs/2])
+grid on
+hold on
+plot([f1 f2 f3], [1.0 0.5 0.3], 'ro', 'MarkerSize', 10)
+legend('Spectrum', 'Expected peaks')
+
+% Peak detection
+[peaks, locs] = findpeaks(P1, 'MinPeakHeight', 0.2);
+detected_freqs = f(locs);
+fprintf('Detected frequencies: ');
+fprintf('%.1f Hz ', detected_freqs);
+fprintf('\n');</code></pre>
+
+            <h3>Fourier Transform Properties</h3>
+            <div class="code-header">MATLAB Code</div>
+            <pre><code>% Demonstrate Time Shifting Property
+
+Fs = 1000;
+t = linspace(-2, 2, 4*Fs);
+dt = t(2) - t(1);
+
+% Original signal
+x = exp(-t.^2);
+
+% Time shifted signal
+tau = 0.5;
+x_shifted = exp(-(t-tau).^2);
+
+% Compute FFTs
+w = 2*pi*(-Fs/2:Fs/(length(t)):Fs/2-Fs/(length(t)));
+X = fftshift(fft(x)) * dt;
+X_shifted = fftshift(fft(x_shifted)) * dt;
+
+% Plot
+figure;
+subplot(2,2,1)
+plot(t, x, 'b-', t, x_shifted, 'r--', 'LineWidth', 2)
+legend('x(t)', 'x(t-\tau)')
+title('Time Shifting')
+xlabel('Time (s)')
+grid on
+
+subplot(2,2,2)
+plot(w/(2*pi), abs(X), 'b-', w/(2*pi), abs(X_shifted), 'r--', 'LineWidth', 2)
+legend('X(f)', 'X(f)e^{-j2πfτ}')
+title('Magnitude Spectrum')
+xlabel('Frequency (Hz)')
+xlim([-50 50])
+grid on</code></pre>
+
+            <div class="warning-box">
+                <strong>⚠️ Important FFT Considerations:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Sampling:</strong> Use Fs > 2*f_max (Nyquist criterion)</li>
+                    <li><strong>Length:</strong> Power of 2 for efficiency (1024, 2048, 4096)</li>
+                    <li><strong>Resolution:</strong> Frequency resolution = Fs/N</li>
+                    <li><strong>Aliasing:</strong> Frequencies above Fs/2 will fold back</li>
+                </ul>
+            </div>
+        </div>
+
+
+<!-- Course-Specific Examples -->
+        <div class="section" id="examples">
+            <div class="section-header">
+                <h2>7️⃣ Course-Specific Examples</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <div class="example">
+                <h4>Example 1: RC Circuit Frequency Response</h4>
+                <p><strong>Problem:</strong> Analyze an RC low-pass filter with R = 1kΩ and C = 1µF</p>
+                <div class="code-header">MATLAB Code</div>
+                <pre><code>% RC Circuit: Low-pass filter
+% Transfer function: H(jω) = 1/(1 + jωRC)
+
+R = 1000;     % Resistance (Ohms)
+C = 1e-6;     % Capacitance (Farads)
+fc = 1/(2*pi*R*C);  % Cutoff frequency
+
+fprintf('Cutoff frequency fc = %.2f Hz\n', fc);
+
+% Frequency range
+f = logspace(0, 5, 1000);  % 1 Hz to 100 kHz
+w = 2*pi*f;
+
+% Frequency response
+H = 1 ./ (1 + 1i*w*R*C);
+mag = abs(H);
+mag_dB = 20*log10(mag);
+phase = angle(H) * 180/pi;
+
+% Plot Bode diagram
+figure;
+subplot(2,1,1)
+semilogx(f, mag_dB, 'LineWidth', 2)
+grid on
+xlabel('Frequency (Hz)')
+ylabel('Magnitude (dB)')
+title('RC Low-Pass Filter Bode Plot')
+hold on
+plot([fc fc], [-40 0], 'r--', 'LineWidth', 1.5)
+plot([fc], [-3], 'ro', 'MarkerSize', 10, 'MarkerFaceColor', 'r')
+legend('|H(f)|', 'Cutoff Frequency', '-3dB point')
+xlim([f(1) f(end)])
+
+subplot(2,1,2)
+semilogx(f, phase, 'LineWidth', 2)
+grid on
+xlabel('Frequency (Hz)')
+ylabel('Phase (degrees)')
+title('Phase Response')
+hold on
+plot([fc fc], [-90 0], 'r--', 'LineWidth', 1.5)
+plot([fc], [-45], 'ro', 'MarkerSize', 10, 'MarkerFaceColor', 'r')
+xlim([f(1) f(end)])
+
+% Time domain step response
+t = 0:0.0001:0.005;
+v_in = ones(size(t));
+tau = R*C;
+v_out = 1 - exp(-t/tau);
+
+figure;
+plot(t*1000, v_in, 'b--', 'LineWidth', 2)
+hold on
+plot(t*1000, v_out, 'r-', 'LineWidth', 2)
+plot([tau tau]*1000, [0 1-exp(-1)], 'k--', 'LineWidth', 1)
+plot(tau*1000, 1-exp(-1), 'ko', 'MarkerSize', 10, 'MarkerFaceColor', 'k')
+legend('Input', 'Output', 'Time Constant τ', '63.2% point')
+title('Step Response of RC Circuit')
+xlabel('Time (ms)')
+ylabel('Voltage (V)')
+grid on</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: AM Modulation and Demodulation</h4>
+                <p><strong>Problem:</strong> Demonstrate amplitude modulation with fm = 1 kHz, fc = 10 kHz</p>
+                <div class="code-header">MATLAB Code</div>
+                <pre><code>% Amplitude Modulation (AM)
+fm = 1000;           % Message frequency (1 kHz)
+fc = 10000;          % Carrier frequency (10 kHz)
+fs = 100000;         % Sampling frequency (100 kHz)
+t = 0:1/fs:0.01;    % Time vector (10 ms)
+
+% Message signal
+m = cos(2*pi*fm*t);
+
+% Carrier signal
+c = cos(2*pi*fc*t);
+
+% Modulation index
+mu = 0.8;
+
+% AM signal
+s_AM = (1 + mu*m) .* c;
+
+% Plot time domain
+figure;
+subplot(3,2,1)
+plot(t*1000, m, 'LineWidth', 1.5)
+title('Message Signal m(t)')
+xlabel('Time (ms)')
+ylabel('Amplitude')
+grid on
+xlim([0 5])
+
+subplot(3,2,3)
+plot(t*1000, c, 'r', 'LineWidth', 1)
+title('Carrier Signal c(t)')
+xlabel('Time (ms)')
+ylabel('Amplitude')
+grid on
+xlim([0 1])
+
+subplot(3,2,5)
+plot(t*1000, s_AM, 'g', 'LineWidth', 1)
+title('AM Signal s(t) = [1 + μm(t)]c(t)')
+xlabel('Time (ms)')
+ylabel('Amplitude')
+grid on
+xlim([0 5])
+hold on
+envelope_upper = 1 + mu*m;
+envelope_lower = -(1 + mu*m);
+plot(t*1000, envelope_upper, 'k--', t*1000, envelope_lower, 'k--', 'LineWidth', 1.5)
+
+% Frequency domain
+N = length(s_AM);
+f_axis = (-N/2:N/2-1)*(fs/N);
+
+M = fftshift(fft(m))/N;
+subplot(3,2,2)
+plot(f_axis/1000, abs(M), 'LineWidth', 2)
+title('Message Spectrum M(f)')
+xlabel('Frequency (kHz)')
+ylabel('|M(f)|')
+grid on
+xlim([-5 5])
+
+C = fftshift(fft(c))/N;
+subplot(3,2,4)
+plot(f_axis/1000, abs(C), 'r', 'LineWidth', 2)
+title('Carrier Spectrum C(f)')
+xlabel('Frequency (kHz)')
+ylabel('|C(f)|')
+grid on
+xlim([-15 15])
+
+S = fftshift(fft(s_AM))/N;
+subplot(3,2,6)
+plot(f_axis/1000, abs(S), 'g', 'LineWidth', 2)
+title('AM Signal Spectrum S(f)')
+xlabel('Frequency (kHz)')
+ylabel('|S(f)|')
+grid on
+xlim([-15 15])
+
+fprintf('Modulation Index μ = %.2f\n', mu);
+fprintf('Bandwidth = 2fm = %.1f Hz\n', 2*fm);</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example 3: First-Order Differential Equation</h4>
+                <p><strong>Problem:</strong> Solve dy/dt + 3y = 5u(t) with y(0) = 2</p>
+                <div class="code-header">MATLAB Code</div>
+                <pre><code>% First-order system: dy/dt + ay = bx(t)
+% Given: dy/dt + 3y = 5u(t), y(0) = 2
+
+a = 3;
+b = 5;
+y0 = 2;
+t = 0:0.01:3;
+
+% Analytical Solution
+y_zi = y0 * exp(-a*t);              % Zero-input response
+y_zs = (b/a) * (1 - exp(-a*t));     % Zero-state response
+y_total = y_zi + y_zs;
+
+% System parameters
+y_ss = b/a;  % Steady-state
+tau = 1/a;   % Time constant
+
+% Plot
+figure;
+subplot(3,1,1)
+plot(t, y_zi, 'LineWidth', 2)
+title('Zero-Input Response (Natural Response)')
+xlabel('Time (s)')
+ylabel('y_{zi}(t)')
+grid on
+yline(0, 'k--')
+
+subplot(3,1,2)
+plot(t, y_zs, 'r', 'LineWidth', 2)
+title('Zero-State Response (Forced Response)')
+xlabel('Time (s)')
+ylabel('y_{zs}(t)')
+grid on
+yline(y_ss, 'k--', 'LineWidth', 1)
+text(1.5, y_ss*1.1, ['Steady State = ' num2str(y_ss, '%.2f')])
+
+subplot(3,1,3)
+plot(t, y_total, 'g', 'LineWidth', 2)
+hold on
+yline(y_ss, 'k--', 'LineWidth', 1)
+plot([tau tau], [0 y0*exp(-1) + y_ss*(1-exp(-1))], 'r--', 'LineWidth', 1)
+plot(tau, y0*exp(-1) + y_ss*(1-exp(-1)), 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r')
+title('Total Response y(t) = y_{zi}(t) + y_{zs}(t)')
+xlabel('Time (s)')
+ylabel('y(t)')
+grid on
+legend('Total Response', 'Steady State', 'Time Constant τ')
+
+fprintf('Time Constant τ = %.3f s\n', tau);
+fprintf('Steady-State y(∞) = %.3f\n', y_ss);
+fprintf('95%% settling time ≈ 3τ = %.3f s\n', 3*tau);</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example 4: Ideal Filters</h4>
+                <p><strong>Problem:</strong> Design and apply ideal low-pass, high-pass, and band-pass filters</p>
+                <div class="code-header">MATLAB Code</div>
+                <pre><code>% Ideal Filters Example
+fs = 1000;
+t = 0:1/fs:2;
+N = length(t);
+
+% Composite signal
+f1 = 5;    % Low frequency
+f2 = 50;   % Mid frequency
+f3 = 200;  % High frequency
+
+x = sin(2*pi*f1*t) + 0.5*sin(2*pi*f2*t) + 0.3*sin(2*pi*f3*t);
+x = x + 0.2*randn(size(t));  % Add noise
+
+% Compute FFT
+X = fftshift(fft(x));
+f = (-N/2:N/2-1)*(fs/N);
+
+% Design Filters
+H_lp = double(abs(f) <= 30);     % Low-pass (fc = 30 Hz)
+H_hp = double(abs(f) >= 100);    % High-pass (fc = 100 Hz)
+H_bp = double((abs(f) >= 30) & (abs(f) <= 100));  % Band-pass
+
+% Apply filters
+Y_lp = X .* H_lp';
+Y_hp = X .* H_hp';
+Y_bp = X .* H_bp';
+
+y_lp = real(ifft(ifftshift(Y_lp)));
+y_hp = real(ifft(ifftshift(Y_hp)));
+y_bp = real(ifft(ifftshift(Y_bp)));
+
+% Plot results
+figure;
+subplot(4,2,1)
+plot(t(1:500), x(1:500), 'LineWidth', 1)
+title('Original Signal')
+xlabel('Time (s)')
+grid on
+
+subplot(4,2,2)
+plot(f, abs(X)/N, 'LineWidth', 1.5)
+title('Original Spectrum')
+xlabel('Frequency (Hz)')
+xlim([-fs/2 fs/2])
+grid on
+
+subplot(4,2,3)
+plot(t(1:500), y_lp(1:500), 'r', 'LineWidth', 1)
+title('Low-Pass Filtered (f < 30 Hz)')
+xlabel('Time (s)')
+grid on
+
+subplot(4,2,4)
+plot(f, H_lp, 'r', 'LineWidth', 2)
+hold on
+plot(f, abs(Y_lp)/N, 'b', 'LineWidth', 1.5)
+title('LPF Response')
+xlabel('Frequency (Hz)')
+xlim([-fs/2 fs/2])
+legend('Filter', 'Output')
+grid on
+
+subplot(4,2,5)
+plot(t(1:500), y_hp(1:500), 'g', 'LineWidth', 1)
+title('High-Pass Filtered (f > 100 Hz)')
+xlabel('Time (s)')
+grid on
+
+subplot(4,2,6)
+plot(f, H_hp, 'g', 'LineWidth', 2)
+hold on
+plot(f, abs(Y_hp)/N, 'b', 'LineWidth', 1.5)
+title('HPF Response')
+xlabel('Frequency (Hz)')
+xlim([-fs/2 fs/2])
+grid on
+
+subplot(4,2,7)
+plot(t(1:500), y_bp(1:500), 'm', 'LineWidth', 1)
+title('Band-Pass (30 Hz < f < 100 Hz)')
+xlabel('Time (s)')
+grid on
+
+subplot(4,2,8)
+plot(f, H_bp, 'm', 'LineWidth', 2)
+hold on
+plot(f, abs(Y_bp)/N, 'b', 'LineWidth', 1.5)
+title('BPF Response')
+xlabel('Frequency (Hz)')
+xlim([-fs/2 fs/2])
+grid on</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example 5: Sampling and Aliasing</h4>
+                <p><strong>Problem:</strong> Demonstrate Nyquist sampling theorem and aliasing effects</p>
+                <div class="code-header">MATLAB Code</div>
+                <pre><code>% Sampling and Aliasing Demonstration
+f_signal = 5;  % Signal frequency (Hz)
+t_continuous = 0:0.0001:2;
+x_continuous = sin(2*pi*f_signal*t_continuous);
+
+% Different sampling frequencies
+fs1 = 50;   % Well above Nyquist
+fs2 = 12;   % Just above Nyquist
+fs3 = 8;    % Below Nyquist - aliasing!
+
+t1 = 0:1/fs1:2;
+x1 = sin(2*pi*f_signal*t1);
+
+t2 = 0:1/fs2:2;
+x2 = sin(2*pi*f_signal*t2);
+
+t3 = 0:1/fs3:2;
+x3 = sin(2*pi*f_signal*t3);
+
+% Plot
+figure;
+subplot(3,1,1)
+plot(t_continuous, x_continuous, 'b-', 'LineWidth', 1)
+hold on
+stem(t1, x1, 'r', 'LineWidth', 1.5, 'MarkerSize', 6)
+title(['Sampling at fs = ' num2str(fs1) ' Hz (Good!)'])
+xlabel('Time (s)')
+ylabel('Amplitude')
+legend('Original', 'Sampled')
+grid on
+xlim([0 1])
+
+subplot(3,1,2)
+plot(t_continuous, x_continuous, 'b-', 'LineWidth', 1)
+hold on
+stem(t2, x2, 'g', 'LineWidth', 1.5, 'MarkerSize', 6)
+title(['Sampling at fs = ' num2str(fs2) ' Hz (Marginal)'])
+xlabel('Time (s)')
+ylabel('Amplitude')
+legend('Original', 'Sampled')
+grid on
+xlim([0 1])
+
+subplot(3,1,3)
+plot(t_continuous, x_continuous, 'b-', 'LineWidth', 1)
+hold on
+stem(t3, x3, 'm', 'LineWidth', 1.5, 'MarkerSize', 6)
+x3_interp = interp1(t3, x3, t_continuous, 'linear');
+plot(t_continuous, x3_interp, 'r--', 'LineWidth', 2)
+title(['Sampling at fs = ' num2str(fs3) ' Hz (ALIASING!)'])
+xlabel('Time (s)')
+ylabel('Amplitude')
+legend('Original 5Hz', 'Sampled', 'Reconstructed')
+grid on
+xlim([0 1])
+
+fprintf('Nyquist Theorem: fs > 2*f_max\n');
+fprintf('For f_max = 5 Hz: fs > 10 Hz required\n');</code></pre>
+            </div>
+        </div>
+
+
+<!-- Tips & Best Practices -->
+        <div class="section" id="tips">
+            <div class="section-header">
+                <h2>8️⃣ Tips & Best Practices</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Code Organization and Style</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>📝 Good Commenting</h4>
+                    <p>Write clear comments that explain WHY, not just WHAT</p>
+                    <div class="code-header">Good Example</div>
+                    <pre><code>% Calculate time constant for 95% settling
+tau = 1/a;
+t_settle = 3*tau;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>🏷️ Variable Naming</h4>
+                    <p>Use descriptive names</p>
+                    <div class="code-header">Good Practice</div>
+                    <pre><code>% Good
+sampling_frequency = 1000;
+signal_amplitude = 2.5;
+
+% OK for standard notation
+fs = 1000;
+fc = 50;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>🧹 Clean Workspace</h4>
+                    <p>Start scripts properly</p>
+                    <div class="code-header">Script Header</div>
+                    <pre><code>% ELEC 360 - Assignment 1
+% Student: Your Name (ID)
+% Date: October 2025
+
+clear all;
+close all;
+clc;</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>📁 File Organization</h4>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>One main script per assignment</li>
+                        <li>Use functions for repeated operations</li>
+                        <li>Save figures with meaningful names</li>
+                        <li>Keep data files organized</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Debugging Strategies</h3>
+            <div class="code-header">Debugging Techniques</div>
+            <pre><code>% 1. Display intermediate values
+disp('Checking variable x:')
+disp(x)
+
+% 2. Check array dimensions
+fprintf('Size of x: %d x %d\n', size(x,1), size(x,2))
+whos x
+
+% 3. Visualize data quickly
+plot(x); title('Quick check'); grid on
+
+% 4. Validate results
+expected = 5;
+actual = sum(x);
+assert(abs(actual - expected) < 0.01, 'Sum mismatch!')
+
+% 5. Check for NaN and Inf
+if any(isnan(x))
+    warning('Found NaN values')
+end
+
+% 6. Use try-catch
+try
+    result = risky_operation();
+catch ME
+    fprintf('Error: %s\n', ME.message)
+end</code></pre>
+
+            <h3>Performance Optimization</h3>
+            <div class="code-header">Efficient MATLAB Code</div>
+            <pre><code>% BAD: Growing arrays (very slow!)
+tic
+y = [];
+for i = 1:10000
+    y = [y, sin(i)];
+end
+time_bad = toc;
+
+% GOOD: Preallocate arrays
+tic
+y = zeros(1, 10000);
+for i = 1:10000
+    y(i) = sin(i);
+end
+time_good = toc;
+
+% BEST: Vectorization
+tic
+i = 1:10000;
+y = sin(i);
+time_best = toc;
+
+fprintf('Without preallocation: %.4f s\n', time_bad);
+fprintf('With preallocation: %.4f s\n', time_good);
+fprintf('Vectorized: %.4f s (%.1fx faster!)\n', time_best, time_bad/time_best);</code></pre>
+
+            <h3>Common Mistakes and Solutions</h3>
+            <table>
+                <tr>
+                    <th>Error</th>
+                    <th>Cause</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>Matrix dimensions must agree</td>
+                    <td>Size mismatch</td>
+                    <td>Use <code>size()</code> and <code>transpose()</code></td>
+                </tr>
+                <tr>
+                    <td>Undefined variable</td>
+                    <td>Typo or not defined</td>
+                    <td>Check spelling, define before use</td>
+                </tr>
+                <tr>
+                    <td>Index exceeds array bounds</td>
+                    <td>Accessing non-existent element</td>
+                    <td>Check with <code>length()</code></td>
+                </tr>
+                <tr>
+                    <td>Subscript indices must be positive</td>
+                    <td>Using 0 or negative index</td>
+                    <td>MATLAB uses 1-based indexing!</td>
+                </tr>
+                <tr>
+                    <td>Out of memory</td>
+                    <td>Arrays too large</td>
+                    <td>Process in chunks, clear variables</td>
+                </tr>
+            </table>
+
+            <h3>Professional Plotting</h3>
+            <div class="code-header">Well-Formatted Plots</div>
+            <pre><code>% Complete example
+t = 0:0.01:10;
+x1 = exp(-0.5*t) .* sin(2*pi*t);
+x2 = exp(-0.5*t) .* cos(2*pi*t);
+
+figure('Position', [100, 100, 800, 600]);
+
+plot(t, x1, 'b-', 'LineWidth', 2, 'DisplayName', 'x_1(t)')
+hold on
+plot(t, x2, 'r--', 'LineWidth', 2, 'DisplayName', 'x_2(t)')
+
+xlabel('Time (seconds)', 'FontSize', 12, 'FontWeight', 'bold')
+ylabel('Amplitude', 'FontSize', 12, 'FontWeight', 'bold')
+title('Damped Oscillations', 'FontSize', 14, 'FontWeight', 'bold')
+
+legend('Location', 'best', 'FontSize', 11)
+grid on
+grid minor
+
+xlim([0 10])
+ylim([-1 1])
+
+saveas(gcf, 'damped_oscillations.png');</code></pre>
+
+            <h3>MATLAB Shortcuts</h3>
+            <table>
+                <tr>
+                    <th>Shortcut</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + C</code></td>
+                    <td>Stop running code</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + Enter</code></td>
+                    <td>Run current section</td>
+                </tr>
+                <tr>
+                    <td><code>F5</code></td>
+                    <td>Run script</td>
+                </tr>
+                <tr>
+                    <td><code>F9</code></td>
+                    <td>Run selected code</td>
+                </tr>
+                <tr>
+                    <td><code>↑/↓ arrows</code></td>
+                    <td>Command history</td>
+                </tr>
+                <tr>
+                    <td><code>Tab</code></td>
+                    <td>Auto-complete</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + R</code></td>
+                    <td>Comment lines</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + T</code></td>
+                    <td>Uncomment lines</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + I</code></td>
+                    <td>Auto-indent</td>
+                </tr>
+            </table>
+
+            <h3>Useful Functions Quick Reference</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Signal Generation</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li><code>sin(), cos(), exp()</code></li>
+                        <li><code>square(), sawtooth()</code></li>
+                        <li><code>randn(), rand()</code></li>
+                        <li><code>linspace(), logspace()</code></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Signal Analysis</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li><code>fft(), ifft()</code></li>
+                        <li><code>conv(), xcorr()</code></li>
+                        <li><code>abs(), angle()</code></li>
+                        <li><code>findpeaks()</code></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>System Analysis</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li><code>tf(), zpk(), ss()</code></li>
+                        <li><code>step(), impulse()</code></li>
+                        <li><code>bode(), nyquist()</code></li>
+                        <li><code>pole(), zero()</code></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Filter Design</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li><code>butter(), cheby1()</code></li>
+                        <li><code>filter(), filtfilt()</code></li>
+                        <li><code>freqz(), grpdelay()</code></li>
+                        <li><code>fir1(), fir2()</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Getting Help</h3>
+            <div class="code-header">Finding Documentation</div>
+            <pre><code>% In Command Window:
+help function_name      % Quick help
+doc function_name       % Full documentation
+lookfor keyword         % Search functions
+
+% Examples:
+help fft
+doc conv
+lookfor convolution</code></pre>
+
+            <div class="success-box">
+                <h4>✅ Assignment Submission Checklist</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>✓ Header with name, ID, assignment number</li>
+                    <li>✓ Code runs without errors from start to finish</li>
+                    <li>✓ All variables properly defined</li>
+                    <li>✓ Comments explain complex operations</li>
+                    <li>✓ Figures have titles, labels, and legends</li>
+                    <li>✓ Results displayed with <code>fprintf()</code></li>
+                    <li>✓ Code properly indented and readable</li>
+                    <li>✓ Debug code removed</li>
+                    <li>✓ Tested on clean workspace</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>MATLAB Documentation:</strong> <a href="https://www.mathworks.com/help/matlab/" target="_blank" style="color: white; text-decoration: underline;">mathworks.com/help/matlab/</a></li>
+                    <li><strong>Signal Processing Toolbox:</strong> <a href="https://www.mathworks.com/help/signal/" target="_blank" style="color: white; text-decoration: underline;">mathworks.com/help/signal/</a></li>
+                    <li><strong>MATLAB Onramp:</strong> Free 2-hour interactive tutorial</li>
+                    <li><strong>Course Materials:</strong> Check Blackboard for sample codes</li>
+                    <li><strong>YouTube:</strong> Dr. Al Bataineh's lecture videos</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tips</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Start simple:</strong> Test with simple inputs first</li>
+                    <li><strong>Plot often:</strong> Visualize at every step</li>
+                    <li><strong>Save incrementally:</strong> Don't lose work!</li>
+                    <li><strong>Learn by doing:</strong> Type code yourself</li>
+                    <li><strong>Read errors:</strong> They tell you what's wrong</li>
+                    <li><strong>Ask early:</strong> Don't wait until deadline</li>
+                    <li><strong>Study examples:</strong> Learn from working code</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+            <p>Contact Dr. Al Bataineh during office hours (Monday/Wednesday 11:00 AM - 12:00 PM)</p>
+            <p>Email: mffbataineh@uaeu.ac.ae | Office: F1-1175</p>
+            <p style="margin-top: 1rem;"><a href="elec360.html" style="color: white; text-decoration: underline;">← Back to ELEC 360 Course Page</a></p>
+        </div>
+    </div>
+</body>
+</html>
