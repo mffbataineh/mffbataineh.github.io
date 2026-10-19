@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Tutorial - ECOM 451 Digital Signal Processing | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --dark-bg: #001524;
+            --light-bg: #f0f8ff;
+            --text-dark: #1a1a1a;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --dark-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --code-bg: #282c34;
+            --matlab-orange: #e65100;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--dark-gradient);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Password Protection Styles */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .password-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .password-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .password-box p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--dark-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 77, 104, 0.4);
+        }
+
+        .error-msg {
+            color: var(--danger-red);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+            background-size: 200% 100%;
+            animation: gradient-slide 3s ease infinite;
+        }
+
+        @keyframes gradient-slide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .matlab-logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+
+        .info-box {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box a { color: var(--accent-color); }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning-orange);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--matlab-orange);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #21252b;
+            color: #abb2bf;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+            columns: 2;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid var(--border-light);
+        }
+
+        th {
+            background: var(--dark-gradient);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-bg);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .toc ul { columns: 1; }
+            .section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="password-box">
+            <div class="matlab-logo">💻</div>
+            <h2>ECOM 451 MATLAB Tutorial</h2>
+            <p>Enter the password to access the tutorial content</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+            <button onclick="checkPassword()" class="password-btn">Access Tutorial</button>
+            <p id="error-msg" class="error-msg">Incorrect password. Please try again.</p>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #888;">
+                Hint: The password is related to the course content (think transforms!)
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="container">
+            <header>
+                <div class="matlab-logo">💻</div>
+                <div class="breadcrumb">
+                    <a href="ecom451.html">ECOM 451</a> → MATLAB Tutorial
+                </div>
+                <h1>MATLAB Tutorial for DSP</h1>
+                <p class="subtitle">Comprehensive guide for Digital Signal Processing with MATLAB</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📚 Table of Contents</h3>
+                <ul>
+                    <li><a href="#getting-started">1. Getting Started</a></li>
+                    <li><a href="#discrete-signals">2. Discrete-Time Signals</a></li>
+                    <li><a href="#convolution">3. Convolution & Correlation</a></li>
+                    <li><a href="#dtft">4. DTFT Analysis</a></li>
+                    <li><a href="#dft-fft">5. DFT & FFT</a></li>
+                    <li><a href="#z-transform">6. z-Transform</a></li>
+                    <li><a href="#filter-design">7. Filter Design</a></li>
+                    <li><a href="#tips">8. Tips & Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="section" id="getting-started">
+                <h2>1. Getting Started with DSP in MATLAB</h2>
+                
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">🎯 Course Learning Outcomes Addressed</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>CLO-1:</strong> Describe discrete-time signals and systems</li>
+                        <li><strong>CLO-2:</strong> Apply z-Transform for DSP system analysis</li>
+                        <li><strong>CLO-3:</strong> Apply DTFT in signal analysis</li>
+                        <li><strong>CLO-4:</strong> Apply DFT in signal analysis</li>
+                        <li><strong>CLO-5 & 6:</strong> Design FIR and IIR digital filters</li>
+                    </ul>
+                </div>
+
+                <h3>Essential MATLAB Setup</h3>
+                <div class="code-header">Basic DSP Setup</div>
+                <pre><code>% Clear workspace and figures
+clear all; close all; clc;
+
+% Define sampling parameters
+Fs = 1000;           % Sampling frequency (Hz)
+T = 1/Fs;            % Sampling period
+N = 1024;            % Number of samples
+n = 0:N-1;           % Sample indices
+t = n*T;             % Time vector
+
+% Create a test signal
+f1 = 50;             % Signal frequency (Hz)
+f2 = 120;            % Second frequency
+x = sin(2*pi*f1*t) + 0.5*sin(2*pi*f2*t);
+
+% Plot the signal
+figure('Position', [100, 100, 800, 400]);
+plot(t, x, 'b-', 'LineWidth', 1.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('Test Signal: 50 Hz + 120 Hz Sinusoids');
+grid on;</code></pre>
+
+                <h3>Key DSP Toolbox Functions</h3>
+                <table>
+                    <tr><th>Function</th><th>Description</th><th>Example</th></tr>
+                    <tr><td><code>fft()</code></td><td>Fast Fourier Transform</td><td><code>X = fft(x)</code></td></tr>
+                    <tr><td><code>ifft()</code></td><td>Inverse FFT</td><td><code>x = ifft(X)</code></td></tr>
+                    <tr><td><code>freqz()</code></td><td>Frequency response</td><td><code>freqz(b, a)</code></td></tr>
+                    <tr><td><code>filter()</code></td><td>Apply filter</td><td><code>y = filter(b, a, x)</code></td></tr>
+                    <tr><td><code>conv()</code></td><td>Convolution</td><td><code>y = conv(x, h)</code></td></tr>
+                    <tr><td><code>butter()</code></td><td>Butterworth filter</td><td><code>[b,a] = butter(n, Wn)</code></td></tr>
+                    <tr><td><code>fir1()</code></td><td>FIR filter design</td><td><code>b = fir1(n, Wn)</code></td></tr>
+                </table>
+            </div>
+
+            <!-- Discrete-Time Signals -->
+            <div class="section" id="discrete-signals">
+                <h2>2. Discrete-Time Signals</h2>
+                
+                <h3>Basic Signal Generation</h3>
+                <div class="code-header">Common Discrete Signals</div>
+                <pre><code>%% Unit Impulse (Delta Function)
+n = -10:10;
+delta = (n == 0);   % 1 when n=0, 0 otherwise
+
+figure;
+stem(n, delta, 'b', 'LineWidth', 2, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('\delta[n]');
+title('Unit Impulse \delta[n]');
+grid on;
+
+%% Unit Step Function
+u = (n >= 0);       % 1 when n>=0, 0 otherwise
+
+figure;
+stem(n, u, 'r', 'LineWidth', 2, 'MarkerFaceColor', 'r');
+xlabel('n'); ylabel('u[n]');
+title('Unit Step u[n]');
+grid on;
+
+%% Exponential Sequence
+a = 0.9;            % Decay factor (|a| < 1 for decay)
+x_exp = a.^n .* (n >= 0);
+
+figure;
+stem(n, x_exp, 'g', 'LineWidth', 2, 'MarkerFaceColor', 'g');
+xlabel('n'); ylabel('x[n]');
+title(['Exponential Sequence: x[n] = (', num2str(a), ')^n u[n]']);
+grid on;</code></pre>
+
+                <h3>Sinusoidal Sequences</h3>
+                <div class="code-header">Discrete Sinusoids</div>
+                <pre><code>%% Discrete Sinusoid
+n = 0:50;
+omega0 = 0.2*pi;    % Digital frequency (rad/sample)
+phi = 0;            % Phase
+
+x = cos(omega0*n + phi);
+
+figure;
+subplot(2,1,1);
+stem(n, x, 'b', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('x[n]');
+title(['Discrete Sinusoid: \omega_0 = ', num2str(omega0/pi), '\pi rad/sample']);
+grid on;
+
+% Show continuous envelope
+subplot(2,1,2);
+n_fine = 0:0.1:50;
+x_envelope = cos(omega0*n_fine + phi);
+plot(n_fine, x_envelope, 'r--', 'LineWidth', 1);
+hold on;
+stem(n, x, 'b', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('x[n]');
+title('Discrete Samples of Continuous Sinusoid');
+legend('Continuous', 'Discrete');
+grid on;</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 Key Concept: Digital vs Analog Frequency</h4>
+                    <p>In DSP, we use <strong>digital frequency</strong> ω (rad/sample) related to analog frequency f (Hz) by:</p>
+                    <p style="text-align: center; font-size: 1.1rem;"><code>ω = 2πf/Fs</code> or <code>ω = 2πfT</code></p>
+                    <p>where Fs is the sampling frequency and T = 1/Fs is the sampling period.</p>
+                </div>
+            </div>
+
+            <!-- Convolution -->
+            <div class="section" id="convolution">
+                <h2>3. Convolution & Correlation</h2>
+                
+                <h3>Linear Convolution</h3>
+                <div class="code-header">Convolution Example</div>
+                <pre><code>%% Linear Convolution
+% Define two sequences
+x = [1, 2, 3, 4];           % Input signal
+h = [1, 1, 1];              % Impulse response
+
+% Compute convolution
+y = conv(x, h);
+
+% Length of output: length(x) + length(h) - 1
+fprintf('Length of x: %d\n', length(x));
+fprintf('Length of h: %d\n', length(h));
+fprintf('Length of y: %d\n', length(y));
+
+% Plot results
+figure('Position', [100, 100, 900, 600]);
+
+subplot(3,1,1);
+stem(0:length(x)-1, x, 'b', 'LineWidth', 2, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('x[n]');
+title('Input Signal x[n]');
+grid on;
+
+subplot(3,1,2);
+stem(0:length(h)-1, h, 'r', 'LineWidth', 2, 'MarkerFaceColor', 'r');
+xlabel('n'); ylabel('h[n]');
+title('Impulse Response h[n]');
+grid on;
+
+subplot(3,1,3);
+stem(0:length(y)-1, y, 'g', 'LineWidth', 2, 'MarkerFaceColor', 'g');
+xlabel('n'); ylabel('y[n]');
+title('Output y[n] = x[n] * h[n] (Convolution)');
+grid on;</code></pre>
+
+                <h3>Correlation</h3>
+                <div class="code-header">Cross-Correlation and Autocorrelation</div>
+                <pre><code>%% Cross-Correlation
+x = [1, 2, 3, 4, 3, 2, 1];
+y = [0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0];  % Shifted version
+
+% Cross-correlation
+[r_xy, lags] = xcorr(x, y);
+
+% Find the lag of maximum correlation
+[max_corr, idx] = max(r_xy);
+lag_at_max = lags(idx);
+fprintf('Maximum correlation at lag = %d\n', lag_at_max);
+
+figure;
+subplot(2,1,1);
+plot(lags, r_xy, 'b-', 'LineWidth', 2);
+hold on;
+stem(lag_at_max, max_corr, 'r', 'LineWidth', 2, 'MarkerFaceColor', 'r');
+xlabel('Lag'); ylabel('R_{xy}[k]');
+title('Cross-Correlation');
+grid on;
+
+%% Autocorrelation
+[r_xx, lags] = xcorr(x, 'biased');  % Biased estimate
+
+subplot(2,1,2);
+stem(lags, r_xx, 'g', 'LineWidth', 2, 'MarkerFaceColor', 'g');
+xlabel('Lag'); ylabel('R_{xx}[k]');
+title('Autocorrelation of x[n]');
+grid on;</code></pre>
+            </div>
+
+            <!-- DTFT -->
+            <div class="section" id="dtft">
+                <h2>4. Discrete-Time Fourier Transform (DTFT)</h2>
+                
+                <h3>Computing DTFT</h3>
+                <div class="code-header">DTFT Implementation</div>
+                <pre><code>%% DTFT of a finite sequence
+x = [1, 2, 3, 4, 3, 2, 1];  % Input sequence
+n = 0:length(x)-1;          % Time indices
+
+% Compute DTFT at many frequency points
+omega = linspace(-pi, pi, 1000);
+X_dtft = zeros(size(omega));
+
+for k = 1:length(omega)
+    X_dtft(k) = sum(x .* exp(-1j * omega(k) * n));
+end
+
+% Plot magnitude and phase
+figure('Position', [100, 100, 800, 600]);
+
+subplot(2,1,1);
+plot(omega/pi, abs(X_dtft), 'b-', 'LineWidth', 2);
+xlabel('\omega/\pi (rad/sample)');
+ylabel('|X(e^{j\omega})|');
+title('DTFT Magnitude Spectrum');
+grid on;
+
+subplot(2,1,2);
+plot(omega/pi, angle(X_dtft), 'r-', 'LineWidth', 2);
+xlabel('\omega/\pi (rad/sample)');
+ylabel('\angle X(e^{j\omega}) (rad)');
+title('DTFT Phase Spectrum');
+grid on;</code></pre>
+
+                <h3>Using freqz() for System Analysis</h3>
+                <div class="code-header">Frequency Response with freqz()</div>
+                <pre><code>%% Frequency Response of a Digital Filter
+% Moving average filter (FIR)
+M = 5;                      % Filter order
+b = ones(1, M) / M;         % Numerator coefficients
+a = 1;                      % Denominator (FIR)
+
+% Compute frequency response
+[H, w] = freqz(b, a, 1024);
+
+figure('Position', [100, 100, 800, 600]);
+
+subplot(2,1,1);
+plot(w/pi, 20*log10(abs(H)), 'b-', 'LineWidth', 2);
+xlabel('\omega/\pi (rad/sample)');
+ylabel('Magnitude (dB)');
+title(['Frequency Response: ', num2str(M), '-Point Moving Average Filter']);
+grid on;
+
+subplot(2,1,2);
+plot(w/pi, unwrap(angle(H))*180/pi, 'r-', 'LineWidth', 2);
+xlabel('\omega/\pi (rad/sample)');
+ylabel('Phase (degrees)');
+title('Phase Response');
+grid on;</code></pre>
+
+                <div class="warning-box">
+                    <h4>⚠️ Important: DTFT vs DFT</h4>
+                    <p><strong>DTFT:</strong> Continuous function of frequency ω, for infinite or finite aperiodic sequences.</p>
+                    <p><strong>DFT:</strong> Sampled version of DTFT at N equally spaced frequencies, used for computation.</p>
+                </div>
+            </div>
+
+            <!-- DFT & FFT -->
+            <div class="section" id="dft-fft">
+                <h2>5. Discrete Fourier Transform (DFT) & FFT</h2>
+                
+                <h3>Basic FFT Usage</h3>
+                <div class="code-header">FFT Spectrum Analysis</div>
+                <pre><code>%% FFT Spectrum Analysis
+Fs = 1000;                  % Sampling frequency
+T = 1/Fs;                   % Sampling period
+N = 1024;                   % Number of samples
+t = (0:N-1)*T;              % Time vector
+
+% Create signal with two frequencies
+f1 = 50; f2 = 120;
+x = sin(2*pi*f1*t) + 0.6*sin(2*pi*f2*t);
+
+% Add some noise
+x_noisy = x + 0.5*randn(size(x));
+
+% Compute FFT
+X = fft(x_noisy);
+
+% Frequency axis
+f = (0:N-1)*(Fs/N);         % Frequency vector
+f_shifted = (-N/2:N/2-1)*(Fs/N);  % Centered frequency
+
+% Two-sided spectrum
+X_mag = abs(X)/N;
+
+% One-sided spectrum (for real signals)
+X_onesided = X_mag(1:N/2+1);
+X_onesided(2:end-1) = 2*X_onesided(2:end-1);
+f_onesided = f(1:N/2+1);
+
+figure('Position', [100, 100, 900, 700]);
+
+subplot(3,1,1);
+plot(t, x_noisy, 'b-', 'LineWidth', 0.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('Noisy Signal in Time Domain');
+grid on;
+
+subplot(3,1,2);
+plot(f_onesided, X_onesided, 'r-', 'LineWidth', 1.5);
+xlabel('Frequency (Hz)'); ylabel('|X(f)|');
+title('One-Sided Amplitude Spectrum');
+xlim([0 200]);
+grid on;
+
+subplot(3,1,3);
+plot(f_shifted, fftshift(X_mag), 'g-', 'LineWidth', 1.5);
+xlabel('Frequency (Hz)'); ylabel('|X(f)|');
+title('Two-Sided Amplitude Spectrum (Centered)');
+xlim([-200 200]);
+grid on;</code></pre>
+
+                <h3>Zero-Padding for Better Resolution</h3>
+                <div class="code-header">Zero-Padding Example</div>
+                <pre><code>%% Zero-Padding for Frequency Resolution
+x = [1 1 1 1 1];            % Short sequence
+N_original = length(x);
+N_padded = 64;              % Zero-pad to this length
+
+% FFT without padding
+X1 = fft(x);
+f1 = (0:N_original-1)/N_original;
+
+% FFT with zero-padding
+X2 = fft(x, N_padded);
+f2 = (0:N_padded-1)/N_padded;
+
+figure;
+subplot(2,1,1);
+stem(f1, abs(X1), 'b', 'LineWidth', 2, 'MarkerFaceColor', 'b');
+xlabel('\omega/2\pi'); ylabel('|X[k]|');
+title(['DFT without Zero-Padding (N = ', num2str(N_original), ')']);
+grid on;
+
+subplot(2,1,2);
+stem(f2, abs(X2), 'r', 'LineWidth', 1.5, 'MarkerFaceColor', 'r');
+xlabel('\omega/2\pi'); ylabel('|X[k]|');
+title(['DFT with Zero-Padding (N = ', num2str(N_padded), ')']);
+grid on;</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 FFT Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Use <code>N = 2^k</code> (power of 2) for fastest FFT computation</li>
+                        <li>Zero-padding interpolates the spectrum but doesn't add information</li>
+                        <li>Use <code>fftshift()</code> to center the spectrum at DC</li>
+                        <li>For real signals, only the first N/2+1 points are unique</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- z-Transform -->
+            <div class="section" id="z-transform">
+                <h2>6. z-Transform Analysis</h2>
+                
+                <h3>Pole-Zero Analysis</h3>
+                <div class="code-header">Pole-Zero Plot</div>
+                <pre><code>%% Pole-Zero Analysis
+% Define system: H(z) = (z^2 - 0.5z) / (z^2 - 1.2z + 0.72)
+b = [1, -0.5, 0];           % Numerator coefficients
+a = [1, -1.2, 0.72];        % Denominator coefficients
+
+% Find zeros and poles
+zeros_sys = roots(b);
+poles_sys = roots(a);
+
+fprintf('Zeros:\n');
+disp(zeros_sys);
+fprintf('Poles:\n');
+disp(poles_sys);
+
+% Check stability (all poles inside unit circle)
+if all(abs(poles_sys) < 1)
+    fprintf('System is STABLE (all poles inside unit circle)\n');
+else
+    fprintf('System is UNSTABLE\n');
+end
+
+% Pole-Zero Plot
+figure;
+zplane(b, a);
+title('Pole-Zero Plot');
+grid on;</code></pre>
+
+                <h3>Impulse and Step Response</h3>
+                <div class="code-header">System Response Analysis</div>
+                <pre><code>%% Impulse and Step Response
+b = [1, 0.5];               % Numerator
+a = [1, -0.8, 0.15];        % Denominator
+
+N = 50;                     % Number of samples
+
+% Impulse response
+[h, n] = impz(b, a, N);
+
+% Step response
+[s, n_step] = stepz(b, a, N);
+
+figure('Position', [100, 100, 800, 600]);
+
+subplot(2,1,1);
+stem(n, h, 'b', 'LineWidth', 2, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('h[n]');
+title('Impulse Response');
+grid on;
+
+subplot(2,1,2);
+stem(n_step, s, 'r', 'LineWidth', 2, 'MarkerFaceColor', 'r');
+xlabel('n'); ylabel('s[n]');
+title('Step Response');
+grid on;</code></pre>
+
+                <h3>Partial Fraction Expansion</h3>
+                <div class="code-header">Inverse z-Transform via Partial Fractions</div>
+                <pre><code>%% Partial Fraction Expansion
+% H(z) = (2z^2 + 3z) / (z^2 - 0.5z - 0.5)
+b = [2, 3, 0];
+a = [1, -0.5, -0.5];
+
+% Partial fraction expansion
+[r, p, k] = residuez(b, a);
+
+fprintf('Partial Fraction Expansion:\n');
+fprintf('Residues (r):\n');
+disp(r);
+fprintf('Poles (p):\n');
+disp(p);
+fprintf('Direct terms (k):\n');
+disp(k);
+
+% Reconstruct the sequence
+N = 20;
+n = 0:N-1;
+h_reconstructed = zeros(size(n));
+
+for i = 1:length(r)
+    h_reconstructed = h_reconstructed + r(i) * p(i).^n;
+end
+
+% Add direct terms
+if ~isempty(k)
+    h_reconstructed(1:length(k)) = h_reconstructed(1:length(k)) + k;
+end
+
+% Compare with impz
+h_direct = impz(b, a, N);
+
+figure;
+stem(n, h_direct, 'bo-', 'LineWidth', 2, 'DisplayName', 'impz()');
+hold on;
+stem(n, real(h_reconstructed), 'rx--', 'LineWidth', 1.5, 'DisplayName', 'Partial Fractions');
+xlabel('n'); ylabel('h[n]');
+title('Impulse Response: Direct vs Partial Fraction');
+legend('Location', 'best');
+grid on;</code></pre>
+            </div>
+
+            <!-- Filter Design -->
+            <div class="section" id="filter-design">
+                <h2>7. Digital Filter Design</h2>
+                
+                <h3>FIR Filter Design</h3>
+                <div class="code-header">FIR Filter Using Window Method</div>
+                <pre><code>%% FIR Lowpass Filter Design
+Fs = 1000;                  % Sampling frequency
+Fc = 100;                   % Cutoff frequency
+N = 50;                     % Filter order
+
+% Normalized cutoff frequency (0 to 1, where 1 = Fs/2)
+Wn = Fc / (Fs/2);
+
+% Design FIR filter using different windows
+b_rect = fir1(N, Wn, rectwin(N+1));
+b_hamm = fir1(N, Wn, hamming(N+1));
+b_black = fir1(N, Wn, blackman(N+1));
+b_kaiser = fir1(N, Wn, kaiser(N+1, 5));
+
+% Frequency response comparison
+[H_rect, w] = freqz(b_rect, 1, 1024, Fs);
+[H_hamm, ~] = freqz(b_hamm, 1, 1024, Fs);
+[H_black, ~] = freqz(b_black, 1, 1024, Fs);
+[H_kaiser, ~] = freqz(b_kaiser, 1, 1024, Fs);
+
+figure('Position', [100, 100, 900, 600]);
+
+subplot(2,1,1);
+plot(w, 20*log10(abs(H_rect)), 'b-', 'LineWidth', 1.5); hold on;
+plot(w, 20*log10(abs(H_hamm)), 'r-', 'LineWidth', 1.5);
+plot(w, 20*log10(abs(H_black)), 'g-', 'LineWidth', 1.5);
+plot(w, 20*log10(abs(H_kaiser)), 'm-', 'LineWidth', 1.5);
+xlabel('Frequency (Hz)'); ylabel('Magnitude (dB)');
+title('FIR Lowpass Filter - Window Comparison');
+legend('Rectangular', 'Hamming', 'Blackman', 'Kaiser');
+xlim([0 Fs/2]); ylim([-100 5]);
+grid on;
+
+subplot(2,1,2);
+stem(0:N, b_hamm, 'b', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
+xlabel('n'); ylabel('h[n]');
+title('Filter Coefficients (Hamming Window)');
+grid on;</code></pre>
+
+                <h3>IIR Filter Design</h3>
+                <div class="code-header">Butterworth and Chebyshev Filters</div>
+                <pre><code>%% IIR Filter Design
+Fs = 1000;
+Fc = 100;                   % Cutoff frequency
+Wn = Fc / (Fs/2);           % Normalized frequency
+
+% Butterworth filter
+order_butter = 4;
+[b_butter, a_butter] = butter(order_butter, Wn);
+
+% Chebyshev Type I (0.5 dB ripple)
+order_cheby = 4;
+[b_cheby1, a_cheby1] = cheby1(order_cheby, 0.5, Wn);
+
+% Chebyshev Type II (40 dB stopband attenuation)
+[b_cheby2, a_cheby2] = cheby2(order_cheby, 40, Wn);
+
+% Elliptic filter (1 dB passband, 40 dB stopband)
+[b_ellip, a_ellip] = ellip(order_cheby, 1, 40, Wn);
+
+% Frequency responses
+[H_butter, w] = freqz(b_butter, a_butter, 1024, Fs);
+[H_cheby1, ~] = freqz(b_cheby1, a_cheby1, 1024, Fs);
+[H_cheby2, ~] = freqz(b_cheby2, a_cheby2, 1024, Fs);
+[H_ellip, ~] = freqz(b_ellip, a_ellip, 1024, Fs);
+
+figure('Position', [100, 100, 900, 700]);
+
+subplot(2,1,1);
+plot(w, 20*log10(abs(H_butter)), 'b-', 'LineWidth', 2); hold on;
+plot(w, 20*log10(abs(H_cheby1)), 'r-', 'LineWidth', 2);
+plot(w, 20*log10(abs(H_cheby2)), 'g-', 'LineWidth', 2);
+plot(w, 20*log10(abs(H_ellip)), 'm-', 'LineWidth', 2);
+xlabel('Frequency (Hz)'); ylabel('Magnitude (dB)');
+title('IIR Lowpass Filters Comparison (Order 4)');
+legend('Butterworth', 'Chebyshev I', 'Chebyshev II', 'Elliptic');
+xlim([0 Fs/2]); ylim([-80 5]);
+grid on;
+
+subplot(2,1,2);
+zplane(b_butter, a_butter);
+title('Butterworth Filter Pole-Zero Plot');
+grid on;</code></pre>
+
+                <h3>Applying Filters to Signals</h3>
+                <div class="code-header">Signal Filtering Example</div>
+                <pre><code>%% Filter Application Example
+Fs = 1000;
+t = 0:1/Fs:1-1/Fs;
+N = length(t);
+
+% Create noisy signal: 50 Hz signal + high-frequency noise
+signal = sin(2*pi*50*t);
+noise = 0.5*sin(2*pi*300*t) + 0.3*randn(size(t));
+x = signal + noise;
+
+% Design lowpass filter (cutoff at 100 Hz)
+[b, a] = butter(6, 100/(Fs/2));
+
+% Apply filter
+y_filter = filter(b, a, x);      % Causal filtering
+y_filtfilt = filtfilt(b, a, x);  % Zero-phase filtering
+
+figure('Position', [100, 100, 900, 800]);
+
+subplot(4,1,1);
+plot(t, signal, 'g-', 'LineWidth', 1.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('Original Signal (50 Hz)');
+grid on;
+
+subplot(4,1,2);
+plot(t, x, 'b-', 'LineWidth', 0.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('Noisy Signal');
+grid on;
+
+subplot(4,1,3);
+plot(t, y_filter, 'r-', 'LineWidth', 1.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('After filter() - Note Phase Delay');
+grid on;
+
+subplot(4,1,4);
+plot(t, y_filtfilt, 'm-', 'LineWidth', 1.5);
+xlabel('Time (s)'); ylabel('Amplitude');
+title('After filtfilt() - Zero-Phase Filtering');
+grid on;</code></pre>
+
+                <div class="success-box">
+                    <h4>✅ Filter Design Summary</h4>
+                    <table style="margin-top: 0.5rem;">
+                        <tr><th>Filter Type</th><th>Advantages</th><th>Use When</th></tr>
+                        <tr><td>FIR</td><td>Linear phase, always stable</td><td>Phase is critical</td></tr>
+                        <tr><td>Butterworth</td><td>Maximally flat passband</td><td>Smooth response needed</td></tr>
+                        <tr><td>Chebyshev I</td><td>Sharper cutoff</td><td>Passband ripple OK</td></tr>
+                        <tr><td>Chebyshev II</td><td>Flat passband</td><td>Stopband ripple OK</td></tr>
+                        <tr><td>Elliptic</td><td>Sharpest transition</td><td>Both ripples OK</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tips & Best Practices -->
+            <div class="section" id="tips">
+                <h2>8. Tips & Best Practices</h2>
+                
+                <h3>Useful DSP Functions Quick Reference</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Signal Generation</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>sin(), cos()</code></li>
+                            <li><code>square(), sawtooth()</code></li>
+                            <li><code>randn(), rand()</code></li>
+                            <li><code>chirp()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Transform Analysis</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>fft(), ifft()</code></li>
+                            <li><code>fftshift(), ifftshift()</code></li>
+                            <li><code>freqz(), phasez()</code></li>
+                            <li><code>grpdelay()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Filter Design</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>fir1(), fir2(), firpm()</code></li>
+                            <li><code>butter(), cheby1(), ellip()</code></li>
+                            <li><code>filter(), filtfilt()</code></li>
+                            <li><code>freqs(), freqz()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>System Analysis</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>tf(), zpk()</code></li>
+                            <li><code>impz(), stepz()</code></li>
+                            <li><code>zplane(), pzmap()</code></li>
+                            <li><code>residuez()</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Common Mistakes and Solutions</h3>
+                <table>
+                    <tr><th>Error</th><th>Cause</th><th>Solution</th></tr>
+                    <tr>
+                        <td>Frequency axis wrong</td>
+                        <td>Not accounting for Fs</td>
+                        <td>Use <code>f = (0:N-1)*Fs/N</code></td>
+                    </tr>
+                    <tr>
+                        <td>Cutoff frequency out of range</td>
+                        <td>Wn must be 0-1</td>
+                        <td>Normalize: <code>Wn = Fc/(Fs/2)</code></td>
+                    </tr>
+                    <tr>
+                        <td>Unstable IIR filter</td>
+                        <td>Poles outside unit circle</td>
+                        <td>Reduce filter order</td>
+                    </tr>
+                    <tr>
+                        <td>Spectral leakage</td>
+                        <td>Non-integer periods in window</td>
+                        <td>Apply window function</td>
+                    </tr>
+                    <tr>
+                        <td>Phase distortion</td>
+                        <td>Causal IIR filtering</td>
+                        <td>Use <code>filtfilt()</code> for zero-phase</td>
+                    </tr>
+                </table>
+
+                <div class="success-box">
+                    <h4>✅ Assignment Submission Checklist</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>✔ Header with name, ID, assignment number</li>
+                        <li>✔ Code runs without errors from start to finish</li>
+                        <li>✔ All variables properly defined</li>
+                        <li>✔ Sampling frequency and time vectors correct</li>
+                        <li>✔ Figures have titles, axis labels, and legends</li>
+                        <li>✔ Frequency axes properly scaled (Hz or rad/sample)</li>
+                        <li>✔ Results displayed with <code>fprintf()</code></li>
+                        <li>✔ Code properly commented</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li><strong>MATLAB Documentation:</strong> <a href="https://www.mathworks.com/help/matlab/" target="_blank">mathworks.com/help/matlab/</a></li>
+                        <li><strong>Signal Processing Toolbox:</strong> <a href="https://www.mathworks.com/help/signal/" target="_blank">mathworks.com/help/signal/</a></li>
+                        <li><strong>DSP System Toolbox:</strong> <a href="https://www.mathworks.com/help/dsp/" target="_blank">mathworks.com/help/dsp/</a></li>
+                        <li><strong>Textbook:</strong> Sanjit K. Mitra, Digital Signal Processing, 4th Ed.</li>
+                        <li><strong>Course Materials:</strong> Check Blackboard for sample codes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section" style="text-align: center; background: var(--dark-gradient); color: white;">
+                <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+                <p>Contact Dr. Al Bataineh during office hours (Tuesday/Thursday 11:00 AM - 12:00 PM)</p>
+                <p>Email: mffbataineh@uaeu.ac.ae | Office: F1-1175</p>
+                <p style="margin-top: 1rem;">
+                    <a href="ecom451.html" style="color: var(--accent-color); text-decoration: none;">← Back to ECOM 451 Course Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password protection
+        const correctPassword = "dsp";
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.toLowerCase();
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                sessionStorage.setItem('ecom451MatlabAccess', 'granted');
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        window.onload = function() {
+            if (sessionStorage.getItem('ecom451MatlabAccess') === 'granted') {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>

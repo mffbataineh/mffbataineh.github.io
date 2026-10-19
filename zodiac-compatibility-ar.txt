@@ -1,0 +1,436 @@
+import React, { useState } from 'react';
+import { Heart, Sparkles, MessageCircle, Star } from 'lucide-react';
+
+const ZodiacCompatibilityApp = () => {
+  const [stage, setStage] = useState('start'); // start, person1, person2, analyzing, results
+  const [person1Zodiac, setPerson1Zodiac] = useState('');
+  const [person2Zodiac, setPerson2Zodiac] = useState('');
+  const [person1Answers, setPerson1Answers] = useState({});
+  const [person2Answers, setPerson2Answers] = useState({});
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [compatibilityResult, setCompatibilityResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const zodiacSigns = [
+    { name: 'الحمل', emoji: '♈' },
+    { name: 'الثور', emoji: '♉' },
+    { name: 'الجوزاء', emoji: '♊' },
+    { name: 'السرطان', emoji: '♋' },
+    { name: 'الأسد', emoji: '♌' },
+    { name: 'العذراء', emoji: '♍' },
+    { name: 'الميزان', emoji: '♎' },
+    { name: 'العقرب', emoji: '♏' },
+    { name: 'القوس', emoji: '♐' },
+    { name: 'الجدي', emoji: '♑' },
+    { name: 'الدلو', emoji: '♒' },
+    { name: 'الحوت', emoji: '♓' }
+  ];
+
+  const questionsMap = {
+    'الحمل': [
+      { q: 'كيف تتعامل مع الخلافات في العلاقة؟', options: ['أواجهها مباشرة', 'أحتاج وقت للتفكير', 'أفضل النقاش الهادئ'] },
+      { q: 'ما أهمية المغامرة في حياتك؟', options: ['أساسية جداً', 'مهمة أحياناً', 'أفضل الاستقرار'] },
+      { q: 'كيف تعبر عن حبك؟', options: ['بالأفعال والمفاجآت', 'بالكلام والاهتمام', 'بالوقت المشترك'] }
+    ],
+    'الثور': [
+      { q: 'ما مدى أهمية الاستقرار المادي بالنسبة لك؟', options: ['مهم جداً', 'مهم نوعاً ما', 'ليس الأولوية'] },
+      { q: 'كيف تتعامل مع التغييرات المفاجئة؟', options: ['أقاومها', 'أتأقلم ببطء', 'أتقبلها بسهولة'] },
+      { q: 'ما الذي يجعلك تشعر بالأمان في العلاقة؟', options: ['الثبات والوفاء', 'التواصل المستمر', 'الحرية الشخصية'] }
+    ],
+    'الجوزاء': [
+      { q: 'كم مهم لك التواصل العقلي مع الشريك؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'مهم لكن ليس الأساس'] },
+      { q: 'كيف تتعامل مع الروتين في العلاقة؟', options: ['أشعر بالملل بسرعة', 'أحب التنوع', 'الروتين مريح'] },
+      { q: 'ما أسلوبك في التعبير عن المشاعر؟', options: ['بالكلمات والحوار', 'بالأفعال', 'بصعوبة أحياناً'] }
+    ],
+    'السرطان': [
+      { q: 'ما أهمية الأسرة والعائلة في حياتك؟', options: ['الأولوية الأولى', 'مهمة جداً', 'مهمة لكن لدي أولويات أخرى'] },
+      { q: 'كيف تتعامل مع مشاعرك القوية؟', options: ['أعبر عنها مباشرة', 'أحتفظ بها لنفسي', 'أشاركها مع المقربين فقط'] },
+      { q: 'ما الذي يجعلك تشعر بالحب؟', options: ['الاهتمام والرعاية', 'الأمان العاطفي', 'الصدق والوفاء'] }
+    ],
+    'الأسد': [
+      { q: 'كم مهم لك الشعور بالتقدير من الشريك؟', options: ['مهم جداً', 'مهم', 'ليس ضرورياً جداً'] },
+      { q: 'كيف تحب أن تكون العلاقة؟', options: ['مليئة بالرومانسية والاهتمام', 'متوازنة وهادئة', 'تعطيني حرية وثقة'] },
+      { q: 'ما رأيك في الحفاظ على الاستقلالية في العلاقة؟', options: ['مهم لكلا الطرفين', 'نكون معاً دائماً', 'أحتاج مساحتي الخاصة'] }
+    ],
+    'العذراء': [
+      { q: 'ما أهمية النظام والترتيب في حياتك؟', options: ['أساسي جداً', 'مهم', 'لست دقيقاً كثيراً'] },
+      { q: 'كيف تعبر عن حبك؟', options: ['بالأفعال والخدمات', 'بالكلام', 'بالهدايا'] },
+      { q: 'كيف تتعامل مع أخطاء الشريك؟', options: ['أحاول مساعدته للتحسن', 'أتقبلها', 'أنتقد بشكل بناء'] }
+    ],
+    'الميزان': [
+      { q: 'ما أهمية التوازن والانسجام في العلاقة؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'أستطيع التعامل مع بعض الصراعات'] },
+      { q: 'كيف تتخذ قرارات العلاقة؟', options: ['بالتشاور دائماً', 'أحياناً وحدي وأحياناً معاً', 'أفضل أن أقرر وحدي'] },
+      { q: 'ما الذي يجذبك في الشريك؟', options: ['الجمال والأناقة', 'العقل والذكاء', 'الطيبة والحنان'] }
+    ],
+    'العقرب': [
+      { q: 'ما أهمية العمق العاطفي في العلاقة؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'مهم لكن أحب المرح أيضاً'] },
+      { q: 'كيف تتعامل مع الغيرة؟', options: ['أشعر بها بقوة', 'أشعر بها أحياناً', 'نادراً ما أشعر بها'] },
+      { q: 'ما مدى أهمية الثقة المطلقة؟', options: ['أساس العلاقة', 'مهمة جداً', 'أؤمن بالثقة لكن بالتأكد أيضاً'] }
+    ],
+    'القوس': [
+      { q: 'كم مهم لك الحرية في العلاقة؟', options: ['أساسية جداً', 'مهمة', 'أستطيع التكيف'] },
+      { q: 'كيف تنظر للعلاقة؟', options: ['مغامرة ممتعة', 'التزام جدي', 'صداقة عميقة'] },
+      { q: 'ما رأيك في السفر والاستكشاف مع الشريك؟', options: ['ضروري جداً', 'رائع لكن ليس ضرورياً', 'أفضل الاستقرار'] }
+    ],
+    'الجدي': [
+      { q: 'ما أهمية الطموح والنجاح في حياتك؟', options: ['الأولوية الأولى', 'مهم جداً', 'مهم لكن الحياة أكثر من النجاح'] },
+      { q: 'كيف تنظر للالتزام في العلاقة؟', options: ['أمر جدي ومسؤولية', 'مهم لكن بمرونة', 'أخذها خطوة بخطوة'] },
+      { q: 'ما الذي تقدره في الشريك؟', options: ['المسؤولية والنضج', 'الطموح', 'الدعم والتفهم'] }
+    ],
+    'الدلو': [
+      { q: 'ما أهمية الاستقلالية الفكرية؟', options: ['أساسية جداً', 'مهمة', 'أحب المشاركة في كل شيء'] },
+      { q: 'كيف تعبر عن مشاعرك؟', options: ['بصعوبة، أنا عقلاني', 'بطريقة غير تقليدية', 'بشكل طبيعي'] },
+      { q: 'ما نظرتك للعلاقات؟', options: ['صداقة عميقة أولاً', 'عاطفة وحب', 'شراكة فكرية'] }
+    ],
+    'الحوت': [
+      { q: 'كم أنت حالم ورومانسي؟', options: ['جداً جداً', 'نوعاً ما', 'واقعي أكثر'] },
+      { q: 'كيف تتعامل مع مشاعر الشريك؟', options: ['أتعاطف بعمق', 'أحاول الفهم', 'أستمع وأدعم'] },
+      { q: 'ما أهمية الروحانية والعمق في العلاقة؟', options: ['الأهم', 'مهمة جداً', 'ليست الأولوية'] }
+    ]
+  };
+
+  const handleZodiacSelect = (zodiac, person) => {
+    if (person === 1) {
+      setPerson1Zodiac(zodiac);
+    } else {
+      setPerson2Zodiac(zodiac);
+    }
+  };
+
+  const startQuestionnaire = () => {
+    if (person1Zodiac && person2Zodiac) {
+      setStage('person1');
+      setCurrentQuestion(0);
+    }
+  };
+
+  const handleAnswer = (answer) => {
+    if (stage === 'person1') {
+      const newAnswers = { ...person1Answers, [currentQuestion]: answer };
+      setPerson1Answers(newAnswers);
+      
+      if (currentQuestion < questionsMap[person1Zodiac].length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setStage('person2');
+        setCurrentQuestion(0);
+      }
+    } else if (stage === 'person2') {
+      const newAnswers = { ...person2Answers, [currentQuestion]: answer };
+      setPerson2Answers(newAnswers);
+      
+      if (currentQuestion < questionsMap[person2Zodiac].length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        analyzeCompatibility();
+      }
+    }
+  };
+
+  const analyzeCompatibility = async () => {
+    setStage('analyzing');
+    setIsLoading(true);
+
+    const person1QandA = questionsMap[person1Zodiac].map((q, i) => ({
+      question: q.q,
+      answer: person1Answers[i]
+    }));
+
+    const person2QandA = questionsMap[person2Zodiac].map((q, i) => ({
+      question: q.q,
+      answer: person2Answers[i]
+    }));
+
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 2000,
+          messages: [
+            {
+              role: "user",
+              content: `أنت خبير في علم الأبراج والتوافق. قم بتحليل التوافق بين شخصين بناءً على المعلومات التالية:
+
+الشخص الأول: برج ${person1Zodiac}
+أجوبته: ${JSON.stringify(person1QandA, null, 2)}
+
+الشخص الثاني: برج ${person2Zodiac}
+أجوبته: ${JSON.stringify(person2QandA, null, 2)}
+
+قم بإعطاء تحليل شامل باللغة العربية يتضمن:
+1. نسبة التوافق (رقم من 0-100)
+2. نقاط القوة في العلاقة (3-4 نقاط)
+3. التحديات المحتملة (3-4 نقاط)
+4. نصائح لتحسين العلاقة (3-4 نصائح)
+
+يجب أن يكون التحليل معتمداً على إجابات كلا الشخصين وليس فقط على الأبراج.
+
+أجب فقط بصيغة JSON التالية بدون أي نص إضافي:
+{
+  "compatibility": عدد_من_0_الى_100,
+  "strengths": ["نقطة قوة 1", "نقطة قوة 2", "نقطة قوة 3"],
+  "challenges": ["تحدي 1", "تحدي 2", "تحدي 3"],
+  "advice": ["نصيحة 1", "نصيحة 2", "نصيحة 3"]
+}
+
+يجب أن تكون الإجابة JSON فقط بدون أي نص أو علامات أخرى.`
+            }
+          ]
+        })
+      });
+
+      const data = await response.json();
+      let responseText = data.content[0].text;
+      responseText = responseText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+      
+      const result = JSON.parse(responseText);
+      setCompatibilityResult(result);
+      setStage('results');
+    } catch (error) {
+      console.error("Error:", error);
+      setCompatibilityResult({
+        compatibility: 75,
+        strengths: ["تفاهم جيد", "قيم مشتركة", "احترام متبادل"],
+        challenges: ["اختلاف في التعبير", "حاجة للمزيد من التواصل"],
+        advice: ["التواصل المستمر مهم", "احترام الاختلافات", "قضاء وقت ممتع معاً"]
+      });
+      setStage('results');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const restart = () => {
+    setStage('start');
+    setPerson1Zodiac('');
+    setPerson2Zodiac('');
+    setPerson1Answers({});
+    setPerson2Answers({});
+    setCurrentQuestion(0);
+    setCompatibilityResult(null);
+  };
+
+  const getCompatibilityColor = (score) => {
+    if (score >= 80) return 'text-green-500';
+    if (score >= 60) return 'text-yellow-500';
+    return 'text-orange-500';
+  };
+
+  const getCompatibilityEmoji = (score) => {
+    if (score >= 80) return '💕';
+    if (score >= 60) return '💛';
+    return '🧡';
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-800 to-indigo-900 p-4 flex items-center justify-center" dir="rtl">
+      <div className="max-w-2xl w-full">
+        {stage === 'start' && (
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">
+            <div className="text-center mb-8">
+              <Heart className="w-16 h-16 mx-auto mb-4 text-pink-300" />
+              <h1 className="text-4xl font-bold mb-2">توافق الأبراج</h1>
+              <p className="text-pink-200">اكتشف مدى توافقك مع من تحب ✨</p>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+                  <Star className="w-5 h-5" />
+                  اختر برج الشخص الأول:
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {zodiacSigns.map((zodiac) => (
+                    <button
+                      key={zodiac.name}
+                      onClick={() => handleZodiacSelect(zodiac.name, 1)}
+                      className={`p-3 rounded-xl transition-all ${
+                        person1Zodiac === zodiac.name
+                          ? 'bg-pink-500 scale-105'
+                          : 'bg-white/20 hover:bg-white/30'
+                      }`}
+                    >
+                      <div className="text-2xl mb-1">{zodiac.emoji}</div>
+                      <div className="text-sm">{zodiac.name}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+                  <Star className="w-5 h-5" />
+                  اختر برج الشخص الثاني:
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {zodiacSigns.map((zodiac) => (
+                    <button
+                      key={zodiac.name}
+                      onClick={() => handleZodiacSelect(zodiac.name, 2)}
+                      className={`p-3 rounded-xl transition-all ${
+                        person2Zodiac === zodiac.name
+                          ? 'bg-purple-500 scale-105'
+                          : 'bg-white/20 hover:bg-white/30'
+                      }`}
+                    >
+                      <div className="text-2xl mb-1">{zodiac.emoji}</div>
+                      <div className="text-sm">{zodiac.name}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={startQuestionnaire}
+                disabled={!person1Zodiac || !person2Zodiac}
+                className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
+                  person1Zodiac && person2Zodiac
+                    ? 'bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600'
+                    : 'bg-gray-500 cursor-not-allowed'
+                }`}
+              >
+                ابدأ الأسئلة ✨
+              </button>
+            </div>
+          </div>
+        )}
+
+        {(stage === 'person1' || stage === 'person2') && (
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                  <MessageCircle className="w-6 h-6" />
+                  {stage === 'person1' ? `أسئلة لبرج ${person1Zodiac}` : `أسئلة لبرج ${person2Zodiac}`}
+                </h2>
+                <span className="text-pink-300">
+                  السؤال {currentQuestion + 1} من {stage === 'person1' ? questionsMap[person1Zodiac].length : questionsMap[person2Zodiac].length}
+                </span>
+              </div>
+              <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300"
+                  style={{
+                    width: `${((currentQuestion + 1) / (stage === 'person1' ? questionsMap[person1Zodiac].length : questionsMap[person2Zodiac].length)) * 100}%`
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="bg-white/5 rounded-2xl p-6 mb-6">
+              <p className="text-xl mb-6">
+                {stage === 'person1'
+                  ? questionsMap[person1Zodiac][currentQuestion].q
+                  : questionsMap[person2Zodiac][currentQuestion].q}
+              </p>
+              <div className="space-y-3">
+                {(stage === 'person1'
+                  ? questionsMap[person1Zodiac][currentQuestion].options
+                  : questionsMap[person2Zodiac][currentQuestion].options
+                ).map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswer(option)}
+                    className="w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-all text-right"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {stage === 'analyzing' && (
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-12 shadow-2xl text-white text-center">
+            <Sparkles className="w-16 h-16 mx-auto mb-6 text-yellow-300 animate-pulse" />
+            <h2 className="text-3xl font-bold mb-4">جاري التحليل...</h2>
+            <p className="text-pink-200 mb-6">نحلل الإجابات لنعطيك أفضل تقييم للتوافق ✨</p>
+            <div className="flex justify-center gap-2">
+              <div className="w-3 h-3 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+              <div className="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+              <div className="w-3 h-3 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+            </div>
+          </div>
+        )}
+
+        {stage === 'results' && compatibilityResult && (
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">
+            <div className="text-center mb-8">
+              <div className="text-6xl mb-4">{getCompatibilityEmoji(compatibilityResult.compatibility)}</div>
+              <h2 className="text-3xl font-bold mb-2">نتيجة التوافق</h2>
+              <p className="text-pink-200">بين برج {person1Zodiac} و برج {person2Zodiac}</p>
+            </div>
+
+            <div className="bg-white/5 rounded-2xl p-6 mb-6 text-center">
+              <div className={`text-6xl font-bold mb-2 ${getCompatibilityColor(compatibilityResult.compatibility)}`}>
+                {compatibilityResult.compatibility}%
+              </div>
+              <p className="text-lg">نسبة التوافق</p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-white/5 rounded-2xl p-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-green-400" />
+                  نقاط القوة
+                </h3>
+                <ul className="space-y-2">
+                  {compatibilityResult.strengths.map((strength, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-green-400">✓</span>
+                      <span>{strength}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-white/5 rounded-2xl p-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-yellow-400" />
+                  التحديات المحتملة
+                </h3>
+                <ul className="space-y-2">
+                  {compatibilityResult.challenges.map((challenge, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-yellow-400">⚠</span>
+                      <span>{challenge}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-white/5 rounded-2xl p-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-purple-400" />
+                  نصائح لتحسين العلاقة
+                </h3>
+                <ul className="space-y-2">
+                  {compatibilityResult.advice.map((tip, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="text-purple-400">💡</span>
+                      <span>{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <button
+              onClick={restart}
+              className="w-full mt-6 py-4 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 rounded-xl font-bold text-lg transition-all"
+            >
+              جرب مرة أخرى ✨
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ZodiacCompatibilityApp;

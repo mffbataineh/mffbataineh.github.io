@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Signal Processing - ECOM 451 | Dr. Mohammad Al Bataineh</title>
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --dark-bg: #001524;
+            --light-bg: #f0f8ff;
+            --text-dark: #1a1a1a;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --dark-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --blue-gradient: linear-gradient(135deg, #0a4d68 0%, #05bfdb 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+        }
+        
+        .homepage {
+            min-height: 100vh;
+        }
+        
+        .homepage-header {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .homepage-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        .homepage-header-content {
+            margin: 0 auto;
+            padding: 4rem 2rem 3rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .course-code {
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: #05bfdb;
+            color: white;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(5, 191, 219, 0.4), 0 0 30px rgba(5, 191, 219, 0.3);
+            animation: shine 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-code::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(5, 191, 219, 0.4), 0 0 30px rgba(5, 191, 219, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(5, 191, 219, 0.6), 0 0 40px rgba(5, 191, 219, 0.5), 0 0 60px rgba(5, 191, 219, 0.3);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+        
+        .homepage-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+        
+        .course-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .department-info {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-top: 1.5rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .experiment-nav-container {
+            background: white;
+            border-bottom: 3px solid var(--accent-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .nav-subtitle {
+            text-align: center;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: linear-gradient(to right, var(--light-bg), white, var(--light-bg));
+            position: relative;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            margin: 0 auto;
+        }
+        
+        .nav-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .homepage-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .section-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-icon {
+            font-size: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .go-up-button {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .go-up-button:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .info-box p {
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3, .info-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box ul {
+            margin-left: 1.5rem;
+            margin-top: 0.8rem;
+        }
+        
+        .highlight-box li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background: var(--dark-gradient);
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .card a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .badge-success {
+            background: var(--success-green);
+            color: white;
+        }
+        
+        .badge-info {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning-orange);
+            color: white;
+        }
+        
+        .clo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.2rem;
+        }
+        
+        .clo-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .clo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .clo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(5, 191, 219, 0.15);
+            border-color: var(--accent-color);
+        }
+        
+        .clo-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .clo-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(5, 191, 219, 0.3);
+        }
+        
+        .clo-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+        }
+        
+        .clo-card h4 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .clo-card p {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .plo-tag {
+            background: rgba(5, 191, 219, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .topics-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .topics-list li {
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.8rem;
+            background: var(--light-bg);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .topics-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .topics-list li strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .assessment-item {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .assessment-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(5, 191, 219, 0.15);
+        }
+        
+        .assessment-item .percentage {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+        }
+        
+        .assessment-item .label {
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+            font-weight: 600;
+            display: block;
+        }
+        
+        .assessment-item .date {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-top: 0.3rem;
+            opacity: 0.8;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--success-green);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .success-box h3 {
+            color: #065f46;
+            margin-bottom: 1rem;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--warning-orange);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .warning-box h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: var(--dark-gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .homepage-title {
+                font-size: 1.8rem;
+            }
+            
+            .course-code {
+                font-size: 1rem;
+            }
+            
+            .department-info {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                padding: 1rem;
+                background: white;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .clo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .assessment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .course-meta {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .section-header-left {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="homepage">
+        <!-- Back to Teaching Link -->
+        <div style="max-width: 1200px; margin: 0 auto; padding: 1rem 2rem;">
+            <a href="teaching.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #1e3c72; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; background: white; border-radius: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(-5px)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='0 2px 10px rgba(0,0,0,0.1)';">
+                <span style="font-size: 1.2rem;">←</span> Back to Teaching
+            </a>
+        </div>
+        
+        <header class="homepage-header" id="top">
+            <div class="homepage-header-content">
+                <div class="course-code">ECOM 451</div>
+                <h1 class="homepage-title">Digital Signal Processing</h1>
+                <p class="course-subtitle">
+                    Comprehensive study of discrete-time signals and systems, Fourier and z-transforms, DFT, FFT algorithms, and FIR/IIR digital filter design
+                </p>
+                <div class="department-info">
+                    United Arab Emirates University<br>
+                    College of Engineering<br>
+                    Department of Electrical & Communication Engineering
+                </div>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <span class="icon">👨‍🏫</span>
+                        <span>Dr. Mohammad Al Bataineh</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">📚</span>
+                        <span>3 Credit Hours (3+0)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🎓</span>
+                        <span>Undergraduate</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">📅</span>
+                        <span>Spring 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">📋</span>
+                        <span>Prerequisite: ECOM 360</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <nav class="experiment-nav-container">
+            <div class="nav-subtitle">Course Navigation</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰ MENU</button>
+            <div class="nav-links" id="navMenu">
+                <a href="#class-section" class="nav-link">Class Info</a>
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#clos" class="nav-link">Learning Outcomes</a>
+                <a href="#topics" class="nav-link">Course Topics</a>
+                <a href="#assessment" class="nav-link">Assessment</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="#tips" class="nav-link">Tips</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+        
+        <main class="homepage-content">
+            <!-- Class Section -->
+            <section id="class-section" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📍</div>
+                        <h2 class="section-title">Class Section</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><span class="icon">📌</span>Section 01</h4>
+                        <p><strong>Time:</strong> Tuesday/Thursday<br>2:00 PM - 3:15 PM</p>
+                        <p style="margin-top: 0.8rem;"><strong>Location:</strong> F3-034</p>
+                    </div>
+                    <div class="card">
+                        <h4><span class="icon">🏢</span>Office Hours</h4>
+                        <p><strong>Days:</strong> Tuesday/Thursday</p>
+                        <p><strong>Time:</strong> 11:00 AM - 12:00 PM</p>
+                        <p style="margin-top: 0.8rem;"><strong>Office:</strong> F1-1175</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Course Overview -->
+            <section id="overview" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📖</div>
+                        <h2 class="section-title">Course Overview</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="info-box">
+                    <h3>🎯 Course Description</h3>
+                    <p>Overview of discrete-time signals and systems, representation of discrete-time systems by means of difference equations. Analysis of discrete-time signals and systems using Fourier and z-transforms. The sampling theory of continuous-time signals, digital processing of continuous-time signals using A/D and D/A conversion. Transform-based analysis of linear time-invariant (LTI) FIR and IIR systems and their structures. Discrete Fourier transform (DFT) and fast algorithms for its computation. FIR and IIR digital filter design.</p>
+                </div>
+                
+                <div class="success-box">
+                    <h3>📚 Required Textbook</h3>
+                    <p style="font-size: 1.1rem; margin-top: 0.5rem;">
+                        <strong>Sanjit K. Mitra</strong><br>
+                        <em>Digital Signal Processing – A Computer Based Approach</em><br>
+                        4th Edition, McGraw Hill, 2011
+                    </p>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>📋 Prerequisite Requirement</h3>
+                    <p><strong>ECOM 360</strong> (Signals and Systems) with a minimum grade of <strong>D</strong></p>
+                </div>
+            </section>
+            
+            <!-- Course Learning Outcomes -->
+            <section id="clos" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">🎓</div>
+                        <h2 class="section-title">Course Learning Outcomes</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 1.5rem; padding: 0.8rem; background: var(--light-bg); border-radius: 8px;">
+                    <p style="font-size: 0.95rem; color: var(--primary-color); margin: 0;"><strong>Upon successful completion of this course, students will be able to:</strong></p>
+                </div>
+                
+                <div class="clo-grid">
+                    <div class="clo-card">
+                        <div class="clo-badge">01</div>
+                        <div class="clo-icon">📊</div>
+                        <h4>Discrete-Time Signals & Systems</h4>
+                        <p>Describe discrete-time signals and systems as mathematical functions and transformations, respectively.</p>
+                        <span class="plo-tag">PLO-1</span>
+                    </div>
+                    
+                    <div class="clo-card">
+                        <div class="clo-badge">02</div>
+                        <div class="clo-icon">🔄</div>
+                        <h4>z-Transform Analysis</h4>
+                        <p>Apply z-Transform for the analysis and design of DSP systems.</p>
+                        <span class="plo-tag">PLO-1</span>
+                    </div>
+                    
+                    <div class="clo-card">
+                        <div class="clo-badge">03</div>
+                        <div class="clo-icon">📈</div>
+                        <h4>DTFT Applications</h4>
+                        <p>Apply Discrete-Time Fourier Transform (DTFT) in the analysis of discrete-time signals and systems.</p>
+                        <span class="plo-tag">PLO-1</span>
+                    </div>
+                    
+                    <div class="clo-card">
+                        <div class="clo-badge">04</div>
+                        <div class="clo-icon">🔢</div>
+                        <h4>DFT Applications</h4>
+                        <p>Apply Discrete Fourier Transform (DFT) in the analysis of discrete-time signals and systems.</p>
+                        <span class="plo-tag">PLO-1</span>
+                    </div>
+                    
+                    <div class="clo-card">
+                        <div class="clo-badge">05</div>
+                        <div class="clo-icon">🔧</div>
+                        <h4>Filter Fundamentals</h4>
+                        <p>Identify basic filters' design and their structures.</p>
+                        <span class="plo-tag">PLO-2</span>
+                    </div>
+                    
+                    <div class="clo-card">
+                        <div class="clo-badge">06</div>
+                        <div class="clo-icon">⚙️</div>
+                        <h4>Digital Filter Design</h4>
+                        <p>Design FIR and IIR digital filters using various techniques, and realize using various structures.</p>
+                        <span class="plo-tag">PLO-2</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Course Topics -->
+            <section id="topics" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📋</div>
+                        <h2 class="section-title">Course Topics</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <ul class="topics-list">
+                    <li>
+                        <strong>Week 1: Introduction to DSP</strong>
+                        Introduction to digital signal processing and its applications in communications, audio, image processing, and control systems
+                    </li>
+                    <li>
+                        <strong>Weeks 2-3: Discrete-Time Signals and Systems</strong>
+                        Discrete-time signals and systems, convolution sum, correlation, and their properties
+                    </li>
+                    <li>
+                        <strong>Week 4: Discrete-Time Fourier Transform</strong>
+                        DTFT definition, properties, frequency response of LTI systems, and spectral analysis
+                    </li>
+                    <li>
+                        <strong>Weeks 5-6: Digital Processing of Continuous-Time Signals</strong>
+                        Sampling theory, aliasing, reconstruction, A/D and D/A conversion, practical considerations
+                    </li>
+                    <li>
+                        <strong>Weeks 7-8: Discrete Fourier Transform</strong>
+                        DFT and its properties, relationship to other transforms, FFT algorithms and efficient computation
+                    </li>
+                    <li>
+                        <strong>Weeks 9-10: z-Transform</strong>
+                        z-Transform definition, properties, inverse z-transform, ROC, and system analysis
+                    </li>
+                    <li>
+                        <strong>Week 11: LTI Systems in Transform Domain</strong>
+                        Discrete-time LTI systems in the transform domain, transfer functions, stability analysis
+                    </li>
+                    <li>
+                        <strong>Weeks 12-15: Digital Filter Design</strong>
+                        Basic digital filter structures, FIR and IIR filter design techniques, realization structures, implementation considerations
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- Assessment -->
+            <section id="assessment" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📊</div>
+                        <h2 class="section-title">Assessment & Grading</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="assessment-grid">
+                    <div class="assessment-item">
+                        <span class="percentage">20%</span>
+                        <span class="label">Hour Tests (×2)</span>
+                        <span class="date">T1: 03/02 | T2: 17/03</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="percentage">25%</span>
+                        <span class="label">Midterm Exam</span>
+                        <span class="date">Week 9 - 03/03/2026</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="percentage">15%</span>
+                        <span class="label">Quizzes</span>
+                        <span class="date">Weekly</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="percentage">5%</span>
+                        <span class="label">MATLAB Assignments</span>
+                        <span class="date">Week 14</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="percentage">35%</span>
+                        <span class="label">Final Exam</span>
+                        <span class="date">Final Exam Period</span>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 2rem;">
+                    <h3>⚠️ Important Policies</h3>
+                    <ul>
+                        <li><strong>Attendance:</strong> Students who miss 15% of classes will be awarded an "FA" grade</li>
+                        <li><strong>Academic Integrity:</strong> Plagiarism and cheating result in serious penalties including dismissal from the university</li>
+                        <li><strong>Feedback:</strong> Regular feedback on progress will be provided to help improve performance</li>
+                        <li><strong>Rubrics:</strong> Will be provided for grading direct assessment works such as reports and assignments</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Learning Resources -->
+            <section id="resources" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📚</div>
+                        <h2 class="section-title">Learning Resources</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <p style="margin-bottom: 1.5rem;"><strong>Instructional Materials:</strong> Textbook, lecture slides, handouts, MATLAB software, e-learning (Blackboard), Smart Board instructions.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><span class="icon">📝</span>Course Materials</h4>
+                        <p>All lecture slides, handwritten notes (iPad), and supplementary materials available on Blackboard at the start of the semester.</p>
+                        <a href="https://uaeu.blackboard.com" target="_blank">Access Blackboard</a>
+                        <span class="badge badge-success">Updated Weekly</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">🎥</span>Video Lectures</h4>
+                        <p>Complete recorded lectures from MS Teams and YouTube channel for flexible learning and review.</p>
+                        <a href="#" target="_blank">Watch on YouTube</a>
+                        <span class="badge badge-info">24/7 Access</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">💻</span>MATLAB Resources</h4>
+                        <p>Sample codes, hands-on tutorials, programming exercises, and MATLAB assignment materials to reinforce theoretical concepts.</p>
+                        <a href="matlab-tutorial-ecom451.html" target="_blank">MATLAB Tutorial</a>
+                        <span class="badge badge-warning">5% of Grade</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">🐍</span>Python Resources</h4>
+                        <p>Python tutorials using NumPy, SciPy, and Matplotlib for DSP implementation, signal analysis, and filter design visualization.</p>
+                        <a href="python-tutorial-ecom451.html" target="_blank">Python Tutorial</a>
+                        <span class="badge badge-info">Alternative</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">🎧</span>Multi-Format Content</h4>
+                        <p>Podcasts, mental maps, and video overviews generated using NotebookLM for diverse learning styles.</p>
+                        <a href="#" target="_blank">Explore Formats</a>
+                        <span class="badge badge-success">New!</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">📖</span>Main Textbook</h4>
+                        <p><strong>Sanjit K. Mitra</strong> - Digital Signal Processing – A Computer Based Approach, 4th Edition, McGraw Hill (2011)</p>
+                        <a href="#" target="_blank">Book Info</a>
+                        <span class="badge badge-warning">Required</span>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">🔬</span>Interactive Tools</h4>
+                        <p>GeoGebra applications and Python visualizations for understanding DSP concepts like FFT, filtering, and system responses.</p>
+                        <a href="#" target="_blank">Try GeoGebra</a>
+                        <span class="badge badge-info">Interactive</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Communication & Support -->
+            <section id="communication" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">💬</div>
+                        <h2 class="section-title">Communication & Support</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><span class="icon">💬</span>WhatsApp Group</h4>
+                        <p>Join the course WhatsApp group for instant communication, questions, and discussions available 24/7.</p>
+                        <a href="#" target="_blank">Join Group</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">👥</span>MS Teams Class</h4>
+                        <p>Access recorded lectures, participate in discussions, and submit assignments through MS Teams.</p>
+                        <a href="#" target="_blank">Open Teams</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h4><span class="icon">⏰</span>Office Hours</h4>
+                        <p>In-person and virtual office hours available for one-on-one support and clarification.</p>
+                        <a href="#" target="_blank">Book Appointment</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tips for Success -->
+            <section id="tips" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">🌟</div>
+                        <h2 class="section-title">Tips for Success</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="info-card" style="background: var(--dark-gradient); color: white;">
+                    <h3 style="color: white; margin-bottom: 1.5rem;">📌 Recommended Study Strategy</h3>
+                    <ul style="margin-left: 2rem; line-height: 2;">
+                        <li><strong>Before Class:</strong> Review the posted lecture slides to familiarize yourself with DSP topics</li>
+                        <li><strong>During Class:</strong> Actively participate, take notes, and ask questions about transform techniques</li>
+                        <li><strong>After Class:</strong> Watch recorded lectures for review and practice filter design problems</li>
+                        <li><strong>Weekly:</strong> Complete assignments early and work through MATLAB examples</li>
+                        <li><strong>Hands-On:</strong> Practice with MATLAB code examples for DFT, FFT, and filter implementation</li>
+                        <li><strong>Visual Learning:</strong> Use visualizations to understand frequency domain concepts</li>
+                        <li><strong>Build on Prerequisites:</strong> Review ECOM 360 concepts as DSP builds directly on them</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card" style="margin-top: 1.5rem;">
+                    <h3>⚡ Key Topics to Master</h3>
+                    <ul style="margin-left: 2rem; line-height: 1.8;">
+                        <li><strong>z-Transform:</strong> Essential for system analysis - practice ROC determination</li>
+                        <li><strong>DFT/FFT:</strong> Understand the relationship between time and frequency domains</li>
+                        <li><strong>Filter Design:</strong> Both FIR and IIR methods are crucial for the final exam</li>
+                        <li><strong>Sampling Theory:</strong> Nyquist theorem and aliasing effects are fundamental</li>
+                        <li><strong>MATLAB:</strong> Hands-on implementation reinforces theoretical concepts</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Contact Information -->
+            <section id="contact" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">📧</div>
+                        <h2 class="section-title">Contact Information</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="schedule-grid">
+                    <div class="info-card">
+                        <h3 style="color: var(--secondary-color);">Dr. Mohammad Al Bataineh</h3>
+                        <p style="margin-top: 1rem;"><strong>Email:</strong> <a href="mailto:mffbataineh@uaeu.ac.ae" style="color: var(--secondary-color);">mffbataineh@uaeu.ac.ae</a></p>
+                        <p><strong>Office:</strong> F1-1175</p>
+                        <p><strong>Phone:</strong> +971 3 713 5146</p>
+                        <p><strong>Website:</strong> <a href="https://faculty.uaeu.ac.ae/mffbataineh" target="_blank" style="color: var(--secondary-color);">Faculty Page</a></p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3 style="color: var(--secondary-color);">Office Hours</h3>
+                        <p style="margin-top: 1rem;"><strong>Days:</strong> Tuesday & Thursday</p>
+                        <p><strong>Time:</strong> 11:00 AM - 12:00 PM</p>
+                        <p><strong>Location:</strong> F1-1175</p>
+                        <p style="margin-top: 1rem;">Also available via email appointment and WhatsApp group</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Additional Support -->
+            <section id="additional-support" class="section">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon">🔗</div>
+                        <h2 class="section-title">Additional Support</h2>
+                    </div>
+                    <a href="#top" class="go-up-button">↑ Go Up</a>
+                </div>
+                
+                <div class="schedule-grid">
+                    <div class="info-card">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">♿ Special Needs Services</h4>
+                        <p>Students with special needs should contact the Special Needs Services Center for accommodations.</p>
+                        <p style="margin-top: 1rem;"><strong>Phone:</strong> +971 3 713 4264<br>
+                        <strong>Email:</strong> <a href="mailto:disabilityservices@uaeu.ac.ae" style="color: var(--secondary-color);">disabilityservices@uaeu.ac.ae</a></p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">📚 Student Academic Success</h4>
+                        <p>Access academic support services including Independent Learning Centers, Tutorials, Writing & Speaking Centers.</p>
+                        <a href="http://www.uaeu.ac.ae/en/university_college/sasp/" target="_blank" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: white; color: #0a4d68; text-decoration: none; border-radius: 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; border: 2px solid #0a4d68;" onmouseover="this.style.background='#0a4d68'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#0a4d68'">Visit SASP</a>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 1rem;">⚖️ Academic Integrity</h4>
+                        <p>Review the UAEU Code of Academic Honesty for policies on plagiarism and academic misconduct.</p>
+                        <a href="https://www.uaeu.ac.ae/en/catalog/plagiarism_and_academic_integrity.shtml" target="_blank" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: white; color: #0a4d68; text-decoration: none; border-radius: 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; border: 2px solid #0a4d68;" onmouseover="this.style.background='#0a4d68'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#0a4d68'">View Policy</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2026 United Arab Emirates University</p>
+            <p>College of Engineering - Department of Electrical & Communication Engineering</p>
+            <p style="color: var(--accent-color); font-weight: 600;">ECOM 451 - Digital Signal Processing</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    const menu = document.getElementById('navMenu');
+                    if (menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Add animation to sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+        
+        // Trigger initial animations
+        setTimeout(() => {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            });
+        }, 100);
+    </script>
+</body>
+</html>

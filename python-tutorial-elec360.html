@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial - ELEC 360 | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --code-bg: #282c34;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Password Protection Styles */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .password-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .password-box h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .password-box p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .error-msg {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #21252b;
+            color: #abb2bf;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .toc {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: var(--secondary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .example {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .back-to-top {
+            float: right;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .section-header h2 {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+            .section { padding: 1.5rem; }
+            .password-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="password-box">
+            <h2>🔒 Protected Content</h2>
+            <p>This Python tutorial is for ELEC 360 students only. Please enter the password to continue.</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password" autofocus>
+            <button onclick="checkPassword()" class="password-btn">Access Tutorial</button>
+            <p class="error-msg" id="error-msg">❌ Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until correct password) -->
+    <div id="content">
+        <div class="container">
+            <header id="top">
+                <div class="breadcrumb">
+                    <a href="elec360.html">ELEC 360</a> / Python Tutorial
+                </div>
+                <h1>Python Tutorial</h1>
+                <p class="subtitle">Complete Guide for Signals and Systems Analysis</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#getting-started">1. Getting Started with Python</a></li>
+                    <li><a href="#basics">2. Python Basics</a></li>
+                    <li><a href="#plotting">3. Plotting Signals</a></li>
+                    <li><a href="#signals">4. Signal Operations</a></li>
+                    <li><a href="#systems">5. System Analysis</a></li>
+                    <li><a href="#fourier">6. Fourier Analysis</a></li>
+                    <li><a href="#examples">7. Course-Specific Examples</a></li>
+                    <li><a href="#tips">8. Tips & Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="section" id="getting-started">
+                <div class="section-header">
+                    <h2>1️⃣ Getting Started with Python</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+                
+                <h3>Installing Python</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>🐍 Anaconda Distribution</h4>
+                        <p>Recommended for beginners. Includes Python, NumPy, SciPy, Matplotlib, and Jupyter Notebook.</p>
+                        <p><a href="https://www.anaconda.com/download" target="_blank">Download Anaconda</a></p>
+                    </div>
+                    <div class="card">
+                        <h4>💻 Python.org</h4>
+                        <p>Standard Python installation. Install packages separately using pip.</p>
+                        <p><a href="https://www.python.org/downloads/" target="_blank">Download Python</a></p>
+                    </div>
+                    <div class="card">
+                        <h4>☁️ Google Colab</h4>
+                        <p>Run Python in your browser, no installation needed. Free GPU access!</p>
+                        <p><a href="https://colab.research.google.com" target="_blank">Open Google Colab</a></p>
+                    </div>
+                </div>
+
+                <h3>Essential Libraries for Signal Processing</h3>
+                <div class="code-header">Terminal / Command Prompt</div>
+                <pre><code># Install required packages using pip
+pip install numpy scipy matplotlib jupyter
+
+# Or using conda (if using Anaconda)
+conda install numpy scipy matplotlib jupyter</code></pre>
+
+                <h3>Python Development Environments</h3>
+                <ul>
+                    <li><strong>Jupyter Notebook:</strong> Interactive notebooks, great for learning and visualization</li>
+                    <li><strong>Spyder:</strong> MATLAB-like IDE, included with Anaconda</li>
+                    <li><strong>VS Code:</strong> Popular code editor with Python extensions</li>
+                    <li><strong>PyCharm:</strong> Full-featured Python IDE</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>💡 Recommendation:</strong> Start with Jupyter Notebook or Google Colab for interactive learning, then move to Spyder or VS Code for larger projects.
+                </div>
+            </div>
+
+            <!-- Python Basics -->
+            <div class="section" id="basics">
+                <div class="section-header">
+                    <h2>2️⃣ Python Basics</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Importing Libraries</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Standard imports for signal processing
+import numpy as np                    # Numerical operations
+import matplotlib.pyplot as plt       # Plotting
+from scipy import signal              # Signal processing
+from scipy.fft import fft, fftshift   # Fourier transforms
+
+# Display settings for better plots
+plt.rcParams['figure.figsize'] = (10, 6)
+plt.rcParams['font.size'] = 11</code></pre>
+
+                <h3>Basic Operations</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Basic arithmetic
+a = 5
+b = 3
+sum_val = a + b        # Addition
+difference = a - b     # Subtraction
+product = a * b        # Multiplication
+quotient = a / b       # Division
+power = a**2           # Exponentiation
+
+print(f"Sum: {sum_val}")
+print(f"Power: {power}")
+
+# Multiple assignment
+x, y, z = 1, 2, 3</code></pre>
+
+                <h3>NumPy Arrays (Similar to MATLAB matrices)</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Creating arrays
+t = np.arange(0, 10, 0.1)              # Array from 0 to 10, step 0.1
+t = np.linspace(0, 10, 100)            # 100 points from 0 to 10
+x = np.array([1, 2, 3, 4, 5])          # 1D array
+y = np.array([[1], [2], [3], [4], [5]])  # Column vector
+
+# Array operations (element-wise by default!)
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+c = a * b          # Element-wise multiplication [4, 10, 18]
+d = a ** 2         # Element-wise power [1, 4, 9]
+
+# Useful array functions
+print(f"Length: {len(x)}")
+print(f"Shape: {x.shape}")
+print(f"Max: {np.max(x)}")
+print(f"Min: {np.min(x)}")
+print(f"Sum: {np.sum(x)}")
+print(f"Mean: {np.mean(x)}")</code></pre>
+
+                <div class="warning-box">
+                    <strong>⚠️ Important:</strong> NumPy arrays use element-wise operations by default (unlike MATLAB matrices). Use <code>@</code> or <code>np.dot()</code> for matrix multiplication.
+                </div>
+
+                <h3>Common Mathematical Functions</h3>
+                <table>
+                    <tr>
+                        <th>Function</th>
+                        <th>Python/NumPy Code</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Sine</td>
+                        <td><code>np.sin(x)</code></td>
+                        <td>Sine function</td>
+                    </tr>
+                    <tr>
+                        <td>Cosine</td>
+                        <td><code>np.cos(x)</code></td>
+                        <td>Cosine function</td>
+                    </tr>
+                    <tr>
+                        <td>Exponential</td>
+                        <td><code>np.exp(x)</code></td>
+                        <td>e^x</td>
+                    </tr>
+                    <tr>
+                        <td>Natural Log</td>
+                        <td><code>np.log(x)</code></td>
+                        <td>ln(x)</td>
+                    </tr>
+                    <tr>
+                        <td>Absolute Value</td>
+                        <td><code>np.abs(x)</code></td>
+                        <td>|x|</td>
+                    </tr>
+                    <tr>
+                        <td>Square Root</td>
+                        <td><code>np.sqrt(x)</code></td>
+                        <td>√x</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Plotting -->
+            <div class="section" id="plotting">
+                <div class="section-header">
+                    <h2>3️⃣ Plotting Signals</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Basic Plotting</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Simple plot
+t = np.linspace(0, 2*np.pi, 1000)
+y = np.sin(t)
+
+plt.figure()
+plt.plot(t, y)
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.title('Sine Wave')
+plt.grid(True)
+plt.show()
+
+# Multiple plots on same figure
+y1 = np.sin(t)
+y2 = np.cos(t)
+
+plt.figure()
+plt.plot(t, y1, 'b-', label='sin(t)')
+plt.plot(t, y2, 'r--', label='cos(t)')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.title('Sine and Cosine')
+plt.legend()
+plt.grid(True)
+plt.show()</code></pre>
+
+                <h3>Subplots</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Create multiple plots in one figure
+t = np.linspace(0, 2*np.pi, 1000)
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+ax1.plot(t, np.sin(t))
+ax1.set_title('Sine Wave')
+ax1.set_xlabel('Time (s)')
+ax1.set_ylabel('Amplitude')
+ax1.grid(True)
+
+ax2.plot(t, np.cos(t))
+ax2.set_title('Cosine Wave')
+ax2.set_xlabel('Time (s)')
+ax2.set_ylabel('Amplitude')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Plot Customization</h3>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Code</th>
+                        <th>Effect</th>
+                    </tr>
+                    <tr>
+                        <td>Line Color</td>
+                        <td><code>'r'</code>, <code>'b'</code>, <code>'g'</code>, <code>'k'</code></td>
+                        <td>Red, Blue, Green, Black</td>
+                    </tr>
+                    <tr>
+                        <td>Line Style</td>
+                        <td><code>'-'</code>, <code>'--'</code>, <code>':'</code>, <code>'-.'</code></td>
+                        <td>Solid, Dashed, Dotted, Dash-dot</td>
+                    </tr>
+                    <tr>
+                        <td>Marker</td>
+                        <td><code>'o'</code>, <code>'*'</code>, <code>'+'</code>, <code>'x'</code></td>
+                        <td>Circle, Star, Plus, Cross</td>
+                    </tr>
+                    <tr>
+                        <td>Line Width</td>
+                        <td><code>linewidth=2</code></td>
+                        <td>Thicker line</td>
+                    </tr>
+                </table>
+
+                <div class="tip-box">
+                    <strong>💡 Tip:</strong> Use <code>plt.figure()</code> to create new figure windows. Use <code>plt.savefig('filename.png')</code> to save figures.
+                </div>
+            </div>
+
+            <!-- Signal Operations -->
+            <div class="section" id="signals">
+                <div class="section-header">
+                    <h2>4️⃣ Signal Operations</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Creating Basic Signals</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Unit Step Function
+t = np.linspace(-5, 5, 1000)
+u = (t >= 0).astype(float)
+
+plt.figure()
+plt.plot(t, u, linewidth=2)
+plt.title('Unit Step Function u(t)')
+plt.xlabel('Time (s)')
+plt.ylabel('u(t)')
+plt.grid(True)
+plt.ylim([-0.2, 1.2])
+plt.show()
+
+# Shifted Unit Step
+u_shifted = (t >= 2).astype(float)
+
+plt.figure()
+plt.plot(t, u, 'b-', label='u(t)', linewidth=2)
+plt.plot(t, u_shifted, 'r--', label='u(t-2)', linewidth=2)
+plt.title('Unit Step and Shifted Step')
+plt.xlabel('Time (s)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Rectangular Pulse
+rect = ((t >= -1) & (t <= 1)).astype(float)
+
+plt.figure()
+plt.plot(t, rect, linewidth=2)
+plt.title('Rectangular Pulse')
+plt.xlabel('Time (s)')
+plt.ylabel('rect(t)')
+plt.grid(True)
+plt.ylim([-0.2, 1.2])
+plt.show()
+
+# Exponential Signals
+t = np.linspace(0, 5, 1000)
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+x1 = np.exp(-t)
+ax1.plot(t, x1, linewidth=2)
+ax1.set_title('Decaying Exponential: $e^{-t}$')
+ax1.set_xlabel('Time (s)')
+ax1.set_ylabel('Amplitude')
+ax1.grid(True)
+
+x2 = np.exp(-2*t)
+ax2.plot(t, x2, 'r', linewidth=2)
+ax2.set_title('Faster Decay: $e^{-2t}$')
+ax2.set_xlabel('Time (s)')
+ax2.set_ylabel('Amplitude')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Signal Transformations</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Time Shifting (Delay)
+t = np.linspace(-5, 5, 1000)
+x = np.exp(-np.abs(t))
+
+# Different time shifts
+x_shift1 = np.exp(-np.abs(t-1))  # Shifted right by 1
+x_shift2 = np.exp(-np.abs(t+1))  # Shifted left by 1
+
+plt.figure()
+plt.plot(t, x, 'b-', label='x(t)', linewidth=2)
+plt.plot(t, x_shift1, 'r--', label='x(t-1)', linewidth=2)
+plt.plot(t, x_shift2, 'g-.', label='x(t+1)', linewidth=2)
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.title('Time Shifting')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Time Scaling (Compression and Expansion)
+x = np.exp(-np.abs(t)) * np.sin(2*np.pi*t)
+
+fig, axes = plt.subplots(3, 1, figsize=(10, 10))
+
+axes[0].plot(t, x, linewidth=2)
+axes[0].set_title('Original: x(t)')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].grid(True)
+
+x_compressed = np.exp(-np.abs(2*t)) * np.sin(2*np.pi*2*t)
+axes[1].plot(t, x_compressed, 'r', linewidth=2)
+axes[1].set_title('Compressed: x(2t)')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Amplitude')
+axes[1].grid(True)
+
+x_expanded = np.exp(-np.abs(0.5*t)) * np.sin(2*np.pi*0.5*t)
+axes[2].plot(t, x_expanded, 'g', linewidth=2)
+axes[2].set_title('Expanded: x(t/2)')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('Amplitude')
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Even and Odd Decomposition</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Decompose signal into even and odd parts
+t = np.linspace(-5, 5, 1000)
+x = np.exp(-np.abs(t)) * np.sin(t)
+
+# Create x(-t) by flipping
+x_reversed = np.flip(x)
+
+# Even and odd parts
+x_even = (x + x_reversed) / 2
+x_odd = (x - x_reversed) / 2
+
+fig, axes = plt.subplots(4, 1, figsize=(10, 12))
+
+axes[0].plot(t, x, linewidth=2)
+axes[0].set_title('Original Signal x(t)')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].grid(True)
+
+axes[1].plot(t, x_even, 'r', linewidth=2)
+axes[1].set_title('Even Part: $x_e(t) = [x(t) + x(-t)]/2$')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Amplitude')
+axes[1].grid(True)
+
+axes[2].plot(t, x_odd, 'g', linewidth=2)
+axes[2].set_title('Odd Part: $x_o(t) = [x(t) - x(-t)]/2$')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('Amplitude')
+axes[2].grid(True)
+
+axes[3].plot(t, x, 'b-', label='x(t)', linewidth=2)
+axes[3].plot(t, x_even + x_odd, 'r--', label='$x_e(t) + x_o(t)$', linewidth=2)
+axes[3].set_title('Verification: $x(t) = x_e(t) + x_o(t)$')
+axes[3].set_xlabel('Time (s)')
+axes[3].set_ylabel('Amplitude')
+axes[3].legend()
+axes[3].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <div class="tip-box">
+                    <strong>💡 Key Concepts:</strong>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Time Shifting:</strong> x(t-t₀) delays signal by t₀</li>
+                        <li><strong>Time Scaling:</strong> x(at) compresses signal if a>1, expands if 0<a<1</li>
+                        <li><strong>Time Reversal:</strong> x(-t) flips signal about t=0</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- System Analysis -->
+            <div class="section" id="systems">
+                <div class="section-header">
+                    <h2>5️⃣ System Analysis</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Convolution</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Convolution: y(t) = x(t) * h(t)
+from scipy.signal import convolve
+
+# Define signals
+t = np.linspace(-2, 5, 700)
+dt = t[1] - t[0]
+x = ((t >= 0) & (t <= 1)).astype(float)  # Rectangular pulse
+h = np.exp(-2*t) * (t >= 0)              # Exponential
+
+# Method 1: Using scipy.signal.convolve
+y_conv = convolve(x, h, mode='same') * dt
+
+# Plot results
+fig, axes = plt.subplots(3, 1, figsize=(10, 10))
+
+axes[0].plot(t, x, linewidth=2)
+axes[0].set_title('Input Signal: x(t)')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].grid(True)
+
+axes[1].plot(t, h, 'r', linewidth=2)
+axes[1].set_title('Impulse Response: h(t)')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Amplitude')
+axes[1].grid(True)
+
+axes[2].plot(t, y_conv, 'b', linewidth=2)
+axes[2].set_title('Output: y(t) = x(t) * h(t)')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('Amplitude')
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Differential Equations - Zero-Input and Zero-State Response</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Solving: dy/dt + ay = x(t)
+a = 2  # System parameter
+t = np.linspace(0, 5, 500)
+dt = t[1] - t[0]
+
+# Input signal
+x = np.sin(2*np.pi*t)
+
+# Initial condition
+y0 = 1
+
+# Zero-Input Response (x(t) = 0, y(0) = y0)
+y_zi = y0 * np.exp(-a*t)
+
+# Zero-State Response (y(0) = 0)
+h = np.exp(-a*t)  # Impulse response
+y_zs = convolve(x, h, mode='same') * dt
+
+# Total Response
+y_total = y_zi + y_zs
+
+# Plot
+fig, axes = plt.subplots(4, 1, figsize=(10, 12))
+
+axes[0].plot(t, x, linewidth=2)
+axes[0].set_title('Input: $x(t) = \\sin(2\\pi t)$')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].grid(True)
+
+axes[1].plot(t, y_zi, 'r', linewidth=2)
+axes[1].set_title('Zero-Input Response')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Amplitude')
+axes[1].grid(True)
+
+axes[2].plot(t, y_zs, 'g', linewidth=2)
+axes[2].set_title('Zero-State Response')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('Amplitude')
+axes[2].grid(True)
+
+axes[3].plot(t, y_total, 'b', linewidth=2)
+axes[3].set_title('Total Response = ZIR + ZSR')
+axes[3].set_xlabel('Time (s)')
+axes[3].set_ylabel('Amplitude')
+axes[3].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Second-Order System Analysis</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Second-order system using scipy.signal
+from scipy.signal import lti, step
+
+wn = 2*np.pi  # Natural frequency
+zeta_values = [0.1, 0.5, 0.7, 1.0, 2.0]  # Damping ratios
+
+t = np.linspace(0, 5, 1000)
+
+plt.figure(figsize=(10, 6))
+for zeta in zeta_values:
+    # Transfer function: H(s) = wn^2 / (s^2 + 2*zeta*wn*s + wn^2)
+    num = [wn**2]
+    den = [1, 2*zeta*wn, wn**2]
+    system = lti(num, den)
+    t_step, y = step(system, T=t)
+    plt.plot(t_step, y, linewidth=2, label=f'ζ = {zeta}')
+
+plt.title('Step Response of Second-Order System')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.legend()
+plt.grid(True)
+plt.show()</code></pre>
+
+                <div class="success-box">
+                    <strong>✅ Key System Analysis Tools:</strong>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><code>scipy.signal.convolve()</code> - Convolution of two signals</li>
+                        <li><code>scipy.signal.lti()</code> - Create LTI system</li>
+                        <li><code>scipy.signal.step()</code> - Step response</li>
+                        <li><code>scipy.signal.impulse()</code> - Impulse response</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fourier Analysis -->
+            <div class="section" id="fourier">
+                <div class="section-header">
+                    <h2>6️⃣ Fourier Analysis</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Fourier Series - Square Wave</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Fourier Series: x(t) = a0 + Σ[an*cos(nω0t) + bn*sin(nω0t)]
+T = 2            # Period
+f0 = 1/T         # Fundamental frequency
+w0 = 2*np.pi*f0  # Angular frequency
+t = np.linspace(-2*T, 2*T, 2000)
+
+N_values = [1, 3, 5, 10, 50]
+fig, axes = plt.subplots(3, 2, figsize=(12, 10))
+axes = axes.flatten()
+
+for idx, N in enumerate(N_values):
+    x = np.zeros_like(t)
+    
+    # Fourier series for square wave (odd harmonics only)
+    for n in range(1, N+1, 2):
+        bn = 4/(n*np.pi)
+        x += bn * np.sin(n*w0*t)
+    
+    axes[idx].plot(t, x, linewidth=2)
+    axes[idx].set_ylim([-1.5, 1.5])
+    axes[idx].set_title(f'N = {N} harmonics')
+    axes[idx].set_xlabel('Time (s)')
+    axes[idx].set_ylabel('Amplitude')
+    axes[idx].grid(True)
+
+# Last subplot with N=100
+N = 100
+x = np.zeros_like(t)
+for n in range(1, N+1, 2):
+    bn = 4/(n*np.pi)
+    x += bn * np.sin(n*w0*t)
+axes[5].plot(t, x, linewidth=2)
+axes[5].set_ylim([-1.5, 1.5])
+axes[5].set_title(f'N = {N} harmonics')
+axes[5].set_xlabel('Time (s)')
+axes[5].set_ylabel('Amplitude')
+axes[5].grid(True)
+
+plt.tight_layout()
+plt.show()
+print('Notice Gibbs phenomenon at discontinuities!')</code></pre>
+
+                <h3>Fast Fourier Transform (FFT)</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># FFT Example: Multi-component signal analysis
+from scipy.fft import fft, fftfreq
+
+Fs = 1000        # Sampling frequency (Hz)
+T = 1/Fs         # Sampling period
+N = 1024         # Length of signal
+t = np.arange(N) * T
+
+# Create signal with multiple frequencies
+f1, f2, f3 = 50, 120, 200  # Hz
+x = 1.0*np.sin(2*np.pi*f1*t) + 0.5*np.sin(2*np.pi*f2*t) + 0.3*np.sin(2*np.pi*f3*t)
+
+# Add noise
+x = x + 0.2*np.random.randn(N)
+
+# Compute FFT
+X = fft(x)
+freqs = fftfreq(N, T)
+
+# Single-sided spectrum
+X_mag = np.abs(X/N)
+X_mag[1:N//2] = 2 * X_mag[1:N//2]  # Double for single-sided
+freqs_pos = freqs[:N//2]
+X_mag_pos = X_mag[:N//2]
+
+# Plot results
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+
+ax1.plot(t[:200]*1000, x[:200], linewidth=1.5)
+ax1.set_title('Time Domain Signal (first 200 samples)')
+ax1.set_xlabel('Time (ms)')
+ax1.set_ylabel('Amplitude')
+ax1.grid(True)
+
+ax2.plot(freqs_pos, X_mag_pos, linewidth=2)
+ax2.set_title('Single-Sided Magnitude Spectrum')
+ax2.set_xlabel('Frequency (Hz)')
+ax2.set_ylabel('|X(f)|')
+ax2.set_xlim([0, Fs/2])
+ax2.grid(True)
+ax2.plot([f1, f2, f3], [1.0, 0.5, 0.3], 'ro', markersize=10, label='Expected peaks')
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+
+# Peak detection
+from scipy.signal import find_peaks
+peaks, _ = find_peaks(X_mag_pos, height=0.2)
+detected_freqs = freqs_pos[peaks]
+print('Detected frequencies:', detected_freqs)</code></pre>
+
+                <h3>Fourier Transform Properties</h3>
+                <div class="code-header">Python Code</div>
+                <pre><code># Demonstrate Time Shifting Property
+from scipy.fft import fft, fftshift, fftfreq
+
+Fs = 1000
+t = np.linspace(-2, 2, 4*Fs)
+dt = t[1] - t[0]
+
+# Original signal
+x = np.exp(-t**2)
+
+# Time shifted signal
+tau = 0.5
+x_shifted = np.exp(-(t-tau)**2)
+
+# Compute FFTs
+X = fftshift(fft(x)) * dt
+X_shifted = fftshift(fft(x_shifted)) * dt
+freqs = fftshift(fftfreq(len(t), dt))
+
+# Plot
+fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+
+axes[0, 0].plot(t, x, 'b-', label='x(t)', linewidth=2)
+axes[0, 0].plot(t, x_shifted, 'r--', label='x(t-τ)', linewidth=2)
+axes[0, 0].set_title('Time Shifting')
+axes[0, 0].set_xlabel('Time (s)')
+axes[0, 0].legend()
+axes[0, 0].grid(True)
+
+axes[0, 1].plot(freqs, np.abs(X), 'b-', label='X(f)', linewidth=2)
+axes[0, 1].plot(freqs, np.abs(X_shifted), 'r--', label='X(f)$e^{-j2πfτ}$', linewidth=2)
+axes[0, 1].set_title('Magnitude Spectrum')
+axes[0, 1].set_xlabel('Frequency (Hz)')
+axes[0, 1].set_xlim([-50, 50])
+axes[0, 1].legend()
+axes[0, 1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <div class="warning-box">
+                    <strong>⚠️ Important FFT Considerations:</strong>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Sampling:</strong> Use Fs > 2*f_max (Nyquist criterion)</li>
+                        <li><strong>Length:</strong> Power of 2 for efficiency (1024, 2048, 4096)</li>
+                        <li><strong>Resolution:</strong> Frequency resolution = Fs/N</li>
+                        <li><strong>Aliasing:</strong> Frequencies above Fs/2 will fold back</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Course-Specific Examples -->
+            <div class="section" id="examples">
+                <div class="section-header">
+                    <h2>7️⃣ Course-Specific Examples</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <div class="example">
+                    <h4>Example 1: RC Circuit Frequency Response</h4>
+                    <p><strong>Problem:</strong> Analyze an RC low-pass filter with R = 1kΩ and C = 1µF</p>
+                    <div class="code-header">Python Code</div>
+                    <pre><code># RC Circuit: Low-pass filter
+R = 1000      # Resistance (Ohms)
+C = 1e-6      # Capacitance (Farads)
+fc = 1/(2*np.pi*R*C)  # Cutoff frequency
+
+print(f'Cutoff frequency fc = {fc:.2f} Hz')
+
+# Frequency range
+f = np.logspace(0, 5, 1000)  # 1 Hz to 100 kHz
+w = 2*np.pi*f
+
+# Frequency response
+H = 1 / (1 + 1j*w*R*C)
+mag = np.abs(H)
+mag_dB = 20*np.log10(mag)
+phase = np.angle(H) * 180/np.pi
+
+# Plot Bode diagram
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+ax1.semilogx(f, mag_dB, linewidth=2)
+ax1.grid(True, which='both', alpha=0.3)
+ax1.set_xlabel('Frequency (Hz)')
+ax1.set_ylabel('Magnitude (dB)')
+ax1.set_title('RC Low-Pass Filter Bode Plot')
+ax1.axvline(fc, color='r', linestyle='--', linewidth=1.5, label='Cutoff Frequency')
+ax1.plot(fc, -3, 'ro', markersize=10, label='-3dB point')
+ax1.legend()
+
+ax2.semilogx(f, phase, linewidth=2)
+ax2.grid(True, which='both', alpha=0.3)
+ax2.set_xlabel('Frequency (Hz)')
+ax2.set_ylabel('Phase (degrees)')
+ax2.set_title('Phase Response')
+ax2.axvline(fc, color='r', linestyle='--', linewidth=1.5)
+ax2.plot(fc, -45, 'ro', markersize=10)
+
+plt.tight_layout()
+plt.show()
+
+# Time domain step response
+t = np.linspace(0, 0.005, 1000)
+v_in = np.ones_like(t)
+tau = R*C
+v_out = 1 - np.exp(-t/tau)
+
+plt.figure(figsize=(10, 6))
+plt.plot(t*1000, v_in, 'b--', linewidth=2, label='Input')
+plt.plot(t*1000, v_out, 'r-', linewidth=2, label='Output')
+plt.axvline(tau*1000, color='k', linestyle='--', linewidth=1, label='Time Constant τ')
+plt.plot(tau*1000, 1-np.exp(-1), 'ko', markersize=10, label='63.2% point')
+plt.xlabel('Time (ms)')
+plt.ylabel('Voltage (V)')
+plt.title('Step Response of RC Circuit')
+plt.legend()
+plt.grid(True)
+plt.show()</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Example 2: AM Modulation and Demodulation</h4>
+                    <p><strong>Problem:</strong> Demonstrate amplitude modulation with fm = 1 kHz, fc = 10 kHz</p>
+                    <div class="code-header">Python Code</div>
+                    <pre><code># Amplitude Modulation (AM)
+fm = 1000    # Message frequency (1 kHz)
+fc = 10000   # Carrier frequency (10 kHz)
+fs = 100000  # Sampling frequency (100 kHz)
+t = np.arange(0, 0.01, 1/fs)  # Time vector (10 ms)
+
+# Message signal
+m = np.cos(2*np.pi*fm*t)
+
+# Carrier signal
+c = np.cos(2*np.pi*fc*t)
+
+# Modulation index
+mu = 0.8
+
+# AM signal
+s_AM = (1 + mu*m) * c
+
+# Frequency domain
+N = len(s_AM)
+f_axis = fftshift(fftfreq(N, 1/fs))
+M = fftshift(fft(m))/N
+C = fftshift(fft(c))/N
+S = fftshift(fft(s_AM))/N
+
+# Plot
+fig = plt.figure(figsize=(12, 10))
+
+# Time domain
+ax1 = plt.subplot(3, 2, 1)
+ax1.plot(t*1000, m, linewidth=1.5)
+ax1.set_title('Message Signal m(t)')
+ax1.set_xlabel('Time (ms)')
+ax1.set_ylabel('Amplitude')
+ax1.grid(True)
+ax1.set_xlim([0, 5])
+
+ax2 = plt.subplot(3, 2, 3)
+ax2.plot(t*1000, c, 'r', linewidth=1)
+ax2.set_title('Carrier Signal c(t)')
+ax2.set_xlabel('Time (ms)')
+ax2.set_ylabel('Amplitude')
+ax2.grid(True)
+ax2.set_xlim([0, 1])
+
+ax3 = plt.subplot(3, 2, 5)
+ax3.plot(t*1000, s_AM, 'g', linewidth=1)
+envelope_upper = 1 + mu*m
+envelope_lower = -(1 + mu*m)
+ax3.plot(t*1000, envelope_upper, 'k--', linewidth=1.5)
+ax3.plot(t*1000, envelope_lower, 'k--', linewidth=1.5)
+ax3.set_title('AM Signal $s(t) = [1 + \\mu m(t)]c(t)$')
+ax3.set_xlabel('Time (ms)')
+ax3.set_ylabel('Amplitude')
+ax3.grid(True)
+ax3.set_xlim([0, 5])
+
+# Frequency domain
+ax4 = plt.subplot(3, 2, 2)
+ax4.plot(f_axis/1000, np.abs(M), linewidth=2)
+ax4.set_title('Message Spectrum M(f)')
+ax4.set_xlabel('Frequency (kHz)')
+ax4.set_ylabel('|M(f)|')
+ax4.grid(True)
+ax4.set_xlim([-5, 5])
+
+ax5 = plt.subplot(3, 2, 4)
+ax5.plot(f_axis/1000, np.abs(C), 'r', linewidth=2)
+ax5.set_title('Carrier Spectrum C(f)')
+ax5.set_xlabel('Frequency (kHz)')
+ax5.set_ylabel('|C(f)|')
+ax5.grid(True)
+ax5.set_xlim([-15, 15])
+
+ax6 = plt.subplot(3, 2, 6)
+ax6.plot(f_axis/1000, np.abs(S), 'g', linewidth=2)
+ax6.set_title('AM Signal Spectrum S(f)')
+ax6.set_xlabel('Frequency (kHz)')
+ax6.set_ylabel('|S(f)|')
+ax6.grid(True)
+ax6.set_xlim([-15, 15])
+
+plt.tight_layout()
+plt.show()
+
+print(f'Modulation Index μ = {mu:.2f}')
+print(f'Bandwidth = 2fm = {2*fm:.1f} Hz')</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Example 3: First-Order Differential Equation</h4>
+                    <p><strong>Problem:</strong> Solve dy/dt + 3y = 5u(t) with y(0) = 2</p>
+                    <div class="code-header">Python Code</div>
+                    <pre><code># First-order system: dy/dt + ay = bx(t)
+# Given: dy/dt + 3y = 5u(t), y(0) = 2
+
+a = 3
+b = 5
+y0 = 2
+t = np.linspace(0, 3, 300)
+
+# Analytical Solution
+y_zi = y0 * np.exp(-a*t)           # Zero-input response
+y_zs = (b/a) * (1 - np.exp(-a*t))  # Zero-state response
+y_total = y_zi + y_zs
+
+# System parameters
+y_ss = b/a   # Steady-state
+tau = 1/a    # Time constant
+
+# Plot
+fig, axes = plt.subplots(3, 1, figsize=(10, 10))
+
+axes[0].plot(t, y_zi, linewidth=2)
+axes[0].set_title('Zero-Input Response (Natural Response)')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('$y_{zi}(t)$')
+axes[0].axhline(0, color='k', linestyle='--')
+axes[0].grid(True)
+
+axes[1].plot(t, y_zs, 'r', linewidth=2)
+axes[1].axhline(y_ss, color='k', linestyle='--', linewidth=1)
+axes[1].text(1.5, y_ss*1.1, f'Steady State = {y_ss:.2f}')
+axes[1].set_title('Zero-State Response (Forced Response)')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('$y_{zs}(t)$')
+axes[1].grid(True)
+
+axes[2].plot(t, y_total, 'g', linewidth=2, label='Total Response')
+axes[2].axhline(y_ss, color='k', linestyle='--', linewidth=1, label='Steady State')
+axes[2].axvline(tau, color='r', linestyle='--', linewidth=1)
+y_at_tau = y0*np.exp(-1) + y_ss*(1-np.exp(-1))
+axes[2].plot(tau, y_at_tau, 'ro', markersize=8, label='Time Constant τ')
+axes[2].set_title('Total Response $y(t) = y_{zi}(t) + y_{zs}(t)$')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('y(t)')
+axes[2].legend()
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()
+
+print(f'Time Constant τ = {tau:.3f} s')
+print(f'Steady-State y(∞) = {y_ss:.3f}')
+print(f'95% settling time ≈ 3τ = {3*tau:.3f} s')</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Example 4: Sampling and Aliasing</h4>
+                    <p><strong>Problem:</strong> Demonstrate Nyquist sampling theorem and aliasing effects</p>
+                    <div class="code-header">Python Code</div>
+                    <pre><code># Sampling and Aliasing Demonstration
+f_signal = 5  # Signal frequency (Hz)
+t_continuous = np.linspace(0, 2, 20000)
+x_continuous = np.sin(2*np.pi*f_signal*t_continuous)
+
+# Different sampling frequencies
+fs1 = 50   # Well above Nyquist
+fs2 = 12   # Just above Nyquist
+fs3 = 8    # Below Nyquist - aliasing!
+
+t1 = np.arange(0, 2, 1/fs1)
+x1 = np.sin(2*np.pi*f_signal*t1)
+
+t2 = np.arange(0, 2, 1/fs2)
+x2 = np.sin(2*np.pi*f_signal*t2)
+
+t3 = np.arange(0, 2, 1/fs3)
+x3 = np.sin(2*np.pi*f_signal*t3)
+
+# Plot
+fig, axes = plt.subplots(3, 1, figsize=(12, 10))
+
+axes[0].plot(t_continuous, x_continuous, 'b-', linewidth=1, label='Original')
+axes[0].stem(t1, x1, linefmt='r-', markerfmt='ro', basefmt='r-', label='Sampled')
+axes[0].set_title(f'Sampling at fs = {fs1} Hz (Good!)')
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].legend()
+axes[0].grid(True)
+axes[0].set_xlim([0, 1])
+
+axes[1].plot(t_continuous, x_continuous, 'b-', linewidth=1, label='Original')
+axes[1].stem(t2, x2, linefmt='g-', markerfmt='go', basefmt='g-', label='Sampled')
+axes[1].set_title(f'Sampling at fs = {fs2} Hz (Marginal)')
+axes[1].set_xlabel('Time (s)')
+axes[1].set_ylabel('Amplitude')
+axes[1].legend()
+axes[1].grid(True)
+axes[1].set_xlim([0, 1])
+
+axes[2].plot(t_continuous, x_continuous, 'b-', linewidth=1, label='Original 5Hz')
+axes[2].stem(t3, x3, linefmt='m-', markerfmt='mo', basefmt='m-', label='Sampled')
+x3_interp = np.interp(t_continuous, t3, x3)
+axes[2].plot(t_continuous, x3_interp, 'r--', linewidth=2, label='Reconstructed')
+axes[2].set_title(f'Sampling at fs = {fs3} Hz (ALIASING!)')
+axes[2].set_xlabel('Time (s)')
+axes[2].set_ylabel('Amplitude')
+axes[2].legend()
+axes[2].grid(True)
+axes[2].set_xlim([0, 1])
+
+plt.tight_layout()
+plt.show()
+
+print('Nyquist Theorem: fs > 2*f_max')
+print('For f_max = 5 Hz: fs > 10 Hz required')</code></pre>
+                </div>
+            </div>
+
+            <!-- Tips & Best Practices -->
+            <div class="section" id="tips">
+                <div class="section-header">
+                    <h2>8️⃣ Tips & Best Practices</h2>
+                    <a href="#top" class="back-to-top">↑ Go Back</a>
+                </div>
+
+                <h3>Code Organization and Style</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>📝 Good Commenting</h4>
+                        <p>Write clear comments with proper Python style</p>
+                        <div class="code-header">Good Example</div>
+                        <pre><code># Calculate time constant for 95% settling
+tau = 1/a
+t_settle = 3*tau</code></pre>
+                    </div>
+
+                    <div class="card">
+                        <h4>🏷️ Variable Naming</h4>
+                        <p>Use descriptive names (snake_case in Python)</p>
+                        <div class="code-header">Good Practice</div>
+                        <pre><code># Good
+sampling_frequency = 1000
+signal_amplitude = 2.5
+
+# OK for standard notation
+fs = 1000
+fc = 50</code></pre>
+                    </div>
+
+                    <div class="card">
+                        <h4>📦 Script Header</h4>
+                        <p>Start scripts with proper imports</p>
+                        <div class="code-header">Script Header</div>
+                        <pre><code>"""
+ELEC 360 - Assignment 1
+Student: Your Name (ID)
+Date: October 2025
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal</code></pre>
+                    </div>
+
+                    <div class="card">
+                        <h4>📁 File Organization</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>One .py or .ipynb per assignment</li>
+                            <li>Use functions for reusability</li>
+                            <li>Save figures with descriptive names</li>
+                            <li>Keep data files organized</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Debugging Strategies</h3>
+                <div class="code-header">Debugging Techniques</div>
+                <pre><code># 1. Print intermediate values
+print('Checking variable x:')
+print(x)
+print(f'Value: {x:.4f}')
+
+# 2. Check array dimensions
+print(f'Shape of x: {x.shape}')
+print(f'Type: {type(x)}')
+
+# 3. Visualize data quickly
+plt.plot(x)
+plt.title('Quick check')
+plt.show()
+
+# 4. Validate results
+expected = 5
+actual = np.sum(x)
+assert abs(actual - expected) < 0.01, 'Sum mismatch!'
+
+# 5. Check for NaN and Inf
+if np.any(np.isnan(x)):
+    print('Warning: Found NaN values')
+
+# 6. Use try-except
+try:
+    result = risky_operation()
+except Exception as e:
+    print(f'Error: {e}')</code></pre>
+
+                <h3>Performance Optimization</h3>
+                <div class="code-header">Efficient Python Code</div>
+                <pre><code>import time
+
+# BAD: Growing lists (slow!)
+start = time.time()
+y = []
+for i in range(10000):
+    y.append(np.sin(i))
+time_bad = time.time() - start
+
+# GOOD: Preallocate arrays
+start = time.time()
+y = np.zeros(10000)
+for i in range(10000):
+    y[i] = np.sin(i)
+time_good = time.time() - start
+
+# BEST: Vectorization
+start = time.time()
+i = np.arange(10000)
+y = np.sin(i)
+time_best = time.time() - start
+
+print(f'Without preallocation: {time_bad:.4f} s')
+print(f'With preallocation: {time_good:.4f} s')
+print(f'Vectorized: {time_best:.4f} s ({time_bad/time_best:.1f}x faster!)')</code></pre>
+
+                <h3>Common Mistakes and Solutions</h3>
+                <table>
+                    <tr>
+                        <th>Error</th>
+                        <th>Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>ValueError: shapes not aligned</td>
+                        <td>Size mismatch</td>
+                        <td>Check with <code>.shape</code> and use <code>.T</code> for transpose</td>
+                    </tr>
+                    <tr>
+                        <td>NameError: name not defined</td>
+                        <td>Typo or not defined</td>
+                        <td>Check spelling, define before use</td>
+                    </tr>
+                    <tr>
+                        <td>IndexError: index out of bounds</td>
+                        <td>Accessing non-existent element</td>
+                        <td>Check with <code>len()</code></td>
+                    </tr>
+                    <tr>
+                        <td>TypeError: unsupported operand type(s)</td>
+                        <td>Wrong data type</td>
+                        <td>Convert types or check array vs. scalar</td>
+                    </tr>
+                    <tr>
+                        <td>MemoryError</td>
+                        <td>Arrays too large</td>
+                        <td>Process in chunks, use data types wisely</td>
+                    </tr>
+                </table>
+
+                <h3>Professional Plotting</h3>
+                <div class="code-header">Well-Formatted Plots</div>
+                <pre><code>t = np.linspace(0, 10, 1000)
+x1 = np.exp(-0.5*t) * np.sin(2*np.pi*t)
+x2 = np.exp(-0.5*t) * np.cos(2*np.pi*t)
+
+plt.figure(figsize=(10, 6))
+plt.plot(t, x1, 'b-', linewidth=2, label='$x_1(t)$')
+plt.plot(t, x2, 'r--', linewidth=2, label='$x_2(t)$')
+
+plt.xlabel('Time (seconds)', fontsize=12, fontweight='bold')
+plt.ylabel('Amplitude', fontsize=12, fontweight='bold')
+plt.title('Damped Oscillations', fontsize=14, fontweight='bold')
+
+plt.legend(loc='best', fontsize=11)
+plt.grid(True, alpha=0.3)
+plt.xlim([0, 10])
+plt.ylim([-1, 1])
+
+plt.tight_layout()
+plt.savefig('damped_oscillations.png', dpi=300)
+plt.show()</code></pre>
+
+                <h3>Keyboard Shortcuts (Jupyter Notebook)</h3>
+                <table>
+                    <tr>
+                        <th>Shortcut</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><code>Shift + Enter</code></td>
+                        <td>Run cell and move to next</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl + Enter</code></td>
+                        <td>Run cell</td>
+                    </tr>
+                    <tr>
+                        <td><code>Alt + Enter</code></td>
+                        <td>Run cell and insert below</td>
+                    </tr>
+                    <tr>
+                        <td><code>A</code> (Command mode)</td>
+                        <td>Insert cell above</td>
+                    </tr>
+                    <tr>
+                        <td><code>B</code> (Command mode)</td>
+                        <td>Insert cell below</td>
+                    </tr>
+                    <tr>
+                        <td><code>DD</code> (Command mode)</td>
+                        <td>Delete cell</td>
+                    </tr>
+                    <tr>
+                        <td><code>M</code> (Command mode)</td>
+                        <td>Change to Markdown</td>
+                    </tr>
+                    <tr>
+                        <td><code>Y</code> (Command mode)</td>
+                        <td>Change to Code</td>
+                    </tr>
+                    <tr>
+                        <td><code>Tab</code></td>
+                        <td>Auto-complete</td>
+                    </tr>
+                </table>
+
+                <h3>Useful Functions Quick Reference</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Signal Generation</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>np.sin(), np.cos(), np.exp()</code></li>
+                            <li><code>signal.square(), signal.sawtooth()</code></li>
+                            <li><code>np.random.randn(), np.random.rand()</code></li>
+                            <li><code>np.linspace(), np.logspace()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Signal Analysis</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>fft(), ifft()</code></li>
+                            <li><code>signal.convolve(), signal.correlate()</code></li>
+                            <li><code>np.abs(), np.angle()</code></li>
+                            <li><code>signal.find_peaks()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>System Analysis</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>signal.lti(), signal.TransferFunction()</code></li>
+                            <li><code>signal.step(), signal.impulse()</code></li>
+                            <li><code>signal.bode(), signal.freqz()</code></li>
+                            <li><code>signal.zpk2tf(), signal.tf2zpk()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Filter Design</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>signal.butter(), signal.cheby1()</code></li>
+                            <li><code>signal.lfilter(), signal.filtfilt()</code></li>
+                            <li><code>signal.freqz(), signal.group_delay()</code></li>
+                            <li><code>signal.firwin(), signal.firwin2()</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Getting Help</h3>
+                <div class="code-header">Finding Documentation</div>
+                <pre><code># In Python/Jupyter:
+help(function_name)        # Quick help
+?function_name             # Jupyter notebook
+??function_name            # Full source code (Jupyter)
+
+# Examples:
+help(np.fft.fft)
+?signal.convolve
+
+# Online documentation
+# NumPy: https://numpy.org/doc/
+# SciPy: https://docs.scipy.org/doc/scipy/
+# Matplotlib: https://matplotlib.org/</code></pre>
+
+                <div class="success-box">
+                    <h4>✅ Assignment Submission Checklist</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>✓ Header with name, ID, assignment number</li>
+                        <li>✓ All imports at the top</li>
+                        <li>✓ Code runs without errors from start to finish</li>
+                        <li>✓ All variables properly defined</li>
+                        <li>✓ Comments explain complex operations</li>
+                        <li>✓ Figures have titles, labels, and legends</li>
+                        <li>✓ Results displayed with <code>print()</code></li>
+                        <li>✓ Code follows PEP 8 style guide</li>
+                        <li>✓ Debug code removed</li>
+                        <li>✓ Tested in fresh kernel/environment</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li><strong>NumPy Documentation:</strong> <a href="https://numpy.org/doc/" target="_blank" style="color: white; text-decoration: underline;">numpy.org/doc/</a></li>
+                        <li><strong>SciPy Documentation:</strong> <a href="https://docs.scipy.org/doc/scipy/" target="_blank" style="color: white; text-decoration: underline;">docs.scipy.org/doc/scipy/</a></li>
+                        <li><strong>Matplotlib Gallery:</strong> <a href="https://matplotlib.org/stable/gallery/index.html" target="_blank" style="color: white; text-decoration: underline;">matplotlib.org/gallery/</a></li>
+                        <li><strong>Python.org Tutorial:</strong> Official Python tutorial for beginners</li>
+                        <li><strong>Course Materials:</strong> Check Blackboard for sample codes</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Pro Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Start simple:</strong> Test with simple inputs first</li>
+                        <li><strong>Plot often:</strong> Visualize at every step</li>
+                        <li><strong>Save incrementally:</strong> Use version control (Git)</li>
+                        <li><strong>Learn by doing:</strong> Type code yourself</li>
+                        <li><strong>Read errors:</strong> Python errors are very informative</li>
+                        <li><strong>Use Jupyter:</strong> Great for learning and exploration</li>
+                        <li><strong>Vectorize:</strong> NumPy is much faster than loops</li>
+                        <li><strong>Check Stack Overflow:</strong> Most errors have been solved before</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+                <p>Contact Dr. Al Bataineh during office hours (Monday/Wednesday 11:00 AM - 12:00 PM)</p>
+                <p>Email: mffbataineh@uaeu.ac.ae | Office: F1-1175</p>
+                <p style="margin-top: 1rem;"><a href="elec360.html" style="color: white; text-decoration: underline;">← Back to ELEC 360 Course Page</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password protection
+        const correctPassword = "sig";
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input === correctPassword) {
+                // Hide password screen
+                document.getElementById('password-screen').style.display = 'none';
+                // Show content
+                document.getElementById('content').style.display = 'block';
+                // Store in session
+                sessionStorage.setItem('pythonAccess', 'granted');
+            } else {
+                // Show error message
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Check if already authenticated in this session
+        window.onload = function() {
+            if (sessionStorage.getItem('pythonAccess') === 'granted') {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>

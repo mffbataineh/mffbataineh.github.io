@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من القاطع إلى المماس - تصور تفاعلي للمشتقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: #131a2b;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-orange: #f97316;
+            --accent-green: #10b981;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --grid-color: rgba(59, 130, 246, 0.1);
+            --curve-glow: rgba(6, 182, 212, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 60px var(--curve-glow);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Canvas container */
+        .canvas-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 
+                0 0 40px rgba(6, 182, 212, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* Control panel */
+        .control-panel {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .control-value {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+        }
+
+        /* Custom slider */
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--accent-cyan);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px var(--accent-cyan);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.85rem 1rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.25);
+        }
+
+        /* Function selector */
+        .function-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .func-btn {
+            padding: 0.7rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .func-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--text-primary);
+        }
+
+        .func-btn.active {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Info cards */
+        .info-cards {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            border-right: 3px solid;
+        }
+
+        .info-card.secant {
+            border-color: var(--accent-orange);
+        }
+
+        .info-card.tangent {
+            border-color: var(--accent-green);
+        }
+
+        .info-card-title {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .info-card.secant .info-card-value {
+            color: var(--accent-orange);
+        }
+
+        .info-card.tangent .info-card-value {
+            color: var(--accent-green);
+        }
+
+        .difference {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Formula display */
+        .formula-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            margin-top: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            direction: ltr;
+        }
+
+        .formula-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .legend-color.curve { background: var(--accent-cyan); }
+        .legend-color.secant { background: var(--accent-orange); }
+        .legend-color.tangent { background: var(--accent-green); }
+
+        /* Animation keyframes */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animating .btn-primary {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--bg-card);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            z-index: 100;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .separator {
+            color: var(--text-secondary);
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .institution {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="container">
+        <header>
+            <h1>من القاطع إلى المماس</h1>
+            <p class="subtitle">تصور تفاعلي لمفهوم المشتقة - شاهد كيف يتحول الخط القاطع إلى مماس</p>
+        </header>
+
+        <div class="main-content">
+            <div class="canvas-container">
+                <canvas id="graph" width="800" height="600"></canvas>
+            </div>
+
+            <div class="control-panel">
+                <div class="panel-title">لوحة التحكم</div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>اختر الاقتران f(x)</span>
+                    </div>
+                    <div class="function-selector">
+                        <button class="func-btn active" data-func="x2">x²</button>
+                        <button class="func-btn" data-func="x3">x³</button>
+                        <button class="func-btn" data-func="sin">sin(x)</button>
+                        <button class="func-btn" data-func="exp">eˣ</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>موقع النقطة a</span>
+                        <span class="control-value" id="aValue">1.00</span>
+                    </div>
+                    <input type="range" id="aSlider" min="-3" max="3" step="0.1" value="1">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>قيمة h (المسافة)</span>
+                        <span class="control-value" id="hValue">2.00</span>
+                    </div>
+                    <input type="range" id="hSlider" min="0.01" max="3" step="0.01" value="2">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="animateBtn">
+                        <span>▶</span> تشغيل الأنيميشن
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        إعادة
+                    </button>
+                </div>
+
+                <div class="info-cards">
+                    <div class="info-card secant">
+                        <div class="info-card-title">ميل القاطع (Secant)</div>
+                        <div class="info-card-value" id="secantSlope">3.00</div>
+                        <div class="difference" id="slopeDiff">الفرق عن المماس: 1.00</div>
+                    </div>
+                    <div class="info-card tangent">
+                        <div class="info-card-title">ميل المماس (Tangent) = f'(a)</div>
+                        <div class="info-card-value" id="tangentSlope">2.00</div>
+                    </div>
+                </div>
+
+                <div class="formula-box">
+                    <div class="formula-label">صيغة ميل القاطع</div>
+                    <div class="formula">m = [f(a+h) - f(a)] / h</div>
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color curve"></div>
+                        <span>المنحنى</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color secant"></div>
+                        <span>القاطع</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color tangent"></div>
+                        <span>المماس</span>
+                    </div>
+                </div>
+            </div>
+
+        <footer class="footer">
+            <div class="author-info">
+                <span class="author-name">Dr. Mohammad Al Bataineh</span>
+                <span class="separator">|</span>
+                <span class="date" id="currentDate"></span>
+            </div>
+            <div class="institution">United Arab Emirates University</div>
+        </footer>
+    </div>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('graph');
+        const ctx = canvas.getContext('2d');
+        
+        // High DPI support
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+
+        const width = rect.width;
+        const height = rect.height;
+
+        // Graph parameters
+        const originX = width / 2;
+        const originY = height / 2;
+        const scale = 60; // pixels per unit
+
+        // State
+        let currentFunc = 'x2';
+        let a = 1;
+        let h = 2;
+        let isAnimating = false;
+        let animationId = null;
+
+        // Functions and their derivatives
+        const functions = {
+            x2: {
+                f: x => x * x,
+                df: x => 2 * x,
+                label: 'f(x) = x²'
+            },
+            x3: {
+                f: x => x * x * x,
+                df: x => 3 * x * x,
+                label: 'f(x) = x³'
+            },
+            sin: {
+                f: x => Math.sin(x),
+                df: x => Math.cos(x),
+                label: 'f(x) = sin(x)'
+            },
+            exp: {
+                f: x => Math.exp(x),
+                df: x => Math.exp(x),
+                label: 'f(x) = eˣ'
+            }
+        };
+
+        // Convert graph coordinates to canvas coordinates
+        function toCanvas(x, y) {
+            return {
+                x: originX + x * scale,
+                y: originY - y * scale
+            };
+        }
+
+        // Draw grid
+        function drawGrid() {
+            ctx.strokeStyle = 'rgba(59, 130, 246, 0.1)';
+            ctx.lineWidth = 1;
+
+            // Vertical lines
+            for (let x = -10; x <= 10; x++) {
+                const p = toCanvas(x, 0);
+                ctx.beginPath();
+                ctx.moveTo(p.x, 0);
+                ctx.lineTo(p.x, height);
+                ctx.stroke();
+            }
+
+            // Horizontal lines
+            for (let y = -10; y <= 10; y++) {
+                const p = toCanvas(0, y);
+                ctx.beginPath();
+                ctx.moveTo(0, p.y);
+                ctx.lineTo(width, p.y);
+                ctx.stroke();
+            }
+        }
+
+        // Draw axes
+        function drawAxes() {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+
+            // X axis
+            ctx.beginPath();
+            ctx.moveTo(0, originY);
+            ctx.lineTo(width, originY);
+            ctx.stroke();
+
+            // Y axis
+            ctx.beginPath();
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, height);
+            ctx.stroke();
+
+            // Axis labels
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.font = '14px JetBrains Mono';
+            ctx.textAlign = 'center';
+
+            for (let x = -5; x <= 5; x++) {
+                if (x !== 0) {
+                    const p = toCanvas(x, 0);
+                    ctx.fillText(x.toString(), p.x, p.y + 20);
+                }
+            }
+
+            ctx.textAlign = 'right';
+            for (let y = -4; y <= 4; y++) {
+                if (y !== 0) {
+                    const p = toCanvas(0, y);
+                    ctx.fillText(y.toString(), p.x - 10, p.y + 5);
+                }
+            }
+        }
+
+        // Draw curve
+        function drawCurve() {
+            const func = functions[currentFunc].f;
+            
+            ctx.strokeStyle = '#06b6d4';
+            ctx.lineWidth = 3;
+            ctx.shadowColor = 'rgba(6, 182, 212, 0.5)';
+            ctx.shadowBlur = 15;
+            
+            ctx.beginPath();
+            let started = false;
+            
+            for (let px = 0; px < width; px++) {
+                const x = (px - originX) / scale;
+                const y = func(x);
+                const p = toCanvas(x, y);
+                
+                if (p.y > -100 && p.y < height + 100) {
+                    if (!started) {
+                        ctx.moveTo(p.x, p.y);
+                        started = true;
+                    } else {
+                        ctx.lineTo(p.x, p.y);
+                    }
+                }
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
+
+        // Draw a line through two points
+        function drawLine(x1, y1, x2, y2, color, lineWidth = 2, dashed = false) {
+            const slope = (y2 - y1) / (x2 - x1);
+            const intercept = y1 - slope * x1;
+            
+            // Find intersection with canvas edges
+            const leftY = slope * (-originX / scale) + intercept;
+            const rightY = slope * ((width - originX) / scale) + intercept;
+            
+            const p1 = toCanvas(-originX / scale, leftY);
+            const p2 = toCanvas((width - originX) / scale, rightY);
+            
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lineWidth;
+            if (dashed) {
+                ctx.setLineDash([10, 5]);
+            }
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        // Draw point with glow
+        function drawPoint(x, y, color, radius = 8, label = '') {
+            const p = toCanvas(x, y);
+            
+            // Glow
+            ctx.shadowColor = color;
+            ctx.shadowBlur = 20;
+            
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Inner white
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, radius * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Label
+            if (label) {
+                ctx.fillStyle = color;
+                ctx.font = 'bold 14px Tajawal';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, p.x, p.y - radius - 8);
+            }
+        }
+
+        // Main draw function
+        function draw() {
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            const func = functions[currentFunc];
+            const f = func.f;
+            const df = func.df;
+            
+            // Calculate points
+            const ya = f(a);
+            const yah = f(a + h);
+            
+            // Calculate slopes
+            const secantSlope = (yah - ya) / h;
+            const tangentSlope = df(a);
+            
+            // Draw elements
+            drawGrid();
+            drawAxes();
+            
+            // Draw tangent line (green, dashed)
+            const tangentX2 = a + 1;
+            const tangentY2 = ya + tangentSlope * 1;
+            drawLine(a, ya, tangentX2, tangentY2, '#10b981', 2, true);
+            
+            // Draw secant line (orange)
+            ctx.shadowColor = 'rgba(249, 115, 22, 0.5)';
+            ctx.shadowBlur = 10;
+            drawLine(a, ya, a + h, yah, '#f97316', 3);
+            ctx.shadowBlur = 0;
+            
+            // Draw curve
+            drawCurve();
+            
+            // Draw points
+            drawPoint(a, ya, '#3b82f6', 10, 'A');
+            drawPoint(a + h, yah, '#f97316', 10, 'B');
+            
+            // Draw h indicator
+            const pa = toCanvas(a, ya);
+            const pah = toCanvas(a + h, ya);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pah.x, pa.y);
+            ctx.lineTo(pah.x, toCanvas(a + h, yah).y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // h label
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.font = '14px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.fillText('h = ' + h.toFixed(2), (pa.x + pah.x) / 2, pa.y + 20);
+            
+            // Function label
+            ctx.fillStyle = '#06b6d4';
+            ctx.font = 'bold 16px JetBrains Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText(func.label, 20, 30);
+            
+            // Update info displays
+            document.getElementById('secantSlope').textContent = secantSlope.toFixed(4);
+            document.getElementById('tangentSlope').textContent = tangentSlope.toFixed(4);
+            document.getElementById('slopeDiff').textContent = 
+                'الفرق عن المماس: ' + Math.abs(secantSlope - tangentSlope).toFixed(4);
+        }
+
+        // Animation
+        function animate() {
+            if (h > 0.02) {
+                h -= 0.03;
+                if (h < 0.02) h = 0.02;
+                
+                document.getElementById('hSlider').value = h;
+                document.getElementById('hValue').textContent = h.toFixed(2);
+                
+                draw();
+                animationId = requestAnimationFrame(animate);
+            } else {
+                stopAnimation();
+            }
+        }
+
+        function startAnimation() {
+            if (!isAnimating) {
+                isAnimating = true;
+                document.getElementById('animateBtn').innerHTML = '<span>⏸</span> إيقاف';
+                document.getElementById('animateBtn').parentElement.classList.add('animating');
+                animate();
+            } else {
+                stopAnimation();
+            }
+        }
+
+        function stopAnimation() {
+            isAnimating = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            document.getElementById('animateBtn').innerHTML = '<span>▶</span> تشغيل الأنيميشن';
+            document.getElementById('animateBtn').parentElement.classList.remove('animating');
+        }
+
+        function reset() {
+            stopAnimation();
+            h = 2;
+            document.getElementById('hSlider').value = h;
+            document.getElementById('hValue').textContent = h.toFixed(2);
+            draw();
+        }
+
+        // Event listeners
+        document.getElementById('aSlider').addEventListener('input', (e) => {
+            a = parseFloat(e.target.value);
+            document.getElementById('aValue').textContent = a.toFixed(2);
+            draw();
+        });
+
+        document.getElementById('hSlider').addEventListener('input', (e) => {
+            h = parseFloat(e.target.value);
+            document.getElementById('hValue').textContent = h.toFixed(2);
+            draw();
+        });
+
+        document.getElementById('animateBtn').addEventListener('click', startAnimation);
+        document.getElementById('resetBtn').addEventListener('click', reset);
+
+        // Function selector
+        document.querySelectorAll('.func-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.func-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFunc = btn.dataset.func;
+                draw();
+            });
+        });
+
+        // Initial draw
+        draw();
+
+        // Update date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-AE', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            draw();
+        });
+    </script>
+</body>
+</html>

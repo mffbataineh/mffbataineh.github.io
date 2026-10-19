@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توافق الأبراج التفاعلي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-pink-800 to-indigo-900 p-4 flex items-center justify-center">
+    <div class="max-w-2xl w-full" id="app"></div>
+
+    <script>
+        const zodiacSigns = [
+            { name: 'الحمل', emoji: '♈' },
+            { name: 'الثور', emoji: '♉' },
+            { name: 'الجوزاء', emoji: '♊' },
+            { name: 'السرطان', emoji: '♋' },
+            { name: 'الأسد', emoji: '♌' },
+            { name: 'العذراء', emoji: '♍' },
+            { name: 'الميزان', emoji: '♎' },
+            { name: 'العقرب', emoji: '♏' },
+            { name: 'القوس', emoji: '♐' },
+            { name: 'الجدي', emoji: '♑' },
+            { name: 'الدلو', emoji: '♒' },
+            { name: 'الحوت', emoji: '♓' }
+        ];
+
+        const questionsMap = {
+            'الحمل': [
+                { q: 'كيف تتعامل مع الخلافات في العلاقة؟', options: ['أواجهها مباشرة', 'أحتاج وقت للتفكير', 'أفضل النقاش الهادئ'] },
+                { q: 'ما أهمية المغامرة في حياتك؟', options: ['أساسية جداً', 'مهمة أحياناً', 'أفضل الاستقرار'] },
+                { q: 'كيف تعبر عن حبك؟', options: ['بالأفعال والمفاجآت', 'بالكلام والاهتمام', 'بالوقت المشترك'] }
+            ],
+            'الثور': [
+                { q: 'ما مدى أهمية الاستقرار المادي بالنسبة لك؟', options: ['مهم جداً', 'مهم نوعاً ما', 'ليس الأولوية'] },
+                { q: 'كيف تتعامل مع التغييرات المفاجئة؟', options: ['أقاومها', 'أتأقلم ببطء', 'أتقبلها بسهولة'] },
+                { q: 'ما الذي يجعلك تشعر بالأمان في العلاقة؟', options: ['الثبات والوفاء', 'التواصل المستمر', 'الحرية الشخصية'] }
+            ],
+            'الجوزاء': [
+                { q: 'كم مهم لك التواصل العقلي مع الشريك؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'مهم لكن ليس الأساس'] },
+                { q: 'كيف تتعامل مع الروتين في العلاقة؟', options: ['أشعر بالملل بسرعة', 'أحب التنوع', 'الروتين مريح'] },
+                { q: 'ما أسلوبك في التعبير عن المشاعر؟', options: ['بالكلمات والحوار', 'بالأفعال', 'بصعوبة أحياناً'] }
+            ],
+            'السرطان': [
+                { q: 'ما أهمية الأسرة والعائلة في حياتك؟', options: ['الأولوية الأولى', 'مهمة جداً', 'مهمة لكن لدي أولويات أخرى'] },
+                { q: 'كيف تتعامل مع مشاعرك القوية؟', options: ['أعبر عنها مباشرة', 'أحتفظ بها لنفسي', 'أشاركها مع المقربين فقط'] },
+                { q: 'ما الذي يجعلك تشعر بالحب؟', options: ['الاهتمام والرعاية', 'الأمان العاطفي', 'الصدق والوفاء'] }
+            ],
+            'الأسد': [
+                { q: 'كم مهم لك الشعور بالتقدير من الشريك؟', options: ['مهم جداً', 'مهم', 'ليس ضرورياً جداً'] },
+                { q: 'كيف تحب أن تكون العلاقة؟', options: ['مليئة بالرومانسية والاهتمام', 'متوازنة وهادئة', 'تعطيني حرية وثقة'] },
+                { q: 'ما رأيك في الحفاظ على الاستقلالية في العلاقة؟', options: ['مهم لكلا الطرفين', 'نكون معاً دائماً', 'أحتاج مساحتي الخاصة'] }
+            ],
+            'العذراء': [
+                { q: 'ما أهمية النظام والترتيب في حياتك؟', options: ['أساسي جداً', 'مهم', 'لست دقيقاً كثيراً'] },
+                { q: 'كيف تعبر عن حبك؟', options: ['بالأفعال والخدمات', 'بالكلام', 'بالهدايا'] },
+                { q: 'كيف تتعامل مع أخطاء الشريك؟', options: ['أحاول مساعدته للتحسن', 'أتقبلها', 'أنتقد بشكل بناء'] }
+            ],
+            'الميزان': [
+                { q: 'ما أهمية التوازن والانسجام في العلاقة؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'أستطيع التعامل مع بعض الصراعات'] },
+                { q: 'كيف تتخذ قرارات العلاقة؟', options: ['بالتشاور دائماً', 'أحياناً وحدي وأحياناً معاً', 'أفضل أن أقرر وحدي'] },
+                { q: 'ما الذي يجذبك في الشريك؟', options: ['الجمال والأناقة', 'العقل والذكاء', 'الطيبة والحنان'] }
+            ],
+            'العقرب': [
+                { q: 'ما أهمية العمق العاطفي في العلاقة؟', options: ['الأهم على الإطلاق', 'مهم جداً', 'مهم لكن أحب المرح أيضاً'] },
+                { q: 'كيف تتعامل مع الغيرة؟', options: ['أشعر بها بقوة', 'أشعر بها أحياناً', 'نادراً ما أشعر بها'] },
+                { q: 'ما مدى أهمية الثقة المطلقة؟', options: ['أساس العلاقة', 'مهمة جداً', 'أؤمن بالثقة لكن بالتأكد أيضاً'] }
+            ],
+            'القوس': [
+                { q: 'كم مهم لك الحرية في العلاقة؟', options: ['أساسية جداً', 'مهمة', 'أستطيع التكيف'] },
+                { q: 'كيف تنظر للعلاقة؟', options: ['مغامرة ممتعة', 'التزام جدي', 'صداقة عميقة'] },
+                { q: 'ما رأيك في السفر والاستكشاف مع الشريك؟', options: ['ضروري جداً', 'رائع لكن ليس ضرورياً', 'أفضل الاستقرار'] }
+            ],
+            'الجدي': [
+                { q: 'ما أهمية الطموح والنجاح في حياتك؟', options: ['الأولوية الأولى', 'مهم جداً', 'مهم لكن الحياة أكثر من النجاح'] },
+                { q: 'كيف تنظر للالتزام في العلاقة؟', options: ['أمر جدي ومسؤولية', 'مهم لكن بمرونة', 'أخذها خطوة بخطوة'] },
+                { q: 'ما الذي تقدره في الشريك؟', options: ['المسؤولية والنضج', 'الطموح', 'الدعم والتفهم'] }
+            ],
+            'الدلو': [
+                { q: 'ما أهمية الاستقلالية الفكرية؟', options: ['أساسية جداً', 'مهمة', 'أحب المشاركة في كل شيء'] },
+                { q: 'كيف تعبر عن مشاعرك؟', options: ['بصعوبة، أنا عقلاني', 'بطريقة غير تقليدية', 'بشكل طبيعي'] },
+                { q: 'ما نظرتك للعلاقات؟', options: ['صداقة عميقة أولاً', 'عاطفة وحب', 'شراكة فكرية'] }
+            ],
+            'الحوت': [
+                { q: 'كم أنت حالم ورومانسي؟', options: ['جداً جداً', 'نوعاً ما', 'واقعي أكثر'] },
+                { q: 'كيف تتعامل مع مشاعر الشريك؟', options: ['أتعاطف بعمق', 'أحاول الفهم', 'أستمع وأدعم'] },
+                { q: 'ما أهمية الروحانية والعمق في العلاقة؟', options: ['الأهم', 'مهمة جداً', 'ليست الأولوية'] }
+            ]
+        };
+
+        var state = {
+            stage: 'start',
+            person1Zodiac: '',
+            person2Zodiac: '',
+            person1Answers: {},
+            person2Answers: {},
+            currentQuestion: 0,
+            compatibilityResult: null
+        };
+
+        function render() {
+            var app = document.getElementById('app');
+            
+            if (state.stage === 'start') {
+                app.innerHTML = '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">' +
+                    '<div class="text-center mb-8">' +
+                    '<div class="text-6xl mb-4">❤️</div>' +
+                    '<h1 class="text-4xl font-bold mb-2">توافق الأبراج</h1>' +
+                    '<p class="text-pink-200">اكتشف مدى توافقك مع من تحب ✨</p>' +
+                    '</div>' +
+                    '<div class="space-y-6">' +
+                    '<div>' +
+                    '<label class="block text-lg font-semibold mb-3">⭐ اختر برج الشخص الأول:</label>' +
+                    '<div class="grid grid-cols-3 gap-3" id="person1-grid"></div>' +
+                    '</div>' +
+                    '<div>' +
+                    '<label class="block text-lg font-semibold mb-3">⭐ اختر برج الشخص الثاني:</label>' +
+                    '<div class="grid grid-cols-3 gap-3" id="person2-grid"></div>' +
+                    '</div>' +
+                    '<button id="start-btn" class="w-full py-4 rounded-xl font-bold text-lg transition-all bg-gray-500 cursor-not-allowed" disabled>' +
+                    'ابدأ الأسئلة ✨' +
+                    '</button>' +
+                    '</div>' +
+                    '</div>';
+
+                renderZodiacGrid('person1-grid', 1);
+                renderZodiacGrid('person2-grid', 2);
+                updateStartButton();
+            } else if (state.stage === 'person1' || state.stage === 'person2') {
+                renderQuestions();
+            } else if (state.stage === 'analyzing') {
+                app.innerHTML = '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-12 shadow-2xl text-white text-center">' +
+                    '<div class="text-6xl mb-6 animate-pulse">✨</div>' +
+                    '<h2 class="text-3xl font-bold mb-4">جاري التحليل...</h2>' +
+                    '<p class="text-pink-200 mb-6">نحلل الإجابات لنعطيك أفضل تقييم للتوافق ✨</p>' +
+                    '<div class="flex justify-center gap-2">' +
+                    '<div class="w-3 h-3 bg-pink-400 rounded-full animate-bounce"></div>' +
+                    '<div class="w-3 h-3 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>' +
+                    '<div class="w-3 h-3 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>' +
+                    '</div>' +
+                    '</div>';
+            } else if (state.stage === 'results') {
+                renderResults();
+            }
+        }
+
+        function renderZodiacGrid(gridId, person) {
+            var grid = document.getElementById(gridId);
+            var html = '';
+            for (var i = 0; i < zodiacSigns.length; i++) {
+                var zodiac = zodiacSigns[i];
+                var isSelected = person === 1 ? state.person1Zodiac === zodiac.name : state.person2Zodiac === zodiac.name;
+                var bgColor = person === 1 ? 'bg-pink-500' : 'bg-purple-500';
+                html += '<button onclick="selectZodiac(\'' + zodiac.name + '\', ' + person + ')" ' +
+                    'class="p-3 rounded-xl transition-all ' + (isSelected ? bgColor + ' scale-105' : 'bg-white/20 hover:bg-white/30') + '">' +
+                    '<div class="text-2xl mb-1">' + zodiac.emoji + '</div>' +
+                    '<div class="text-sm">' + zodiac.name + '</div>' +
+                    '</button>';
+            }
+            grid.innerHTML = html;
+        }
+
+        function selectZodiac(zodiac, person) {
+            if (person === 1) {
+                state.person1Zodiac = zodiac;
+            } else {
+                state.person2Zodiac = zodiac;
+            }
+            render();
+        }
+
+        function updateStartButton() {
+            var btn = document.getElementById('start-btn');
+            if (state.person1Zodiac && state.person2Zodiac) {
+                btn.disabled = false;
+                btn.className = 'w-full py-4 rounded-xl font-bold text-lg transition-all bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600';
+                btn.onclick = startQuestionnaire;
+            }
+        }
+
+        function startQuestionnaire() {
+            state.stage = 'person1';
+            state.currentQuestion = 0;
+            render();
+        }
+
+        function renderQuestions() {
+            var app = document.getElementById('app');
+            var isPerson1 = state.stage === 'person1';
+            var zodiac = isPerson1 ? state.person1Zodiac : state.person2Zodiac;
+            var questions = questionsMap[zodiac];
+            var totalQuestions = questions.length;
+            var currentQ = questions[state.currentQuestion];
+            var progress = ((state.currentQuestion + 1) / totalQuestions) * 100;
+
+            app.innerHTML = '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">' +
+                '<div class="mb-6">' +
+                '<div class="flex items-center justify-between mb-4">' +
+                '<h2 class="text-2xl font-bold">💬 أسئلة لبرج ' + zodiac + '</h2>' +
+                '<span class="text-pink-300">السؤال ' + (state.currentQuestion + 1) + ' من ' + totalQuestions + '</span>' +
+                '</div>' +
+                '<div class="h-2 bg-white/20 rounded-full overflow-hidden">' +
+                '<div class="h-full bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300" style="width: ' + progress + '%"></div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="bg-white/5 rounded-2xl p-6 mb-6">' +
+                '<p class="text-xl mb-6">' + currentQ.q + '</p>' +
+                '<div class="space-y-3" id="options-container"></div>' +
+                '</div>' +
+                '</div>';
+
+            var optionsContainer = document.getElementById('options-container');
+            var optionsHtml = '';
+            for (var i = 0; i < currentQ.options.length; i++) {
+                var option = currentQ.options[i];
+                optionsHtml += '<button onclick="handleAnswer(' + i + ')" ' +
+                    'class="w-full p-4 bg-white/10 hover:bg-white/20 rounded-xl transition-all text-right">' +
+                    option +
+                    '</button>';
+            }
+            optionsContainer.innerHTML = optionsHtml;
+        }
+
+        function handleAnswer(optionIndex) {
+            var currentZodiac = state.stage === 'person1' ? state.person1Zodiac : state.person2Zodiac;
+            var currentQuestion = questionsMap[currentZodiac][state.currentQuestion];
+            var answer = currentQuestion.options[optionIndex];
+            
+            if (state.stage === 'person1') {
+                state.person1Answers[state.currentQuestion] = answer;
+                
+                if (state.currentQuestion < questionsMap[state.person1Zodiac].length - 1) {
+                    state.currentQuestion++;
+                    render();
+                } else {
+                    state.stage = 'person2';
+                    state.currentQuestion = 0;
+                    render();
+                }
+            } else if (state.stage === 'person2') {
+                state.person2Answers[state.currentQuestion] = answer;
+                
+                if (state.currentQuestion < questionsMap[state.person2Zodiac].length - 1) {
+                    state.currentQuestion++;
+                    render();
+                } else {
+                    analyzeCompatibility();
+                }
+            }
+        }
+
+        async function analyzeCompatibility() {
+            state.stage = 'analyzing';
+            render();
+
+            var person1QandA = [];
+            for (var i = 0; i < questionsMap[state.person1Zodiac].length; i++) {
+                person1QandA.push({
+                    question: questionsMap[state.person1Zodiac][i].q,
+                    answer: state.person1Answers[i]
+                });
+            }
+
+            var person2QandA = [];
+            for (var i = 0; i < questionsMap[state.person2Zodiac].length; i++) {
+                person2QandA.push({
+                    question: questionsMap[state.person2Zodiac][i].q,
+                    answer: state.person2Answers[i]
+                });
+            }
+
+            try {
+                var response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 2000,
+                        messages: [{
+                            role: "user",
+                            content: "أنت خبير في علم الأبراج والتوافق. قم بتحليل التوافق بين شخصين بناءً على المعلومات التالية:\n\nالشخص الأول: برج " + state.person1Zodiac + "\nأجوبته: " + JSON.stringify(person1QandA, null, 2) + "\n\nالشخص الثاني: برج " + state.person2Zodiac + "\nأجوبته: " + JSON.stringify(person2QandA, null, 2) + "\n\nقم بإعطاء تحليل شامل باللغة العربية يتضمن:\n1. نسبة التوافق (رقم من 0-100)\n2. نقاط القوة في العلاقة (3-4 نقاط)\n3. التحديات المحتملة (3-4 نقاط)\n4. نصائح لتحسين العلاقة (3-4 نصائح)\n\nيجب أن يكون التحليل معتمداً على إجابات كلا الشخصين وليس فقط على الأبراج.\n\nأجب فقط بصيغة JSON التالية بدون أي نص إضافي:\n{\n  \"compatibility\": عدد_من_0_الى_100,\n  \"strengths\": [\"نقطة قوة 1\", \"نقطة قوة 2\", \"نقطة قوة 3\"],\n  \"challenges\": [\"تحدي 1\", \"تحدي 2\", \"تحدي 3\"],\n  \"advice\": [\"نصيحة 1\", \"نصيحة 2\", \"نصيحة 3\"]\n}\n\nيجب أن تكون الإجابة JSON فقط بدون أي نص أو علامات أخرى."
+                        }]
+                    })
+                });
+
+                var data = await response.json();
+                var responseText = data.content[0].text;
+                responseText = responseText.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+                
+                state.compatibilityResult = JSON.parse(responseText);
+            } catch (error) {
+                console.error("Error:", error);
+                state.compatibilityResult = {
+                    compatibility: 75,
+                    strengths: ["تفاهم جيد", "قيم مشتركة", "احترام متبادل"],
+                    challenges: ["اختلاف في التعبير", "حاجة للمزيد من التواصل"],
+                    advice: ["التواصل المستمر مهم", "احترام الاختلافات", "قضاء وقت ممتع معاً"]
+                };
+            }
+
+            state.stage = 'results';
+            render();
+        }
+
+        function renderResults() {
+            var app = document.getElementById('app');
+            var result = state.compatibilityResult;
+            var emoji = result.compatibility >= 80 ? '💕' : result.compatibility >= 60 ? '💛' : '🧡';
+            var colorClass = result.compatibility >= 80 ? 'text-green-500' : result.compatibility >= 60 ? 'text-yellow-500' : 'text-orange-500';
+
+            var strengthsHtml = '';
+            for (var i = 0; i < result.strengths.length; i++) {
+                strengthsHtml += '<li class="flex items-start gap-2">' +
+                    '<span class="text-green-400">✓</span>' +
+                    '<span>' + result.strengths[i] + '</span>' +
+                    '</li>';
+            }
+
+            var challengesHtml = '';
+            for (var i = 0; i < result.challenges.length; i++) {
+                challengesHtml += '<li class="flex items-start gap-2">' +
+                    '<span class="text-yellow-400">⚠</span>' +
+                    '<span>' + result.challenges[i] + '</span>' +
+                    '</li>';
+            }
+
+            var adviceHtml = '';
+            for (var i = 0; i < result.advice.length; i++) {
+                adviceHtml += '<li class="flex items-start gap-2">' +
+                    '<span class="text-purple-400">💡</span>' +
+                    '<span>' + result.advice[i] + '</span>' +
+                    '</li>';
+            }
+
+            app.innerHTML = '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl text-white">' +
+                '<div class="text-center mb-8">' +
+                '<div class="text-6xl mb-4">' + emoji + '</div>' +
+                '<h2 class="text-3xl font-bold mb-2">نتيجة التوافق</h2>' +
+                '<p class="text-pink-200">بين برج ' + state.person1Zodiac + ' و برج ' + state.person2Zodiac + '</p>' +
+                '</div>' +
+                '<div class="bg-white/5 rounded-2xl p-6 mb-6 text-center">' +
+                '<div class="text-6xl font-bold mb-2 ' + colorClass + '">' + result.compatibility + '%</div>' +
+                '<p class="text-lg">نسبة التوافق</p>' +
+                '</div>' +
+                '<div class="space-y-6">' +
+                '<div class="bg-white/5 rounded-2xl p-6">' +
+                '<h3 class="text-xl font-bold mb-4">❤️ نقاط القوة</h3>' +
+                '<ul class="space-y-2">' + strengthsHtml + '</ul>' +
+                '</div>' +
+                '<div class="bg-white/5 rounded-2xl p-6">' +
+                '<h3 class="text-xl font-bold mb-4">✨ التحديات المحتملة</h3>' +
+                '<ul class="space-y-2">' + challengesHtml + '</ul>' +
+                '</div>' +
+                '<div class="bg-white/5 rounded-2xl p-6">' +
+                '<h3 class="text-xl font-bold mb-4">⭐ نصائح لتحسين العلاقة</h3>' +
+                '<ul class="space-y-2">' + adviceHtml + '</ul>' +
+                '</div>' +
+                '</div>' +
+                '<button onclick="restart()" ' +
+                'class="w-full mt-6 py-4 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 rounded-xl font-bold text-lg transition-all">' +
+                'جرب مرة أخرى ✨' +
+                '</button>' +
+                '</div>';
+        }
+
+        function restart() {
+            state = {
+                stage: 'start',
+                person1Zodiac: '',
+                person2Zodiac: '',
+                person1Answers: {},
+                person2Answers: {},
+                currentQuestion: 0,
+                compatibilityResult: null
+            };
+            render();
+        }
+
+        render();
+    </script>
+</body>
+</html>

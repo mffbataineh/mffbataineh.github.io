@@ -369,6 +369,11 @@
             color: #333;
         }
 
+        .accepted-badge {
+            background: #2e7d32;
+            color: white;
+        }
+
         .publication-links {
             display: flex;
             gap: 0.75rem;
@@ -408,6 +413,17 @@
             background: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(5, 191, 219, 0.3);
+        }
+
+        .scholar-btn {
+            background: #4285f4;
+            color: white;
+        }
+
+        .scholar-btn:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
         }
 
         .no-results {
@@ -456,23 +472,23 @@
         <!-- Stats Bar -->
         <div class="stats-bar">
             <div class="stat-card">
-                <h3 id="totalPubs">45</h3>
+                <h3 id="totalPubs">62</h3>
                 <p>Total Publications</p>
             </div>
             <div class="stat-card">
-                <h3 id="journalPubs">28</h3>
+                <h3 id="journalPubs">40</h3>
                 <p>Journal Articles</p>
             </div>
             <div class="stat-card">
-                <h3 id="confPubs">15</h3>
+                <h3 id="confPubs">20</h3>
                 <p>Conference Papers</p>
             </div>
             <div class="stat-card">
-                <h3>6.1</h3>
+                <h3>8.2</h3>
                 <p>Highest IF</p>
             </div>
             <div class="stat-card">
-                <h3>12.2</h3>
+                <h3>14.7</h3>
                 <p>Highest CiteScore</p>
             </div>
         </div>
@@ -518,7 +534,7 @@
 
         <!-- Results Info -->
         <div class="results-info">
-            <div id="resultsCount">Showing all 45 publications</div>
+            <div id="resultsCount">Showing all 62 publications</div>
             <div class="sort-options">
                 <button class="sort-btn active" data-sort="year-desc">Newest First</button>
                 <button class="sort-btn" data-sort="year-asc">Oldest First</button>
@@ -533,6 +549,219 @@
     <script>
         const publications = [
             {
+                title: "Real-time stereo depth estimation on Raspberry Pi 5 for near-field assistive navigation",
+                authors: "M. Al Bataineh, et al. (SURE Plus Team)",
+                venue: "IEEE Global Humanitarian Technology Conference (GHTC)",
+                year: 2026,
+                type: "conference",
+                institution: "UAEU",
+                status: "accepted",
+                citations: 0,
+                pdfNum: 60,
+                doi: ""
+            },
+            {
+                title: "Theoretical research on applicable teaching methods of LCA and BIM disciplines",
+                authors: "K. Barati, et al., M. Al Bataineh",
+                venue: "SEFI Annual Conference",
+                year: 2026,
+                type: "conference",
+                institution: "UAEU",
+                status: "accepted",
+                citations: 0,
+                pdfNum: 61,
+                doi: ""
+            },
+            {
+                title: "Conversational AI-tutor based approaches for adaptive engineering safety education",
+                authors: "K. Barati, et al., M. Al Bataineh",
+                venue: "SEFI Annual Conference",
+                year: 2026,
+                type: "conference",
+                institution: "UAEU",
+                status: "accepted",
+                citations: 0,
+                pdfNum: 62,
+                doi: ""
+            },
+            {
+                title: "Joint power allocation and IRS phase control using a feasibility-preserving TD3 for delay-sensitive opportunistic NOMA-based IoT networks",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh, A. Musa",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 0,
+                pdfNum: 57,
+                doi: ""
+            },
+            {
+                title: "CALM: Confidence-aware beam training with reliability-weighted decoding and adaptive pilot allocation for RIS-assisted initial access",
+                authors: "Z. Al-Bataineh, J. K. J. Bataineh, M. Al Bataineh, N. Saeed, A. M. Alshorman",
+                venue: "IEEE Internet of Things Journal",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 8.2,
+                citescore: 14.7,
+                citations: 0,
+                pdfNum: 58,
+                doi: ""
+            },
+            {
+                title: "Pre-contact circular MEMS capacitive pressure sensors: Sensitivity improvement at matched linearity via κ-locked design",
+                authors: "M. Z. Ahmed, M. Al Bataineh, Z. Al-Qudah, M. H. S. Alrashdan",
+                venue: "IEEE Access",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.6,
+                citescore: 9,
+                citations: 0,
+                pdfNum: 55,
+                doi: ""
+            },
+            {
+                title: "Vine copula-based outage analysis for fluid antenna RIS-NOMA systems over Nakagami-m fading channels",
+                authors: "M. Al Bataineh, Z. Albataineh",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 1,
+                pdfNum: 52,
+                doi: ""
+            },
+            {
+                title: "Outage analysis and diversity order of RIS-assisted energy-harvesting decode-and-forward relaying over α-η-μ generalized fading channels",
+                authors: "M. Al Bataineh, Z. Albataineh",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 0,
+                pdfNum: 53,
+                doi: ""
+            },
+            {
+                title: "Two-relay decode-and-forward for the degraded broadcast channel: Achievable rate region with orthogonal channel components",
+                authors: "M. Al Bataineh, D. Turki, Z. Al-Qudah",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 0,
+                pdfNum: 54,
+                doi: ""
+            },
+            {
+                title: "Reliability-aware soft-decision beam training for RIS-assisted mmWave systems",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh, A. Ababneh",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 3,
+                pdfNum: 50,
+                doi: ""
+            },
+            {
+                title: "Sector-aware delay–phase precoding for wideband THz massive RIS-assisted MIMO systems",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh",
+                venue: "IEEE Open Journal of the Communications Society",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 6.1,
+                citescore: 10.5,
+                citations: 4,
+                pdfNum: 51,
+                doi: ""
+            },
+            {
+                title: "Enhanced adaptive duplexing and robust resource allocation for decentralized FD-NOMA V2X systems",
+                authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh, M. Alsumady",
+                venue: "IEEE Access",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.6,
+                citescore: 9,
+                citations: 2,
+                pdfNum: 47,
+                doi: ""
+            },
+            {
+                title: "A clearance-ratio framework for predicting nonlinearity in MEMS capacitive pressure sensors",
+                authors: "M. Z. Ahmed, M. Al Bataineh, Z. Al-Qudah",
+                venue: "IEEE Access",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.6,
+                citescore: 9,
+                citations: 0,
+                pdfNum: 48,
+                doi: ""
+            },
+            {
+                title: "Robust adaptive beam tracking for terahertz beamspace MIMO: An uncertainty-aware Kalman filter",
+                authors: "Z. Albataineh, M. Al Bataineh, M. F. Tamimi, N. Saeed",
+                venue: "IEEE Open Journal of Vehicular Technology, vol. 7, pp. 1168-1187",
+                year: 2026,
+                type: "journal",
+                institution: "UAEU",
+                citescore: 8.7,
+                citations: 2,
+                pdfNum: 49,
+                doi: ""
+            },
+            {
+                title: "Development of a fully autonomous offline assistive system for visually impaired individuals: A privacy-first approach",
+                authors: "F. Y. Mekonnen, M. F. Al Bataineh, D. Abu Abdoun, A. Serag, K. T. Tamiru, W. Abula, S. Darota",
+                venue: "Sensors",
+                year: 2025,
+                type: "journal",
+                institution: "UAEU",
+                if: 3.9,
+                citescore: 9,
+                citations: 11,
+                pdfNum: 46,
+                doi: "10.3390/s25196006"
+            },
+            {
+                title: "Technology-enhanced active learning in engineering education: Promoting equity and engagement through digital innovation",
+                authors: "M. Al Bataineh",
+                venue: "IEEE International Conference on Modern Educational Technology (ICMET)",
+                year: 2025,
+                type: "conference",
+                institution: "UAEU",
+                citations: 1,
+                pdfNum: 59,
+                doi: "10.1109/ICMET67594.2025.11451892"
+            },
+            {
+                title: "Offline multimodal edge AI framework integrating computer vision and speech processing for ICT accessibility systems",
+                authors: "F. Y. Mekonnen, A. Serag, S. Darota, M. F. Al Bataineh, K. Teshale, D. Abu Abdoun, W. Abula",
+                venue: "IEEE International Conference on Application of Information and Communication Technologies (AICT)",
+                year: 2025,
+                type: "conference",
+                institution: "UAEU",
+                citations: 0,
+                pdfNum: 56,
+                doi: ""
+            },
+            {
                 title: "Adaptive beam pairing and local interpolation for robust analytical beam training in RIS-assisted wideband THz systems",
                 authors: "Z. Albataineh, H. B. Salameh, M. Al Bataineh, A. M. Alshorman",
                 venue: "IEEE Open Journal of the Communications Society",
@@ -541,7 +770,7 @@
                 institution: "UAEU",
                 if: 6.1,
                 citescore: 10.5,
-                citations: 0,
+                citations: 6,
                 pdfNum: 1,
                 doi: ""
             },
@@ -554,7 +783,7 @@
                 institution: "UAEU",
                 if: 2.16,
                 citescore: 12.1,
-                citations: 0,
+                citations: 1,
                 pdfNum: 2,
                 doi: "10.1007/s44444-025-00043-5"
             },
@@ -567,7 +796,7 @@
                 institution: "UAEU",
                 if: 6.1,
                 citescore: 10.5,
-                citations: 0,
+                citations: 18,
                 pdfNum: 3,
                 doi: ""
             },
@@ -579,8 +808,8 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 3.9,
-                citescore: 9.0,
-                citations: 0,
+                citescore: 9,
+                citations: 6,
                 pdfNum: 4,
                 doi: ""
             },
@@ -592,8 +821,8 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 3.9,
-                citescore: 9.0,
-                citations: 1,
+                citescore: 9,
+                citations: 10,
                 pdfNum: 5,
                 doi: ""
             },
@@ -605,8 +834,8 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 3.9,
-                citescore: 9.0,
-                citations: 1,
+                citescore: 9,
+                citations: 16,
                 pdfNum: 6,
                 doi: ""
             },
@@ -632,7 +861,7 @@
                 institution: "UAEU",
                 if: 2.3,
                 citescore: 5.2,
-                citations: 0,
+                citations: 3,
                 pdfNum: 8,
                 doi: ""
             },
@@ -645,7 +874,7 @@
                 institution: "UAEU",
                 if: 4.1,
                 citescore: 8.7,
-                citations: 0,
+                citations: 7,
                 pdfNum: 9,
                 doi: ""
             },
@@ -657,8 +886,8 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 5.8,
-                citescore: 0,
-                citations: 19,
+                citescore: 8.9,
+                citations: 61,
                 pdfNum: 10,
                 doi: "10.1016/j.chbr.2024.100501"
             },
@@ -671,7 +900,7 @@
                 institution: "UAEU",
                 if: 5.9,
                 citescore: 12.2,
-                citations: 6,
+                citations: 15,
                 pdfNum: 11,
                 doi: "10.1016/j.asej.2024.102923"
             },
@@ -684,7 +913,7 @@
                 institution: "UAEU",
                 if: 5.1,
                 citescore: 7.7,
-                citations: 1,
+                citations: 6,
                 pdfNum: 12,
                 doi: "10.3390/su16083121"
             },
@@ -696,7 +925,7 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 3.9,
-                citescore: 9.0,
+                citescore: 9,
                 citations: 4,
                 pdfNum: 13,
                 doi: "10.1109/ACCESS.2023.3349212"
@@ -709,8 +938,8 @@
                 type: "journal",
                 institution: "UAEU",
                 if: 3.9,
-                citescore: 9.0,
-                citations: 4,
+                citescore: 9,
+                citations: 6,
                 pdfNum: 14,
                 doi: "10.1109/ACCESS.2023.3319134"
             },
@@ -723,7 +952,7 @@
                 institution: "UAEU",
                 if: 3.5,
                 citescore: 8.2,
-                citations: 2,
+                citations: 3,
                 pdfNum: 15,
                 doi: "10.3390/s23187699"
             },
@@ -749,7 +978,7 @@
                 institution: "UAEU",
                 if: 1.8,
                 citescore: 6.1,
-                citations: 3,
+                citations: 5,
                 pdfNum: 17,
                 doi: "10.1002/dac.4616"
             },
@@ -762,7 +991,7 @@
                 institution: "YU",
                 if: 2.2,
                 citescore: 6.6,
-                citations: 2,
+                citations: 4,
                 pdfNum: 18,
                 doi: "10.1007/s11277-017-4717-7"
             },
@@ -775,7 +1004,7 @@
                 institution: "YU",
                 if: 3.2,
                 citescore: 6.7,
-                citations: 7,
+                citations: 10,
                 pdfNum: 19,
                 doi: "10.1016/j.aeue.2017.01.015"
             },
@@ -788,7 +1017,7 @@
                 institution: "YU",
                 if: 4.9,
                 citescore: 11.5,
-                citations: 10,
+                citations: 12,
                 pdfNum: 20,
                 doi: "10.1016/j.bspc.2016.10.005"
             },
@@ -800,7 +1029,7 @@
                 type: "journal",
                 institution: "YU",
                 if: 1.4,
-                citescore: 3.0,
+                citescore: 3,
                 citations: 5,
                 pdfNum: 21,
                 doi: "10.1049/iet-spr.2015.0420"
@@ -814,7 +1043,7 @@
                 institution: "YU",
                 if: 3.2,
                 citescore: 6.7,
-                citations: 4,
+                citations: 5,
                 pdfNum: 22,
                 doi: "10.1016/j.aeue.2016.02.012"
             },
@@ -826,8 +1055,7 @@
                 type: "journal",
                 institution: "YU",
                 if: 0.98,
-                citescore: 0,
-                citations: 3,
+                citations: 4,
                 pdfNum: 23,
                 doi: ""
             },
@@ -840,7 +1068,7 @@
                 institution: "YU",
                 if: 2.8,
                 citescore: 8.1,
-                citations: 2,
+                citations: 3,
                 pdfNum: 24,
                 doi: "10.1080/03043797.2014.944102"
             },
@@ -853,7 +1081,7 @@
                 institution: "YU",
                 if: 1.6,
                 citescore: 4.4,
-                citations: 5,
+                citations: 7,
                 pdfNum: 25,
                 doi: "10.1049/iet-com.2014.0267"
             },
@@ -864,9 +1092,7 @@
                 year: 2016,
                 type: "journal",
                 institution: "YU",
-                if: 0,
-                citescore: 0,
-                citations: 0,
+                citations: 1,
                 pdfNum: 26,
                 doi: ""
             },
@@ -877,24 +1103,9 @@
                 year: 2017,
                 type: "journal",
                 institution: "YU",
-                if: 0,
-                citescore: 0,
                 citations: 1,
                 pdfNum: 27,
                 doi: "10.17706/ijbbb.2017.7.3.133-142"
-            },
-            {
-                title: "Analysis of gene translation using a communications theory approach",
-                authors: "M. A. Bataineh, L. Huang, M. Alonso, N. Menhart, G. E. Atkin",
-                venue: "Advances in Experimental Medicine and Biology",
-                year: 2010,
-                type: "journal",
-                institution: "IIT",
-                if: 3.65,
-                citescore: 4.5,
-                citations: 9,
-                pdfNum: 28,
-                doi: "10.1007/978-1-4419-5913-3_43"
             },
             {
                 title: "A comparative analysis of computational approaches for gene detection",
@@ -904,7 +1115,7 @@
                 type: "conference",
                 institution: "UAEU",
                 citations: 0,
-                pdfNum: 29,
+                pdfNum: 28,
                 doi: ""
             },
             {
@@ -914,8 +1125,8 @@
                 year: 2024,
                 type: "conference",
                 institution: "UAEU",
-                citations: 1,
-                pdfNum: 30,
+                citations: 2,
+                pdfNum: 29,
                 doi: "10.1109/ICBET61859.2024.10583035"
             },
             {
@@ -926,8 +1137,20 @@
                 type: "conference",
                 institution: "UAEU",
                 citations: 0,
-                pdfNum: 31,
+                pdfNum: 30,
                 doi: "10.1109/ICBET56821.2023.10201468"
+            },
+            {
+                title: "Identification of coding regions in prokaryotic DNA sequences using Bayesian classification",
+                authors: "M. Al Bataineh",
+                venue: "Lecture Notes in Computer Science (LNCS), vol. 12108, pp. 3-14",
+                year: 2020,
+                type: "journal",
+                institution: "IIT",
+                citescore: 2.1,
+                citations: 3,
+                pdfNum: 31,
+                doi: "10.1007/978-3-030-45385-5_1"
             },
             {
                 title: "Identification of coding regions in prokaryotic DNA sequences using Bayesian classification",
@@ -936,8 +1159,8 @@
                 year: 2020,
                 type: "conference",
                 institution: "YU",
-                citations: 1,
-                pdfNum: 32,
+                citations: 3,
+                pdfNum: 31,
                 doi: "10.1007/978-3-030-45385-5_1"
             },
             {
@@ -948,7 +1171,7 @@
                 type: "conference",
                 institution: "YU",
                 citations: 1,
-                pdfNum: 33,
+                pdfNum: 32,
                 doi: ""
             },
             {
@@ -959,7 +1182,7 @@
                 type: "conference",
                 institution: "YU",
                 citations: 4,
-                pdfNum: 34,
+                pdfNum: 33,
                 doi: "10.1109/HIBIT.2012.6209036"
             },
             {
@@ -969,8 +1192,9 @@
                 year: 2016,
                 type: "conference",
                 institution: "YU",
+                if: 0.98,
                 citations: 0,
-                pdfNum: 35,
+                pdfNum: 34,
                 doi: ""
             },
             {
@@ -981,7 +1205,7 @@
                 type: "conference",
                 institution: "IIT",
                 citations: 0,
-                pdfNum: 36,
+                pdfNum: 35,
                 doi: "10.1109/EIT.2010.5612145"
             },
             {
@@ -992,7 +1216,7 @@
                 type: "conference",
                 institution: "IIT",
                 citations: 0,
-                pdfNum: 37,
+                pdfNum: 36,
                 doi: "10.1109/EIT.2010.5612122"
             },
             {
@@ -1002,8 +1226,8 @@
                 year: 2009,
                 type: "conference",
                 institution: "IIT",
-                citations: 5,
-                pdfNum: 38,
+                citations: 6,
+                pdfNum: 37,
                 doi: "10.1109/FBIE.2009.5174853"
             },
             {
@@ -1014,7 +1238,7 @@
                 type: "conference",
                 institution: "IIT",
                 citations: 3,
-                pdfNum: 39,
+                pdfNum: 100,
                 doi: "10.1109/IEMBS.2009.5334806"
             },
             {
@@ -1024,8 +1248,8 @@
                 year: 2009,
                 type: "conference",
                 institution: "IIT",
-                citations: 9,
-                pdfNum: 40,
+                citations: 8,
+                pdfNum: 39,
                 doi: "10.1109/IEMBS.2009.5334807"
             },
             {
@@ -1036,7 +1260,7 @@
                 type: "conference",
                 institution: "IIT",
                 citations: 9,
-                pdfNum: 41,
+                pdfNum: 40,
                 doi: ""
             },
             {
@@ -1046,8 +1270,8 @@
                 year: 2007,
                 type: "conference",
                 institution: "IIT",
-                citations: 7,
-                pdfNum: 42,
+                citations: 8,
+                pdfNum: 41,
                 doi: ""
             },
             {
@@ -1058,13 +1282,13 @@
                 type: "conference",
                 institution: "IIT",
                 citations: 9,
-                pdfNum: 43,
+                pdfNum: 42,
                 doi: "10.1109/EIT.2007.4374551"
             },
             {
                 title: "Analysis of gene translation using a communications theory approach",
                 authors: "M. Al Bataineh, L. Huang, M. Alonso, N. Menhart, G. E. Atkin",
-                venue: "Advances in Computational Biology (Springer LNCS)",
+                venue: "Advances in Experimental Medicine and Biology, vol. 680 (Advances in Computational Biology), Springer",
                 year: 2010,
                 type: "book",
                 institution: "IIT",
@@ -1081,7 +1305,7 @@
                 year: 2010,
                 type: "book",
                 institution: "IIT",
-                citations: 4,
+                citations: 3,
                 pdfNum: 45,
                 doi: ""
             }
@@ -1211,12 +1435,20 @@
                 return;
             }
 
+            // PDF files that exist on disk with an UPPERCASE .PDF extension
+            // (Porkbun static hosting is case-sensitive, so the link must match exactly)
+            const upperCasePdfs = new Set([23,24,27,29,30,31,32,33,34,35,36,37,38,40,43,45]);
+
             grid.innerHTML = pubs.map(pub => {
                 let linksHtml = '<div class="publication-links">';
-                linksHtml += '<a href="PDF/' + pub.pdfNum + '.pdf" class="link-btn pdf-btn" target="_blank">📄 PDF</a>';
+                if (pub.pdfNum <= 59) {
+                    const ext = upperCasePdfs.has(pub.pdfNum) ? '.PDF' : '.pdf';
+                    linksHtml += '<a href="PDF/' + pub.pdfNum + ext + '" class="link-btn pdf-btn" target="_blank">📄 PDF</a>';
+                }
                 if (pub.doi) {
                     linksHtml += '<a href="https://doi.org/' + pub.doi + '" class="link-btn doi-btn" target="_blank">🔗 DOI</a>';
                 }
+                linksHtml += '<a href="https://scholar.google.com/scholar?q=' + encodeURIComponent(pub.title) + '" class="link-btn scholar-btn" target="_blank">🎓 Scholar</a>';
                 linksHtml += '</div>';
 
                 return '<div class="publication-card">' +
@@ -1232,6 +1464,7 @@
                     '<div class="publication-venue">' + pub.venue + '</div>' +
                     '<div class="publication-meta">' +
                         '<span class="meta-badge year-badge">' + pub.year + '</span>' +
+                        (pub.status === 'accepted' ? '<span class="meta-badge accepted-badge">✅ Accepted</span>' : '') +
                         (pub.if ? '<span class="meta-badge if-badge">IF: ' + pub.if + '</span>' : '') +
                         (pub.citescore ? '<span class="meta-badge if-badge">CiteScore: ' + pub.citescore + '</span>' : '') +
                         (pub.citations > 0 ? '<span class="meta-badge citations-badge">📊 ' + pub.citations + ' citations</span>' : '') +

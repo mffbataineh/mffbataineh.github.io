@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started Guide | AI in Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #00d9ff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #0a4d68;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0a4d68, #05bfdb);
+            margin-top: 1rem;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #0a4d68;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: #05bfdb;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        a {
+            color: #0a4d68;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #05bfdb;
+            text-decoration: underline;
+        }
+
+        section a {
+            color: #0a4d68;
+        }
+
+        section a:hover {
+            color: #00d9ff;
+        }
+
+        /* Step Cards */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #05bfdb;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .step-card h4 {
+            color: #0a4d68;
+            margin-top: 0;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.1) 0%, rgba(5, 191, 219, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #05bfdb;
+            margin: 2rem 0;
+        }
+
+        .info-box h4 {
+            color: #0a4d68;
+            margin-top: 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #ffc107;
+        }
+
+        .tip-box {
+            background: rgba(0, 217, 255, 0.1);
+            border-left-color: #00d9ff;
+        }
+
+        /* Tool Cards */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid #05bfdb;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .tool-card h5 {
+            color: #0a4d68;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card .category {
+            display: inline-block;
+            background: #05bfdb;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section h2::after {
+            background: linear-gradient(90deg, #00d9ff, #05bfdb);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #00d9ff;
+            color: #011627;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.6);
+            background: #05bfdb;
+        }
+
+        /* Footer */
+        footer {
+            background: #011627;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #00d9ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #05bfdb;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #05bfdb;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: #e0e0e0;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .steps-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="aiedu.html" class="back-link">← Back to Main Guide</a>
+            <h1>📖 Getting Started Guide</h1>
+            <p>A step-by-step roadmap for educators new to AI integration</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Introduction -->
+            <section>
+                <h2>Welcome to AI in Education</h2>
+                <p>Artificial Intelligence is transforming education, offering unprecedented opportunities to personalize learning, automate administrative tasks, and enhance student engagement. This guide will help you understand the basics and take your first steps toward meaningful AI integration.</p>
+                
+                <div class="info-box tip-box">
+                    <h4>💡 What You'll Learn</h4>
+                    <ul>
+                        <li>Fundamental AI concepts relevant to education</li>
+                        <li>How to select the right AI tools for your needs</li>
+                        <li>Step-by-step implementation strategies</li>
+                        <li>Best practices and common pitfalls to avoid</li>
+                        <li>Resources for continued learning</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Understanding AI Basics -->
+            <section>
+                <h2>Understanding AI: The Basics</h2>
+                
+                <h3>What is AI in Education?</h3>
+                <p>AI in education refers to intelligent systems that can perform tasks typically requiring human intelligence, such as understanding natural language, recognizing patterns, making decisions, and adapting to new information.</p>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h4>Machine Learning</h4>
+                        <p>Systems that learn from data and improve over time. Examples: Adaptive learning platforms that adjust difficulty based on student performance.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h4>Natural Language Processing</h4>
+                        <p>AI that understands and generates human language. Examples: Chatbots, automated essay grading, translation tools.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h4>Computer Vision</h4>
+                        <p>AI that can "see" and interpret images and videos. Examples: Attendance tracking, behavior analysis, accessibility tools.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h4>Predictive Analytics</h4>
+                        <p>AI that identifies patterns and predicts outcomes. Examples: Early warning systems for at-risk students, enrollment forecasting.</p>
+                    </div>
+                </div>
+
+                <div class="info-box warning-box">
+                    <h4>⚠️ Important Considerations</h4>
+                    <ul>
+                        <li><strong>Privacy:</strong> Always ensure student data is protected and comply with regulations like FERPA and GDPR</li>
+                        <li><strong>Bias:</strong> AI systems can perpetuate existing biases - critical evaluation is essential</li>
+                        <li><strong>Transparency:</strong> Students and parents should understand when and how AI is being used</li>
+                        <li><strong>Human Oversight:</strong> AI should augment, not replace, human judgment and teaching</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Tool Selection -->
+            <section>
+                <h2>Selecting the Right AI Tools</h2>
+                
+                <h3>Assessment Framework</h3>
+                <p>Before selecting any AI tool, ask yourself these critical questions:</p>
+
+                <ol>
+                    <li><strong>Educational Value:</strong> Does this tool align with your learning objectives?</li>
+                    <li><strong>Ease of Use:</strong> Can you and your students learn it quickly?</li>
+                    <li><strong>Cost:</strong> Does it fit within your budget? Are there free alternatives?</li>
+                    <li><strong>Privacy & Security:</strong> How is student data handled and protected?</li>
+                    <li><strong>Support & Training:</strong> What resources are available for implementation?</li>
+                    <li><strong>Integration:</strong> Does it work with your existing systems?</li>
+                    <li><strong>Accessibility:</strong> Is it usable by all students, including those with disabilities?</li>
+                </ol>
+
+                <h3>Recommended Tools by Category</h3>
+                
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <span class="category">Content Creation</span>
+                        <h5>ChatGPT / Claude</h5>
+                        <p>Generate lesson plans, create assignments, develop rubrics, and answer student questions.</p>
+                        <p><strong>Best for:</strong> Teachers looking to save time on content creation</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <span class="category">Adaptive Learning</span>
+                        <h5>Khan Academy</h5>
+                        <p>Free, personalized learning platform with AI-powered practice and recommendations.</p>
+                        <p><strong>Best for:</strong> Math, science, and test preparation</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <span class="category">Assessment</span>
+                        <h5>Gradescope</h5>
+                        <p>AI-assisted grading for assignments, exams, and coding projects.</p>
+                        <p><strong>Best for:</strong> Saving time on grading while providing detailed feedback</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <span class="category">Presentation</span>
+                        <h5>Canva Magic Design</h5>
+                        <p>AI-powered design tools to create professional presentations and learning materials.</p>
+                        <p><strong>Best for:</strong> Creating visually engaging content quickly</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <span class="category">Translation</span>
+                        <h5>DeepL</h5>
+                        <p>High-quality AI translation for multilingual classrooms.</p>
+                        <p><strong>Best for:</strong> Supporting ELL students and diverse learners</p>
+                    </div>
+
+                    <div class="tool-card">
+                        <span class="category">Writing Support</span>
+                        <h5>Grammarly</h5>
+                        <p>AI-powered writing assistant for grammar, clarity, and style.</p>
+                        <p><strong>Best for:</strong> Helping students improve their writing skills</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Implementation Strategy -->
+            <section>
+                <h2>Implementation: Your Roadmap to Success</h2>
+                
+                <h3>Phase 1: Preparation (Weeks 1-2)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Define Your Goals</h4>
+                        <p>Identify specific challenges you want AI to address. Be concrete: "Reduce grading time by 30%" or "Provide more personalized feedback to students."</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Research Tools</h4>
+                        <p>Explore 3-5 tools that match your goals. Read reviews, watch tutorials, and test free trials.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Get Buy-In</h4>
+                        <p>Discuss your plans with administrators, colleagues, students, and parents. Address concerns proactively.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Plan for Privacy</h4>
+                        <p>Review your institution's data policies and ensure FERPA/GDPR compliance. Get necessary permissions.</p>
+                    </div>
+                </div>
+
+                <h3>Phase 2: Pilot Program (Weeks 3-6)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Start Small</h4>
+                        <p>Choose one class, one unit, or one specific task. Don't try to transform everything at once.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Train Yourself First</h4>
+                        <p>Become proficient with the tool before introducing it to students. Complete tutorials and experiment.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Introduce to Students</h4>
+                        <p>Explain what the tool does, why you're using it, and how it will benefit their learning. Demonstrate proper use.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Gather Feedback</h4>
+                        <p>Create simple surveys or hold discussions to understand what's working and what isn't.</p>
+                    </div>
+                </div>
+
+                <h3>Phase 3: Evaluation & Refinement (Weeks 7-8)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Measure Impact</h4>
+                        <p>Compare outcomes against your original goals. Use both quantitative data (grades, time saved) and qualitative feedback.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Identify Issues</h4>
+                        <p>What technical problems occurred? What confused students? What took more time than expected?</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Make Adjustments</h4>
+                        <p>Refine your approach based on feedback. This might mean changing settings, adding scaffolding, or switching tools.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Document Lessons Learned</h4>
+                        <p>Keep notes on what worked, what didn't, and what you'd do differently next time.</p>
+                    </div>
+                </div>
+
+                <h3>Phase 4: Scale & Sustain (Ongoing)</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Expand Gradually</h4>
+                        <p>Apply successful implementations to other classes or activities. Share with colleagues.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Continuous Improvement</h4>
+                        <p>Stay updated on new features and capabilities. Attend webinars and join educator communities.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Build Expertise</h4>
+                        <p>Become a resource for your school. Offer to mentor other teachers or lead professional development.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Stay Ethical</h4>
+                        <p>Regularly review your AI use for bias, fairness, and alignment with educational values.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section>
+                <h2>Best Practices & Common Pitfalls</h2>
+                
+                <h3>✅ Do's</h3>
+                <ul>
+                    <li>Start with clear learning objectives before selecting tools</li>
+                    <li>Involve students in the process and teach them to use AI responsibly</li>
+                    <li>Maintain human oversight and judgment in all AI-assisted decisions</li>
+                    <li>Protect student privacy and be transparent about data use</li>
+                    <li>Provide equal access to AI tools for all students</li>
+                    <li>Continuously evaluate impact on learning outcomes</li>
+                    <li>Share successes and challenges with colleagues</li>
+                    <li>Stay informed about AI developments and ethical considerations</li>
+                </ul>
+
+                <h3>❌ Don'ts</h3>
+                <ul>
+                    <li>Don't adopt AI just because it's trendy - focus on educational value</li>
+                    <li>Don't replace personal interaction and teaching with AI</li>
+                    <li>Don't ignore privacy concerns or skip consent processes</li>
+                    <li>Don't assume AI outputs are always accurate or unbiased</li>
+                    <li>Don't implement too many tools at once</li>
+                    <li>Don't forget to train students on proper AI use</li>
+                    <li>Don't overlook accessibility requirements</li>
+                    <li>Don't stop at implementation - continuous evaluation is essential</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>🎯 Success Metrics to Track</h4>
+                    <ul>
+                        <li><strong>Time Savings:</strong> How much time are you saving on routine tasks?</li>
+                        <li><strong>Student Engagement:</strong> Are participation and completion rates improving?</li>
+                        <li><strong>Learning Outcomes:</strong> Are test scores, grades, or skill mastery improving?</li>
+                        <li><strong>Feedback Quality:</strong> Are students receiving more timely, detailed feedback?</li>
+                        <li><strong>Equity:</strong> Are all student groups benefiting equally?</li>
+                        <li><strong>Satisfaction:</strong> What do students and teachers think about the experience?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Resources -->
+            <section>
+                <h2>Resources for Continued Learning</h2>
+                
+                <h3>Online Courses</h3>
+                <ul>
+                    <li><strong><a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank">AI For Everyone (Coursera)</a>:</strong> Free course by Andrew Ng covering AI basics and applications</li>
+                    <li><strong><a href="https://www.elementsofai.com/" target="_blank">Elements of AI</a>:</strong> Free online course series created by MinnaLearn and University of Helsinki</li>
+                    <li><strong><a href="https://www.linkedin.com/learning/topics/artificial-intelligence-ai" target="_blank">LinkedIn Learning - AI Courses</a>:</strong> Multiple courses on AI fundamentals and applications</li>
+                    <li><strong><a href="https://grow.google/ai-for-educators/" target="_blank">Google AI for Educators</a>:</strong> Free training resources for teachers</li>
+                </ul>
+
+                <h3>Communities & Forums</h3>
+                <ul>
+                    <li><strong><a href="https://www.iste.org/" target="_blank">ISTE (International Society for Technology in Education)</a>:</strong> Professional network with conferences, resources, and standards</li>
+                    <li><strong><a href="https://www.reddit.com/r/EdTech/" target="_blank">r/EdTech (Reddit)</a>:</strong> Active community discussing educational technology and AI</li>
+                    <li><strong><a href="https://www.edsurge.com/" target="_blank">EdSurge</a>:</strong> News, research, and analysis on education technology trends</li>
+                    <li><strong><a href="https://community.openai.com/c/educator-community/45" target="_blank">OpenAI Educator Community</a>:</strong> Forum for educators using ChatGPT and other AI tools</li>
+                </ul>
+
+                <h3>Books & Publications</h3>
+                <ul>
+                    <li><strong><a href="https://www.amazon.com/AI-Classroom-Artificial-Intelligence-Education/dp/1734506504" target="_blank">The AI Classroom</a></strong> by Dan Fitzpatrick - Practical guide for AI integration</li>
+                    <li><strong><a href="https://www.amazon.com/Teaching-AI-Exploring-Artificial-Intelligence/dp/1564847209" target="_blank">Teaching AI</a></strong> by Michelle Zimmerman - K-12 AI curriculum guide</li>
+                    <li><strong><a href="https://link.springer.com/journal/40593" target="_blank">International Journal of Artificial Intelligence in Education</a>:</strong> Academic research on AI in education</li>
+                    <li><strong><a href="https://www.amazon.com/Artificial-Intelligence-Education-Holmes-Porayska-Pomsta/dp/1138478962" target="_blank">Artificial Intelligence in Education</a></strong> by Wayne Holmes - Comprehensive overview</li>
+                </ul>
+
+                <h3>Policy & Ethics</h3>
+                <ul>
+                    <li><strong><a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank">UNESCO Recommendation on the Ethics of AI</a>:</strong> Global ethical framework for AI development and use</li>
+                    <li><strong><a href="https://studentprivacy.ed.gov/faq/what-ferpa" target="_blank">FERPA Guidelines (U.S. Department of Education)</a>:</strong> Student data privacy requirements</li>
+                    <li><strong><a href="https://partnershiponai.org/" target="_blank">Partnership on AI</a>:</strong> Multi-stakeholder organization advancing responsible AI</li>
+                    <li><strong><a href="https://www2.ed.gov/documents/ai-report/ai-report.pdf" target="_blank">U.S. Department of Education AI Report</a>:</strong> Policy recommendations for AI in education</li>
+                    <li><strong><a href="https://www.coe.int/en/web/artificial-intelligence/ethical-frameworks-for-ai" target="_blank">Council of Europe - AI Ethics</a>:</strong> European framework for ethical AI development</li>
+                </ul>
+
+                <h3>AI Tools Directories</h3>
+                <ul>
+                    <li><strong><a href="https://www.futuretools.io/" target="_blank">Future Tools</a>:</strong> Curated directory of AI tools with categories and reviews</li>
+                    <li><strong><a href="https://www.aiforeducation.io/" target="_blank">AI for Education</a>:</strong> Database of AI tools specifically for education</li>
+                    <li><strong><a href="https://www.commonsense.org/education/top-picks/best-ai-tools-for-teaching" target="_blank">Common Sense Education</a>:</strong> Vetted reviews of AI tools for K-12</li>
+                </ul>
+
+                <h3>Professional Development</h3>
+                <ul>
+                    <li><strong><a href="https://www.microsoft.com/en-us/education/educators/ai-toolkit" target="_blank">Microsoft AI Toolkit for Educators</a>:</strong> Free training and lesson plans</li>
+                    <li><strong><a href="https://ai.google/education/" target="_blank">Google AI Education</a>:</strong> Resources for learning about machine learning and AI</li>
+                    <li><strong><a href="https://www.edweek.org/technology" target="_blank">Education Week - Technology Section</a>:</strong> Latest news and trends in educational technology</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Begin Your AI Journey?</h2>
+                <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">Remember: The best time to start was yesterday. The second best time is now.</p>
+                <a href="aiedu.html" class="cta-button">Return to Main Guide</a>
+                <a href="#" class="cta-button">Join Our Community</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI in Education Excellence Initiative. Empowering educators to shape the future of learning.</p>
+            <p style="margin-top: 1rem;"><a href="aiedu.html">Back to Main Guide</a></p>
+        </div>
+    </footer>
+</body>
+</html>

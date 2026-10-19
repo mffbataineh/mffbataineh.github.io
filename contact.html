@@ -30,11 +30,172 @@
             min-height: 100vh;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav > ul > li {
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav > ul > li > a:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .has-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            padding-left: 2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .page-nav {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--green) 100%);
+            padding: 0;
+            position: sticky;
+            top: 52px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-nav li {
+            position: relative;
+        }
+
+        .page-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .page-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .page-nav a.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-bottom: 3px solid white;
+        }
+
+        .page-nav-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .page-nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: white;
             padding: 3rem 2rem;
+            padding-top: 6rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -439,6 +600,77 @@
 
         /* Responsive */
         @media (max-width: 968px) {
+            nav {
+                padding: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav > ul > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                background: rgba(5, 191, 219, 0.2);
+            }
+
+            .has-dropdown.active .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                padding-left: 3rem;
+            }
+
+            nav a {
+                padding: 1rem 1.5rem;
+            }
+
+            .page-nav {
+                top: 60px;
+            }
+
+            .page-nav-toggle {
+                display: block;
+            }
+
+            .page-nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            .page-nav ul.active {
+                display: flex;
+            }
+
+            .page-nav li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .page-nav a {
+                padding: 0.8rem 1.5rem;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
             }
@@ -474,21 +706,73 @@
     </style>
 </head>
 <body>
+    <!-- Navigation with Dropdowns -->
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        <ul id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">About</a>
+                <ul class="dropdown">
+                    <li><a href="biography.html">Biography</a></li>
+                    <li><a href="Curriculum_Vitae.pdf" target="_blank">CV / Resume</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">Research</a>
+                <ul class="dropdown">
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="https://research.uaeu.ac.ae/en/persons/mohammad-al-bataineh" target="_blank">UAEU Pure Profile</a></li>
+                    <li><a href="talks.html">Talks & Presentations</a></li>
+                    <li><a href="research-projects.html">Projects & Funding</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="teaching.html" onclick="toggleDropdown(event, this)">Teaching</a>
+                <ul class="dropdown">
+                    <li><a href="teaching.html">Courses</a></li>
+                    <li><a href="students.html">Students & Supervision</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
         <h1>Contact Me</h1>
         <p>Dr. Mohammad Fayez Al Bataineh</p>
         <a href="index.html" class="back-link">← Back to Home</a>
     </header>
 
+    <!-- Secondary Page Navigation -->
+    <div class="page-nav">
+        <button class="page-nav-toggle" onclick="togglePageNav()">📑 Jump to Section ▼</button>
+        <ul id="pageNavMenu">
+            <li><a href="#intro">Overview</a></li>
+            <li><a href="#ways">Best Ways</a></li>
+            <li><a href="#form">Contact Form</a></li>
+            <li><a href="#info">Contact Info</a></li>
+            <li><a href="#social">Social Media</a></li>
+            <li><a href="#map">Location</a></li>
+        </ul>
+    </div>
+
     <div class="container">
         <!-- Intro -->
-        <div class="intro-box fade-in">
+        <div id="intro" class="intro-box fade-in">
             <h2>📧 Let's Connect</h2>
             <p>Whether you're a student, researcher, or collaborator, I'm always happy to hear from you. Choose the best way to reach out below!</p>
         </div>
 
         <!-- Best Ways to Reach -->
-        <div class="best-ways fade-in">
+        <div id="ways" class="best-ways fade-in">
             <h3>🎯 Best Ways to Reach Me</h3>
             <div class="ways-grid">
                 <div class="way-card">
@@ -521,7 +805,7 @@
         <!-- Main Grid -->
         <div class="contact-grid">
             <!-- Contact Form -->
-            <div class="contact-form-section fade-in">
+            <div id="form" class="contact-form-section fade-in">
                 <h3>📝 Send Me a Message</h3>
                 
                 <form action="https://formspree.io/f/xgvnlqgd" method="POST">
@@ -566,13 +850,13 @@
             </div>
 
             <!-- Contact Info -->
-            <div class="contact-info-section fade-in">
+            <div id="info" class="contact-info-section fade-in">
                 <!-- UAEU Contact -->
                 <div class="info-card">
                     <h4><span class="icon">🏛️</span> UAEU Contact</h4>
                     <div class="info-item">
                         <strong>Email:</strong>
-                        <a href="mailto:mffbataineh@uaeu.ac.ae">mffbataineh@uaeu.ac.ae</a>
+                        <a href="/cdn-cgi/l/email-protection#335e5555515247525a5d565b73465256461d52501d5256"><span class="__cf_email__" data-cfemail="a6cbc0c0c4c7d2c7cfc8c3cee6d3c7c3d388c7c588c7c3">[email&#160;protected]</span></a>
                     </div>
                     <div class="info-item">
                         <strong>Phone:</strong>
@@ -612,7 +896,7 @@
                     <h4><span class="icon">🏛️</span> Yarmouk University</h4>
                     <div class="info-item">
                         <strong>Email:</strong>
-                        <a href="mailto:mohamadfa@yu.edu.jo">mohamadfa@yu.edu.jo</a>
+                        <a href="/cdn-cgi/l/email-protection#1c7173747d717d787a7d5c656932797869327673"><span class="__cf_email__" data-cfemail="d7bab8bfb6bab6b3b1b697aea2f9b2b3a2f9bdb8">[email&#160;protected]</span></a>
                     </div>
                     <div class="info-item">
                         <strong>Phone:</strong>
@@ -627,7 +911,7 @@
         </div>
 
         <!-- Social Media -->
-        <div class="social-section fade-in">
+        <div id="social" class="social-section fade-in">
             <h3>🌐 Connect on Social Media</h3>
             <div class="social-links">
                 <a href="https://research.uaeu.ac.ae/en/persons/mohammad-al-bataineh" target="_blank" class="social-link" title="UAEU Pure Profile">
@@ -652,7 +936,7 @@
         </div>
 
         <!-- Locations -->
-        <div class="map-section fade-in">
+        <div id="map" class="map-section fade-in">
             <h3>📍 Find Me</h3>
             <div class="locations-grid">
                 <div class="location-card">
@@ -673,7 +957,102 @@
         </div>
     </div>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Mobile dropdown toggle
+        function toggleDropdown(event, element) {
+            if (window.innerWidth <= 968) {
+                event.preventDefault();
+                const parent = element.parentElement;
+                parent.classList.toggle('active');
+            }
+        }
+
+        // Page navigation toggle (for mobile)
+        function togglePageNav() {
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            pageNavMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('mainMenu');
+            const pageNav = document.querySelector('.page-nav');
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            
+            if (nav && !nav.contains(event.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+            
+            if (pageNav && !pageNav.contains(event.target) && pageNavMenu.classList.contains('active')) {
+                pageNavMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.page-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const mainNavHeight = document.querySelector('nav').offsetHeight;
+                    const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+                    const totalOffset = mainNavHeight + pageNavHeight + 20;
+                    
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    const pageNavMenu = document.getElementById('pageNavMenu');
+                    if (pageNavMenu.classList.contains('active')) {
+                        pageNavMenu.classList.remove('active');
+                    }
+                    
+                    document.querySelectorAll('.page-nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('[id="intro"], [id="ways"], [id="form"], [id="info"], [id="social"], [id="map"]');
+            const navLinks = document.querySelectorAll('.page-nav a');
+            const mainNavHeight = document.querySelector('nav').offsetHeight;
+            const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+            const offset = mainNavHeight + pageNavHeight + 100;
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - offset;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
         // Handle form submission with redirect
         const form = document.querySelector('form');
         form.addEventListener('submit', async function(e) {
@@ -699,12 +1078,12 @@
                 } else {
                     submitBtn.textContent = 'Error - Try Again';
                     submitBtn.disabled = false;
-                    alert('Oops! There was a problem submitting your form. Please try again.');
+                    alert('There was an error sending your message. Please try again.');
                 }
             } catch (error) {
                 submitBtn.textContent = 'Error - Try Again';
                 submitBtn.disabled = false;
-                alert('Oops! There was a problem submitting your form. Please try again.');
+                alert('There was an error sending your message. Please try again.');
             }
         });
     </script>

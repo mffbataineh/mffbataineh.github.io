@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Visualizations - ELEC 360 | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --code-bg: #282c34;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .card h4 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .toc {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            float: right;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .section-header h2 {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .geogebra-container {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .geogebra-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .visualization-card {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .visualization-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .launch-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .launch-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+            .section { padding: 1.5rem; }
+            .geogebra-frame { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header id="top">
+            <div class="breadcrumb">
+                <a href="#">ELEC 360</a> / Interactive Visualizations
+            </div>
+            <h1>Interactive Visualizations</h1>
+            <p class="subtitle">Explore Signals and Systems Through Interactive GeoGebra Applications</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#getting-started">1. Getting Started with GeoGebra</a></li>
+                <li><a href="#signal-basics">2. Basic Signal Visualizations</a></li>
+                <li><a href="#transformations">3. Signal Transformations</a></li>
+                <li><a href="#systems">4. System Analysis</a></li>
+                <li><a href="#fourier">5. Fourier Analysis</a></li>
+                <li><a href="#applications">6. Practical Applications</a></li>
+                <li><a href="#tips">7. Tips for Effective Learning</a></li>
+            </ul>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="section" id="getting-started">
+            <div class="section-header">
+                <h2>1️⃣ Getting Started with GeoGebra</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+            
+            <h3>What is GeoGebra?</h3>
+            <p>GeoGebra is a free, powerful interactive mathematics software that allows you to visualize and explore mathematical concepts dynamically. For signals and systems, it provides an intuitive way to understand complex transformations, system responses, and frequency-domain analysis.</p>
+
+            <h3>Ways to Access GeoGebra</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🌐 Online Browser</h4>
+                    <p>Use GeoGebra directly in your web browser without installation. Works on any device with internet connection.</p>
+                    <a href="https://www.geogebra.org/graphing?lang=en" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Open Calculator</a>
+                </div>
+                <div class="card">
+                    <h4>💻 Desktop App</h4>
+                    <p>Download and install GeoGebra Classic for full offline functionality and better performance.</p>
+                    <a href="https://www.geogebra.org/download" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Download App</a>
+                </div>
+                <div class="card">
+                    <h4>📱 Mobile Apps</h4>
+                    <p>Access GeoGebra on iOS and Android devices for learning on the go.</p>
+                    <a href="https://apps.apple.com/us/app/geogebra-graphing-calculator/id1146717204" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">iOS App</a> | 
+                    <a href="https://play.google.com/store/apps/details?id=org.geogebra.android" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Android App</a>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <h3 style="color: white; margin-top: 0;">✨ Why Use Interactive Visualizations?</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>Dynamic Exploration:</strong> Change parameters in real-time and see immediate effects</li>
+                    <li><strong>Visual Understanding:</strong> See abstract concepts come to life through graphics</li>
+                    <li><strong>Hands-On Learning:</strong> Interact directly with mathematical objects</li>
+                    <li><strong>Build Intuition:</strong> Develop deeper understanding through experimentation</li>
+                    <li><strong>Complement Theory:</strong> Bridge the gap between equations and physical meaning</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Basic Signal Visualizations -->
+        <div class="section" id="signal-basics">
+            <div class="section-header">
+                <h2>2️⃣ Basic Signal Visualizations</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Fundamental Signals</h3>
+
+            <div class="visualization-card">
+                <h4>🌊 Sinusoidal Signals</h4>
+                <p><strong>Explore:</strong> Amplitude, frequency, phase, and DC offset</p>
+                <p>Visualize how changing parameters affects the shape and characteristics of sine and cosine waves. Perfect for understanding periodic signals and their properties.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">📊</div>
+                        <p><strong>Amplitude</strong><br>Adjust signal height</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔄</div>
+                        <p><strong>Frequency</strong><br>Change oscillation rate</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">↔️</div>
+                        <p><strong>Phase</strong><br>Shift signal in time</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">⬆️</div>
+                        <p><strong>DC Offset</strong><br>Vertical displacement</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Sliders for A, ω, φ, and DC components | Real-time equation display | Multiple signal comparison</p>
+                <a href="https://www.geogebra.org/m/XPTvY2s6" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>📶 Unit Step and Impulse Functions</h4>
+                <p><strong>Explore:</strong> Discontinuous signals and their properties</p>
+                <p>Understand the fundamental building blocks of signal processing: unit step function u(t) and impulse function δ(t). See how these signals behave and how they're used to construct more complex signals.</p>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Time-shifted versions | Signal composition | Pulse width variation</p>
+                <a href="https://www.geogebra.org/m/yawQCrYQ" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>📉 Exponential Signals</h4>
+                <p><strong>Explore:</strong> Growing and decaying exponentials</p>
+                <p>Visualize exponential functions e^(at) with different time constants. Essential for understanding system transient responses and RC/RL circuits.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">📉</div>
+                        <p><strong>Decay</strong><br>a < 0</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <p><strong>Growth</strong><br>a > 0</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">⏱️</div>
+                        <p><strong>Time Constant</strong><br>τ = 1/|a|</p>
+                    </div>
+                </div>
+                <a href="https://www.geogebra.org/m/e2dyZUQ7" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Learning Tip:</strong> Start by adjusting one parameter at a time. Observe the changes, then try combining multiple parameter adjustments to see how they interact.
+            </div>
+        </div>
+
+        <!-- Signal Transformations -->
+        <div class="section" id="transformations">
+            <div class="section-header">
+                <h2>3️⃣ Signal Transformations</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Time-Domain Operations</h3>
+
+            <div class="visualization-card">
+                <h4>⏰ Time Shifting</h4>
+                <p><strong>Explore:</strong> x(t - t₀) - Delaying and advancing signals</p>
+                <p>Understand how time shifts affect signal position. Positive shifts delay the signal (shift right), negative shifts advance it (shift left). Critical for understanding system delay and causality.</p>
+                <p style="margin-top: 1rem;"><strong>Key Concepts:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>x(t - 2) → Delay by 2 seconds (shift right)</li>
+                    <li>x(t + 2) → Advance by 2 seconds (shift left)</li>
+                    <li>Compare original and shifted signals side-by-side</li>
+                </ul>
+                <a href="https://www.geogebra.org/m/ybygPy4X" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🔍 Time Scaling</h4>
+                <p><strong>Explore:</strong> x(at) - Compression and expansion</p>
+                <p>See how time scaling changes signal speed. Time compression (a > 1) makes signals faster, time expansion (0 < a < 1) makes them slower.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">⚡</div>
+                        <p><strong>Compression</strong><br>x(2t) - Twice as fast</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🐌</div>
+                        <p><strong>Expansion</strong><br>x(t/2) - Half as fast</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">↔️</div>
+                        <p><strong>Reversal</strong><br>x(-t) - Flip signal</p>
+                    </div>
+                </div>
+                <a href="https://www.geogebra.org/m/UcSYDcFg" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>➕ Signal Addition and Multiplication</h4>
+                <p><strong>Explore:</strong> x₁(t) + x₂(t) and x₁(t) × x₂(t)</p>
+                <p>Visualize how signals combine through addition and multiplication. Essential for understanding modulation, mixing, and superposition.</p>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Select different signal types | Adjust individual signal parameters | See the resulting combined signal</p>
+                <a href="https://www.geogebra.org/m/BOMfKCIK" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🔄 Even and Odd Decomposition</h4>
+                <p><strong>Explore:</strong> x(t) = x_e(t) + x_o(t)</p>
+                <p>Any signal can be decomposed into even and odd components. This visualization shows the original signal alongside its even part [x(t) + x(-t)]/2 and odd part [x(t) - x(-t)]/2.</p>
+                <p style="margin-top: 1rem;"><strong>Key Properties:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Even part: x_e(t) = x_e(-t) - Symmetric about t=0</li>
+                    <li>Odd part: x_o(t) = -x_o(-t) - Anti-symmetric about t=0</li>
+                    <li>Verification: x(t) = x_e(t) + x_o(t)</li>
+                </ul>
+                <a href="https://www.geogebra.org/m/WmBnuzpW" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Master Signal Transformations:</strong> Understanding these operations is crucial for system analysis. Practice combining transformations like x(2t-1) which involves both scaling and shifting.
+            </div>
+        </div>
+
+        <!-- System Analysis -->
+        <div class="section" id="systems">
+            <div class="section-header">
+                <h2>4️⃣ System Analysis</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>LTI System Responses</h3>
+
+            <div class="visualization-card">
+                <h4>🔀 Convolution Visualization</h4>
+                <p><strong>Explore:</strong> y(t) = x(t) * h(t) - The convolution integral</p>
+                <p>See convolution in action! This interactive tool shows how the output signal is formed by sliding, flipping, multiplying, and integrating. Watch the h(τ) function flip to h(t-τ) and slide across x(τ).</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">1️⃣</div>
+                        <p><strong>Flip</strong><br>h(τ) → h(-τ)</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">2️⃣</div>
+                        <p><strong>Shift</strong><br>h(-τ) → h(t-τ)</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">3️⃣</div>
+                        <p><strong>Multiply</strong><br>x(τ)·h(t-τ)</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">4️⃣</div>
+                        <p><strong>Integrate</strong><br>∫ x(τ)h(t-τ)dτ</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Step-by-step animation | Adjustable time slider | Product visualization | Area under curve display</p>
+                <a href="https://www.geogebra.org/m/KMrAFBxN" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>📊 First-Order System Response</h4>
+                <p><strong>Explore:</strong> dy/dt + ay = bx(t)</p>
+                <p>Visualize first-order system behavior including natural response, forced response, and total response. Adjust time constant τ = 1/a and see how it affects settling time.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">🏠</div>
+                        <p><strong>Natural</strong><br>Zero-input response</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">⚡</div>
+                        <p><strong>Forced</strong><br>Zero-state response</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <p><strong>Total</strong><br>Complete solution</p>
+                    </div>
+                </div>
+                <a href="https://www.geogebra.org/m/jNgKRv26" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🎯 Second-Order System Response</h4>
+                <p><strong>Explore:</strong> d²y/dt² + 2ζω_n(dy/dt) + ω_n²y = ω_n²x(t)</p>
+                <p>Understand how damping ratio ζ affects system behavior. See underdamped, critically damped, and overdamped responses side by side.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">〰️</div>
+                        <p><strong>Underdamped</strong><br>ζ < 1 (oscillatory)</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📉</div>
+                        <p><strong>Critical</strong><br>ζ = 1 (fastest)</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🐌</div>
+                        <p><strong>Overdamped</strong><br>ζ > 1 (slow)</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Key Parameters:</strong> Natural frequency ω_n, damping ratio ζ, overshoot, settling time</p>
+                <a href="https://www.geogebra.org/m/mz8hnquw" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🎛️ RC Circuit Analysis</h4>
+                <p><strong>Explore:</strong> First-order RC low-pass filter</p>
+                <p>Interactive RC circuit showing both time-domain (step response) and frequency-domain (Bode plot) behavior. Adjust R and C values to see how cutoff frequency changes.</p>
+                <p style="margin-top: 1rem;"><strong>Displays:</strong> Time constant τ = RC | Cutoff frequency f_c = 1/(2πRC) | -3dB point | Phase response</p>
+                <a href="https://www.geogebra.org/m/rFEV4HJx" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Understanding Convolution:</strong> Convolution is the most important operation in LTI system analysis. Spend time with the visualization to build intuition - it's worth it!
+            </div>
+        </div>
+
+        <!-- Fourier Analysis -->
+        <div class="section" id="fourier">
+            <div class="section-header">
+                <h2>5️⃣ Fourier Analysis</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Frequency Domain Representations</h3>
+
+            <div class="visualization-card">
+                <h4>📐 Fourier Series Synthesis</h4>
+                <p><strong>Explore:</strong> Building periodic signals from harmonics</p>
+                <p>Watch as a complex periodic waveform is constructed by adding harmonics one by one. Start with the fundamental frequency and add harmonics to see the signal take shape. Demonstrates Gibbs phenomenon at discontinuities.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">1️⃣</div>
+                        <p><strong>Fundamental</strong><br>Base frequency</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">➕</div>
+                        <p><strong>Add Harmonics</strong><br>Integer multiples</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📊</div>
+                        <p><strong>Spectrum</strong><br>Frequency content</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Waveforms Available:</strong> Square wave, Sawtooth, Triangle, Pulse train</p>
+                <a href="https://www.geogebra.org/m/tkajbzmg" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🌈 Frequency Spectrum Visualization</h4>
+                <p><strong>Explore:</strong> Magnitude and phase spectra</p>
+                <p>See both time-domain and frequency-domain representations simultaneously. Adjust signal parameters and watch how the spectrum changes in real-time.</p>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Magnitude spectrum |X(f)| | Phase spectrum ∠X(f) | Time-frequency relationship | Bandwidth visualization</p>
+                <a href="https://www.geogebra.org/m/t9uspumz" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🔄 Fourier Transform Properties</h4>
+                <p><strong>Explore:</strong> Duality, time-shift, frequency-shift, scaling</p>
+                <p>Interactive demonstration of key Fourier transform properties. See how operations in the time domain affect the frequency domain and vice versa.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">⏰</div>
+                        <p><strong>Time Shift</strong><br>Phase change</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📻</div>
+                        <p><strong>Modulation</strong><br>Frequency shift</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔍</div>
+                        <p><strong>Scaling</strong><br>Inverse relationship</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔀</div>
+                        <p><strong>Convolution</strong><br>Multiplication in FD</p>
+                    </div>
+                </div>
+                <a href="https://www.geogebra.org/m/aenhzjpz" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🎵 Complex Exponentials and Phasors</h4>
+                <p><strong>Explore:</strong> e^(jωt) representation and rotating phasors</p>
+                <p>Visualize complex exponentials as rotating vectors in the complex plane. Understand how real sinusoids relate to complex exponentials through Euler's formula.</p>
+                <p style="margin-top: 1rem;"><strong>Key Concepts:</strong> e^(jωt) = cos(ωt) + j·sin(ωt) | Phasor rotation | Real and imaginary components | 3D visualization option</p>
+                <a href="https://www.geogebra.org/3d" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Building Intuition:</strong> The Fourier transform tells us "what frequencies are present in a signal." Use these visualizations to see this relationship directly!
+            </div>
+        </div>
+
+        <!-- Practical Applications -->
+        <div class="section" id="applications">
+            <div class="section-header">
+                <h2>6️⃣ Practical Applications</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>Real-World Examples</h3>
+
+            <div class="visualization-card">
+                <h4>📡 Amplitude Modulation (AM)</h4>
+                <p><strong>Explore:</strong> AM modulation and demodulation</p>
+                <p>See how amplitude modulation works in communications. Adjust carrier frequency, message frequency, and modulation index to understand the modulation process.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">📢</div>
+                        <p><strong>Message</strong><br>Information signal</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">📻</div>
+                        <p><strong>Carrier</strong><br>High frequency</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🔊</div>
+                        <p><strong>Modulated</strong><br>Combined signal</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Key Parameter:</strong> Modulation index μ determines envelope shape and bandwidth</p>
+                <a href="https://www.geogebra.org/m/HnQh6wH6" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🎚️ Ideal Filter Design</h4>
+                <p><strong>Explore:</strong> Low-pass, high-pass, and band-pass filters</p>
+                <p>Interactive filter design tool showing frequency response and filtered output. Apply different filters to input signals and observe the results.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">⬇️</div>
+                        <p><strong>Low-Pass</strong><br>Keep low frequencies</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">⬆️</div>
+                        <p><strong>High-Pass</strong><br>Keep high frequencies</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">↔️</div>
+                        <p><strong>Band-Pass</strong><br>Keep frequency band</p>
+                    </div>
+                </div>
+                <a href="https://beta.geogebra.org/m/MsujYKkG" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>📊 Sampling and Aliasing</h4>
+                <p><strong>Explore:</strong> Nyquist theorem and aliasing effects</p>
+                <p>Understand the sampling theorem by seeing what happens when you sample below, at, and above the Nyquist rate. Watch aliasing occur when sampling rate is too low.</p>
+                <p style="margin-top: 1rem;"><strong>Interactive Features:</strong> Adjustable sampling rate | Original vs sampled signal | Reconstructed signal | Frequency domain view | Aliasing demonstration</p>
+                <a href="https://www.geogebra.org/m/pybKz7FW" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="visualization-card">
+                <h4>🌐 Bode Plot Interactive Tool</h4>
+                <p><strong>Explore:</strong> Frequency response of LTI systems</p>
+                <p>Design transfer functions and see their Bode plots (magnitude and phase). Adjust poles and zeros and watch how they affect the frequency response.</p>
+                <p style="margin-top: 1rem;"><strong>Features:</strong> Pole-zero placement | Gain adjustment | Magnitude response (dB) | Phase response (degrees) | Cutoff frequency marking</p>
+                <a href="https://www.geogebra.org/m/fxamexnt" target="_blank" class="launch-button">🚀 Launch Visualization</a>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Connect Theory to Practice:</strong> These applications show how signals and systems concepts are used in real engineering problems like communications, filtering, and signal processing.
+            </div>
+        </div>
+
+        <!-- Tips for Effective Learning -->
+        <div class="section" id="tips">
+            <div class="section-header">
+                <h2>7️⃣ Tips for Effective Learning</h2>
+                <a href="#top" class="back-to-top">↑ Go Back</a>
+            </div>
+
+            <h3>How to Use These Visualizations Effectively</h3>
+
+            <div class="grid">
+                <div class="card">
+                    <h4>🎯 Start with Purpose</h4>
+                    <p>Before opening a visualization, identify what concept you want to understand. Read the related textbook section first, then use the visualization to reinforce the concept.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔄 Experiment Freely</h4>
+                    <p>Don't be afraid to play with sliders and parameters. Sometimes "breaking" things helps you understand the limits and constraints of a concept.</p>
+                </div>
+
+                <div class="card">
+                    <h4>❓ Ask Questions</h4>
+                    <p>As you interact, ask yourself: "What happens if...?" "Why does it behave this way?" "Can I predict what will happen before I adjust the slider?"</p>
+                </div>
+
+                <div class="card">
+                    <h4>📝 Take Notes</h4>
+                    <p>Document interesting observations and patterns you discover. These insights often become exam questions or useful problem-solving techniques.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔗 Connect Concepts</h4>
+                    <p>Use multiple visualizations together. For example, explore a signal transformation, then see how it affects the system response through convolution.</p>
+                </div>
+
+                <div class="card">
+                    <h4>⏱️ Invest Time</h4>
+                    <p>Spend at least 10-15 minutes with each visualization. Deep understanding comes from thorough exploration, not quick glances.</p>
+                </div>
+            </div>
+
+            <h3>Integration with Course Materials</h3>
+            <div class="info-box">
+                <h3 style="color: white; margin-top: 0;">🎓 Recommended Learning Path</h3>
+                <ol style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>Read:</strong> Study the concept in the textbook and lecture notes</li>
+                    <li><strong>Watch:</strong> View the related video lecture on YouTube</li>
+                    <li><strong>Visualize:</strong> Explore the interactive GeoGebra visualization</li>
+                    <li><strong>Practice:</strong> Solve problems using MATLAB or Python</li>
+                    <li><strong>Apply:</strong> Work on homework and quiz problems</li>
+                    <li><strong>Review:</strong> Return to visualizations when concepts are unclear</li>
+                </ol>
+            </div>
+
+            <h3>Common Visualization Tasks</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                <tr style="background: var(--secondary); color: white;">
+                    <th style="padding: 0.8rem; text-align: left;">Task</th>
+                    <th style="padding: 0.8rem; text-align: left;">Recommended Visualization</th>
+                </tr>
+                <tr>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Understanding signal properties</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Basic Signal Visualizations</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Mastering time transformations</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Time Shifting & Scaling Tools</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Grasping convolution concept</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Convolution Visualization</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Understanding frequency content</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Fourier Series & Transform</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">System response behavior</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">First/Second-Order Systems</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Filter design and analysis</td>
+                    <td style="padding: 0.8rem; border: 1px solid #ddd;">Ideal Filters & Bode Plots</td>
+                </tr>
+            </table>
+
+            <h3>Troubleshooting</h3>
+            <div class="warning-box">
+                <h4 style="margin-top: 0;">⚠️ Common Issues and Solutions</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Visualization not loading:</strong> Try refreshing the page or using a different browser (Chrome recommended)</li>
+                    <li><strong>Slow performance:</strong> Close other browser tabs and ensure you have a stable internet connection</li>
+                    <li><strong>Can't find a slider:</strong> Some parameters may be hidden - look for arrows to expand parameter panels</li>
+                    <li><strong>Graph looks wrong:</strong> Check the axis scales and zoom level - you may need to adjust the view</li>
+                    <li><strong>Need to save work:</strong> Take screenshots or use GeoGebra's built-in save feature if available</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h4 style="margin-top: 0;">💡 Pro Tips for Visual Learners</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Use the visualizations during homework - they can help verify your analytical solutions</li>
+                    <li>Before exams, review key visualizations to refresh your mental models</li>
+                    <li>Create your own challenges: "Can I construct this signal using transformations?"</li>
+                    <li>Pair up with classmates and explain what you see in the visualizations to each other</li>
+                    <li>Take screenshots of interesting configurations and annotate them for your notes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Resources -->
+        <div class="section">
+            <h2>📚 Related Resources</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>💻 MATLAB Tutorial</h4>
+                    <p>Complement visualizations with code implementation. Practice the same concepts programmatically.</p>
+                    <a href="matlab-tutorial-elec360.html" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Open Tutorial →</a>
+                </div>
+                <div class="card">
+                    <h4>🐍 Python Tutorial</h4>
+                    <p>Alternative coding approach with NumPy, SciPy, and Matplotlib for signal processing.</p>
+                    <a href="python-tutorial-elec360.html" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Open Tutorial →</a>
+                </div>
+                <div class="card">
+                    <h4>📖 Course Materials</h4>
+                    <p>Access lecture slides, notes, and assignments on Blackboard.</p>
+                    <a href="https://uaeu.blackboard.com" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: var(--secondary); font-weight: 600;">Open Blackboard →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+            <p>Contact Dr. Al Bataineh during office hours (Monday/Wednesday 11:00 AM - 12:00 PM)</p>
+            <p>Email: mffbataineh@uaeu.ac.ae | Office: F1-1175</p>
+            <p style="margin-top: 1rem;"><a href="elec360.html" style="color: white; text-decoration: underline;">← Back to ELEC 360 Course Page</a></p>
+        </div>
+    </div>
+</body>
+</html>

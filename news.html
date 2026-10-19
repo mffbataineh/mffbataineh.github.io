@@ -31,11 +31,172 @@
             min-height: 100vh;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav > ul > li {
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav > ul > li > a:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .has-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            padding-left: 2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .page-nav {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--green) 100%);
+            padding: 0;
+            position: sticky;
+            top: 52px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-nav li {
+            position: relative;
+        }
+
+        .page-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .page-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .page-nav a.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-bottom: 3px solid white;
+        }
+
+        .page-nav-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .page-nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: white;
             padding: 3rem 2rem;
+            padding-top: 6rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -344,6 +505,79 @@
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav > ul > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                background: rgba(5, 191, 219, 0.2);
+            }
+
+            .has-dropdown.active .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                padding-left: 3rem;
+            }
+
+            nav a {
+                padding: 1rem 1.5rem;
+            }
+
+            .page-nav {
+                top: 60px;
+            }
+
+            .page-nav-toggle {
+                display: block;
+            }
+
+            .page-nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            .page-nav ul.active {
+                display: flex;
+            }
+
+            .page-nav li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .page-nav a {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -395,21 +629,70 @@
     </style>
 </head>
 <body>
+    <!-- Navigation with Dropdowns -->
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        <ul id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">About</a>
+                <ul class="dropdown">
+                    <li><a href="biography.html">Biography</a></li>
+                    <li><a href="Curriculum_Vitae.pdf" target="_blank">CV / Resume</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">Research</a>
+                <ul class="dropdown">
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="https://research.uaeu.ac.ae/en/persons/mohammad-al-bataineh" target="_blank">UAEU Pure Profile</a></li>
+                    <li><a href="talks.html">Talks & Presentations</a></li>
+                    <li><a href="research-projects.html">Projects & Funding</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="teaching.html" onclick="toggleDropdown(event, this)">Teaching</a>
+                <ul class="dropdown">
+                    <li><a href="teaching.html">Courses</a></li>
+                    <li><a href="students.html">Students & Supervision</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
         <h1>News & Updates</h1>
         <p>Dr. Mohammad Fayez Al Bataineh</p>
         <a href="index.html" class="back-link">← Back to Home</a>
     </header>
 
+    <!-- Secondary Page Navigation -->
+    <div class="page-nav">
+        <button class="page-nav-toggle" onclick="togglePageNav()">📑 Jump to Section ▼</button>
+        <ul id="pageNavMenu">
+            <li><a href="#latest">Latest Activity</a></li>
+            <li><a href="#filters">Filter by Category</a></li>
+            <li><a href="#timeline">News Timeline</a></li>
+        </ul>
+    </div>
+
     <div class="container">
         <!-- Highlight Recent -->
-        <div class="highlight-recent fade-in">
+        <div id="latest" class="highlight-recent fade-in">
             <h3>🎯 Latest Activity</h3>
             <p>Stay updated with my recent publications, conference presentations, awards, and grants</p>
         </div>
 
         <!-- Filter Buttons -->
-        <div class="filter-bar fade-in">
+        <div id="filters" class="filter-bar fade-in">
             <button class="filter-btn active" data-filter="all">All Updates</button>
             <button class="filter-btn" data-filter="publication">📚 Publications</button>
             <button class="filter-btn" data-filter="conference">🎤 Conferences</button>
@@ -418,7 +701,106 @@
         </div>
 
         <!-- Timeline -->
-        <div class="timeline">
+        <div id="timeline" class="timeline">
+            <!-- 2026 Publications -->
+            <div class="news-card left fade-in" data-category="conference">
+                <div class="news-date">
+                    <div class="year">2026</div>
+                    <div class="month-day">2026</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content conference">
+                    <span class="news-category category-conference">🎤 Conference</span>
+                    <h3 class="news-title">Paper Accepted at IEEE GHTC 2026</h3>
+                    <p class="news-description">
+                        "Real-time stereo depth estimation on Raspberry Pi 5 for near-field assistive navigation," led by Dr. Al Bataineh with the SURE Plus student team, accepted at the IEEE Global Humanitarian Technology Conference 2026.
+                    </p>
+                    <div class="news-meta">
+                        <span>✅ Accepted</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="conference">
+                <div class="news-date">
+                    <div class="year">2026</div>
+                    <div class="month-day">2026</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content conference">
+                    <span class="news-category category-conference">🎤 Conference</span>
+                    <h3 class="news-title">Two Papers Accepted at SEFI 2026</h3>
+                    <p class="news-description">
+                        Two co-authored engineering education papers with K. Barati et al. accepted at the SEFI Annual Conference 2026: one on teaching methods for LCA and BIM disciplines, and one on conversational AI-tutor approaches for adaptive engineering safety education.
+                    </p>
+                    <div class="news-meta">
+                        <span>✅ Accepted</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2026</div>
+                    <div class="month-day">2026</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">Paper Accepted in IEEE Internet of Things Journal</h3>
+                    <p class="news-description">
+                        Published "CALM: Confidence-aware beam training with reliability-weighted decoding and adaptive pilot allocation for RIS-assisted initial access" in the IEEE Internet of Things Journal, the highest-impact venue in the publication record to date.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 8.2</span>
+                        <span>📈 CiteScore: 14.7</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card left fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2026</div>
+                    <div class="month-day">2026</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">Six New Papers in IEEE Open Journal of the Communications Society</h3>
+                    <p class="news-description">
+                        A series of six 2026 papers on RIS-assisted wireless systems published in IEEE OJ-COMS, covering fluid antenna RIS-NOMA outage analysis, RIS-assisted energy-harvesting relaying, two-relay decode-and-forward for the degraded broadcast channel, reliability-aware and sector-aware beam training, and TD3-based joint power and IRS phase control for NOMA IoT networks.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 6.1</span>
+                        <span>📈 CiteScore: 10.5</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
+            <div class="news-card right fade-in" data-category="publication">
+                <div class="news-date">
+                    <div class="year">2026</div>
+                    <div class="month-day">2026</div>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="news-content publication">
+                    <span class="news-category category-publication">📚 Publication</span>
+                    <h3 class="news-title">New Papers in IEEE Access and IEEE OJ Vehicular Technology</h3>
+                    <p class="news-description">
+                        Four further 2026 journal papers: two on MEMS capacitive pressure sensor design (clearance-ratio nonlinearity framework and κ-locked pre-contact circular sensors) and one on FD-NOMA V2X resource allocation in IEEE Access, plus an uncertainty-aware Kalman filter for terahertz beamspace MIMO beam tracking in IEEE Open Journal of Vehicular Technology.
+                    </p>
+                    <div class="news-meta">
+                        <span>📊 Impact Factor: 3.6</span>
+                        <span>📈 CiteScore: 9.0</span>
+                    </div>
+                    <a href="publications.html" class="news-link">View Publication Details →</a>
+                </div>
+            </div>
+
             <!-- 2025 Publications -->
             <div class="news-card left fade-in" data-category="publication">
                 <div class="news-date">
@@ -707,6 +1089,100 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Mobile dropdown toggle
+        function toggleDropdown(event, element) {
+            if (window.innerWidth <= 968) {
+                event.preventDefault();
+                const parent = element.parentElement;
+                parent.classList.toggle('active');
+            }
+        }
+
+        // Page navigation toggle (for mobile)
+        function togglePageNav() {
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            pageNavMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('mainMenu');
+            const pageNav = document.querySelector('.page-nav');
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            
+            if (nav && !nav.contains(event.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+            
+            if (pageNav && !pageNav.contains(event.target) && pageNavMenu.classList.contains('active')) {
+                pageNavMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.page-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const mainNavHeight = document.querySelector('nav').offsetHeight;
+                    const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+                    const totalOffset = mainNavHeight + pageNavHeight + 20;
+                    
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    const pageNavMenu = document.getElementById('pageNavMenu');
+                    if (pageNavMenu.classList.contains('active')) {
+                        pageNavMenu.classList.remove('active');
+                    }
+                    
+                    document.querySelectorAll('.page-nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('[id="latest"], [id="filters"], [id="timeline"]');
+            const navLinks = document.querySelectorAll('.page-nav a');
+            const mainNavHeight = document.querySelector('nav').offsetHeight;
+            const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+            const offset = mainNavHeight + pageNavHeight + 100;
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - offset;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
         // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const newsCards = document.querySelectorAll('.news-card');

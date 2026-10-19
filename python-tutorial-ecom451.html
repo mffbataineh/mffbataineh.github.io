@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial - ECOM 451 Digital Signal Processing | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --dark-bg: #001524;
+            --light-bg: #f0f8ff;
+            --text-dark: #1a1a1a;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --dark-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --code-bg: #1e1e1e;
+            --python-blue: #306998;
+            --python-yellow: #ffd43b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--python-blue) 0%, #1e3c72 50%, #0d1117 100%);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Password Protection Styles */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .password-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .password-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .password-box p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--python-yellow);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--python-blue) 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(48, 105, 152, 0.4);
+        }
+
+        .error-msg {
+            color: var(--danger-red);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--python-blue), var(--python-yellow), var(--python-blue));
+            background-size: 200% 100%;
+            animation: gradient-slide 3s ease infinite;
+        }
+
+        @keyframes gradient-slide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .python-logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--python-yellow);
+        }
+
+        h3 {
+            color: var(--python-blue);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--python-blue) 0%, #1e3c72 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box a { color: var(--python-yellow); }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning-orange);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--python-blue);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #2d2d2d;
+            color: #d4d4d4;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-header::before {
+            content: '🐍';
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--python-yellow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+            columns: 2;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--python-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid var(--border-light);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--python-blue) 0%, #1e3c72 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light-bg);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .toc ul { columns: 1; }
+            .section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="password-box">
+            <div class="python-logo">🐍</div>
+            <h2>ECOM 451 Python Tutorial</h2>
+            <p>Enter the password to access the tutorial content</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+            <button onclick="checkPassword()" class="password-btn">Access Tutorial</button>
+            <p id="error-msg" class="error-msg">Incorrect password. Please try again.</p>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #888;">
+                Hint: The password is related to the course content (think transforms!)
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="container">
+            <header>
+                <div class="python-logo">🐍</div>
+                <div class="breadcrumb">
+                    <a href="ecom451.html">ECOM 451</a> → Python Tutorial
+                </div>
+                <h1>Python Tutorial for DSP</h1>
+                <p class="subtitle">Digital Signal Processing with NumPy, SciPy, and Matplotlib</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📚 Table of Contents</h3>
+                <ul>
+                    <li><a href="#getting-started">1. Getting Started</a></li>
+                    <li><a href="#discrete-signals">2. Discrete-Time Signals</a></li>
+                    <li><a href="#convolution">3. Convolution & Correlation</a></li>
+                    <li><a href="#dft-fft">4. DFT & FFT</a></li>
+                    <li><a href="#z-transform">5. z-Transform</a></li>
+                    <li><a href="#filter-design">6. Filter Design</a></li>
+                    <li><a href="#matlab-equiv">7. MATLAB Equivalents</a></li>
+                    <li><a href="#tips">8. Tips & Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="section" id="getting-started">
+                <h2>1. Getting Started with DSP in Python</h2>
+                
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">🎯 Why Python for DSP?</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Free & Open Source:</strong> No license costs like MATLAB</li>
+                        <li><strong>Industry Standard:</strong> Used in machine learning, AI, and production systems</li>
+                        <li><strong>Powerful Libraries:</strong> NumPy, SciPy, Matplotlib rival MATLAB capabilities</li>
+                        <li><strong>Transferable Skills:</strong> Python is used beyond just DSP</li>
+                    </ul>
+                </div>
+
+                <h3>Installing Required Libraries</h3>
+                <div class="code-header">Installation Commands</div>
+                <pre><code># Install via pip
+pip install numpy scipy matplotlib
+
+# Or using conda
+conda install numpy scipy matplotlib</code></pre>
+
+                <h3>Essential Imports</h3>
+                <div class="code-header">Standard DSP Imports</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+from scipy.fft import fft, ifft, fftshift, fftfreq
+from numpy.polynomial import polynomial as P
+
+# Set plot style
+plt.style.use('seaborn-v0_8-whitegrid')
+plt.rcParams['figure.figsize'] = [10, 6]
+plt.rcParams['font.size'] = 12</code></pre>
+
+                <h3>Basic DSP Setup</h3>
+                <div class="code-header">Signal Generation Example</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Sampling parameters
+Fs = 1000           # Sampling frequency (Hz)
+T = 1/Fs            # Sampling period
+N = 1024            # Number of samples
+n = np.arange(N)    # Sample indices
+t = n * T           # Time vector
+
+# Create a test signal: two sinusoids
+f1, f2 = 50, 120    # Frequencies (Hz)
+x = np.sin(2*np.pi*f1*t) + 0.5*np.sin(2*np.pi*f2*t)
+
+# Plot the signal
+plt.figure(figsize=(10, 4))
+plt.plot(t, x, 'b-', linewidth=1.5)
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.title('Test Signal: 50 Hz + 120 Hz Sinusoids')
+plt.grid(True)
+plt.tight_layout()
+plt.show()</code></pre>
+            </div>
+
+            <!-- Discrete-Time Signals -->
+            <div class="section" id="discrete-signals">
+                <h2>2. Discrete-Time Signals</h2>
+                
+                <h3>Basic Signal Generation</h3>
+                <div class="code-header">Common Discrete Signals</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample indices
+n = np.arange(-10, 11)
+
+# Unit Impulse (Delta Function)
+delta = (n == 0).astype(float)
+
+# Unit Step Function
+u = (n >= 0).astype(float)
+
+# Exponential Sequence
+a = 0.9
+x_exp = (a ** n) * (n >= 0)
+
+# Create subplots
+fig, axes = plt.subplots(3, 1, figsize=(10, 8))
+
+axes[0].stem(n, delta, basefmt=' ')
+axes[0].set_xlabel('n')
+axes[0].set_ylabel(r'$\delta[n]$')
+axes[0].set_title('Unit Impulse')
+axes[0].grid(True)
+
+axes[1].stem(n, u, basefmt=' ', linefmt='r-', markerfmt='ro')
+axes[1].set_xlabel('n')
+axes[1].set_ylabel('u[n]')
+axes[1].set_title('Unit Step')
+axes[1].grid(True)
+
+axes[2].stem(n, x_exp, basefmt=' ', linefmt='g-', markerfmt='go')
+axes[2].set_xlabel('n')
+axes[2].set_ylabel('x[n]')
+axes[2].set_title(f'Exponential Sequence: x[n] = ({a})^n u[n]')
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Sinusoidal Sequences</h3>
+                <div class="code-header">Discrete Sinusoids</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+n = np.arange(51)
+omega0 = 0.2 * np.pi    # Digital frequency (rad/sample)
+phi = 0                  # Phase
+
+x = np.cos(omega0 * n + phi)
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+
+# Stem plot
+axes[0].stem(n, x, basefmt=' ')
+axes[0].set_xlabel('n')
+axes[0].set_ylabel('x[n]')
+axes[0].set_title(f'Discrete Sinusoid: ω₀ = {omega0/np.pi:.2f}π rad/sample')
+axes[0].grid(True)
+
+# With continuous envelope
+n_fine = np.linspace(0, 50, 500)
+x_envelope = np.cos(omega0 * n_fine + phi)
+
+axes[1].plot(n_fine, x_envelope, 'r--', linewidth=1, label='Continuous')
+axes[1].stem(n, x, basefmt=' ', label='Discrete')
+axes[1].set_xlabel('n')
+axes[1].set_ylabel('x[n]')
+axes[1].set_title('Discrete Samples of Continuous Sinusoid')
+axes[1].legend()
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 NumPy Array Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Use <code>np.arange()</code> for integer sequences</li>
+                        <li>Use <code>np.linspace()</code> for evenly spaced floats</li>
+                        <li>Boolean indexing: <code>(n >= 0)</code> creates a boolean array</li>
+                        <li>Convert to float: <code>.astype(float)</code> for numerical operations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Convolution -->
+            <div class="section" id="convolution">
+                <h2>3. Convolution & Correlation</h2>
+                
+                <h3>Linear Convolution</h3>
+                <div class="code-header">Convolution Example</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+# Define two sequences
+x = np.array([1, 2, 3, 4])      # Input signal
+h = np.array([1, 1, 1])          # Impulse response
+
+# Compute convolution
+y = np.convolve(x, h)
+
+# Print lengths
+print(f"Length of x: {len(x)}")
+print(f"Length of h: {len(h)}")
+print(f"Length of y: {len(y)}")  # len(x) + len(h) - 1
+print(f"y = {y}")
+
+# Plot results
+fig, axes = plt.subplots(3, 1, figsize=(10, 8))
+
+axes[0].stem(np.arange(len(x)), x, basefmt=' ')
+axes[0].set_xlabel('n')
+axes[0].set_ylabel('x[n]')
+axes[0].set_title('Input Signal x[n]')
+axes[0].grid(True)
+
+axes[1].stem(np.arange(len(h)), h, basefmt=' ', linefmt='r-', markerfmt='ro')
+axes[1].set_xlabel('n')
+axes[1].set_ylabel('h[n]')
+axes[1].set_title('Impulse Response h[n]')
+axes[1].grid(True)
+
+axes[2].stem(np.arange(len(y)), y, basefmt=' ', linefmt='g-', markerfmt='go')
+axes[2].set_xlabel('n')
+axes[2].set_ylabel('y[n]')
+axes[2].set_title('Output y[n] = x[n] * h[n] (Convolution)')
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Correlation</h3>
+                <div class="code-header">Cross-Correlation and Autocorrelation</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([1, 2, 3, 4, 3, 2, 1])
+y = np.array([0, 0, 1, 2, 3, 4, 3, 2, 1, 0, 0])  # Shifted version
+
+# Cross-correlation using numpy
+r_xy = np.correlate(x, y, mode='full')
+lags = np.arange(-(len(y)-1), len(x))
+
+# Find lag of maximum correlation
+max_idx = np.argmax(r_xy)
+lag_at_max = lags[max_idx]
+print(f"Maximum correlation at lag = {lag_at_max}")
+
+# Autocorrelation
+r_xx = np.correlate(x, x, mode='full')
+lags_auto = np.arange(-(len(x)-1), len(x))
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+
+axes[0].plot(lags, r_xy, 'b-', linewidth=2)
+axes[0].axvline(lag_at_max, color='r', linestyle='--', label=f'Max at lag={lag_at_max}')
+axes[0].set_xlabel('Lag')
+axes[0].set_ylabel(r'$R_{xy}[k]$')
+axes[0].set_title('Cross-Correlation')
+axes[0].legend()
+axes[0].grid(True)
+
+axes[1].stem(lags_auto, r_xx, basefmt=' ', linefmt='g-', markerfmt='go')
+axes[1].set_xlabel('Lag')
+axes[1].set_ylabel(r'$R_{xx}[k]$')
+axes[1].set_title('Autocorrelation of x[n]')
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+            </div>
+
+            <!-- DFT & FFT -->
+            <div class="section" id="dft-fft">
+                <h2>4. Discrete Fourier Transform (DFT) & FFT</h2>
+                
+                <h3>Basic FFT Usage</h3>
+                <div class="code-header">FFT Spectrum Analysis</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fft import fft, fftfreq, fftshift
+
+# Sampling parameters
+Fs = 1000               # Sampling frequency
+N = 1024                # Number of samples
+t = np.arange(N) / Fs   # Time vector
+
+# Create signal with two frequencies + noise
+f1, f2 = 50, 120
+x = np.sin(2*np.pi*f1*t) + 0.6*np.sin(2*np.pi*f2*t)
+x_noisy = x + 0.5*np.random.randn(N)
+
+# Compute FFT
+X = fft(x_noisy)
+
+# Frequency axis
+f = fftfreq(N, 1/Fs)
+f_shifted = fftshift(f)
+
+# Magnitude spectrum
+X_mag = np.abs(X) / N
+
+# One-sided spectrum (for real signals)
+X_onesided = X_mag[:N//2+1].copy()
+X_onesided[1:-1] *= 2
+f_onesided = f[:N//2+1]
+
+fig, axes = plt.subplots(3, 1, figsize=(10, 9))
+
+axes[0].plot(t, x_noisy, 'b-', linewidth=0.5)
+axes[0].set_xlabel('Time (s)')
+axes[0].set_ylabel('Amplitude')
+axes[0].set_title('Noisy Signal in Time Domain')
+axes[0].grid(True)
+
+axes[1].plot(f_onesided, X_onesided, 'r-', linewidth=1.5)
+axes[1].set_xlabel('Frequency (Hz)')
+axes[1].set_ylabel('|X(f)|')
+axes[1].set_title('One-Sided Amplitude Spectrum')
+axes[1].set_xlim([0, 200])
+axes[1].grid(True)
+
+axes[2].plot(f_shifted, fftshift(X_mag), 'g-', linewidth=1.5)
+axes[2].set_xlabel('Frequency (Hz)')
+axes[2].set_ylabel('|X(f)|')
+axes[2].set_title('Two-Sided Amplitude Spectrum (Centered)')
+axes[2].set_xlim([-200, 200])
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Zero-Padding for Better Resolution</h3>
+                <div class="code-header">Zero-Padding Example</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fft import fft
+
+# Short sequence
+x = np.array([1, 1, 1, 1, 1])
+N_original = len(x)
+N_padded = 64
+
+# FFT without padding
+X1 = fft(x)
+f1 = np.arange(N_original) / N_original
+
+# FFT with zero-padding
+X2 = fft(x, N_padded)
+f2 = np.arange(N_padded) / N_padded
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+
+axes[0].stem(f1, np.abs(X1), basefmt=' ')
+axes[0].set_xlabel('ω/2π')
+axes[0].set_ylabel('|X[k]|')
+axes[0].set_title(f'DFT without Zero-Padding (N = {N_original})')
+axes[0].grid(True)
+
+axes[1].stem(f2, np.abs(X2), basefmt=' ', linefmt='r-', markerfmt='ro')
+axes[1].set_xlabel('ω/2π')
+axes[1].set_ylabel('|X[k]|')
+axes[1].set_title(f'DFT with Zero-Padding (N = {N_padded})')
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 FFT Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Use <code>scipy.fft</code> (newer) or <code>numpy.fft</code> for transforms</li>
+                        <li><code>fftshift()</code> centers the zero-frequency component</li>
+                        <li><code>fftfreq(N, d=1/Fs)</code> generates the frequency axis correctly</li>
+                        <li>For real signals, use <code>rfft()</code> and <code>rfftfreq()</code> for efficiency</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- z-Transform -->
+            <div class="section" id="z-transform">
+                <h2>5. z-Transform Analysis</h2>
+                
+                <h3>Pole-Zero Analysis</h3>
+                <div class="code-header">Pole-Zero Plot</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Define system: H(z) = (z^2 - 0.5z) / (z^2 - 1.2z + 0.72)
+# Coefficients in descending powers of z
+b = [1, -0.5, 0]            # Numerator
+a = [1, -1.2, 0.72]         # Denominator
+
+# Find zeros and poles
+zeros = np.roots(b)
+poles = np.roots(a)
+
+print("Zeros:", zeros)
+print("Poles:", poles)
+print("Pole magnitudes:", np.abs(poles))
+
+# Check stability
+if np.all(np.abs(poles) < 1):
+    print("System is STABLE (all poles inside unit circle)")
+else:
+    print("System is UNSTABLE")
+
+# Pole-Zero Plot
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Draw unit circle
+theta = np.linspace(0, 2*np.pi, 100)
+ax.plot(np.cos(theta), np.sin(theta), 'k--', linewidth=1, alpha=0.5)
+
+# Plot zeros (o) and poles (x)
+ax.scatter(np.real(zeros), np.imag(zeros), s=100, marker='o', 
+           facecolors='none', edgecolors='blue', linewidths=2, label='Zeros')
+ax.scatter(np.real(poles), np.imag(poles), s=100, marker='x', 
+           c='red', linewidths=2, label='Poles')
+
+ax.axhline(0, color='k', linewidth=0.5)
+ax.axvline(0, color='k', linewidth=0.5)
+ax.set_xlabel('Real Part')
+ax.set_ylabel('Imaginary Part')
+ax.set_title('Pole-Zero Plot')
+ax.legend()
+ax.set_aspect('equal')
+ax.grid(True, alpha=0.3)
+ax.set_xlim([-2, 2])
+ax.set_ylim([-2, 2])
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Frequency Response</h3>
+                <div class="code-header">Frequency Response using SciPy</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Define system
+b = [1, 0.5]
+a = [1, -0.8, 0.15]
+
+# Compute frequency response
+w, H = signal.freqz(b, a, worN=1024)
+
+# Convert to different representations
+mag_db = 20 * np.log10(np.abs(H))
+phase_deg = np.unwrap(np.angle(H)) * 180 / np.pi
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+
+axes[0].plot(w/np.pi, mag_db, 'b-', linewidth=2)
+axes[0].set_xlabel('Normalized Frequency (×π rad/sample)')
+axes[0].set_ylabel('Magnitude (dB)')
+axes[0].set_title('Frequency Response')
+axes[0].grid(True)
+
+axes[1].plot(w/np.pi, phase_deg, 'r-', linewidth=2)
+axes[1].set_xlabel('Normalized Frequency (×π rad/sample)')
+axes[1].set_ylabel('Phase (degrees)')
+axes[1].set_title('Phase Response')
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Impulse and Step Response</h3>
+                <div class="code-header">System Response Analysis</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Define system
+b = [1, 0.5]
+a = [1, -0.8, 0.15]
+
+# Create discrete-time system
+system = signal.dlti(b, a)
+
+# Impulse response
+n_imp, h = signal.dimpulse(system, n=50)
+
+# Step response  
+n_step, s = signal.dstep(system, n=50)
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 6))
+
+axes[0].stem(n_imp, h[0].flatten(), basefmt=' ')
+axes[0].set_xlabel('n')
+axes[0].set_ylabel('h[n]')
+axes[0].set_title('Impulse Response')
+axes[0].grid(True)
+
+axes[1].stem(n_step, s[0].flatten(), basefmt=' ', linefmt='r-', markerfmt='ro')
+axes[1].set_xlabel('n')
+axes[1].set_ylabel('s[n]')
+axes[1].set_title('Step Response')
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+            </div>
+
+            <!-- Filter Design -->
+            <div class="section" id="filter-design">
+                <h2>6. Digital Filter Design</h2>
+                
+                <h3>FIR Filter Design</h3>
+                <div class="code-header">FIR Filter Using Window Method</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Filter specifications
+Fs = 1000               # Sampling frequency
+Fc = 100                # Cutoff frequency
+N = 50                  # Filter order
+Wn = Fc / (Fs/2)        # Normalized frequency (0 to 1)
+
+# Design FIR filters with different windows
+b_rect = signal.firwin(N+1, Wn, window='boxcar')
+b_hamm = signal.firwin(N+1, Wn, window='hamming')
+b_black = signal.firwin(N+1, Wn, window='blackman')
+b_kaiser = signal.firwin(N+1, Wn, window=('kaiser', 5))
+
+# Compute frequency responses
+w, H_rect = signal.freqz(b_rect, 1, worN=1024, fs=Fs)
+_, H_hamm = signal.freqz(b_hamm, 1, worN=1024, fs=Fs)
+_, H_black = signal.freqz(b_black, 1, worN=1024, fs=Fs)
+_, H_kaiser = signal.freqz(b_kaiser, 1, worN=1024, fs=Fs)
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 8))
+
+# Magnitude response comparison
+axes[0].plot(w, 20*np.log10(np.abs(H_rect)), label='Rectangular')
+axes[0].plot(w, 20*np.log10(np.abs(H_hamm)), label='Hamming')
+axes[0].plot(w, 20*np.log10(np.abs(H_black)), label='Blackman')
+axes[0].plot(w, 20*np.log10(np.abs(H_kaiser)), label='Kaiser')
+axes[0].set_xlabel('Frequency (Hz)')
+axes[0].set_ylabel('Magnitude (dB)')
+axes[0].set_title('FIR Lowpass Filter - Window Comparison')
+axes[0].legend()
+axes[0].set_xlim([0, Fs/2])
+axes[0].set_ylim([-100, 5])
+axes[0].grid(True)
+
+# Filter coefficients
+axes[1].stem(np.arange(N+1), b_hamm, basefmt=' ')
+axes[1].set_xlabel('n')
+axes[1].set_ylabel('h[n]')
+axes[1].set_title('Filter Coefficients (Hamming Window)')
+axes[1].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>IIR Filter Design</h3>
+                <div class="code-header">Butterworth and Chebyshev Filters</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Filter specifications
+Fs = 1000
+Fc = 100
+Wn = Fc / (Fs/2)
+order = 4
+
+# Design IIR filters
+b_butter, a_butter = signal.butter(order, Wn)
+b_cheby1, a_cheby1 = signal.cheby1(order, 0.5, Wn)  # 0.5 dB ripple
+b_cheby2, a_cheby2 = signal.cheby2(order, 40, Wn)   # 40 dB stopband
+b_ellip, a_ellip = signal.ellip(order, 1, 40, Wn)   # 1 dB pass, 40 dB stop
+
+# Compute frequency responses
+w, H_butter = signal.freqz(b_butter, a_butter, worN=1024, fs=Fs)
+_, H_cheby1 = signal.freqz(b_cheby1, a_cheby1, worN=1024, fs=Fs)
+_, H_cheby2 = signal.freqz(b_cheby2, a_cheby2, worN=1024, fs=Fs)
+_, H_ellip = signal.freqz(b_ellip, a_ellip, worN=1024, fs=Fs)
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 8))
+
+axes[0].plot(w, 20*np.log10(np.abs(H_butter)), linewidth=2, label='Butterworth')
+axes[0].plot(w, 20*np.log10(np.abs(H_cheby1)), linewidth=2, label='Chebyshev I')
+axes[0].plot(w, 20*np.log10(np.abs(H_cheby2)), linewidth=2, label='Chebyshev II')
+axes[0].plot(w, 20*np.log10(np.abs(H_ellip)), linewidth=2, label='Elliptic')
+axes[0].set_xlabel('Frequency (Hz)')
+axes[0].set_ylabel('Magnitude (dB)')
+axes[0].set_title('IIR Lowpass Filters Comparison (Order 4)')
+axes[0].legend()
+axes[0].set_xlim([0, Fs/2])
+axes[0].set_ylim([-80, 5])
+axes[0].grid(True)
+
+# Pole-Zero plot for Butterworth
+zeros_b = np.roots(b_butter)
+poles_b = np.roots(a_butter)
+
+theta = np.linspace(0, 2*np.pi, 100)
+axes[1].plot(np.cos(theta), np.sin(theta), 'k--', linewidth=1, alpha=0.5)
+axes[1].scatter(np.real(zeros_b), np.imag(zeros_b), s=100, marker='o', 
+               facecolors='none', edgecolors='blue', linewidths=2, label='Zeros')
+axes[1].scatter(np.real(poles_b), np.imag(poles_b), s=100, marker='x', 
+               c='red', linewidths=2, label='Poles')
+axes[1].set_xlabel('Real Part')
+axes[1].set_ylabel('Imaginary Part')
+axes[1].set_title('Butterworth Filter Pole-Zero Plot')
+axes[1].legend()
+axes[1].set_aspect('equal')
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+                <h3>Applying Filters</h3>
+                <div class="code-header">Signal Filtering Example</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Create noisy signal
+Fs = 1000
+t = np.arange(0, 1, 1/Fs)
+signal_clean = np.sin(2*np.pi*50*t)
+noise = 0.5*np.sin(2*np.pi*300*t) + 0.3*np.random.randn(len(t))
+x = signal_clean + noise
+
+# Design lowpass filter
+b, a = signal.butter(6, 100/(Fs/2))
+
+# Apply filter
+y_filter = signal.lfilter(b, a, x)           # Causal filtering
+y_filtfilt = signal.filtfilt(b, a, x)        # Zero-phase filtering
+
+fig, axes = plt.subplots(4, 1, figsize=(10, 10))
+
+axes[0].plot(t, signal_clean, 'g-', linewidth=1.5)
+axes[0].set_ylabel('Amplitude')
+axes[0].set_title('Original Signal (50 Hz)')
+axes[0].grid(True)
+
+axes[1].plot(t, x, 'b-', linewidth=0.5)
+axes[1].set_ylabel('Amplitude')
+axes[1].set_title('Noisy Signal')
+axes[1].grid(True)
+
+axes[2].plot(t, y_filter, 'r-', linewidth=1.5)
+axes[2].set_ylabel('Amplitude')
+axes[2].set_title('After lfilter() - Note Phase Delay')
+axes[2].grid(True)
+
+axes[3].plot(t, y_filtfilt, 'm-', linewidth=1.5)
+axes[3].set_xlabel('Time (s)')
+axes[3].set_ylabel('Amplitude')
+axes[3].set_title('After filtfilt() - Zero-Phase Filtering')
+axes[3].grid(True)
+
+plt.tight_layout()
+plt.show()</code></pre>
+            </div>
+
+            <!-- MATLAB Equivalents -->
+            <div class="section" id="matlab-equiv">
+                <h2>7. MATLAB to Python Equivalents</h2>
+                
+                <h3>Common DSP Functions</h3>
+                <table>
+                    <tr><th>MATLAB</th><th>Python (NumPy/SciPy)</th></tr>
+                    <tr><td><code>fft(x)</code></td><td><code>np.fft.fft(x)</code> or <code>scipy.fft.fft(x)</code></td></tr>
+                    <tr><td><code>ifft(X)</code></td><td><code>np.fft.ifft(X)</code></td></tr>
+                    <tr><td><code>fftshift(X)</code></td><td><code>np.fft.fftshift(X)</code></td></tr>
+                    <tr><td><code>conv(x, h)</code></td><td><code>np.convolve(x, h)</code></td></tr>
+                    <tr><td><code>xcorr(x, y)</code></td><td><code>np.correlate(x, y, 'full')</code></td></tr>
+                    <tr><td><code>freqz(b, a)</code></td><td><code>signal.freqz(b, a)</code></td></tr>
+                    <tr><td><code>filter(b, a, x)</code></td><td><code>signal.lfilter(b, a, x)</code></td></tr>
+                    <tr><td><code>filtfilt(b, a, x)</code></td><td><code>signal.filtfilt(b, a, x)</code></td></tr>
+                    <tr><td><code>butter(n, Wn)</code></td><td><code>signal.butter(n, Wn)</code></td></tr>
+                    <tr><td><code>fir1(n, Wn)</code></td><td><code>signal.firwin(n+1, Wn)</code></td></tr>
+                    <tr><td><code>roots(p)</code></td><td><code>np.roots(p)</code></td></tr>
+                    <tr><td><code>impz(b, a)</code></td><td><code>signal.dimpulse((b, a, 1))</code></td></tr>
+                    <tr><td><code>zplane(b, a)</code></td><td>Custom plot (see examples above)</td></tr>
+                </table>
+
+                <h3>Array Indexing Differences</h3>
+                <div class="warning-box">
+                    <h4>⚠️ Important Indexing Difference</h4>
+                    <p><strong>MATLAB:</strong> 1-based indexing (first element is index 1)</p>
+                    <p><strong>Python:</strong> 0-based indexing (first element is index 0)</p>
+                    <pre style="background: white; border: 1px solid #ddd; margin-top: 0.5rem;"><code style="color: #333;">% MATLAB                    # Python
+x(1)                        x[0]
+x(end)                      x[-1]
+x(2:5)                      x[1:5]  # Note: Python excludes end
+x(1:2:end)                  x[::2]</code></pre>
+                </div>
+            </div>
+
+            <!-- Tips & Best Practices -->
+            <div class="section" id="tips">
+                <h2>8. Tips & Best Practices</h2>
+                
+                <h3>Useful Libraries Quick Reference</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>NumPy</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>np.array()</code> - Create arrays</li>
+                            <li><code>np.arange()</code> - Integer range</li>
+                            <li><code>np.linspace()</code> - Float range</li>
+                            <li><code>np.convolve()</code> - Convolution</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>SciPy Signal</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>signal.freqz()</code> - Freq response</li>
+                            <li><code>signal.butter()</code> - IIR design</li>
+                            <li><code>signal.firwin()</code> - FIR design</li>
+                            <li><code>signal.filtfilt()</code> - Zero-phase</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>SciPy FFT</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>fft()</code>, <code>ifft()</code></li>
+                            <li><code>rfft()</code>, <code>irfft()</code></li>
+                            <li><code>fftfreq()</code>, <code>rfftfreq()</code></li>
+                            <li><code>fftshift()</code>, <code>ifftshift()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Matplotlib</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>plt.plot()</code> - Line plots</li>
+                            <li><code>plt.stem()</code> - Discrete signals</li>
+                            <li><code>plt.subplot()</code> - Multiple plots</li>
+                            <li><code>plt.savefig()</code> - Save figures</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Assignment Submission Checklist</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>✔ Header with name, ID, assignment number</li>
+                        <li>✔ All imports at the top of the file</li>
+                        <li>✔ Code runs without errors</li>
+                        <li>✔ Functions have docstrings</li>
+                        <li>✔ Figures have titles, axis labels, and legends</li>
+                        <li>✔ Results printed clearly with f-strings</li>
+                        <li>✔ Code follows PEP 8 style guide</li>
+                        <li>✔ Frequency axes properly labeled (Hz or rad/sample)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li><strong>NumPy Documentation:</strong> <a href="https://numpy.org/doc/" target="_blank">numpy.org/doc/</a></li>
+                        <li><strong>SciPy Signal:</strong> <a href="https://docs.scipy.org/doc/scipy/reference/signal.html" target="_blank">docs.scipy.org/signal</a></li>
+                        <li><strong>Matplotlib:</strong> <a href="https://matplotlib.org/stable/tutorials/" target="_blank">matplotlib.org/tutorials/</a></li>
+                        <li><strong>Textbook:</strong> Sanjit K. Mitra, Digital Signal Processing, 4th Ed.</li>
+                        <li><strong>Course Materials:</strong> Check Blackboard for sample codes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section" style="text-align: center; background: linear-gradient(135deg, var(--python-blue) 0%, #1e3c72 100%); color: white;">
+                <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+                <p>Contact Dr. Al Bataineh during office hours (Tuesday/Thursday 11:00 AM - 12:00 PM)</p>
+                <p>Email: mffbataineh@uaeu.ac.ae | Office: F1-1175</p>
+                <p style="margin-top: 1rem;">
+                    <a href="ecom451.html" style="color: var(--python-yellow); text-decoration: none;">← Back to ECOM 451 Course Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password protection
+        const correctPassword = "dsp";
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.toLowerCase();
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                sessionStorage.setItem('ecom451PythonAccess', 'granted');
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        window.onload = function() {
+            if (sessionStorage.getItem('ecom451PythonAccess') === 'granted') {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Multimodal Edge AI Framework - IEEE AICT 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px 50px;
+            display: none;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-header {
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin: 20px 0 12px 0;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1em;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .authors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .author {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .author-dept {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .author-email {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .content {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        ul {
+            margin: 12px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+            line-height: 1.5;
+            font-size: 0.98em;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .key-point {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #17a2b8;
+            margin: 15px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #28a745;
+            margin: 15px 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 380px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.9em;
+        }
+
+        th {
+            background: #2a5298;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+
+        .nav-button:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(42, 82, 152, 0.4);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(42, 82, 152, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .metric-label {
+            font-size: 0.88em;
+            opacity: 0.9;
+        }
+
+        .comparison-table {
+            font-size: 0.9em;
+        }
+
+        strong {
+            color: #1e3c72;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .badge-primary {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        @media print {
+            .navigation, .slide-counter {
+                display: none;
+            }
+            .slide {
+                page-break-after: always;
+                display: flex !important;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1>Offline Multimodal Edge AI Framework Integrating Computer Vision and Speech Processing for ICT Accessibility Systems</h1>
+                <div class="subtitle">IEEE AICT 2025 Conference</div>
+            </div>
+            <div class="content">
+                <div class="authors">
+                    <div class="author">
+                        <div class="author-name">Fitsum Y. Mekonnen</div>
+                        <div class="author-dept">Mechanical & Aerospace Eng.</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Ahmed Serag</div>
+                        <div class="author-dept">Mechanical & Aerospace Eng.</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Mohammad F. Al Bataineh</div>
+                        <div class="author-dept">Electrical & Comm. Eng.</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Kena Teshale Tamiru</div>
+                        <div class="author-dept">CS & Software Engineering</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Dana Abu Abdoun</div>
+                        <div class="author-dept">Electrical & Comm. Eng.</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Winner Abula</div>
+                        <div class="author-dept">CS & Software Engineering</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                    <div class="author">
+                        <div class="author-name">Simon Darota</div>
+                        <div class="author-dept">CS & Software Engineering</div>
+                        <div class="author-dept">UAEU, Al Ain, UAE</div>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>Keywords:</strong> Edge Computing, Human-Computer Interaction, Multimodal Systems, ICT Applications, Privacy-Preserving Technologies, Embedded AI
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Motivation & Problem Statement -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Motivation & Problem Statement</h2>
+            </div>
+            <div class="content">
+                <h3>The Challenge</h3>
+                <div class="highlight">
+                    <p><strong>Traditional cloud-based assistive systems face critical limitations:</strong></p>
+                    <ul>
+                        <li><strong>Privacy Concerns:</strong> Sensitive personal data transmitted to external servers</li>
+                        <li><strong>Network Dependency:</strong> Requires constant internet connectivity</li>
+                        <li><strong>Latency Issues:</strong> Network delays impact real-time interaction</li>
+                        <li><strong>Data Security:</strong> Risk of unauthorized access to user information</li>
+                    </ul>
+                </div>
+
+                <h3>Our Solution: Privacy-First Edge AI</h3>
+                <div class="success">
+                    <ul>
+                        <li>✓ <strong>100% Offline Operation</strong> - Complete data sovereignty</li>
+                        <li>✓ <strong>Multimodal Integration</strong> - Vision, speech, and text processing</li>
+                        <li>✓ <strong>Real-Time Performance</strong> - Sub-1.2s latency per modality</li>
+                        <li>✓ <strong>Resource-Efficient</strong> - Runs on Raspberry Pi 5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Research Contributions -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Key Contributions</h2>
+            </div>
+            <div class="content">
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Inference Time Reduction</div>
+                        <div class="metric-value">23-31%</div>
+                        <div class="metric-label">Through Dynamic Optimization</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">OCR Processing Improvement</div>
+                        <div class="metric-value">45%</div>
+                        <div class="metric-label">Via Intelligent Caching</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Privacy Score</div>
+                        <div class="metric-value">9.8/10</div>
+                        <div class="metric-label">Complete Offline Operation</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">System Stability</div>
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">Crashes in 50-hour Test</div>
+                    </div>
+                </div>
+
+                <h3>Novel Contributions</h3>
+                <ul>
+                    <li><strong>Optimization Strategies:</strong> Queue-based inference management, adaptive buffer control, priority-based scheduling, and intelligent caching mechanisms</li>
+                    <li><strong>Integrated Architecture:</strong> First demonstration of concurrent YOLOv8, Tesseract OCR, face recognition, and VOSK speech processing on Raspberry Pi 5</li>
+                    <li><strong>Privacy-First Design:</strong> Zero external data transmission with complete offline capability</li>
+                    <li><strong>Application-Specific Characterization:</strong> Systematic evaluation across environmental awareness, text reading, and social interaction scenarios</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Related Work Comparison -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Related Work & Research Gaps</h2>
+            </div>
+            <div class="content">
+                <h3>Comparative Analysis of Multimodal Edge Systems</h3>
+                <div class="table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>System</th>
+                                <th>Modalities</th>
+                                <th>Privacy</th>
+                                <th>Latency</th>
+                                <th>Key Limitation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dubey et al. [2]</td>
+                                <td>Vision only</td>
+                                <td>High</td>
+                                <td>1.5s</td>
+                                <td>Single function</td>
+                            </tr>
+                            <tr>
+                                <td>Mahendran et al. [6]</td>
+                                <td>Vision + Navigation</td>
+                                <td>Medium</td>
+                                <td>0.8s</td>
+                                <td>Cloud hybrid</td>
+                            </tr>
+                            <tr>
+                                <td>Patil & Pawar [9]</td>
+                                <td>Vision + Audio</td>
+                                <td>High</td>
+                                <td>1.2s</td>
+                                <td>No OCR/face recognition</td>
+                            </tr>
+                            <tr>
+                                <td>Okolo et al. [10]</td>
+                                <td>Vision Navigation</td>
+                                <td>High</td>
+                                <td>0.9s</td>
+                                <td>Navigation only</td>
+                            </tr>
+                            <tr style="background: #d4edda; font-weight: bold;">
+                                <td>Our Framework</td>
+                                <td>4+ modalities</td>
+                                <td>Full (9.8/10)</td>
+                                <td>0.85–1.24s</td>
+                                <td>Stationary focus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Critical Research Gaps Addressed</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Previous Limitations</h4>
+                        <ul>
+                            <li>Limited to 1-2 modalities</li>
+                            <li>Cloud-hybrid approaches</li>
+                            <li>Privacy-performance trade-offs</li>
+                            <li>Insufficient concurrent execution optimization</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Our Solutions</h4>
+                        <ul>
+                            <li>Comprehensive 4+ modality integration</li>
+                            <li>100% offline operation</li>
+                            <li>Privacy-first with maintained performance</li>
+                            <li>Novel optimization for constrained hardware</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: System Architecture -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>System Architecture</h2>
+            </div>
+            <div class="content">
+                <div class="image-container">
+                    <img src="architecture.png" alt="System Architecture">
+                    <div class="image-caption">Figure 1: Multimodal ICT Framework Architecture with Central Processing Coordinator</div>
+                </div>
+
+                <h3>Architectural Components</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Input Modules</h4>
+                        <ul>
+                            <li><strong>Camera Input:</strong> Visual data acquisition</li>
+                            <li><strong>Microphone Input:</strong> Audio stream processing</li>
+                            <li><strong>User Commands:</strong> Direct system control</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Processing Modules</h4>
+                        <ul>
+                            <li><strong>Computer Vision:</strong> YOLOv8 object detection</li>
+                            <li><strong>Speech Processing:</strong> VOSK recognition</li>
+                            <li><strong>NLP Module:</strong> Text understanding</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <strong>Central Processing Coordinator:</strong> Manages task scheduling, resource allocation, and inter-module communication with priority-based task management
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Hardware & Software Stack -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Hardware Platform & Software Stack</h2>
+            </div>
+            <div class="content">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Hardware Configuration</h3>
+                        <ul>
+                            <li><strong>Processor:</strong> Raspberry Pi 5
+                                <ul>
+                                    <li>ARM Cortex-A76 @ 2.4GHz</li>
+                                    <li>8GB LPDDR4X RAM</li>
+                                </ul>
+                            </li>
+                            <li><strong>Camera:</strong> Module V3
+                                <ul>
+                                    <li>12MP sensor</li>
+                                    <li>1080p @ 30fps</li>
+                                </ul>
+                            </li>
+                            <li><strong>Audio:</strong> USB microphone array
+                                <ul>
+                                    <li>3-element beamforming</li>
+                                    <li>Standard audio output</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="success" style="margin-top: 20px;">
+                            <strong>Total Cost: &lt;$200</strong><br>
+                            Enables widespread deployment
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>Software Components</h3>
+                        <ul>
+                            <li><strong>Object Detection:</strong>
+                                <span class="badge badge-primary">YOLOv8 nano</span>
+                            </li>
+                            <li><strong>OCR Engine:</strong>
+                                <span class="badge badge-primary">Tesseract 5.x</span>
+                            </li>
+                            <li><strong>Face Recognition:</strong>
+                                <span class="badge badge-primary">OpenCV DNN</span>
+                            </li>
+                            <li><strong>Speech-to-Text:</strong>
+                                <span class="badge badge-primary">VOSK offline</span>
+                            </li>
+                            <li><strong>Text-to-Speech:</strong>
+                                <span class="badge badge-primary">pyttsx3</span>
+                            </li>
+                        </ul>
+                        <div class="highlight" style="margin-top: 20px;">
+                            <strong>Multi-threaded Architecture:</strong> Maximizes resource utilization while maintaining responsive interaction
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Optimization Strategies -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Novel Optimization Strategies</h2>
+            </div>
+            <div class="content">
+                <div class="image-container">
+                    <img src="workflow.png" alt="Processing Workflow">
+                    <div class="image-caption">Figure 2: Processing Workflow with Optimization Strategies</div>
+                </div>
+
+                <h3>Four-Pillar Optimization Approach</h3>
+                <div class="metric-grid">
+                    <div class="metric-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <strong>1. Queue-Based Inference</strong>
+                        <p style="margin-top: 15px; font-size: 0.9em;">Prioritized task management preventing system crashes</p>
+                        <div class="metric-value" style="font-size: 1.8em;">23%</div>
+                        <div class="metric-label">Latency Reduction<br>(1100ms → 850ms)</div>
+                    </div>
+                    <div class="metric-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <strong>2. Adaptive Buffering</strong>
+                        <p style="margin-top: 15px; font-size: 0.9em;">Dynamic queue sizing (10-50 commands)</p>
+                        <div class="metric-value" style="font-size: 1.8em;">90%</div>
+                        <div class="metric-label">Crash Reduction<br>(vs. fixed buffers)</div>
+                    </div>
+                    <div class="metric-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <strong>3. Priority Scheduling</strong>
+                        <p style="margin-top: 15px; font-size: 0.9em;">Real-time task prioritization by latency targets</p>
+                        <div class="metric-value" style="font-size: 1.8em;">60%</div>
+                        <div class="metric-label">Voice Response Improvement<br>(1.5s → 0.6s)</div>
+                    </div>
+                    <div class="metric-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <strong>4. Intelligent Caching</strong>
+                        <p style="margin-top: 15px; font-size: 0.9em;">Reuse results for similar content (>95% similarity)</p>
+                        <div class="metric-value" style="font-size: 1.8em;">45%</div>
+                        <div class="metric-label">OCR Processing Reduction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Experimental Setup -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Experimental Methodology</h2>
+            </div>
+            <div class="content">
+                <h3>Testing Framework</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Environmental Conditions</h4>
+                        <ul>
+                            <li><strong>Lighting Scenarios:</strong>
+                                <ul>
+                                    <li>Well-lit: 400-500 lux (office)</li>
+                                    <li>Moderate: 100-200 lux (indoor)</li>
+                                    <li>Dim: 30-50 lux (low-light)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Audio Conditions:</strong>
+                                <ul>
+                                    <li>Quiet: &lt;40dB ambient</li>
+                                    <li>Noisy: 60-70dB ambient</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Performance Metrics</h4>
+                        <ul>
+                            <li><strong>Processing Latency:</strong> End-to-end measurement from input to audio feedback</li>
+                            <li><strong>Accuracy Metrics:</strong>
+                                <ul>
+                                    <li>Precision = TP / (TP + FP)</li>
+                                    <li>Recall = TP / (TP + FN)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Resource Utilization:</strong> CPU, memory monitoring at 100ms intervals</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <strong>Testing Protocol:</strong> All measurements repeated 50 times per condition. Results reported as mean ± standard deviation. Statistical validation using paired t-tests (p &lt; 0.05).
+                </div>
+
+                <h3>Application Scenarios</h3>
+                <ul>
+                    <li><strong>Scenario 1 - Environmental Awareness:</strong> Object detection for obstacle identification (Target: &lt;1000ms)</li>
+                    <li><strong>Scenario 2 - Text Reading:</strong> OCR for documents and signage (Target: &lt;1500ms)</li>
+                    <li><strong>Scenario 3 - Social Interaction:</strong> Face recognition for identifying individuals (Target: &lt;1000ms)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Performance Results -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Performance Results</h2>
+            </div>
+            <div class="content">
+                <h3>System Performance Measurements</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Processing Module</th>
+                                <th>Latency (ms)</th>
+                                <th>Accuracy (%)</th>
+                                <th>CPU Usage (%)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Computer Vision (YOLOv8)</strong></td>
+                                <td>850 ± 120</td>
+                                <td>85.3 ± 3.4</td>
+                                <td>45.2</td>
+                                <td><span class="badge badge-success">✓ Target Met</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speech Recognition (VOSK)</strong></td>
+                                <td>400–700</td>
+                                <td>88.7 ± 4.6</td>
+                                <td>28.6</td>
+                                <td><span class="badge badge-success">✓ Target Met</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>OCR Processing (Tesseract)</strong></td>
+                                <td>1240 ± 230</td>
+                                <td>91.4 ± 2.8</td>
+                                <td>35.8</td>
+                                <td><span class="badge badge-success">✓ Target Met</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Face Recognition</strong></td>
+                                <td>980 ± 150</td>
+                                <td>78.9 ± 5.2</td>
+                                <td>38.1</td>
+                                <td><span class="badge badge-success">✓ Target Met</span></td>
+                            </tr>
+                            <tr style="background: #fff3cd;">
+                                <td><strong>Integrated Multimodal</strong></td>
+                                <td>1680 ± 310</td>
+                                <td>83.6 ± 4.1</td>
+                                <td>80–90</td>
+                                <td><span class="badge badge-warning">Sequential Processing</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="success">
+                    <h4>Statistical Validation (paired t-tests, p &lt; 0.05)</h4>
+                    <ul>
+                        <li><strong>28% latency reduction</strong> compared to baseline (p = 0.003)</li>
+                        <li><strong>12% accuracy improvement</strong> over non-optimized implementation (p = 0.007)</li>
+                        <li><strong>Zero system crashes</strong> in 50-hour continuous testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Resource Utilization -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Resource Utilization Analysis</h2>
+            </div>
+            <div class="content">
+                <h3>Efficient Resource Management</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>CPU Utilization</h4>
+                        <ul>
+                            <li><strong>Vision Module:</strong> 45.2% (efficient object detection)</li>
+                            <li><strong>Speech Module:</strong> 28.6% (lowest resource demand)</li>
+                            <li><strong>OCR Module:</strong> 35.8% (balanced processing)</li>
+                            <li><strong>Face Recognition:</strong> 38.1% (optimized inference)</li>
+                            <li><strong>Combined Operation:</strong> 80-90% (peak utilization)</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Memory Management</h4>
+                        <ul>
+                            <li><strong>Baseline Usage:</strong> 1.2 ± 0.2 GB</li>
+                            <li><strong>Peak Load:</strong> Stable at 1.4 GB</li>
+                            <li><strong>Adaptive Buffers:</strong> 10-50 command capacity</li>
+                            <li><strong>Stability:</strong> Zero overflow events in 50-hour test</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Dynamic Quantization Strategy</h3>
+                <div class="highlight">
+                    <p><strong>Intelligent Performance-Accuracy Trade-offs:</strong></p>
+                    <ul>
+                        <li><strong>Low Load (&lt;50% CPU):</strong> FP16 precision → 85.3% accuracy</li>
+                        <li><strong>High Load (&gt;80% CPU):</strong> Automatic INT8 quantization → 81.2% accuracy</li>
+                        <li><strong>Result:</strong> 4% accuracy trade-off maintains 850ms latency and prevents system unresponsiveness</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>Key Achievement:</strong> Effective multimodal AI execution on resource-constrained hardware through priority-based scheduling and adaptive resource allocation
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Privacy vs Performance -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Privacy-Performance Trade-off Analysis</h2>
+            </div>
+            <div class="content">
+                <h3>Privacy Score Methodology</h3>
+                <div class="highlight">
+                    <p><strong>Composite Privacy Metric:</strong></p>
+                    <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                        Privacy Score = 0.4 × L<sub>p</sub> + 0.4 × N<sub>t</sub> + 0.2 × U<sub>c</sub>
+                    </p>
+                    <ul>
+                        <li><strong>L<sub>p</sub>:</strong> Local processing (10 if fully local, 0 if cloud-dependent)</li>
+                        <li><strong>N<sub>t</sub>:</strong> No external transmission (10 if zero transmission, 0 otherwise)</li>
+                        <li><strong>U<sub>c</sub>:</strong> User control over data (scale 0-10)</li>
+                    </ul>
+                </div>
+
+                <h3>Comparative Analysis</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>System Type</th>
+                                <th>L<sub>p</sub></th>
+                                <th>N<sub>t</sub></th>
+                                <th>U<sub>c</sub></th>
+                                <th>Privacy Score</th>
+                                <th>Response Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #d4edda; font-weight: bold;">
+                                <td>Our Edge System</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>9</td>
+                                <td>9.8/10</td>
+                                <td>850-1680ms</td>
+                            </tr>
+                            <tr>
+                                <td>Other Edge Implementations</td>
+                                <td>8-10</td>
+                                <td>6-8</td>
+                                <td>7-9</td>
+                                <td>7.2-8.6/10</td>
+                                <td>800-1500ms</td>
+                            </tr>
+                            <tr>
+                                <td>Cloud-based Systems</td>
+                                <td>0-3</td>
+                                <td>0</td>
+                                <td>4-6</td>
+                                <td>2.0-4.0/10</td>
+                                <td>1200-3000ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="success">
+                    <h4>Key Achievements</h4>
+                    <ul>
+                        <li><strong>Superior Privacy:</strong> 9.8/10 score with complete offline operation</li>
+                        <li><strong>Competitive Performance:</strong> Sub-1.7s integrated latency</li>
+                        <li><strong>No Trade-offs:</strong> Privacy without sacrificing functionality</li>
+                        <li><strong>User Sovereignty:</strong> Complete data control and autonomy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Application Scenarios -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Application-Specific Performance</h2>
+            </div>
+            <div class="content">
+                <div class="metric-grid">
+                    <div class="metric-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <strong>Scenario 1</strong>
+                        <h4 style="margin: 15px 0;">Environmental Awareness</h4>
+                        <ul style="text-align: left; font-size: 0.85em; margin: 10px 0;">
+                            <li>Algorithm: YOLOv8 nano</li>
+                            <li>Target: &lt;1000ms</li>
+                            <li>Achieved: 850±120ms ✓</li>
+                            <li>Use: Object identification</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <strong>Scenario 2</strong>
+                        <h4 style="margin: 15px 0;">Text Reading</h4>
+                        <ul style="text-align: left; font-size: 0.85em; margin: 10px 0;">
+                            <li>Algorithm: Tesseract OCR</li>
+                            <li>Target: &lt;1500ms</li>
+                            <li>Achieved: 1240±230ms ✓</li>
+                            <li>Use: Document reading</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <strong>Scenario 3</strong>
+                        <h4 style="margin: 15px 0;">Social Interaction</h4>
+                        <ul style="text-align: left; font-size: 0.85em; margin: 10px 0;">
+                            <li>Algorithm: OpenCV DNN</li>
+                            <li>Target: &lt;1000ms</li>
+                            <li>Achieved: 980±150ms ✓</li>
+                            <li>Use: Face recognition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Target Application Context</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>✓ Suitable For</h4>
+                        <ul>
+                            <li>Stationary or slow-moving users</li>
+                            <li>Environmental scanning and awareness</li>
+                            <li>Document and label reading</li>
+                            <li>Social interaction assistance</li>
+                            <li>Indoor navigation at walking pace</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>⚠ Current Limitations</h4>
+                        <ul>
+                            <li>High-speed navigation (&lt;500ms required)</li>
+                            <li>Rapid obstacle avoidance during running</li>
+                            <li>Extreme low-light conditions (&lt;30 lux)</li>
+                            <li>Very high ambient noise (&gt;70dB)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <strong>Navigation Note:</strong> High-speed navigation typically requires sub-500ms latencies. Our system achieves application-appropriate latencies for stationary/slow-moving scenarios. Hardware acceleration (Coral TPU, RPi AI Kit) expected to enable 200-400ms latencies for navigation.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusions -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Conclusions & Future Directions</h2>
+            </div>
+            <div class="content">
+                <h3>Key Achievements</h3>
+                <div class="success">
+                    <ul>
+                        <li><strong>Privacy-First Design:</strong> Complete offline operation with 9.8/10 privacy score</li>
+                        <li><strong>Multimodal Integration:</strong> First demonstration of 4+ AI modalities on Raspberry Pi 5</li>
+                        <li><strong>Novel Optimizations:</strong> 23-31% latency reduction through intelligent resource management</li>
+                        <li><strong>Practical Viability:</strong> Sub-$200 hardware cost enables widespread deployment</li>
+                        <li><strong>Robust Performance:</strong> Zero crashes in 50-hour continuous testing</li>
+                    </ul>
+                </div>
+
+                <h3>Current Limitations</h3>
+                <div class="highlight">
+                    <ul>
+                        <li><strong>Navigation Constraint:</strong> Targets stationary/slow-moving scenarios</li>
+                        <li><strong>Environmental Sensitivity:</strong> Performance degradation in extreme conditions</li>
+                        <li><strong>Language Support:</strong> Currently limited to English</li>
+                    </ul>
+                </div>
+
+                <h3>Future Research Directions</h3>
+                <ul>
+                    <li><strong>Hardware Acceleration:</strong> Integration of Coral TPU or Raspberry Pi AI Kit
+                        <ul>
+                            <li>Target: 3-5× speedup → 200-400ms latencies</li>
+                            <li>Enable high-speed navigation applications</li>
+                        </ul>
+                    </li>
+                    <li><strong>Enhanced Preprocessing:</strong> Robust algorithms for challenging conditions</li>
+                    <li><strong>Multi-language Support:</strong> Expand accessibility to non-English users</li>
+                    <li><strong>Field Evaluation:</strong> Real-world testing with target user populations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 14: Impact & Deployment -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Broader Impact & Deployment</h2>
+            </div>
+            <div class="content">
+                <h3>Societal Impact</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <h4>Accessibility Enhancement</h4>
+                        <ul>
+                            <li><strong>Data Sovereignty:</strong> Complete user control over sensitive data</li>
+                            <li><strong>Economic Accessibility:</strong> Sub-$200 hardware cost</li>
+                            <li><strong>Network Independence:</strong> Functions without internet</li>
+                            <li><strong>Privacy Protection:</strong> Critical for vulnerable populations</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Deployment Opportunities</h4>
+                        <ul>
+                            <li><strong>Developing Regions:</strong> Limited infrastructure areas</li>
+                            <li><strong>Resource-Constrained Settings:</strong> Where cloud solutions are prohibitive</li>
+                            <li><strong>Cultural Adaptation:</strong> Open-source enables customization</li>
+                            <li><strong>Privacy-Critical Applications:</strong> Healthcare, personal assistance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Responsible Deployment Considerations</h3>
+                <div class="key-point">
+                    <ul>
+                        <li><strong>User Education:</strong> Clear communication about system capabilities and limitations</li>
+                        <li><strong>Safety Guidelines:</strong> Not for high-speed navigation or safety-critical mobility</li>
+                        <li><strong>Update Mechanisms:</strong> Secure offline update procedures for model improvements</li>
+                        <li><strong>Community Collaboration:</strong> Ongoing engagement with user communities</li>
+                    </ul>
+                </div>
+
+                <div class="success">
+                    <h4>Demonstrated Feasibility</h4>
+                    <p>This framework proves that privacy-preserving, fully offline multimodal AI is achievable on consumer edge hardware, advancing ICT accessibility toward more secure, autonomous, and widely deployable solutions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Thank You -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Thank You!</h2>
+            </div>
+            <div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <div style="font-size: 1.5em; margin: 30px 0;">
+                    <strong>Questions & Discussion</strong>
+                </div>
+
+                <div class="success" style="width: 100%; margin: 30px 0;">
+                    <h3>Contact Information</h3>
+                    <p style="margin: 15px 0;"><strong>Mohammad F. Al Bataineh</strong></p>
+                    <p>Electrical & Communication Engineering Department</p>
+                    <p>United Arab Emirates University</p>
+                    <p>Al Ain, UAE</p>
+                    <p style="margin-top: 15px; font-weight: bold;">mffbataineh@uaeu.ac.ae</p>
+                </div>
+
+                <div class="key-point" style="width: 100%;">
+                    <h3>Resources</h3>
+                    <p><strong>Extended Journal Publication:</strong></p>
+                    <p style="margin-top: 10px;">F. Y. Mekonnen, M. F. Al Bataineh, et al., "Development of a Fully Autonomous Offline Assistive System for Visually Impaired Individuals: A Privacy-First Approach," <em>Sensors</em>, vol. 25, no. 19, p. 6006, 2025.</p>
+                </div>
+
+                <div style="margin-top: 40px; font-size: 1.1em;">
+                    <strong>Acknowledgment:</strong> This work was supported by UAEU Summer Undergraduate Research Experience (SURE Plus) Program
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">15</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-button" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+
+            slides[currentSlide].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                showSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                showSlide(totalSlides - 1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+
+        // Print all slides
+        window.addEventListener('beforeprint', function() {
+            slides.forEach(slide => slide.classList.add('active'));
+        });
+
+        window.addEventListener('afterprint', function() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>

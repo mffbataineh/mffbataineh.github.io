@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Comments - ELEC 360 | Dr. Mohammad Al Bataineh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .course-code {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--dark);
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--gradient-end);
+        }
+
+        .admin-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: var(--light);
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .admin-toggle:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .admin-toggle.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Comment Form Styles */
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        input, textarea, select {
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .anonymous-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .anonymous-toggle input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .anonymous-toggle span {
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 0.3rem;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--warning);
+        }
+
+        .star-rating label:hover {
+            transform: scale(1.1);
+        }
+
+        /* Comments Display */
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comments-count {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-sort {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .comment-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .comment-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comment-card.pending {
+            border-left: 4px solid var(--warning);
+            background: #fffbf0;
+        }
+
+        .comment-card.hidden {
+            border-left: 4px solid var(--accent);
+            background: #fff5f5;
+            opacity: 0.7;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .commenter-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .commenter-details h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .comment-meta {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+
+        .comment-stars {
+            color: var(--warning);
+            font-size: 0.9rem;
+        }
+
+        .comment-date {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--dark);
+            opacity: 0.6;
+        }
+
+        .comment-topic {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-content {
+            color: var(--dark);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .no-comments {
+            text-align: center;
+            padding: 3rem;
+            color: var(--dark);
+            opacity: 0.6;
+        }
+
+        .no-comments span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .status-pending {
+            background: var(--warning);
+            color: white;
+        }
+
+        .status-hidden {
+            background: var(--accent);
+            color: white;
+        }
+
+        .status-approved {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Admin Actions */
+        .admin-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ccc;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn-approve {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #219a52;
+        }
+
+        .btn-hide {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-hide:hover {
+            background: #e08e0b;
+        }
+
+        .btn-delete {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        .btn-unhide {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-unhide:hover {
+            background: #2980b9;
+        }
+
+        /* Success/Info Messages */
+        .message {
+            display: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, var(--success) 0%, #2ecc71 100%);
+            color: white;
+        }
+
+        .pending-message {
+            background: linear-gradient(135deg, var(--warning) 0%, #f1c40f 100%);
+            color: white;
+        }
+
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Admin Panel Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-form input {
+            width: 100%;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .error-text {
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-align: center;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        /* Admin Panel Section */
+        .admin-section {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: 3px solid var(--accent);
+        }
+
+        .admin-section.show {
+            display: block;
+        }
+
+        .admin-section h2 {
+            border-color: var(--accent);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .admin-tab:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .admin-tab.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .admin-tab .count {
+            background: white;
+            color: var(--accent);
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        .admin-tab.active .count {
+            background: white;
+            color: var(--accent);
+        }
+
+        .logout-btn {
+            margin-left: auto;
+            background: var(--dark);
+            color: white;
+        }
+
+        .logout-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .comment-header {
+                flex-direction: column;
+            }
+
+            .comment-date {
+                text-align: left;
+            }
+
+            .admin-actions {
+                justify-content: flex-start;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="course-code">ELEC 360 - Signals and Systems</div>
+            <h1>💬 Student Comments & Feedback</h1>
+            <p class="subtitle">Share your thoughts, suggestions, and experiences with the course</p>
+            <div class="header-actions">
+                <a href="elec360.html" class="back-link">← Back to Course Page</a>
+                <button class="admin-toggle" id="adminToggle" onclick="showLoginModal()">
+                    🔐 Admin Panel
+                </button>
+            </div>
+        </header>
+
+        <!-- Admin Login Modal -->
+        <div class="modal-overlay" id="loginModal">
+            <div class="modal">
+                <h3>🔐 Admin Login</h3>
+                <form class="modal-form" id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                    </div>
+                    <p class="error-text" id="loginError">Incorrect password. Please try again.</p>
+                    <div class="modal-buttons">
+                        <button type="button" class="modal-btn secondary" onclick="hideLoginModal()">Cancel</button>
+                        <button type="submit" class="modal-btn primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Panel Section -->
+        <div class="admin-section" id="adminSection">
+            <h2>🛡️ Admin Moderation Panel</h2>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="pending" onclick="switchAdminTab('pending')">
+                    ⏳ Pending <span class="count" id="pendingCount">0</span>
+                </button>
+                <button class="admin-tab" data-tab="approved" onclick="switchAdminTab('approved')">
+                    ✅ Approved <span class="count" id="approvedCount">0</span>
+                </button>
+                <button class="admin-tab" data-tab="hidden" onclick="switchAdminTab('hidden')">
+                    🚫 Hidden <span class="count" id="hiddenCount">0</span>
+                </button>
+                <button class="admin-tab logout-btn" onclick="handleLogout()">
+                    🚪 Logout
+                </button>
+            </div>
+            <div class="comments-list" id="adminCommentsList"></div>
+        </div>
+
+        <!-- Comment Form Section -->
+        <div class="section">
+            <h2>📝 Leave a Comment</h2>
+            
+            <div class="message pending-message" id="pendingMessage">
+                <span>⏳</span>
+                <span>Thank you! Your comment has been submitted and is awaiting approval.</span>
+            </div>
+
+            <form class="comment-form" id="commentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="section">Course Section</label>
+                        <select id="section" required>
+                            <option value="">Select your section</option>
+                            <option value="Section 01">Section 01</option>
+                            <option value="Section 02">Section 02</option>
+                            <option value="Other">Other / Alumni</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Comment Topic</label>
+                    <select id="topic" required>
+                        <option value="">Select a topic</option>
+                        <option value="Course Content">Course Content</option>
+                        <option value="Teaching Style">Teaching Style</option>
+                        <option value="Learning Materials">Learning Materials</option>
+                        <option value="MATLAB/Python">MATLAB/Python Tutorials</option>
+                        <option value="Visualizations">Interactive Visualizations</option>
+                        <option value="Suggestions">Suggestions for Improvement</option>
+                        <option value="General">General Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rate Your Experience <span style="color: var(--accent);">*</span></label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" checked>
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Your Comment</label>
+                    <textarea id="comment" placeholder="Share your thoughts, feedback, or suggestions..." required></textarea>
+                </div>
+
+                <label class="anonymous-toggle">
+                    <input type="checkbox" id="anonymous">
+                    <span>Post anonymously (your name will be hidden)</span>
+                </label>
+
+                <button type="submit" class="submit-btn">
+                    <span>📤</span> Submit Comment
+                </button>
+            </form>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="section">
+            <h2>📊 Feedback Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="totalComments">0</span>
+                    <span class="stat-label">Total Comments</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="avgRating">0.0</span>
+                    <span class="stat-label">Average Rating</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="thisWeek">0</span>
+                    <span class="stat-label">This Week</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="fiveStars">0</span>
+                    <span class="stat-label">5-Star Reviews</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Display Section (Public - Only Approved) -->
+        <div class="section">
+            <div class="comments-header">
+                <h2 style="border: none; margin: 0; padding: 0;">💭 Student Reviews</h2>
+                <div class="filter-sort">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="5">5★</button>
+                    <button class="filter-btn" data-filter="4">4★+</button>
+                </div>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <div class="no-comments">
+                    <span>💬</span>
+                    <p>No comments yet. Be the first to share your feedback!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - CHANGE YOUR PASSWORD HERE
+        // ============================================
+        const ADMIN_PASSWORD = 'elec360admin'; // Change this to your desired password
+        // ============================================
+
+        // State
+        let isAdminLoggedIn = false;
+        let currentAdminTab = 'pending';
+
+        // Initialize comments from localStorage or start with sample data
+        let comments = JSON.parse(localStorage.getItem('elec360Comments')) || [
+            {
+                id: 1,
+                name: "Ahmed Al Mazrouei",
+                section: "Section 01",
+                topic: "Teaching Style",
+                rating: 5,
+                comment: "Dr. Al Bataineh's teaching method is exceptional! The combination of theoretical concepts with practical MATLAB examples makes complex topics much easier to understand. Highly recommended!",
+                date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+                anonymous: false,
+                status: 'approved' // 'pending', 'approved', 'hidden'
+            },
+            {
+                id: 2,
+                name: "Fatima Hassan",
+                section: "Section 02",
+                topic: "Learning Materials",
+                rating: 5,
+                comment: "The course materials on Blackboard are very well organized. I especially appreciate the handwritten iPad notes - they really help in understanding the problem-solving approach.",
+                date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+                anonymous: false,
+                status: 'approved'
+            },
+            {
+                id: 3,
+                name: "Anonymous",
+                section: "Section 01",
+                topic: "MATLAB/Python",
+                rating: 4,
+                comment: "The MATLAB tutorial is comprehensive and very helpful. Would love to see more Python examples as well for those of us who prefer open-source tools.",
+                date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                anonymous: true,
+                status: 'approved'
+            },
+            {
+                id: 4,
+                name: "Omar Al Dhaheri",
+                section: "Section 02",
+                topic: "Visualizations",
+                rating: 5,
+                comment: "The GeoGebra interactive visualizations are amazing! Being able to see Fourier transforms and convolution operations visually really helped me grasp the concepts.",
+                date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+                anonymous: false,
+                status: 'approved'
+            },
+            {
+                id: 5,
+                name: "Sara Al Kaabi",
+                section: "Section 01",
+                topic: "General",
+                rating: 5,
+                comment: "This is a sample pending comment that needs approval before it shows publicly.",
+                date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+                anonymous: false,
+                status: 'pending'
+            }
+        ];
+
+        // Save initial data if not exists
+        if (!localStorage.getItem('elec360Comments')) {
+            localStorage.setItem('elec360Comments', JSON.stringify(comments));
+        }
+
+        // DOM Elements
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+        const adminCommentsList = document.getElementById('adminCommentsList');
+        const pendingMessage = document.getElementById('pendingMessage');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const loginModal = document.getElementById('loginModal');
+        const adminSection = document.getElementById('adminSection');
+        const adminToggle = document.getElementById('adminToggle');
+
+        // Login Modal Functions
+        function showLoginModal() {
+            if (isAdminLoggedIn) {
+                // If already logged in, just toggle the admin panel
+                adminSection.classList.toggle('show');
+                return;
+            }
+            loginModal.classList.add('show');
+            document.getElementById('adminPassword').focus();
+        }
+
+        function hideLoginModal() {
+            loginModal.classList.remove('show');
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                hideLoginModal();
+                adminSection.classList.add('show');
+                adminToggle.classList.add('active');
+                adminToggle.innerHTML = '🛡️ Admin Mode';
+                renderAdminComments();
+                updateAdminCounts();
+            } else {
+                document.getElementById('loginError').classList.add('show');
+            }
+        }
+
+        function handleLogout() {
+            isAdminLoggedIn = false;
+            adminSection.classList.remove('show');
+            adminToggle.classList.remove('active');
+            adminToggle.innerHTML = '🔐 Admin Panel';
+        }
+
+        // Admin Tab Switching
+        function switchAdminTab(tab) {
+            currentAdminTab = tab;
+            document.querySelectorAll('.admin-tab').forEach(t => {
+                if (t.dataset.tab === tab) {
+                    t.classList.add('active');
+                } else if (t.dataset.tab) {
+                    t.classList.remove('active');
+                }
+            });
+            renderAdminComments();
+        }
+
+        // Update Admin Counts
+        function updateAdminCounts() {
+            const pending = comments.filter(c => c.status === 'pending').length;
+            const approved = comments.filter(c => c.status === 'approved').length;
+            const hidden = comments.filter(c => c.status === 'hidden').length;
+            
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('approvedCount').textContent = approved;
+            document.getElementById('hiddenCount').textContent = hidden;
+        }
+
+        // Render Admin Comments
+        function renderAdminComments() {
+            let filteredComments = comments.filter(c => c.status === currentAdminTab);
+            filteredComments.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (filteredComments.length === 0) {
+                adminCommentsList.innerHTML = `
+                    <div class="no-comments">
+                        <span>📭</span>
+                        <p>No ${currentAdminTab} comments.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            adminCommentsList.innerHTML = filteredComments.map(comment => {
+                const displayName = comment.anonymous ? 'Anonymous Student' : comment.name;
+                const realName = comment.name;
+                const initials = comment.anonymous ? '?' : displayName.split(' ').map(n => n[0]).join('').toUpperCase();
+                const stars = '★'.repeat(comment.rating) + '☆'.repeat(5 - comment.rating);
+                const date = new Date(comment.date);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                let statusBadge = '';
+                if (comment.status === 'pending') statusBadge = '<span class="status-badge status-pending">Pending</span>';
+                else if (comment.status === 'hidden') statusBadge = '<span class="status-badge status-hidden">Hidden</span>';
+                else statusBadge = '<span class="status-badge status-approved">Approved</span>';
+
+                let actionButtons = '';
+                if (comment.status === 'pending') {
+                    actionButtons = `
+                        <button class="admin-btn btn-approve" onclick="approveComment(${comment.id})">✓ Approve</button>
+                        <button class="admin-btn btn-hide" onclick="hideComment(${comment.id})">🚫 Hide</button>
+                        <button class="admin-btn btn-delete" onclick="deleteComment(${comment.id})">🗑️ Delete</button>
+                    `;
+                } else if (comment.status === 'approved') {
+                    actionButtons = `
+                        <button class="admin-btn btn-hide" onclick="hideComment(${comment.id})">🚫 Hide</button>
+                        <button class="admin-btn btn-delete" onclick="deleteComment(${comment.id})">🗑️ Delete</button>
+                    `;
+                } else if (comment.status === 'hidden') {
+                    actionButtons = `
+                        <button class="admin-btn btn-approve" onclick="approveComment(${comment.id})">✓ Approve</button>
+                        <button class="admin-btn btn-delete" onclick="deleteComment(${comment.id})">🗑️ Delete</button>
+                    `;
+                }
+
+                return `
+                    <div class="comment-card ${comment.status}">
+                        <div class="comment-header">
+                            <div class="commenter-info">
+                                <div class="avatar">${initials}</div>
+                                <div class="commenter-details">
+                                    <h4>${displayName} ${comment.anonymous ? `<small style="opacity:0.6">(Real: ${realName})</small>` : ''} ${statusBadge}</h4>
+                                    <div class="comment-meta">
+                                        <span>${comment.section}</span>
+                                        <span class="comment-stars">${stars}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-date">${formattedDate}</div>
+                        </div>
+                        <span class="comment-topic">${comment.topic}</span>
+                        <p class="comment-content">${comment.comment}</p>
+                        <div class="admin-actions">
+                            ${actionButtons}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Admin Actions
+        function approveComment(id) {
+            const comment = comments.find(c => c.id === id);
+            if (comment) {
+                comment.status = 'approved';
+                saveComments();
+                renderAdminComments();
+                renderPublicComments();
+                updateStats();
+                updateAdminCounts();
+            }
+        }
+
+        function hideComment(id) {
+            const comment = comments.find(c => c.id === id);
+            if (comment) {
+                comment.status = 'hidden';
+                saveComments();
+                renderAdminComments();
+                renderPublicComments();
+                updateStats();
+                updateAdminCounts();
+            }
+        }
+
+        function deleteComment(id) {
+            if (confirm('Are you sure you want to permanently delete this comment?')) {
+                comments = comments.filter(c => c.id !== id);
+                saveComments();
+                renderAdminComments();
+                renderPublicComments();
+                updateStats();
+                updateAdminCounts();
+            }
+        }
+
+        function saveComments() {
+            localStorage.setItem('elec360Comments', JSON.stringify(comments));
+        }
+
+        // Render Public Comments (Only Approved)
+        function renderPublicComments(filter = 'all') {
+            let filteredComments = comments.filter(c => c.status === 'approved');
+            
+            // Apply rating filter
+            if (filter === '5') {
+                filteredComments = filteredComments.filter(c => c.rating === 5);
+            } else if (filter === '4') {
+                filteredComments = filteredComments.filter(c => c.rating >= 4);
+            }
+
+            // Sort by date (newest first)
+            filteredComments.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (filteredComments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="no-comments">
+                        <span>💬</span>
+                        <p>${filter === 'all' ? 'No comments yet. Be the first to share your feedback!' : 'No comments match this filter.'}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            commentsList.innerHTML = filteredComments.map(comment => {
+                const displayName = comment.anonymous ? 'Anonymous Student' : comment.name;
+                const initials = comment.anonymous ? '?' : displayName.split(' ').map(n => n[0]).join('').toUpperCase();
+                const stars = '★'.repeat(comment.rating) + '☆'.repeat(5 - comment.rating);
+                const date = new Date(comment.date);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                return `
+                    <div class="comment-card">
+                        <div class="comment-header">
+                            <div class="commenter-info">
+                                <div class="avatar">${initials}</div>
+                                <div class="commenter-details">
+                                    <h4>${displayName}</h4>
+                                    <div class="comment-meta">
+                                        <span>${comment.section}</span>
+                                        <span class="comment-stars">${stars}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-date">${formattedDate}</div>
+                        </div>
+                        <span class="comment-topic">${comment.topic}</span>
+                        <p class="comment-content">${comment.comment}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Update statistics (only counts approved comments)
+        function updateStats() {
+            const approvedComments = comments.filter(c => c.status === 'approved');
+            const total = approvedComments.length;
+            const avgRating = total > 0 ? (approvedComments.reduce((sum, c) => sum + c.rating, 0) / total).toFixed(1) : '0.0';
+            const fiveStars = approvedComments.filter(c => c.rating === 5).length;
+            
+            // Comments from this week
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            const thisWeek = approvedComments.filter(c => new Date(c.date) > oneWeekAgo).length;
+
+            document.getElementById('totalComments').textContent = total;
+            document.getElementById('avgRating').textContent = avgRating;
+            document.getElementById('thisWeek').textContent = thisWeek;
+            document.getElementById('fiveStars').textContent = fiveStars;
+        }
+
+        // Handle form submission
+        commentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get the selected rating
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            const rating = ratingInput ? parseInt(ratingInput.value) : 3;
+
+            const newComment = {
+                id: Date.now(),
+                name: document.getElementById('name').value.trim(),
+                section: document.getElementById('section').value,
+                topic: document.getElementById('topic').value,
+                rating: rating,
+                comment: document.getElementById('comment').value.trim(),
+                date: new Date().toISOString(),
+                anonymous: document.getElementById('anonymous').checked,
+                status: 'pending' // All new comments start as pending
+            };
+
+            // Validate required fields
+            if (!newComment.name || !newComment.section || !newComment.topic || !newComment.comment) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            comments.push(newComment);
+            saveComments();
+
+            // Show pending message
+            pendingMessage.classList.add('show');
+            setTimeout(() => {
+                pendingMessage.classList.remove('show');
+            }, 5000);
+
+            // Reset form but keep 3-star as default
+            commentForm.reset();
+            document.getElementById('star3').checked = true;
+
+            // Update admin panel if logged in
+            if (isAdminLoggedIn) {
+                renderAdminComments();
+                updateAdminCounts();
+            }
+
+            // Scroll to the success message
+            pendingMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Filter buttons
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderPublicComments(this.dataset.filter);
+            });
+        });
+
+        // Close modal on outside click
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                hideLoginModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && loginModal.classList.contains('show')) {
+                hideLoginModal();
+            }
+        });
+
+        // Initial render
+        renderPublicComments();
+        updateStats();
+    </script>
+</body>
+</html>

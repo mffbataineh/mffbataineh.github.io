@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Content Integration Opportunities - ECE Department</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .priority-tabs {
+            display: flex;
+            background: #e9ecef;
+            padding: 0 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .priority-tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .priority-tab:hover {
+            color: #667eea;
+        }
+
+        .priority-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .priority-section {
+            display: none;
+        }
+
+        .priority-section.active {
+            display: block;
+        }
+
+        .course-card {
+            background: white;
+            border-left: 5px solid;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transform: translateX(5px);
+        }
+
+        .course-card.high-priority {
+            border-left-color: #dc3545;
+        }
+
+        .course-card.medium-priority {
+            border-left-color: #ffc107;
+        }
+
+        .course-card.low-priority {
+            border-left-color: #28a745;
+        }
+
+        .course-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+
+        .course-header:hover {
+            background: #e9ecef;
+        }
+
+        .course-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .course-code {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        .course-type {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .course-type.lab {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .course-type.theory {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .expand-icon {
+            font-size: 1.5em;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .course-details {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .course-card.expanded .course-details {
+            padding: 20px;
+            max-height: 2000px;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-section h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .detail-section ul {
+            list-style-position: inside;
+            color: #555;
+        }
+
+        .detail-section li {
+            padding: 5px 0;
+            padding-left: 20px;
+        }
+
+        .benefit-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .benefit-box strong {
+            color: #1976D2;
+        }
+
+        .safety-badge {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #856404;
+        }
+
+        .top-recommendations {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            border-radius: 10px;
+        }
+
+        .top-recommendations h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .recommendation-list {
+            list-style: none;
+            counter-reset: recommendation-counter;
+        }
+
+        .recommendation-list li {
+            counter-increment: recommendation-counter;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .recommendation-list li::before {
+            content: counter(recommendation-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: #667eea;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .print-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #218838;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .priority-tabs, .print-button {
+                display: none;
+            }
+            .priority-section {
+                display: block !important;
+            }
+            .course-details {
+                max-height: none !important;
+                padding: 20px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .priority-tab {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.high {
+            background: #dc3545;
+        }
+
+        .legend-color.medium {
+            background: #ffc107;
+        }
+
+        .legend-color.low {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 VR Content Integration Opportunities</h1>
+            <p>Electrical and Communication Engineering Department</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">United Arab Emirates University - College of Engineering</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">21</div>
+                <div class="stat-label">Total Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Lab Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">11</div>
+                <div class="stat-label">Theory Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Categories</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color high"></div>
+                <span>High Priority</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color medium"></div>
+                <span>Medium Priority</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color low"></div>
+                <span>Lower Priority</span>
+            </div>
+        </div>
+
+        <div style="background: #fff3cd; border-left: 5px solid #ffc107; padding: 25px; margin: 20px 30px; border-radius: 8px;">
+            <h3 style="color: #856404; margin-bottom: 15px;">📋 About This Analysis</h3>
+            <p style="color: #856404; line-height: 1.8; margin-bottom: 10px;">
+                This report represents a <strong>preliminary analysis</strong> of VR integration opportunities based on review of existing course syllabi. It comprehensively covers <strong>technical content</strong> (laboratory experiments and theoretical visualization needs), and provides initial suggestions for field trips and professional development.
+            </p>
+            <p style="color: #856404; line-height: 1.8; margin-bottom: 10px;">
+                <strong>⚠️ Faculty Input Needed:</strong> Sections on soft skills training, co-curricular activities, and specific professional development needs require input from course instructors and coordination with the Engineering Students Support Hub to ensure alignment with student needs and departmental objectives.
+            </p>
+            <p style="color: #856404; line-height: 1.8;">
+                This document is intended as a starting point for faculty discussion and refinement before final submission to the VR Content Development Task Force.
+            </p>
+        </div>
+
+        <div class="priority-tabs">
+            <button class="priority-tab active" onclick="showPriority('all')">All Courses</button>
+            <button class="priority-tab" onclick="showPriority('high')">High Priority</button>
+            <button class="priority-tab" onclick="showPriority('medium')">Medium Priority</button>
+            <button class="priority-tab" onclick="showPriority('low')">Lower Priority</button>
+            <button class="priority-tab" onclick="showPriority('labs')">Lab Courses Only</button>
+        </div>
+
+        <div class="content">
+            <!-- HIGH PRIORITY SECTION -->
+            <div id="all" class="priority-section active">
+                <h2 style="color: #667eea; margin-bottom: 25px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">📊 All VR Integration Opportunities - Five Categories</h2>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Categories Covered:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; color: #555;">✅ <strong>Laboratory Experiments & Practical Sessions</strong> (10 lab courses)</li>
+                        <li style="padding: 8px 0; color: #555;">✅ <strong>Complex Theoretical Concepts Requiring Visualization</strong> (11 theory courses)</li>
+                        <li style="padding: 8px 0; color: #555;">✅ <strong>Field Trips & Site Visits</strong> (3 virtual field trip opportunities)</li>
+                        <li style="padding: 8px 0; color: #555;">⚠️ <strong>Soft Skills Training & Simulations</strong> (initial suggestions; faculty input needed)</li>
+                        <li style="padding: 8px 0; color: #555;">⚠️ <strong>Co-Curricular Activities</strong> (requires input from Engineering Students Support Hub)</li>
+                    </ul>
+                </div>
+                
+                <h3 style="color: #dc3545; margin: 30px 0 20px 0;">🔴 HIGH PRIORITY - Complex Visualization Needs</h3>
+
+                <!-- ECOM 412 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 412</span>
+                            <span class="course-title">Electromagnetic Waves</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>3D electromagnetic field visualization</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Time-varying electromagnetic fields and Maxwell's equations</li>
+                                <li>Plane wave propagation in different media (dielectric, lossy, conducting)</li>
+                                <li>Electric and magnetic field distributions</li>
+                                <li>Transmission line wave propagation</li>
+                                <li>Standing waves and reflection phenomena</li>
+                                <li>Waveguide modes (TE and TM)</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Students struggle to visualize invisible EM fields; VR can show field patterns, propagation, and how fields interact with materials in 3D space
+                        </div>
+                        <div style="background: #d4edda; border-left: 4px solid #28a745; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong style="color: #155724;">✓ Faculty Input:</strong> Dr. Oguzhan Akgol has already identified this as a priority need
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 325 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 325</span>
+                            <span class="course-title">Engineering Electromagnetics</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Electric and magnetic field visualization</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Electric field lines and equipotential surfaces</li>
+                                <li>Magnetic flux and field lines (Gauss's law, Ampere's law)</li>
+                                <li>Boundary conditions at material interfaces</li>
+                                <li>Faraday's law and induced fields</li>
+                                <li>Transmission line theory</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Foundation course where students first encounter field concepts; VR visualization critical for building intuition
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 481 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 481</span>
+                            <span class="course-title">Electric Energy Conversion Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual electrical machines laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Lab Experiments</h4>
+                            <ul>
+                                <li>Transformer operation (magnetic flux, core saturation, equivalent circuits)</li>
+                                <li>DC motor/generator operation and characteristics</li>
+                                <li>3-phase synchronous generator under different loads</li>
+                                <li>Induction motor torque-speed characteristics</li>
+                                <li>Rotating magnetic fields visualization</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Safe environment to visualize dangerous high-voltage equipment, magnetic field rotation, and machine internals
+                        </div>
+                        <div class="safety-badge">
+                            ⚠️ Safety Advantage: Students can practice procedures before handling actual high-voltage equipment
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #dc3545; margin: 30px 0 20px 0;">🔴 HIGH PRIORITY - Laboratory Simulation</h3>
+
+                <!-- ELEC 433 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 433</span>
+                            <span class="course-title">Instrumentation & Control Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual control systems laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>PID controller tuning and response visualization</li>
+                                <li>Programmable Logic Controller (PLC) programming environment</li>
+                                <li>Control system block diagrams and signal flow</li>
+                                <li>Feedback loop behavior visualization</li>
+                                <li>System stability and transient response</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Interactive manipulation of controller parameters to see real-time effects on system behavior
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECOM 402 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 402</span>
+                            <span class="course-title">Communication Systems Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual communications laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>AM/FM modulation and demodulation with spectrum visualization</li>
+                                <li>Sampling theorem and aliasing effects</li>
+                                <li>PCM encoding/decoding</li>
+                                <li>Digital modulation (BPSK, BFSK, QPSK) constellation diagrams</li>
+                                <li>Spread spectrum techniques</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Real-time visualization of signal spectra and modulation effects
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 522 -->
+                <div class="course-card high-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 522</span>
+                            <span class="course-title">Industrial Automation</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual industrial plant</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Industrial process control systems</li>
+                                <li>PLC programming and ladder logic visualization</li>
+                                <li>SCADA system interface and monitoring</li>
+                                <li>P&ID (Piping and Instrumentation Diagram) walkthrough</li>
+                                <li>Industrial robotics and automation</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Experience with industrial environments without requiring expensive physical equipment
+                        </div>
+                        <div style="background: #cce5ff; border-left: 4px solid #004085; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong style="color: #004085;">🏭 Industry Relevance:</strong> Prepares students for actual industrial settings
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ffc107; margin: 30px 0 20px 0;">🟡 MEDIUM PRIORITY - 3D Visualization</h3>
+
+                <!-- ECOM 532 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 532</span>
+                            <span class="course-title">Antenna Engineering</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>3D antenna radiation patterns</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Dipole antenna radiation patterns</li>
+                                <li>Array factor visualization</li>
+                                <li>3D radiation patterns (gain, directivity, beamwidth)</li>
+                                <li>Antenna array beam steering</li>
+                                <li>Polarization visualization</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Interactive manipulation of antenna parameters to see 3D radiation pattern changes
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECOM 542 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 542</span>
+                            <span class="course-title">Wireless Communication</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Wireless propagation and cellular systems</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Radio wave propagation in different environments</li>
+                                <li>Multipath fading and Doppler shift</li>
+                                <li>Cellular frequency reuse patterns</li>
+                                <li>Base station coverage visualization</li>
+                                <li>Interference and capacity planning</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Visualize abstract concepts of coverage, interference, and propagation
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 320 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 320</span>
+                            <span class="course-title">Electric Circuits II</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Three-phase systems and magnetic coupling</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Three-phase voltage and current phasors</li>
+                                <li>Balanced and unbalanced three-phase circuits</li>
+                                <li>Power flow in three-phase systems</li>
+                                <li>Magnetically coupled circuits and transformers</li>
+                                <li>Resonance in RLC circuits</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Visualize rotating phasors and power flow in 3D
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 472 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 472</span>
+                            <span class="course-title">Power Systems</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual power system and substations</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Power transmission line operation</li>
+                                <li>Substation equipment and layout</li>
+                                <li>Power flow in multi-node systems</li>
+                                <li>Fault conditions and protection</li>
+                                <li>UAE power network overview</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Virtual field trips to substations and power plants
+                        </div>
+                        <div class="safety-badge">
+                            ⚠️ Safety Advantage: Exposure to high-voltage equipment without danger
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ffc107; margin: 30px 0 20px 0;">🟡 MEDIUM PRIORITY - Signal Processing</h3>
+
+                <!-- ELEC 360 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 360</span>
+                            <span class="course-title">Signals and Systems</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Signal and system visualization</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Convolution operation visualization</li>
+                                <li>Fourier series and transform in frequency domain</li>
+                                <li>Time-frequency representations</li>
+                                <li>System impulse response</li>
+                                <li>Filter frequency response</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Interactive manipulation to understand time-domain and frequency-domain relationships
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECOM 451 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 451</span>
+                            <span class="course-title">Digital Signal Processing</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Interactive filter design</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Z-transform and pole-zero plots</li>
+                                <li>FIR and IIR filter design</li>
+                                <li>DFT and FFT visualization</li>
+                                <li>Filter frequency response</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Real-time filter design with immediate visualization of effects
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECOM 461 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 461</span>
+                            <span class="course-title">Digital Signal Processing Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual DSP laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>Real-time signal acquisition and processing</li>
+                                <li>Filter implementation and testing</li>
+                                <li>Frequency analysis tools</li>
+                                <li>Sampling and aliasing demonstration</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Hands-on DSP experimentation in virtual environment
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 310 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 310</span>
+                            <span class="course-title">Electric Circuits Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual circuits laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>Circuit analysis techniques (Nodal, Mesh, Thevenin, Norton)</li>
+                                <li>Transient analysis of RC & RL circuits</li>
+                                <li>Resonance & Quality Factor of RLC circuits</li>
+                                <li>Op Amp circuit configurations and applications</li>
+                                <li>AC circuit analysis using phasors</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Practice circuit construction and testing in safe virtual environment before physical lab
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 345 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 345</span>
+                            <span class="course-title">Digital Logic Design Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual digital circuits laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>Digital circuit construction using primitive logic gates</li>
+                                <li>Combinational circuits with MSI components (decoders, multiplexers)</li>
+                                <li>Sequential circuits with flip-flops</li>
+                                <li>Counters and seven-segment displays</li>
+                                <li>Circuit debugging and troubleshooting</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Visualize signal flow through digital circuits; practice before physical implementation
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 461 -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 461</span>
+                            <span class="course-title">Microprocessors Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual microprocessor development environment</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>Assembly language programming with visual debugger</li>
+                                <li>Register and memory examination</li>
+                                <li>I/O device control programming</li>
+                                <li>Interrupt handling and subroutines</li>
+                                <li>Hardware interface visualization</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Step-by-step visualization of instruction execution and hardware interaction
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ffc107; margin: 30px 0 20px 0;">🟡 FIELD TRIPS & SITE VISITS</h3>
+
+                <!-- Power Systems Field Trip -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 472/531</span>
+                            <span class="course-title">Power Systems - Virtual Field Trips</span>
+                            <span class="course-type theory">Field Trip</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual tours of power generation and distribution facilities</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Locations/Systems</h4>
+                            <ul>
+                                <li>UAE power substations and switching stations</li>
+                                <li>Power generation plants (thermal, solar, nuclear)</li>
+                                <li>Transmission line infrastructure and towers</li>
+                                <li>Distribution networks and smart grid facilities</li>
+                                <li>Control rooms and SCADA systems</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Access to restricted high-voltage facilities without safety concerns; available anytime
+                        </div>
+                        <div class="safety-badge">
+                            ⚠️ Safety Advantage: Experience dangerous high-voltage environments safely
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industrial Automation Field Trip -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 522</span>
+                            <span class="course-title">Industrial Automation - Virtual Plant Tours</span>
+                            <span class="course-type theory">Field Trip</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual tours of industrial facilities and automation systems</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Locations/Systems</h4>
+                            <ul>
+                                <li>Oil and gas processing facilities</li>
+                                <li>Manufacturing and assembly lines</li>
+                                <li>Water treatment and desalination plants</li>
+                                <li>Industrial robotics installations</li>
+                                <li>Process control rooms</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Exposure to real industrial environments that are difficult to arrange physical visits to
+                        </div>
+                        <div style="background: #cce5ff; border-left: 4px solid #004085; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong style="color: #004085;">🏭 Industry Relevance:</strong> Understanding real-world industrial systems and workflows
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telecommunications Field Trip -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 432/442</span>
+                            <span class="course-title">Networks - Virtual Data Center Tours</span>
+                            <span class="course-type theory">Field Trip</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual tours of telecommunications and data center facilities</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Locations/Systems</h4>
+                            <ul>
+                                <li>Modern data centers and server rooms</li>
+                                <li>Telecommunications central offices</li>
+                                <li>Cellular base stations and antenna towers</li>
+                                <li>Network operations centers (NOC)</li>
+                                <li>Fiber optic cable routing and infrastructure</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> See enterprise-scale networking infrastructure that students rarely have access to
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #667eea; margin: 30px 0 20px 0;">🎓 SOFT SKILLS & PROFESSIONAL DEVELOPMENT</h3>
+                
+                <div style="background: #e7f3ff; border-left: 4px solid #2196F3; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+                    <strong style="color: #1976D2;">📋 Note:</strong> This section requires input from faculty and the Engineering Students Support Hub regarding specific soft skills training needs and co-curricular activities.
+                </div>
+
+                <!-- Capstone Project -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 590</span>
+                            <span class="course-title">Capstone Design Project - Professional Skills</span>
+                            <span class="course-type theory">Project</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Professional communication and teamwork simulations</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Scenarios</h4>
+                            <ul>
+                                <li>Client presentation simulations</li>
+                                <li>Design review meetings</li>
+                                <li>Team collaboration scenarios</li>
+                                <li>Project management simulations</li>
+                                <li>Stakeholder communication practice</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Practice professional scenarios in low-stakes environment before actual presentations
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Co-curricular Activities -->
+                <div class="course-card medium-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">CO-CURR</span>
+                            <span class="course-title">Co-Curricular Professional Development</span>
+                            <span class="course-type theory">Co-curricular</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Professional skills and wellness activities</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Potential Activities (Faculty Input Needed)</h4>
+                            <ul>
+                                <li><strong>AI-Based Interview Simulations:</strong> Practice technical and behavioral interviews</li>
+                                <li><strong>Engineering Ethics Scenarios:</strong> Navigate ethical dilemmas in professional contexts</li>
+                                <li><strong>Workplace Communication:</strong> Email writing, meeting etiquette, conflict resolution</li>
+                                <li><strong>Mindfulness & Stress Management:</strong> Virtual environments for relaxation and focus</li>
+                                <li><strong>Laboratory Safety Training:</strong> High-voltage equipment safety procedures</li>
+                                <li><strong>Leadership Development:</strong> Team leadership scenarios and decision-making</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Develop essential professional and personal skills that complement technical education
+                        </div>
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <strong style="color: #856404;">⚡ Faculty Input Required:</strong> Engineering Students Support Hub and faculty input needed to identify specific needs
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #28a745; margin: 30px 0 20px 0;">🟢 LOWER PRIORITY - Computer Systems</h3>
+
+                <!-- ELEC 462 -->
+                <div class="course-card low-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 462</span>
+                            <span class="course-title">Computer Architecture & Organization</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Computer hardware visualization</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>CPU internal structure and datapath</li>
+                                <li>Pipelining stages</li>
+                                <li>Memory hierarchy</li>
+                                <li>Cache operation</li>
+                                <li>I/O interfaces</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> See inside processor operation at the hardware level
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 451 -->
+                <div class="course-card low-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 451</span>
+                            <span class="course-title">Microprocessors</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Microprocessor operation visualization</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Instruction fetch-execute cycle</li>
+                                <li>Register operations</li>
+                                <li>Memory addressing modes</li>
+                                <li>Assembly instruction execution</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Step-by-step visualization of program execution
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #28a745; margin: 30px 0 20px 0;">🟢 LOWER PRIORITY - Electronics</h3>
+
+                <!-- ELEC 315 -->
+                <div class="course-card low-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 315</span>
+                            <span class="course-title">Fundamentals of Microelectronics</span>
+                            <span class="course-type theory">Theory</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Semiconductor device physics</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Charge carrier movement in semiconductors</li>
+                                <li>PN junction operation</li>
+                                <li>MOSFET and BJT internal operation</li>
+                                <li>Energy band diagrams</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Visualize microscopic semiconductor physics
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ELEC 375 -->
+                <div class="course-card low-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 375</span>
+                            <span class="course-title">Electronic Circuits Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual electronics laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Experiments</h4>
+                            <ul>
+                                <li>Amplifier circuit construction and testing</li>
+                                <li>Oscillator circuits</li>
+                                <li>Power amplifier operation</li>
+                                <li>Safe component handling practice</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Practice before using actual lab equipment
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #28a745; margin: 30px 0 20px 0;">🟢 SUPPLEMENTARY - Networks</h3>
+
+                <!-- ECOM 442 -->
+                <div class="course-card low-priority" onclick="toggleCard(this)">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 442</span>
+                            <span class="course-title">Data Communication & Networks Lab</span>
+                            <span class="course-type lab">Lab</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="course-details">
+                        <div class="detail-section">
+                            <h4>🎯 VR Content Focus</h4>
+                            <p>Virtual networking laboratory</p>
+                        </div>
+                        <div class="detail-section">
+                            <h4>📚 Specific Topics</h4>
+                            <ul>
+                                <li>Network topology construction</li>
+                                <li>Router and switch configuration</li>
+                                <li>Protocol operation visualization</li>
+                                <li>Network troubleshooting</li>
+                            </ul>
+                        </div>
+                        <div class="benefit-box">
+                            <strong>Learning Benefit:</strong> Supplement Cisco Packet Tracer with immersive 3D environment
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HIGH PRIORITY ONLY -->
+            <div id="high" class="priority-section">
+                <h2 style="color: #dc3545; margin-bottom: 25px;">🔴 High Priority Courses</h2>
+                <p style="margin-bottom: 20px; color: #666;">These courses would benefit most from VR integration due to complex visualization needs and safety considerations.</p>
+                <!-- Copy high priority cards here - simplified for space -->
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 412</span>
+                            <span class="course-title">Electromagnetic Waves</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 325</span>
+                            <span class="course-title">Engineering Electromagnetics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 481</span>
+                            <span class="course-title">Electric Energy Conversion Lab</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 433</span>
+                            <span class="course-title">Instrumentation & Control Lab</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ECOM 402</span>
+                            <span class="course-title">Communication Systems Lab</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card high-priority">
+                    <div class="course-header">
+                        <div>
+                            <span class="course-code">ELEC 522</span>
+                            <span class="course-title">Industrial Automation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIUM PRIORITY ONLY -->
+            <div id="medium" class="priority-section">
+                <h2 style="color: #ffc107; margin-bottom: 25px;">🟡 Medium Priority Courses</h2>
+                <p style="margin-bottom: 20px; color: #666;">These courses would significantly benefit from VR for 3D visualization and signal processing concepts.</p>
+            </div>
+
+            <!-- LOW PRIORITY ONLY -->
+            <div id="low" class="priority-section">
+                <h2 style="color: #28a745; margin-bottom: 25px;">🟢 Lower Priority Courses</h2>
+                <p style="margin-bottom: 20px; color: #666;">These courses could benefit from VR but have lower priority or alternative solutions available.</p>
+            </div>
+
+            <!-- LABS ONLY -->
+            <div id="labs" class="priority-section">
+                <h2 style="color: #667eea; margin-bottom: 25px;">🔬 Laboratory Courses Only</h2>
+                <p style="margin-bottom: 20px; color: #666;">All 7 laboratory courses that would benefit from VR integration.</p>
+            </div>
+        </div>
+
+        <div class="top-recommendations">
+            <h2>⭐ Top Recommendations for Initial VR Development</h2>
+            
+            <h3 style="margin-top: 20px; margin-bottom: 15px;">Priority Technical Content (Ready for Development):</h3>
+            <ol class="recommendation-list">
+                <li><strong>ECOM 412 - Electromagnetic Waves</strong> - Complex field visualization; already identified by faculty as critical need</li>
+                <li><strong>ELEC 325 - Engineering Electromagnetics</strong> - Foundation course with critical visualization needs</li>
+                <li><strong>ELEC 481 - Electric Energy Conversion Lab</strong> - High-voltage safety and machine visualization</li>
+                <li><strong>ELEC 522 - Industrial Automation</strong> - Industrial experience and virtual plant tours</li>
+                <li><strong>ECOM 402 - Communication Systems Lab</strong> - Signal processing and modulation visualization</li>
+            </ol>
+
+            <h3 style="margin-top: 25px; margin-bottom: 15px;">Additional Areas Requiring Faculty Input:</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 10px 0; background: rgba(255,255,255,0.1); margin-bottom: 8px; padding-left: 15px; border-radius: 5px;">
+                    <strong>🎓 Soft Skills & Professional Development:</strong> Need input on interview simulations, ethics scenarios, communication training
+                </li>
+                <li style="padding: 10px 0; background: rgba(255,255,255,0.1); margin-bottom: 8px; padding-left: 15px; border-radius: 5px;">
+                    <strong>🧘 Co-Curricular Activities:</strong> Mindfulness, stress management, leadership - coordination with Engineering Students Support Hub
+                </li>
+                <li style="padding: 10px 0; background: rgba(255,255,255,0.1); padding-left: 15px; border-radius: 5px;">
+                    <strong>🏭 Field Trip Refinement:</strong> Identify specific facilities and partnerships for virtual tours
+                </li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 20px;">
+            <button class="print-button" onclick="window.print()">🖨️ Print This Report</button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Prepared by:</strong> Dr. Mohammad Al Bataineh & Dr. Qurban Andal</p>
+            <p><strong>Department:</strong> Electrical and Communication Engineering</p>
+            <p><strong>Date:</strong> November 2025</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">VR Content Development Task Force Initiative - Preliminary Analysis</p>
+            <p style="margin-top: 5px; font-size: 0.85em; font-style: italic;">This document is for faculty review and requires input before final submission</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('expanded');
+        }
+
+        function showPriority(priority) {
+            // Hide all sections
+            document.querySelectorAll('.priority-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.priority-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(priority).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Auto-expand first card on load
+        window.addEventListener('load', function() {
+            const firstCard = document.querySelector('.course-card');
+            if (firstCard) {
+                firstCard.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Support | AI in Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #00d9ff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #0a4d68;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0a4d68, #05bfdb);
+            margin-top: 1rem;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #0a4d68;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: #05bfdb;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        a {
+            color: #0a4d68;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #00d9ff;
+            text-decoration: underline;
+        }
+
+        /* FAQ Accordion */
+        .faq-container {
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #05bfdb;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.03) 0%, rgba(5, 191, 219, 0.03) 100%);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.08) 0%, rgba(5, 191, 219, 0.08) 100%);
+        }
+
+        .faq-question h4 {
+            margin: 0;
+            color: #0a4d68;
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #05bfdb;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Support Cards */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .support-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #05bfdb;
+            transition: all 0.3s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-top-color: #00d9ff;
+        }
+
+        .support-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-card h4 {
+            color: #0a4d68;
+            margin-top: 0;
+        }
+
+        /* Troubleshooting Steps */
+        .troubleshooting-box {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.05) 0%, rgba(5, 191, 219, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #05bfdb;
+            margin: 2rem 0;
+        }
+
+        .troubleshooting-box h4 {
+            margin-top: 0;
+            color: #0a4d68;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #05bfdb;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #05bfdb;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.1) 0%, rgba(5, 191, 219, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #05bfdb;
+            margin: 2rem 0;
+        }
+
+        .info-box h4 {
+            color: #0a4d68;
+            margin-top: 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #ffc107;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+        }
+
+        /* Community Cards */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .community-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid #05bfdb;
+            transition: all 0.3s;
+        }
+
+        .community-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .community-card h5 {
+            color: #0a4d68;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .community-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section h2::after {
+            background: linear-gradient(90deg, #00d9ff, #05bfdb);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #00d9ff;
+            color: #011627;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.6);
+            background: #05bfdb;
+            color: #011627;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #011627;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #00d9ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .support-grid,
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="aiedu.html" class="back-link">← Back to Main Guide</a>
+            <h1>🛠️ Technical Support</h1>
+            <p>Troubleshooting guides, community forums, and expert assistance for resolving technical challenges</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Introduction -->
+            <section>
+                <h2>Get the Help You Need</h2>
+                <p>Implementing AI in education comes with technical challenges. Whether you're troubleshooting a specific issue, looking for best practices, or need expert guidance, we've compiled comprehensive resources to support your journey.</p>
+                
+                <div class="support-grid">
+                    <div class="support-card">
+                        <div class="support-icon">📚</div>
+                        <h4>Documentation</h4>
+                        <p>Step-by-step guides, tutorials, and reference materials for all major AI education tools.</p>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-icon">💬</div>
+                        <h4>Community Forums</h4>
+                        <p>Connect with other educators, share experiences, and find solutions to common challenges.</p>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-icon">🎯</div>
+                        <h4>Expert Assistance</h4>
+                        <p>Direct support from AI education specialists and vendor technical support teams.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Common Issues FAQ -->
+            <section>
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to the most common technical issues educators encounter with AI tools.</p>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>Why isn't ChatGPT/AI tool working in my classroom?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Common causes:</strong></p>
+                            <ul>
+                                <li><strong>Network restrictions:</strong> Many schools block AI tools at the firewall level. Contact your IT department to request access.</li>
+                                <li><strong>Account issues:</strong> Ensure you have a valid account and are logged in properly.</li>
+                                <li><strong>Service outages:</strong> Check the vendor's status page (status.openai.com for ChatGPT).</li>
+                                <li><strong>Browser compatibility:</strong> Try a different browser or clear your cache/cookies.</li>
+                                <li><strong>Rate limits:</strong> Free accounts have usage limits. Consider upgrading or waiting.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>How do I get my school to unblock AI tools?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Strategy:</strong></p>
+                            <ol>
+                                <li><strong>Document educational purpose:</strong> Create a written proposal explaining specific learning objectives</li>
+                                <li><strong>Address concerns:</strong> Proactively discuss privacy, academic integrity, and supervision</li>
+                                <li><strong>Propose safeguards:</strong> Suggest monitored usage, acceptable use policies, and teacher oversight</li>
+                                <li><strong>Start small:</strong> Request pilot program for specific class or project</li>
+                                <li><strong>Provide evidence:</strong> Share research and case studies showing educational benefits</li>
+                                <li><strong>Offer training:</strong> Propose professional development for proper use</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>Students can't access the AI tool - what should I do?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Troubleshooting steps:</strong></p>
+                            <ol>
+                                <li>Verify students meet age requirements (13+ for most tools, 18+ for some)</li>
+                                <li>Check if parental consent is required and obtained</li>
+                                <li>Ensure students are using school-approved accounts, not personal ones</li>
+                                <li>Verify school network allows access (test on personal device with mobile data)</li>
+                                <li>Check if tool requires payment/subscription that hasn't been set up</li>
+                                <li>Create a backup plan with alternative tools or offline activities</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>The AI is giving incorrect or biased information. What do I do?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Response protocol:</strong></p>
+                            <ul>
+                                <li><strong>Immediately:</strong> Correct the misinformation with students and use as teaching moment</li>
+                                <li><strong>Document:</strong> Screenshot the problematic output for reporting and future reference</li>
+                                <li><strong>Teach critical thinking:</strong> Emphasize that AI can be wrong and verification is essential</li>
+                                <li><strong>Report to vendor:</strong> Most AI companies have feedback mechanisms for quality issues</li>
+                                <li><strong>Adjust prompts:</strong> Better prompts often yield better results - try rephrasing</li>
+                                <li><strong>Set expectations:</strong> Make clear that AI is a tool to assist, not replace, learning</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>How can I detect if students used AI to complete assignments?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Detection methods:</strong></p>
+                            <ul>
+                                <li><strong>AI detection tools:</strong> Turnitin, GPTZero, Copyleaks (not 100% accurate)</li>
+                                <li><strong>Writing style analysis:</strong> Compare to previous student work for consistency</li>
+                                <li><strong>Oral defense:</strong> Ask students to explain their thinking process</li>
+                                <li><strong>Process documentation:</strong> Require drafts, outlines, and revision history</li>
+                                <li><strong>In-class components:</strong> Include handwritten or supervised elements</li>
+                            </ul>
+                            <p><strong>Better approach:</strong> Design assignments that make AI less useful (personal reflection, original research, in-class presentation) and teach responsible AI use rather than trying to prevent all use.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>The AI tool is too expensive for our budget. Are there free alternatives?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Free or low-cost options:</strong></p>
+                            <ul>
+                                <li><strong>ChatGPT Free Tier:</strong> Basic but functional for many educational uses</li>
+                                <li><strong>Claude.ai Free:</strong> Generous free tier with high-quality responses</li>
+                                <li><strong>Google Bard/Gemini:</strong> Free with Google account</li>
+                                <li><strong>Microsoft Copilot:</strong> Free with Microsoft account</li>
+                                <li><strong>Khan Academy:</strong> Completely free adaptive learning platform</li>
+                                <li><strong>Grammarly Free:</strong> Basic writing assistance</li>
+                                <li><strong>Google Translate:</strong> Free translation tool</li>
+                            </ul>
+                            <p><strong>Grant opportunities:</strong> Many vendors offer education discounts or grants. Check with DonorsChoose, local education foundations, or apply directly to companies.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>Data privacy concerns - is it safe to use AI tools with student data?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Safety checklist:</strong></p>
+                            <ul>
+                                <li>Use only FERPA/COPPA/GDPR-compliant tools</li>
+                                <li>Review vendor privacy policies carefully</li>
+                                <li>Never input personally identifiable information (PII) into free AI tools</li>
+                                <li>Use school-managed accounts, not personal consumer accounts</li>
+                                <li>Get proper consent from parents/guardians</li>
+                                <li>Ensure data is encrypted in transit and at rest</li>
+                                <li>Verify vendor doesn't use student data for AI training without consent</li>
+                                <li>Check that vendor will delete data upon request</li>
+                            </ul>
+                            <p>See our <a href="aiethics.html">Ethics & Privacy Guidelines</a> for comprehensive guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting Guides -->
+            <section>
+                <h2>Step-by-Step Troubleshooting Guides</h2>
+
+                <h3>ChatGPT Issues</h3>
+                <div class="troubleshooting-box">
+                    <h4>ChatGPT Not Loading or Responding</h4>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Check Service Status:</strong> Visit <a href="https://status.openai.com/" target="_blank">status.openai.com</a> to see if there's an outage
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Clear Browser Cache:</strong> Clear your browser's cache and cookies, then restart the browser
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Try Different Browser:</strong> Test in Chrome, Firefox, Safari, or Edge to rule out browser-specific issues
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Check Network:</strong> Ensure you're connected to internet and ChatGPT isn't blocked by firewall
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>Log Out and Back In:</strong> Sign out completely, close browser, reopen, and sign back in
+                    </div>
+                    <div class="step">
+                        <span class="step-number">6</span>
+                        <strong>Check Account Status:</strong> Verify your account is active and subscription is current (if applicable)
+                    </div>
+                </div>
+
+                <h3>Google Workspace / Classroom Integration</h3>
+                <div class="troubleshooting-box">
+                    <h4>AI Extensions Not Working in Google Workspace</h4>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Verify Admin Approval:</strong> School Google Workspace admin must approve third-party apps
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Check Permissions:</strong> Ensure the extension has necessary permissions (may require re-authorization)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Update Extension:</strong> Remove and reinstall the extension to get latest version
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Review Organizational Policies:</strong> Some school policies block certain types of add-ons
+                    </div>
+                </div>
+
+                <h3>LMS (Canvas, Blackboard, Moodle) Integration</h3>
+                <div class="troubleshooting-box">
+                    <h4>AI Tool Won't Connect to Learning Management System</h4>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Verify LTI Settings:</strong> Check that LTI (Learning Tools Interoperability) is enabled in LMS
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>Update API Keys:</strong> Ensure API keys/credentials are current and correctly entered
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Check User Roles:</strong> Verify you have instructor/admin privileges to add external tools
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Contact LMS Admin:</strong> Integration may require institutional-level setup
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>Review Vendor Documentation:</strong> Each LMS has specific integration requirements - consult both LMS and AI tool documentation
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Forums -->
+            <section>
+                <h2>Community Support & Forums</h2>
+                <p>Connect with thousands of educators navigating similar challenges with AI integration.</p>
+
+                <div class="community-grid">
+                    <div class="community-card">
+                        <h5>📚 r/Teachers + r/EdTech (Reddit)</h5>
+                        <p>Active communities discussing classroom technology, including AI tools. Great for quick questions and real-world experiences.</p>
+                        <a href="https://www.reddit.com/r/Teachers/" target="_blank">r/Teachers</a> | 
+                        <a href="https://www.reddit.com/r/EdTech/" target="_blank">r/EdTech</a>
+                        <div class="community-meta">
+                            <span>👥 500K+ members</span>
+                            <span>⚡ Very active</span>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <h5>🎓 ISTE Community</h5>
+                        <p>International Society for Technology in Education forum with dedicated AI in education section.</p>
+                        <a href="https://community.iste.org/" target="_blank">Visit ISTE Community</a>
+                        <div class="community-meta">
+                            <span>👥 Professional network</span>
+                            <span>📊 Research-backed</span>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <h5>💬 OpenAI Educator Community</h5>
+                        <p>Official forum for educators using ChatGPT and other OpenAI tools. Direct feedback to developers.</p>
+                        <a href="https://community.openai.com/c/educator-community/45" target="_blank">Join Forum</a>
+                        <div class="community-meta">
+                            <span>👥 Educators only</span>
+                            <span>🔧 Official support</span>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <h5>🌐 EdSurge Community</h5>
+                        <p>News, research, and discussion about educational technology trends and tools.</p>
+                        <a href="https://www.edsurge.com/" target="_blank">Visit EdSurge</a>
+                        <div class="community-meta">
+                            <span>📰 News + forums</span>
+                            <span>🔍 Tool reviews</span>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <h5>💡 AI for Education Discord</h5>
+                        <p>Real-time chat community for educators exploring AI tools. Quick answers and collaboration.</p>
+                        <a href="https://discord.com/invite/education" target="_blank">Join Discord</a>
+                        <div class="community-meta">
+                            <span>💬 Real-time chat</span>
+                            <span>🤝 Collaborative</span>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <h5>📖 Google Educator Groups</h5>
+                        <p>For those using Google AI tools in education. Direct access to Google for Education team.</p>
+                        <a href="https://www.google.com/edu/resources/programs/google-educator-groups/" target="_blank">Find a Group</a>
+                        <div class="community-meta">
+                            <span>🌍 Local chapters</span>
+                            <span>🎯 Tool-specific</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vendor Support -->
+            <section>
+                <h2>Official Vendor Support</h2>
+                <p>Direct technical support from AI tool providers.</p>
+
+                <h3>Major AI Platform Support</h3>
+                <ul>
+                    <li><strong><a href="https://help.openai.com/" target="_blank">OpenAI Help Center (ChatGPT)</a>:</strong> Documentation, FAQs, and contact support</li>
+                    <li><strong><a href="https://support.anthropic.com/" target="_blank">Anthropic Support (Claude)</a>:</strong> Technical documentation and help articles</li>
+                    <li><strong><a href="https://support.google.com/bard/" target="_blank">Google Bard/Gemini Support</a>:</strong> Official help and troubleshooting</li>
+                    <li><strong><a href="https://support.microsoft.com/copilot" target="_blank">Microsoft Copilot Support</a>:</strong> Documentation for Copilot in education</li>
+                </ul>
+
+                <h3>Educational AI Tools Support</h3>
+                <ul>
+                    <li><strong><a href="https://support.khanacademy.org/" target="_blank">Khan Academy Help Center</a>:</strong> Comprehensive guides for teachers and students</li>
+                    <li><strong><a href="https://help.turnitin.com/" target="_blank">Turnitin Support</a>:</strong> AI writing detection and plagiarism checking</li>
+                    <li><strong><a href="https://help.gradescope.com/" target="_blank">Gradescope Help Center</a>:</strong> AI-assisted grading support</li>
+                    <li><strong><a href="https://support.grammarly.com/" target="_blank">Grammarly Support</a>:</strong> Writing assistant help for education</li>
+                    <li><strong><a href="https://www.duolingo.com/help" target="_blank">Duolingo Help Center</a>:</strong> Language learning AI support</li>
+                </ul>
+
+                <h3>Learning Management System Support</h3>
+                <ul>
+                    <li><strong><a href="https://community.canvaslms.com/" target="_blank">Canvas Community</a>:</strong> Forum and documentation for Canvas LMS</li>
+                    <li><strong><a href="https://help.blackboard.com/" target="_blank">Blackboard Help</a>:</strong> Technical support and guides</li>
+                    <li><strong><a href="https://moodle.org/support/" target="_blank">Moodle Support</a>:</strong> Open-source LMS community support</li>
+                    <li><strong><a href="https://support.google.com/edu/classroom/" target="_blank">Google Classroom Help</a>:</strong> Official support for Classroom</li>
+                </ul>
+            </section>
+
+            <!-- Expert Assistance -->
+            <section>
+                <h2>Expert Assistance & Professional Services</h2>
+                
+                <div class="info-box">
+                    <h4>🎯 When to Seek Expert Help</h4>
+                    <ul>
+                        <li>Institutional-level AI integration planning</li>
+                        <li>Custom AI solution development</li>
+                        <li>Large-scale professional development</li>
+                        <li>Complex technical integration issues</li>
+                        <li>Privacy compliance audits</li>
+                        <li>Bias assessment and mitigation</li>
+                    </ul>
+                </div>
+
+                <h3>Consulting Services</h3>
+                <div class="support-grid">
+                    <div class="support-card">
+                        <h4>AI Education Consultants</h4>
+                        <p>Independent consultants specializing in AI integration for schools and universities.</p>
+                        <ul>
+                            <li>Strategic planning</li>
+                            <li>Tool selection and evaluation</li>
+                            <li>Professional development design</li>
+                            <li>Implementation support</li>
+                        </ul>
+                    </div>
+
+                    <div class="support-card">
+                        <h4>EdTech Integration Specialists</h4>
+                        <p>Companies providing full-service educational technology integration.</p>
+                        <ul>
+                            <li>Needs assessment</li>
+                            <li>Technical setup and configuration</li>
+                            <li>Training and ongoing support</li>
+                            <li>Measurement and optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="support-card">
+                        <h4>Vendor Professional Services</h4>
+                        <p>Many AI vendors offer paid support packages for institutions.</p>
+                        <ul>
+                            <li>Dedicated account manager</li>
+                            <li>Priority technical support</li>
+                            <li>Custom integrations</li>
+                            <li>Onsite training</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Professional Organizations</h3>
+                <ul>
+                    <li><strong><a href="https://www.iste.org/professional-development/consulting" target="_blank">ISTE Consulting Services</a>:</strong> Technology integration consulting for schools</li>
+                    <li><strong><a href="https://www.cosn.org/" target="_blank">CoSN (Consortium for School Networking)</a>:</strong> Leadership and technical guidance</li>
+                    <li><strong><a href="https://www.setda.org/" target="_blank">SETDA (State Educational Technology Directors Association)</a>:</strong> Policy and implementation support</li>
+                </ul>
+            </section>
+
+            <!-- Self-Help Resources -->
+            <section>
+                <h2>Self-Help Resources</h2>
+                
+                <h3>Video Tutorials</h3>
+                <ul>
+                    <li><strong><a href="https://www.youtube.com/c/ISTEEdTech" target="_blank">ISTE YouTube Channel</a>:</strong> Educational technology tutorials and webinars</li>
+                    <li><strong><a href="https://www.youtube.com/OpenAI" target="_blank">OpenAI YouTube</a>:</strong> ChatGPT tutorials and use cases</li>
+                    <li><strong><a href="https://www.khanacademy.org/computing/computer-programming" target="_blank">Khan Academy Computer Science</a>:</strong> AI and programming fundamentals</li>
+                </ul>
+
+                <h3>Documentation & Guides</h3>
+                <ul>
+                    <li><strong><a href="https://platform.openai.com/docs/" target="_blank">OpenAI Documentation</a>:</strong> Comprehensive API and usage guides</li>
+                    <li><strong><a href="https://docs.anthropic.com/" target="_blank">Anthropic Documentation</a>:</strong> Claude AI technical documentation</li>
+                    <li><strong><a href="https://support.google.com/edu/" target="_blank">Google for Education Help</a>:</strong> All Google education tools</li>
+                </ul>
+
+                <h3>Troubleshooting Checklists (Downloadable)</h3>
+                <div class="warning-box">
+                    <h4>📋 Quick Reference Checklists</h4>
+                    <p>Print these checklists for easy reference when issues arise:</p>
+                    <ul>
+                        <li><strong>Login Issues Checklist:</strong> Account access troubleshooting steps</li>
+                        <li><strong>Network Access Checklist:</strong> Firewall and connectivity diagnostics</li>
+                        <li><strong>Integration Checklist:</strong> LMS and Google Workspace integration verification</li>
+                        <li><strong>Privacy Compliance Checklist:</strong> FERPA/GDPR compliance verification</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Report an Issue -->
+            <section>
+                <h2>Report an Issue or Request Help</h2>
+                
+                <div class="info-box">
+                    <h4>📧 Contact Our Support Team</h4>
+                    <p>Can't find the answer you're looking for? Our team is here to help.</p>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="mailto:support@aiedu.example.com">support@aiedu.example.com</a></li>
+                        <li><strong>Response Time:</strong> Within 24-48 hours during business days</li>
+                        <li><strong>What to Include:</strong>
+                            <ul>
+                                <li>Detailed description of the issue</li>
+                                <li>Screenshots or error messages</li>
+                                <li>Steps you've already tried</li>
+                                <li>Browser/device information</li>
+                                <li>AI tool and version being used</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Help Us Help You</h4>
+                    <p>The more information you provide, the faster we can resolve your issue:</p>
+                    <ol>
+                        <li>Describe what you were trying to accomplish</li>
+                        <li>Explain what actually happened</li>
+                        <li>List any error messages (exact text if possible)</li>
+                        <li>Note when the problem started</li>
+                        <li>Mention if others are experiencing the same issue</li>
+                        <li>Include screenshots showing the problem</li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Still Need Help?</h2>
+                <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">Explore our other resources or connect with the community.</p>
+                <a href="aiedu.html" class="cta-button">Return to Main Guide</a>
+                <a href="aiguide.html" class="cta-button">Getting Started Guide</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI in Education Excellence Initiative. Empowering educators to shape the future of learning.</p>
+            <p style="margin-top: 1rem;"><a href="aiedu.html">Back to Main Guide</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle').forEach(tog => {
+                    tog.textContent = '+';
+                });
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                toggle.textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>

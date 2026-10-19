@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial - ECOM 561 Information Theory and Coding | Dr. Mohammad Al Bataineh</title>
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --dark-bg: #001524;
+            --light-bg: #f0f8ff;
+            --text-dark: #1a1a1a;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --code-bg: #1e1e1e;
+            --dark-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Password Protection Styles */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: var(--dark-gradient);
+        }
+
+        .password-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .password-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .password-box p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--dark-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(5, 191, 219, 0.4);
+        }
+
+        .error-msg {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--accent-color));
+            background-size: 200% 100%;
+            animation: gradient-slide 3s ease infinite;
+        }
+
+        @keyframes gradient-slide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .python-logo, .matlab-logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+
+        .info-box {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box a { color: var(--accent-color); }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning-orange);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .theory-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #e0f2fe;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #2d2d2d;
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h4 { color: var(--primary-color); margin-top: 0; }
+
+        .toc {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toc h3 { margin-top: 0; color: var(--primary-color); }
+        .toc ul { list-style: none; margin-left: 0; columns: 2; }
+        .toc li { margin: 0.5rem 0; break-inside: avoid; }
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .toc a:hover { color: var(--primary-color); text-decoration: underline; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: white; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.8rem; text-align: left; border: 1px solid var(--border-light); }
+        th {
+            background: var(--dark-gradient);
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background: var(--light-bg); }
+        tr:hover { background: #e0f2fe; }
+
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background: #e0f2fe;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .badge-clo { background: var(--accent-color); color: var(--primary-color); }
+        .badge-python { background: var(--secondary-color); color: white; }
+
+        .install-box {
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            color: #d4d4d4;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Consolas', monospace;
+        }
+
+        .install-box code {
+            background: none;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            .section { padding: 1.5rem; }
+            .toc ul { columns: 1; }
+            pre { font-size: 0.8em; padding: 1rem; }
+            .password-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="password-box">
+            <h2>🔒 Protected Content</h2>
+            <p>This Python tutorial is for ECOM 561 students only. Please enter the password to continue.</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password" autofocus>
+            <button onclick="checkPassword()" class="password-btn">Access Tutorial</button>
+            <p class="error-msg" id="error-msg">❌ Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until correct password) -->
+    <div id="content">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> → <a href="teaching.html">Teaching</a> → <a href="ecom561.html">ECOM 561</a> → Python Tutorial
+                </div>
+                <div class="python-logo">🐍</div>
+                <h1>Python Tutorial</h1>
+                <p class="subtitle">ECOM 561 - Information Theory and Coding | Spring 2026</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#intro">🚀 Introduction & Setup</a></li>
+                    <li><a href="#entropy">📊 Entropy & Information</a></li>
+                    <li><a href="#source-coding">📦 Source Coding</a></li>
+                    <li><a href="#huffman">🌳 Huffman Coding</a></li>
+                    <li><a href="#lempel-ziv">🔄 Lempel-Ziv Coding</a></li>
+                    <li><a href="#channel">📡 Channel Capacity</a></li>
+                    <li><a href="#block-codes">🔲 Linear Block Codes</a></li>
+                    <li><a href="#cyclic">♻️ Cyclic Codes</a></li>
+                    <li><a href="#convolutional">🔗 Convolutional Codes</a></li>
+                    <li><a href="#viterbi">🎯 Viterbi Algorithm</a></li>
+                    <li><a href="#ber">📈 BER Simulation</a></li>
+                    <li><a href="#tips">💡 Tips & Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction -->
+            <div class="section" id="intro">
+                <h2>🚀 Introduction & Setup</h2>
+                <p>This tutorial provides Python implementations for key concepts in Information Theory and Coding. Python offers excellent libraries for numerical computing and visualization, making it an ideal choice for understanding and implementing coding algorithms.</p>
+
+                <div class="info-box">
+                    <h4 style="color: white; margin-top: 0;">📋 Course Learning Outcome</h4>
+                    <p style="margin-bottom: 0;"><strong>CLO-6:</strong> Evaluate the performance of selected coding algorithms on some error-correction and coding techniques using Python.</p>
+                </div>
+
+                <h3>Required Libraries</h3>
+                <div class="install-box">
+                    <code>pip install numpy scipy matplotlib</code>
+                </div>
+
+                <div class="code-header">Import Libraries</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy import special
+from collections import defaultdict
+import heapq
+
+# For nicer plots
+plt.style.use('seaborn-v0_8-whitegrid')
+plt.rcParams['figure.figsize'] = [10, 6]
+plt.rcParams['font.size'] = 12</code></pre>
+
+                <h3>Basic Setup Template</h3>
+                <div class="code-header">script_template.py</div>
+                <pre><code>"""
+ECOM 561 - Information Theory and Coding
+Assignment/Project: [Title]
+Student Name: [Your Name]
+Student ID: [Your ID]
+Date: [Date]
+Description: [Brief description of what this code does]
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ============================================
+# Main Code Starts Here
+# ============================================
+
+def main():
+    """Main function to run the analysis."""
+    # Your implementation goes here
+    pass
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 Tip: Using Jupyter Notebooks</h4>
+                    <p>Consider using Jupyter Notebooks (<code>pip install jupyter</code>) for interactive development. You can run cells individually and see results immediately, which is great for learning and experimentation.</p>
+                </div>
+            </div>
+
+            <!-- Entropy and Information -->
+            <div class="section" id="entropy">
+                <h2>📊 Entropy & Information Measures <span class="badge badge-clo">CLO-1</span></h2>
+                
+                <div class="theory-box">
+                    <h4>📐 Theory Review</h4>
+                    <p><strong>Self-Information:</strong> <span class="math">I(x) = -log₂(P(x))</span> bits</p>
+                    <p><strong>Entropy:</strong> <span class="math">H(X) = -Σ P(xᵢ) log₂(P(xᵢ))</span> bits</p>
+                    <p><strong>Joint Entropy:</strong> <span class="math">H(X,Y) = -Σᵢ Σⱼ P(xᵢ,yⱼ) log₂(P(xᵢ,yⱼ))</span></p>
+                    <p><strong>Mutual Information:</strong> <span class="math">I(X;Y) = H(X) + H(Y) - H(X,Y)</span></p>
+                </div>
+
+                <h3>Self-Information Calculator</h3>
+                <div class="code-header">self_information.py</div>
+                <pre><code>import numpy as np
+
+def self_information(p):
+    """
+    Calculate self-information of an event.
+    
+    Parameters:
+        p: probability of the event (0 &lt; p &lt;= 1)
+    
+    Returns:
+        I: self-information in bits
+    """
+    if p &lt;= 0 or p &gt; 1:
+        raise ValueError("Probability must be in range (0, 1]")
+    
+    return -np.log2(p)
+
+# Example Usage
+if __name__ == "__main__":
+    # Event with probability 0.5 (fair coin flip)
+    p = 0.5
+    I = self_information(p)
+    print(f"Self-information for P={p:.2f}: {I:.4f} bits")
+    
+    # Multiple events
+    probs = [0.9, 0.5, 0.1, 0.01]
+    for p in probs:
+        I = self_information(p)
+        print(f"P = {p:.2f} → I = {I:.4f} bits")</code></pre>
+
+                <h3>Entropy Calculator</h3>
+                <div class="code-header">entropy.py</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+def calculate_entropy(P):
+    """
+    Calculate entropy of a discrete source.
+    
+    Parameters:
+        P: probability distribution (array-like, must sum to 1)
+    
+    Returns:
+        H: entropy in bits
+    """
+    P = np.array(P)
+    
+    # Validate input
+    if not np.isclose(np.sum(P), 1.0):
+        raise ValueError(f"Probabilities must sum to 1. Sum = {np.sum(P):.6f}")
+    
+    if np.any(P &lt; 0):
+        raise ValueError("Probabilities cannot be negative")
+    
+    # Calculate entropy (handle P=0 case)
+    # Use np.where to avoid log(0)
+    H = -np.sum(np.where(P &gt; 0, P * np.log2(P), 0))
+    
+    return H
+
+def binary_entropy(p):
+    """Calculate binary entropy function H(p)."""
+    if p == 0 or p == 1:
+        return 0
+    return calculate_entropy([p, 1-p])
+
+# Plot binary entropy function
+if __name__ == "__main__":
+    p_values = np.linspace(0.001, 0.999, 1000)
+    H_values = [binary_entropy(p) for p in p_values]
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot(p_values, H_values, 'b-', linewidth=2)
+    plt.xlabel('Probability p', fontsize=12)
+    plt.ylabel('H(p) [bits]', fontsize=12)
+    plt.title('Binary Entropy Function H(p) = -p log₂(p) - (1-p) log₂(1-p)', fontsize=14)
+    plt.grid(True, alpha=0.3)
+    plt.xlim([0, 1])
+    plt.ylim([0, 1.1])
+    
+    # Mark maximum entropy point
+    plt.plot(0.5, 1, 'ro', markersize=10)
+    plt.annotate('Maximum at p=0.5', xy=(0.5, 1), xytext=(0.55, 0.95), fontsize=11)
+    
+    plt.tight_layout()
+    plt.savefig('binary_entropy.png', dpi=150)
+    plt.show()</code></pre>
+
+                <h3>Joint and Conditional Entropy</h3>
+                <div class="code-header">joint_entropy.py</div>
+                <pre><code>import numpy as np
+
+def joint_conditional_entropy(P_XY):
+    """
+    Calculate all entropy measures from joint probability matrix.
+    
+    Parameters:
+        P_XY: joint probability matrix P(X,Y) as 2D numpy array
+    
+    Returns:
+        dict with H_XY, H_X, H_Y, H_X_given_Y, H_Y_given_X, I_XY
+    """
+    P_XY = np.array(P_XY)
+    
+    # Marginal distributions
+    P_X = np.sum(P_XY, axis=1)  # Sum over Y (columns)
+    P_Y = np.sum(P_XY, axis=0)  # Sum over X (rows)
+    
+    # Individual entropies
+    H_X = calculate_entropy(P_X)
+    H_Y = calculate_entropy(P_Y)
+    
+    # Joint entropy H(X,Y)
+    H_XY = -np.sum(np.where(P_XY &gt; 0, P_XY * np.log2(P_XY), 0))
+    
+    # Conditional entropies
+    H_X_given_Y = H_XY - H_Y  # H(X|Y) = H(X,Y) - H(Y)
+    H_Y_given_X = H_XY - H_X  # H(Y|X) = H(X,Y) - H(X)
+    
+    # Mutual information
+    I_XY = H_X + H_Y - H_XY   # I(X;Y) = H(X) + H(Y) - H(X,Y)
+    
+    return {
+        'H_X': H_X,
+        'H_Y': H_Y,
+        'H_XY': H_XY,
+        'H_X_given_Y': H_X_given_Y,
+        'H_Y_given_X': H_Y_given_X,
+        'I_XY': I_XY
+    }
+
+# Example: Binary Symmetric Channel Analysis
+if __name__ == "__main__":
+    p = 0.1  # Crossover probability
+    
+    # Joint probability matrix for BSC with uniform input
+    P_XY = np.array([
+        [0.5*(1-p), 0.5*p],      # P(X=0,Y=0), P(X=0,Y=1)
+        [0.5*p,     0.5*(1-p)]   # P(X=1,Y=0), P(X=1,Y=1)
+    ])
+    
+    results = joint_conditional_entropy(P_XY)
+    
+    print(f"===== Binary Symmetric Channel Analysis (p={p:.2f}) =====")
+    print(f"H(X) = {results['H_X']:.4f} bits")
+    print(f"H(Y) = {results['H_Y']:.4f} bits")
+    print(f"H(X,Y) = {results['H_XY']:.4f} bits")
+    print(f"H(X|Y) = {results['H_X_given_Y']:.4f} bits")
+    print(f"H(Y|X) = {results['H_Y_given_X']:.4f} bits")
+    print(f"I(X;Y) = {results['I_XY']:.4f} bits")</code></pre>
+
+                <div class="success-box">
+                    <h4>✅ Key Relationships to Remember</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Chain Rule:</strong> H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)</li>
+                        <li><strong>Conditioning Reduces Entropy:</strong> H(X|Y) ≤ H(X)</li>
+                        <li><strong>Mutual Information:</strong> I(X;Y) = H(X) - H(X|Y) ≥ 0</li>
+                        <li><strong>Maximum Entropy:</strong> Uniform distribution maximizes entropy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Source Coding -->
+            <div class="section" id="source-coding">
+                <h2>📦 Source Coding Fundamentals <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Source Coding Theorem</h4>
+                    <p>For a discrete memoryless source with entropy H(X), the average codeword length L satisfies:</p>
+                    <p class="math">H(X) ≤ L &lt; H(X) + 1</p>
+                </div>
+
+                <h3>Kraft Inequality Checker</h3>
+                <div class="code-header">kraft_inequality.py</div>
+                <pre><code>import numpy as np
+
+def kraft_inequality(lengths, r=2):
+    """
+    Check if codeword lengths satisfy Kraft inequality.
+    
+    Parameters:
+        lengths: list of codeword lengths
+        r: radix/alphabet size (default: 2 for binary)
+    
+    Returns:
+        tuple: (K, is_valid) - Kraft sum and validity
+    """
+    lengths = np.array(lengths)
+    K = np.sum(r ** (-lengths))
+    is_valid = K &lt;= 1
+    
+    print("===== Kraft Inequality Check =====")
+    print(f"Codeword lengths: {lengths}")
+    print(f"Radix r = {r}")
+    print(f"Kraft sum K = {K:.4f}")
+    
+    if is_valid:
+        print("✓ K ≤ 1: A prefix-free code EXISTS")
+        if K &lt; 1:
+            print("  (Code can be improved - K &lt; 1)")
+    else:
+        print("✗ K &gt; 1: NO prefix-free code exists")
+    
+    return K, is_valid
+
+# Examples
+if __name__ == "__main__":
+    print("Example 1: Valid code")
+    kraft_inequality([1, 2, 3, 3])
+    
+    print("\nExample 2: Invalid lengths")
+    kraft_inequality([1, 1, 2, 2])
+    
+    print("\nExample 3: Optimal code (K = 1)")
+    kraft_inequality([2, 2, 2, 2])</code></pre>
+
+                <h3>Average Codeword Length</h3>
+                <div class="code-header">avg_length.py</div>
+                <pre><code>import numpy as np
+
+def avg_codeword_length(P, lengths):
+    """
+    Calculate average codeword length and efficiency.
+    
+    Parameters:
+        P: probability distribution
+        lengths: codeword lengths for each symbol
+    
+    Returns:
+        tuple: (L_avg, efficiency, redundancy)
+    """
+    P = np.array(P)
+    lengths = np.array(lengths)
+    
+    # Average codeword length
+    L_avg = np.sum(P * lengths)
+    
+    # Entropy
+    H = calculate_entropy(P)
+    
+    # Efficiency and redundancy
+    efficiency = (H / L_avg) * 100  # Percentage
+    redundancy = L_avg - H
+    
+    print("===== Source Coding Analysis =====")
+    print(f"Source Entropy H(X) = {H:.4f} bits")
+    print(f"Average Length L = {L_avg:.4f} bits")
+    print(f"Coding Efficiency = {efficiency:.2f}%")
+    print(f"Redundancy = {redundancy:.4f} bits")
+    
+    return L_avg, efficiency, redundancy
+
+# Example
+if __name__ == "__main__":
+    symbols = ['A', 'B', 'C', 'D']
+    P = [0.5, 0.25, 0.125, 0.125]
+    lengths = [1, 2, 3, 3]
+    codes = ['0', '10', '110', '111']
+    
+    print("Symbol | Prob  | Length | Code")
+    print("-------|-------|--------|------")
+    for s, p, l, c in zip(symbols, P, lengths, codes):
+        print(f"  {s}    | {p:.3f} |   {l}    | {c}")
+    print()
+    
+    avg_codeword_length(P, lengths)</code></pre>
+            </div>
+
+            <!-- Huffman Coding -->
+            <div class="section" id="huffman">
+                <h2>🌳 Huffman Coding <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Huffman Algorithm</h4>
+                    <p>Huffman coding produces an optimal prefix-free code:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li>Sort symbols by probability (ascending)</li>
+                        <li>Combine two lowest probability symbols</li>
+                        <li>Repeat until single node remains</li>
+                        <li>Assign bits by traversing tree (0=left, 1=right)</li>
+                    </ol>
+                </div>
+
+                <h3>Huffman Coding Implementation</h3>
+                <div class="code-header">huffman.py</div>
+                <pre><code>import heapq
+from collections import defaultdict
+import numpy as np
+
+class HuffmanNode:
+    """Node for Huffman tree."""
+    def __init__(self, symbol=None, prob=0):
+        self.symbol = symbol
+        self.prob = prob
+        self.left = None
+        self.right = None
+    
+    def __lt__(self, other):
+        return self.prob &lt; other.prob
+
+def huffman_encode(symbols, probabilities):
+    """
+    Generate Huffman codes for given symbols.
+    
+    Parameters:
+        symbols: list of symbol names
+        probabilities: list of probabilities
+    
+    Returns:
+        dict: symbol -&gt; code mapping
+    """
+    # Create leaf nodes and add to heap
+    heap = []
+    for s, p in zip(symbols, probabilities):
+        node = HuffmanNode(s, p)
+        heapq.heappush(heap, node)
+    
+    # Build Huffman tree
+    while len(heap) &gt; 1:
+        # Pop two smallest nodes
+        left = heapq.heappop(heap)
+        right = heapq.heappop(heap)
+        
+        # Create parent node
+        parent = HuffmanNode(prob=left.prob + right.prob)
+        parent.left = left
+        parent.right = right
+        
+        heapq.heappush(heap, parent)
+    
+    # Generate codes by traversing tree
+    root = heap[0]
+    codes = {}
+    
+    def traverse(node, code=""):
+        if node.symbol is not None:
+            codes[node.symbol] = code if code else "0"
+        else:
+            if node.left:
+                traverse(node.left, code + "0")
+            if node.right:
+                traverse(node.right, code + "1")
+    
+    traverse(root)
+    return codes
+
+def huffman_analysis(symbols, probabilities):
+    """Perform complete Huffman coding analysis."""
+    codes = huffman_encode(symbols, probabilities)
+    
+    # Calculate statistics
+    lengths = [len(codes[s]) for s in symbols]
+    P = np.array(probabilities)
+    L_avg = np.sum(P * lengths)
+    H = -np.sum(P * np.log2(P))
+    efficiency = (H / L_avg) * 100
+    
+    print("===== Huffman Coding Results =====")
+    print("Symbol | Prob   | Length | Code")
+    print("-------|--------|--------|----------")
+    for s, p in zip(symbols, probabilities):
+        print(f"  {s}    | {p:.4f} |   {len(codes[s])}    | {codes[s]}")
+    
+    print(f"\nEntropy H(X) = {H:.4f} bits")
+    print(f"Average Length L = {L_avg:.4f} bits")
+    print(f"Efficiency = {efficiency:.2f}%")
+    
+    return codes
+
+# Example
+if __name__ == "__main__":
+    symbols = ['A', 'B', 'C', 'D', 'E']
+    probabilities = [0.4, 0.2, 0.2, 0.1, 0.1]
+    
+    codes = huffman_analysis(symbols, probabilities)</code></pre>
+
+                <h3>Huffman Encoding/Decoding Functions</h3>
+                <div class="code-header">huffman_codec.py</div>
+                <pre><code>def huffman_encode_message(message, codes):
+    """Encode a message using Huffman codes."""
+    return ''.join(codes[char] for char in message if char in codes)
+
+def huffman_decode_message(bitstring, codes):
+    """Decode a Huffman-encoded bitstring."""
+    # Create reverse lookup
+    reverse_codes = {v: k for k, v in codes.items()}
+    
+    decoded = []
+    buffer = ""
+    
+    for bit in bitstring:
+        buffer += bit
+        if buffer in reverse_codes:
+            decoded.append(reverse_codes[buffer])
+            buffer = ""
+    
+    if buffer:
+        print(f"Warning: Incomplete codeword remaining: {buffer}")
+    
+    return ''.join(decoded)
+
+# Example
+if __name__ == "__main__":
+    symbols = ['A', 'B', 'C', 'D']
+    probs = [0.5, 0.25, 0.125, 0.125]
+    codes = huffman_encode(symbols, probs)
+    
+    message = "ABACADA"
+    print(f"Original message: {message}")
+    
+    encoded = huffman_encode_message(message, codes)
+    print(f"Encoded: {encoded} ({len(encoded)} bits)")
+    
+    decoded = huffman_decode_message(encoded, codes)
+    print(f"Decoded: {decoded}")
+    
+    # Compression ratio
+    original_bits = len(message) * 2  # Fixed 2-bit encoding
+    compression = (1 - len(encoded)/original_bits) * 100
+    print(f"Compression: {original_bits} bits → {len(encoded)} bits ({compression:.1f}% reduction)")</code></pre>
+            </div>
+
+            <!-- Lempel-Ziv -->
+            <div class="section" id="lempel-ziv">
+                <h2>🔄 Lempel-Ziv Coding <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 LZ78 Algorithm</h4>
+                    <p>Dictionary-based compression that builds a codebook dynamically:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li>Start with empty dictionary</li>
+                        <li>Read input until finding longest match in dictionary</li>
+                        <li>Output (index, next_symbol) pair</li>
+                        <li>Add new phrase to dictionary</li>
+                    </ol>
+                </div>
+
+                <h3>LZ78 Implementation</h3>
+                <div class="code-header">lz78.py</div>
+                <pre><code>def lz78_encode(input_string):
+    """
+    Encode a string using LZ78 algorithm.
+    
+    Parameters:
+        input_string: string to encode
+    
+    Returns:
+        tuple: (output pairs, dictionary)
+    """
+    dictionary = {'': 0}  # Empty string has index 0
+    output = []
+    i = 0
+    next_index = 1
+    
+    print("===== LZ78 Encoding Process =====")
+    print("Step | Current | Match | Output | New Entry")
+    print("-----|---------|-------|--------|----------")
+    
+    step = 0
+    while i &lt; len(input_string):
+        # Find longest match
+        match = ''
+        match_idx = 0
+        
+        for j in range(i, len(input_string) + 1):
+            substring = input_string[i:j]
+            if substring in dictionary:
+                match = substring
+                match_idx = dictionary[substring]
+            else:
+                break
+        
+        # Get next symbol
+        next_pos = i + len(match)
+        next_symbol = input_string[next_pos] if next_pos &lt; len(input_string) else ''
+        
+        # Output pair
+        output.append((match_idx, next_symbol))
+        
+        # Add new phrase to dictionary
+        if next_symbol:
+            new_phrase = match + next_symbol
+            dictionary[new_phrase] = next_index
+            next_index += 1
+        
+        step += 1
+        current = input_string[i:next_pos + (1 if next_symbol else 0)]
+        dict_entries = [k for k in dictionary.keys() if k]
+        print(f" {step:2d}  |   {current:&lt;5} |   {match_idx}   | ({match_idx},{next_symbol or 'ε'}) | {dict_entries}")
+        
+        i = next_pos + (1 if next_symbol else 0)
+    
+    return output, dictionary
+
+def lz78_decode(encoded):
+    """Decode LZ78 encoded data."""
+    dictionary = {0: ''}
+    decoded = ''
+    next_index = 1
+    
+    for idx, symbol in encoded:
+        phrase = dictionary[idx] + symbol
+        decoded += phrase
+        
+        if symbol:
+            dictionary[next_index] = phrase
+            next_index += 1
+    
+    return decoded
+
+# Example
+if __name__ == "__main__":
+    input_string = "AABABAABAB"
+    print(f"Input: {input_string}\n")
+    
+    encoded, dictionary = lz78_encode(input_string)
+    
+    print(f"\nEncoded: {encoded}")
+    
+    decoded = lz78_decode(encoded)
+    print(f"Decoded: {decoded}")
+    print(f"Match: {input_string == decoded}")</code></pre>
+            </div>
+
+            <!-- Channel Capacity -->
+            <div class="section" id="channel">
+                <h2>📡 Channel Capacity <span class="badge badge-clo">CLO-3</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Shannon's Channel Capacity</h4>
+                    <p><strong>Binary Symmetric Channel (BSC):</strong></p>
+                    <p class="math">C = 1 - H(p) = 1 + p log₂(p) + (1-p) log₂(1-p)</p>
+                    <p><strong>AWGN Channel:</strong></p>
+                    <p class="math">C = W log₂(1 + SNR) bits/second</p>
+                </div>
+
+                <h3>Binary Symmetric Channel Capacity</h3>
+                <div class="code-header">bsc_capacity.py</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+def bsc_capacity(p):
+    """
+    Calculate capacity of Binary Symmetric Channel.
+    
+    Parameters:
+        p: crossover probability (error probability)
+    
+    Returns:
+        C: channel capacity in bits per channel use
+    """
+    if p == 0 or p == 1:
+        return 1.0  # Perfect channel
+    
+    H_p = -p * np.log2(p) - (1-p) * np.log2(1-p)
+    return 1 - H_p
+
+# Plot BSC Capacity
+if __name__ == "__main__":
+    p_values = np.linspace(0.001, 0.5, 500)
+    C_values = [bsc_capacity(p) for p in p_values]
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot(p_values, C_values, 'b-', linewidth=2)
+    plt.xlabel('Crossover Probability p', fontsize=12)
+    plt.ylabel('Channel Capacity C (bits/use)', fontsize=12)
+    plt.title('Binary Symmetric Channel Capacity', fontsize=14)
+    plt.grid(True, alpha=0.3)
+    plt.xlim([0, 0.5])
+    plt.ylim([0, 1])
+    
+    # Mark specific point
+    p_mark = 0.1
+    C_mark = bsc_capacity(p_mark)
+    plt.plot(p_mark, C_mark, 'ro', markersize=8)
+    plt.annotate(f'C({p_mark}) = {C_mark:.3f}', 
+                 xy=(p_mark, C_mark), xytext=(p_mark+0.05, C_mark+0.05))
+    
+    plt.tight_layout()
+    plt.savefig('bsc_capacity.png', dpi=150)
+    plt.show()</code></pre>
+
+                <h3>AWGN Channel Capacity</h3>
+                <div class="code-header">awgn_capacity.py</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+def awgn_capacity(SNR_dB, W=1):
+    """
+    Calculate capacity of AWGN channel.
+    
+    Parameters:
+        SNR_dB: Signal-to-noise ratio in dB
+        W: Bandwidth in Hz (default: 1 for normalized)
+    
+    Returns:
+        C: Channel capacity in bits/second
+    """
+    SNR_linear = 10 ** (SNR_dB / 10)
+    return W * np.log2(1 + SNR_linear)
+
+# Plot AWGN Capacity
+if __name__ == "__main__":
+    SNR_dB = np.linspace(-10, 30, 500)
+    C_values = [awgn_capacity(snr) for snr in SNR_dB]
+    
+    plt.figure(figsize=(10, 6))
+    plt.plot(SNR_dB, C_values, 'b-', linewidth=2)
+    plt.xlabel('SNR (dB)', fontsize=12)
+    plt.ylabel('Channel Capacity C (bits/s/Hz)', fontsize=12)
+    plt.title('AWGN Channel Capacity (Shannon Limit)', fontsize=14)
+    plt.grid(True, alpha=0.3)
+    
+    # Mark reference points
+    for snr in [0, 10, 20]:
+        cap = awgn_capacity(snr)
+        plt.plot(snr, cap, 'ro', markersize=8)
+        plt.annotate(f'{cap:.2f}', xy=(snr, cap), xytext=(snr+1, cap+0.2))
+    
+    plt.tight_layout()
+    plt.savefig('awgn_capacity.png', dpi=150)
+    plt.show()
+    
+    # Print table
+    print("\n===== AWGN Channel Capacity Table =====")
+    print("SNR (dB) | SNR (linear) | Capacity (bits/s/Hz)")
+    print("---------|--------------|---------------------")
+    for snr in [-10, -5, 0, 5, 10, 15, 20, 25, 30]:
+        snr_lin = 10 ** (snr / 10)
+        cap = awgn_capacity(snr)
+        print(f"  {snr:4d}   |    {snr_lin:7.2f}   |       {cap:.4f}")</code></pre>
+            </div>
+
+            <!-- Linear Block Codes -->
+            <div class="section" id="block-codes">
+                <h2>🔲 Linear Block Codes <span class="badge badge-clo">CLO-4</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Linear Block Code Basics</h4>
+                    <p>An (n, k) linear block code encodes k information bits into n coded bits.</p>
+                    <p><strong>Generator Matrix G:</strong> c = m × G</p>
+                    <p><strong>Parity-Check Matrix H:</strong> c × H<sup>T</sup> = 0 for valid codewords</p>
+                    <p><strong>Syndrome:</strong> s = r × H<sup>T</sup> (non-zero indicates errors)</p>
+                </div>
+
+                <h3>Hamming (7,4) Code Implementation</h3>
+                <div class="code-header">hamming_74.py</div>
+                <pre><code>import numpy as np
+
+class HammingCode:
+    """Hamming (7,4) Code implementation."""
+    
+    def __init__(self):
+        # Generator matrix (systematic form)
+        self.G = np.array([
+            [1, 0, 0, 0, 1, 1, 0],
+            [0, 1, 0, 0, 1, 0, 1],
+            [0, 0, 1, 0, 0, 1, 1],
+            [0, 0, 0, 1, 1, 1, 1]
+        ])
+        
+        # Parity-check matrix
+        self.H = np.array([
+            [1, 1, 0, 1, 1, 0, 0],
+            [1, 0, 1, 1, 0, 1, 0],
+            [0, 1, 1, 1, 0, 0, 1]
+        ])
+        
+        self.n = 7  # Codeword length
+        self.k = 4  # Message length
+    
+    def encode(self, message):
+        """Encode a 4-bit message to 7-bit codeword."""
+        message = np.array(message)
+        codeword = np.dot(message, self.G) % 2
+        return codeword
+    
+    def syndrome(self, received):
+        """Calculate syndrome of received word."""
+        received = np.array(received)
+        s = np.dot(received, self.H.T) % 2
+        return s
+    
+    def decode(self, received):
+        """Decode received word with error correction."""
+        received = np.array(received).copy()
+        s = self.syndrome(received)
+        
+        if np.all(s == 0):
+            print("No error detected.")
+            return received
+        
+        # Find error position from syndrome
+        error_pos = int(''.join(map(str, s)), 2)
+        
+        if error_pos &gt; 0 and error_pos &lt;= self.n:
+            print(f"Error detected at position {error_pos}, correcting...")
+            received[error_pos - 1] ^= 1
+        
+        return received
+    
+    def get_message(self, codeword):
+        """Extract message bits from codeword (systematic)."""
+        return codeword[:self.k]
+
+# Example usage
+if __name__ == "__main__":
+    hamming = HammingCode()
+    
+    print("===== Hamming (7,4) Code =====\n")
+    print("Generator Matrix G:")
+    print(hamming.G)
+    print("\nParity-Check Matrix H:")
+    print(hamming.H)
+    
+    # Verify G × H^T = 0
+    GHt = np.dot(hamming.G, hamming.H.T) % 2
+    print("\nVerification G × H^T (should be zeros):")
+    print(GHt)
+    
+    # Encode a message
+    message = [1, 0, 1, 1]
+    print(f"\nOriginal message: {message}")
+    
+    codeword = hamming.encode(message)
+    print(f"Encoded codeword: {codeword}")
+    
+    # Introduce error
+    error_pos = 3
+    received = codeword.copy()
+    received[error_pos - 1] ^= 1
+    print(f"\nReceived (error at pos {error_pos}): {received}")
+    
+    # Decode
+    corrected = hamming.decode(received)
+    print(f"Corrected: {corrected}")
+    print(f"Matches original: {np.array_equal(corrected, codeword)}")</code></pre>
+
+                <h3>Generate All Codewords</h3>
+                <div class="code-header">all_codewords.py</div>
+                <pre><code>import numpy as np
+from itertools import product
+
+def generate_all_codewords(hamming):
+    """Generate all 16 codewords of Hamming (7,4) code."""
+    print("\n===== All 16 Codewords =====")
+    print("Message | Codeword    | Weight")
+    print("--------|-------------|-------")
+    
+    weights = []
+    for bits in product([0, 1], repeat=4):
+        message = list(bits)
+        codeword = hamming.encode(message)
+        weight = np.sum(codeword)
+        weights.append(weight)
+        
+        msg_str = ''.join(map(str, message))
+        cw_str = ''.join(map(str, codeword))
+        print(f" {msg_str}   | {cw_str}   |   {weight}")
+    
+    # Minimum distance (excluding zero codeword)
+    d_min = min(w for w in weights if w &gt; 0)
+    print(f"\nMinimum distance d_min = {d_min}")
+    print(f"Error correction capability: {(d_min-1)//2} error(s)")
+
+if __name__ == "__main__":
+    hamming = HammingCode()
+    generate_all_codewords(hamming)</code></pre>
+            </div>
+
+            <!-- Cyclic Codes -->
+            <div class="section" id="cyclic">
+                <h2>♻️ Cyclic Codes <span class="badge badge-clo">CLO-4</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Cyclic Code Properties</h4>
+                    <p>A cyclic code is a linear block code where any cyclic shift of a codeword is also a codeword.</p>
+                    <p><strong>Generator Polynomial g(x):</strong> Divides x<sup>n</sup> + 1</p>
+                </div>
+
+                <h3>CRC Implementation</h3>
+                <div class="code-header">crc.py</div>
+                <pre><code>import numpy as np
+
+def crc_encode(data, generator):
+    """
+    Generate CRC codeword.
+    
+    Parameters:
+        data: input data bits (list)
+        generator: CRC generator polynomial coefficients
+    
+    Returns:
+        tuple: (codeword, fcs)
+    """
+    data = list(data)
+    generator = list(generator)
+    r = len(generator) - 1  # CRC bits
+    
+    # Append r zeros to data
+    augmented = data + [0] * r
+    
+    # Perform polynomial division (XOR-based)
+    temp = augmented.copy()
+    for i in range(len(data)):
+        if temp[i] == 1:
+            for j in range(len(generator)):
+                temp[i + j] ^= generator[j]
+    
+    # FCS is the remainder
+    fcs = temp[-r:]
+    
+    # Codeword = data + FCS
+    codeword = data + fcs
+    
+    return codeword, fcs
+
+def crc_check(received, generator):
+    """Verify received codeword."""
+    received = list(received)
+    generator = list(generator)
+    r = len(generator) - 1
+    
+    temp = received.copy()
+    for i in range(len(received) - r):
+        if temp[i] == 1:
+            for j in range(len(generator)):
+                temp[i + j] ^= generator[j]
+    
+    remainder = temp[-r:]
+    return all(b == 0 for b in remainder)
+
+# Example
+if __name__ == "__main__":
+    data = [1, 1, 0, 1, 0, 1, 1]
+    generator = [1, 0, 0, 1, 1]  # x^4 + x + 1
+    
+    print("===== CRC Example =====")
+    print(f"Data: {''.join(map(str, data))}")
+    print(f"Generator (CRC-4): {''.join(map(str, generator))} (x⁴ + x + 1)")
+    
+    codeword, fcs = crc_encode(data, generator)
+    print(f"FCS (CRC): {''.join(map(str, fcs))}")
+    print(f"Transmitted: {''.join(map(str, codeword))}")
+    
+    # Verify
+    is_valid = crc_check(codeword, generator)
+    print(f"Verification (no error): {is_valid}")
+    
+    # Introduce error
+    received_err = codeword.copy()
+    received_err[3] ^= 1
+    is_valid_err = crc_check(received_err, generator)
+    print(f"Verification (with error): {is_valid_err}")</code></pre>
+            </div>
+
+            <!-- Convolutional Codes -->
+            <div class="section" id="convolutional">
+                <h2>🔗 Convolutional Codes <span class="badge badge-clo">CLO-5</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Convolutional Code Parameters</h4>
+                    <p><strong>Rate:</strong> R = k/n (k input bits, n output bits)</p>
+                    <p><strong>Constraint Length:</strong> K (memory + 1)</p>
+                    <p><strong>Generator Polynomials:</strong> Define connections to output</p>
+                </div>
+
+                <h3>Rate 1/2 Convolutional Encoder</h3>
+                <div class="code-header">conv_encoder.py</div>
+                <pre><code>import numpy as np
+
+class ConvolutionalEncoder:
+    """Rate 1/2 Convolutional Encoder."""
+    
+    def __init__(self, g1, g2, K):
+        """
+        Initialize encoder.
+        
+        Parameters:
+            g1, g2: generator polynomials (lists)
+            K: constraint length
+        """
+        self.g1 = np.array(g1)
+        self.g2 = np.array(g2)
+        self.K = K
+        self.memory = K - 1
+    
+    def encode(self, input_bits):
+        """Encode input bits."""
+        input_bits = np.array(input_bits)
+        n_bits = len(input_bits)
+        
+        # Initialize state
+        state = np.zeros(self.memory, dtype=int)
+        output = np.zeros(2 * n_bits, dtype=int)
+        
+        for i, bit in enumerate(input_bits):
+            # Register contents
+            reg = np.concatenate([[bit], state])
+            
+            # Calculate outputs
+            out1 = np.sum(reg * self.g1) % 2
+            out2 = np.sum(reg * self.g2) % 2
+            
+            output[2*i] = out1
+            output[2*i + 1] = out2
+            
+            # Shift register
+            state = np.concatenate([[bit], state[:-1]])
+        
+        return output
+    
+    def print_state_table(self):
+        """Print state transition table."""
+        print("===== State Transition Table =====")
+        print("Current | Input | Next  | Output")
+        print("--------|-------|-------|-------")
+        
+        num_states = 2 ** self.memory
+        
+        for s in range(num_states):
+            state = [(s >> i) & 1 for i in range(self.memory-1, -1, -1)]
+            
+            for in_bit in [0, 1]:
+                reg = [in_bit] + state
+                
+                out1 = sum(r * g for r, g in zip(reg, self.g1)) % 2
+                out2 = sum(r * g for r, g in zip(reg, self.g2)) % 2
+                
+                next_state = [in_bit] + state[:-1]
+                next_dec = sum(b << (self.memory-1-i) for i, b in enumerate(next_state))
+                
+                state_str = ''.join(map(str, state))
+                next_str = ''.join(map(str, next_state))
+                print(f"   {state_str}   |   {in_bit}   |  {next_str}  |   {out1}{out2}")
+
+# Example
+if __name__ == "__main__":
+    # Standard rate 1/2, K=3 encoder
+    g1 = [1, 1, 1]  # Octal 7
+    g2 = [1, 0, 1]  # Octal 5
+    K = 3
+    
+    encoder = ConvolutionalEncoder(g1, g2, K)
+    
+    print("===== Rate 1/2, K=3 Convolutional Encoder =====")
+    print(f"Generator 1: {g1} (octal 7)")
+    print(f"Generator 2: {g2} (octal 5)")
+    
+    input_bits = [1, 0, 1, 1, 0]
+    print(f"\nInput: {''.join(map(str, input_bits))}")
+    
+    output = encoder.encode(input_bits)
+    print(f"Output: {''.join(map(str, output))}")
+    
+    print()
+    encoder.print_state_table()</code></pre>
+            </div>
+
+            <!-- Viterbi Algorithm -->
+            <div class="section" id="viterbi">
+                <h2>🎯 Viterbi Algorithm <span class="badge badge-clo">CLO-5</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Viterbi Decoding</h4>
+                    <p>Maximum likelihood sequence decoding algorithm:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li><strong>Initialize:</strong> Set initial path metrics</li>
+                        <li><strong>Branch Metrics:</strong> Calculate Hamming distance</li>
+                        <li><strong>Add-Compare-Select:</strong> Keep best path to each state</li>
+                        <li><strong>Traceback:</strong> Find path with minimum metric</li>
+                    </ol>
+                </div>
+
+                <h3>Viterbi Decoder Implementation</h3>
+                <div class="code-header">viterbi.py</div>
+                <pre><code>import numpy as np
+
+class ViterbiDecoder:
+    """Viterbi decoder for rate 1/2 convolutional codes."""
+    
+    def __init__(self, g1, g2, K):
+        self.g1 = np.array(g1)
+        self.g2 = np.array(g2)
+        self.K = K
+        self.memory = K - 1
+        self.num_states = 2 ** self.memory
+    
+    def _get_output(self, state, input_bit):
+        """Get expected output for given state and input."""
+        state_bits = [(state >> i) & 1 for i in range(self.memory-1, -1, -1)]
+        reg = np.array([input_bit] + state_bits)
+        out1 = np.sum(reg * self.g1) % 2
+        out2 = np.sum(reg * self.g2) % 2
+        return out1, out2
+    
+    def _get_next_state(self, state, input_bit):
+        """Get next state for given current state and input."""
+        state_bits = [(state >> i) & 1 for i in range(self.memory-1, -1, -1)]
+        next_bits = [input_bit] + state_bits[:-1]
+        return sum(b << (self.memory-1-i) for i, b in enumerate(next_bits))
+    
+    def decode(self, received):
+        """Decode received sequence using Viterbi algorithm."""
+        received = np.array(received)
+        n_branches = len(received) // 2
+        
+        # Initialize path metrics
+        path_metrics = np.full(self.num_states, np.inf)
+        path_metrics[0] = 0  # Start at state 0
+        
+        # Store survivors
+        survivors = np.zeros((self.num_states, n_branches), dtype=int)
+        
+        # Forward pass
+        for t in range(n_branches):
+            r1, r2 = received[2*t], received[2*t + 1]
+            new_metrics = np.full(self.num_states, np.inf)
+            
+            for curr_state in range(self.num_states):
+                if path_metrics[curr_state] == np.inf:
+                    continue
+                
+                for in_bit in [0, 1]:
+                    exp1, exp2 = self._get_output(curr_state, in_bit)
+                    branch_metric = (r1 != exp1) + (r2 != exp2)
+                    
+                    next_state = self._get_next_state(curr_state, in_bit)
+                    total_metric = path_metrics[curr_state] + branch_metric
+                    
+                    if total_metric &lt; new_metrics[next_state]:
+                        new_metrics[next_state] = total_metric
+                        survivors[next_state, t] = curr_state * 2 + in_bit
+            
+            path_metrics = new_metrics
+        
+        # Traceback
+        final_state = np.argmin(path_metrics)
+        final_metric = path_metrics[final_state]
+        
+        decoded = np.zeros(n_branches, dtype=int)
+        current_state = final_state
+        
+        for t in range(n_branches - 1, -1, -1):
+            survivor_info = survivors[current_state, t]
+            prev_state = survivor_info // 2
+            input_bit = survivor_info % 2
+            
+            decoded[t] = input_bit
+            current_state = prev_state
+        
+        return decoded, int(final_metric)
+
+# Example
+if __name__ == "__main__":
+    g1 = [1, 1, 1]
+    g2 = [1, 0, 1]
+    K = 3
+    
+    encoder = ConvolutionalEncoder(g1, g2, K)
+    decoder = ViterbiDecoder(g1, g2, K)
+    
+    # Original message (with tail bits)
+    message = np.array([1, 0, 1, 1, 0, 0])
+    
+    print("===== Viterbi Decoder Test =====")
+    print(f"Original message: {''.join(map(str, message))}")
+    
+    # Encode
+    encoded = encoder.encode(message)
+    print(f"Encoded: {''.join(map(str, encoded))}")
+    
+    # Add error
+    received = encoded.copy()
+    received[5] ^= 1  # Flip bit
+    print(f"Received (with error): {''.join(map(str, received))}")
+    
+    # Decode
+    decoded, metric = decoder.decode(received)
+    print(f"Decoded: {''.join(map(str, decoded))}")
+    print(f"Path metric: {metric}")
+    print(f"Decoding successful: {np.array_equal(decoded, message)}")</code></pre>
+            </div>
+
+            <!-- BER Simulation -->
+            <div class="section" id="ber">
+                <h2>📈 BER Performance Simulation <span class="badge badge-clo">CLO-6</span></h2>
+
+                <h3>Complete BER Simulation</h3>
+                <div class="code-header">ber_simulation.py</div>
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import erfc
+
+def ber_simulation():
+    """Compare coded vs uncoded BER performance."""
+    
+    # Parameters
+    g1 = [1, 1, 1]
+    g2 = [1, 0, 1]
+    K = 3
+    
+    num_bits = 10000
+    EbN0_dB = np.arange(0, 10.5, 0.5)
+    num_trials = 5
+    
+    encoder = ConvolutionalEncoder(g1, g2, K)
+    decoder = ViterbiDecoder(g1, g2, K)
+    
+    # Results storage
+    ber_uncoded = np.zeros_like(EbN0_dB)
+    ber_coded = np.zeros_like(EbN0_dB)
+    
+    print("===== BER Simulation =====")
+    
+    for idx, snr_db in enumerate(EbN0_dB):
+        errors_uncoded = 0
+        errors_coded = 0
+        total_bits = 0
+        
+        for trial in range(num_trials):
+            # Generate random bits
+            bits = np.random.randint(0, 2, num_bits)
+            bits_tail = np.concatenate([bits, np.zeros(K-1, dtype=int)])
+            
+            # Encode
+            coded = encoder.encode(bits_tail)
+            
+            # BPSK modulation (0 -&gt; +1, 1 -&gt; -1)
+            tx_uncoded = 2 * bits - 1
+            tx_coded = 2 * coded - 1
+            
+            # Channel (AWGN)
+            EbN0_linear = 10 ** (snr_db / 10)
+            
+            # Uncoded
+            noise_var_uncoded = 1 / (2 * EbN0_linear)
+            noise_uncoded = np.sqrt(noise_var_uncoded) * np.random.randn(len(tx_uncoded))
+            rx_uncoded = tx_uncoded + noise_uncoded
+            
+            # Coded (rate 1/2)
+            noise_var_coded = 1 / (2 * EbN0_linear * 0.5)
+            noise_coded = np.sqrt(noise_var_coded) * np.random.randn(len(tx_coded))
+            rx_coded = tx_coded + noise_coded
+            
+            # Hard decision
+            decoded_uncoded = (rx_uncoded &lt; 0).astype(int)
+            received_hard = (rx_coded &lt; 0).astype(int)
+            
+            # Viterbi decoding
+            decoded_coded, _ = decoder.decode(received_hard)
+            
+            # Count errors
+            errors_uncoded += np.sum(bits != decoded_uncoded)
+            errors_coded += np.sum(bits != decoded_coded[:num_bits])
+            total_bits += num_bits
+        
+        ber_uncoded[idx] = errors_uncoded / total_bits
+        ber_coded[idx] = errors_coded / total_bits
+        
+        print(f"Eb/N0 = {snr_db:4.1f} dB: BER_coded = {ber_coded[idx]:.2e}")
+    
+    # Theoretical BER for uncoded BPSK
+    ber_theory = 0.5 * erfc(np.sqrt(10 ** (EbN0_dB / 10)))
+    
+    # Plot results
+    plt.figure(figsize=(10, 7))
+    plt.semilogy(EbN0_dB, ber_theory, 'k-', linewidth=2, label='Uncoded BPSK (Theory)')
+    plt.semilogy(EbN0_dB, ber_uncoded, 'bo-', linewidth=1.5, markersize=6, label='Uncoded BPSK (Sim)')
+    plt.semilogy(EbN0_dB, ber_coded, 'rs-', linewidth=1.5, markersize=6, label=f'Conv Code R=1/2, K={K} (Sim)')
+    
+    plt.xlabel('$E_b/N_0$ (dB)', fontsize=12)
+    plt.ylabel('Bit Error Rate (BER)', fontsize=12)
+    plt.title('BER Performance: Coded vs Uncoded BPSK', fontsize=14)
+    plt.legend(loc='lower left', fontsize=11)
+    plt.grid(True, which='both', alpha=0.3)
+    plt.xlim([min(EbN0_dB), max(EbN0_dB)])
+    plt.ylim([1e-6, 1])
+    
+    plt.tight_layout()
+    plt.savefig('ber_comparison.png', dpi=150)
+    plt.show()
+
+if __name__ == "__main__":
+    ber_simulation()</code></pre>
+
+                <div class="warning-box">
+                    <h4>⚠️ Simulation Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Use enough bits for statistical significance (≥10,000)</li>
+                        <li>Run multiple trials and average results</li>
+                        <li>Account for code rate when calculating noise variance</li>
+                        <li>Use NumPy vectorization for speed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tips and Best Practices -->
+            <div class="section" id="tips">
+                <h2>💡 Tips & Best Practices</h2>
+
+                <h3>Python vs MATLAB Equivalents</h3>
+                <table>
+                    <tr><th>MATLAB</th><th>Python (NumPy)</th></tr>
+                    <tr><td><code>zeros(m, n)</code></td><td><code>np.zeros((m, n))</code></td></tr>
+                    <tr><td><code>ones(m, n)</code></td><td><code>np.ones((m, n))</code></td></tr>
+                    <tr><td><code>eye(n)</code></td><td><code>np.eye(n)</code></td></tr>
+                    <tr><td><code>A'</code> (transpose)</td><td><code>A.T</code></td></tr>
+                    <tr><td><code>A * B</code> (matrix)</td><td><code>np.dot(A, B)</code> or <code>A @ B</code></td></tr>
+                    <tr><td><code>A .* B</code> (element)</td><td><code>A * B</code></td></tr>
+                    <tr><td><code>mod(A, 2)</code></td><td><code>A % 2</code></td></tr>
+                    <tr><td><code>de2bi(n, k)</code></td><td><code>[(n >> i) & 1 for i in range(k-1,-1,-1)]</code></td></tr>
+                    <tr><td><code>bi2de(b)</code></td><td><code>int(''.join(map(str, b)), 2)</code></td></tr>
+                </table>
+
+                <h3>Useful Libraries</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>NumPy</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>np.array()</code> - Create arrays</li>
+                            <li><code>np.dot()</code> - Matrix multiply</li>
+                            <li><code>np.sum()</code> - Sum elements</li>
+                            <li><code>np.log2()</code> - Log base 2</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Matplotlib</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>plt.plot()</code> - Line plots</li>
+                            <li><code>plt.semilogy()</code> - Log y-axis</li>
+                            <li><code>plt.xlabel()</code> - Axis labels</li>
+                            <li><code>plt.legend()</code> - Add legend</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>SciPy</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>special.erfc()</code> - Complementary error</li>
+                            <li><code>signal.convolve()</code> - Convolution</li>
+                            <li><code>linalg.inv()</code> - Matrix inverse</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Built-in</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>heapq</code> - Priority queues</li>
+                            <li><code>collections</code> - Defaultdict</li>
+                            <li><code>itertools</code> - Combinatorics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Assignment Submission Checklist</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>✓ Header with name, ID, assignment number</li>
+                        <li>✓ Code runs without errors</li>
+                        <li>✓ All imports at the top</li>
+                        <li>✓ Functions have docstrings</li>
+                        <li>✓ Figures have titles, labels, and legends</li>
+                        <li>✓ Results printed clearly with f-strings</li>
+                        <li>✓ Code follows PEP 8 style guide</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li><strong>NumPy Documentation:</strong> <a href="https://numpy.org/doc/" target="_blank">numpy.org/doc/</a></li>
+                        <li><strong>Matplotlib:</strong> <a href="https://matplotlib.org/stable/tutorials/" target="_blank">matplotlib.org/tutorials/</a></li>
+                        <li><strong>SciPy:</strong> <a href="https://scipy.org/" target="_blank">scipy.org</a></li>
+                        <li><strong>Textbook:</strong> Simon Haykin, Communication Systems, 4th Ed.</li>
+                        <li><strong>YouTube:</strong> Dr. Al Bataineh's lecture videos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section" style="text-align: center; background: linear-gradient(135deg, var(--secondary-color) 0%, #1a365d 100%); color: white;">
+                <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+                <p>Contact Dr. Al Bataineh during office hours (Tuesday/Thursday 11:00 AM - 12:00 PM)</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c010a0a0e0d180d050209042c190d0919420d0f420d09">[email&#160;protected]</a> | Office: F1-1175</p>
+                <p style="margin-top: 1rem;">
+                    <a href="ecom561.html" style="color: var(--accent-color); text-decoration: none;">← Back to ECOM 561 Course Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password protection
+        const correctPassword = "entropy";
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                sessionStorage.setItem('ecom561PythonAccess', 'granted');
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        window.onload = function() {
+            if (sessionStorage.getItem('ecom561PythonAccess') === 'granted') {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>

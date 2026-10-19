@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Tutorial - ECOM 561 Information Theory and Coding | Dr. Mohammad Al Bataineh</title>
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --dark-bg: #001524;
+            --light-bg: #f0f8ff;
+            --text-dark: #1a1a1a;
+            --border-light: #e0e0e0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --code-bg: #1e1e1e;
+            --dark-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        /* Password Protection Styles */
+        #password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: var(--dark-gradient);
+        }
+
+        .password-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .password-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .password-box p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--dark-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(5, 191, 219, 0.4);
+        }
+
+        .error-msg {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color), var(--accent-color));
+            background-size: 200% 100%;
+            animation: gradient-slide 3s ease infinite;
+        }
+
+        @keyframes gradient-slide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .python-logo, .matlab-logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+
+        .info-box {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .info-box a { color: var(--accent-color); }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning-orange);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success-green);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .theory-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        code {
+            background: #e0f2fe;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .code-header {
+            background: #2d2d2d;
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: -1rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h4 { color: var(--primary-color); margin-top: 0; }
+
+        .toc {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toc h3 { margin-top: 0; color: var(--primary-color); }
+        .toc ul { list-style: none; margin-left: 0; columns: 2; }
+        .toc li { margin: 0.5rem 0; break-inside: avoid; }
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .toc a:hover { color: var(--primary-color); text-decoration: underline; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: white; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.8rem; text-align: left; border: 1px solid var(--border-light); }
+        th {
+            background: var(--dark-gradient);
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background: var(--light-bg); }
+        tr:hover { background: #e0f2fe; }
+
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            background: #e0f2fe;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .badge-clo { background: var(--accent-color); color: var(--primary-color); }
+        .badge-python { background: var(--secondary-color); color: white; }
+
+        .install-box {
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            color: #d4d4d4;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Consolas', monospace;
+        }
+
+        .install-box code {
+            background: none;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            .section { padding: 1.5rem; }
+            .toc ul { columns: 1; }
+            pre { font-size: 0.8em; padding: 1rem; }
+            .password-box { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Screen -->
+    <div id="password-screen">
+        <div class="password-box">
+            <h2>🔒 Protected Content</h2>
+            <p>This MATLAB tutorial is for ECOM 561 students only. Please enter the password to continue.</p>
+            <input type="password" id="password-input" class="password-input" placeholder="Enter password" autofocus>
+            <button onclick="checkPassword()" class="password-btn">Access Tutorial</button>
+            <p class="error-msg" id="error-msg">❌ Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until correct password) -->
+    <div id="content">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> → <a href="teaching.html">Teaching</a> → <a href="ecom561.html">ECOM 561</a> → MATLAB Tutorial
+                </div>
+                <h1>💻 MATLAB Tutorial</h1>
+                <p class="subtitle">ECOM 561 - Information Theory and Coding | Spring 2026</p>
+            </header>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#intro">🚀 Introduction & Setup</a></li>
+                    <li><a href="#entropy">📊 Entropy & Information</a></li>
+                    <li><a href="#source-coding">📦 Source Coding</a></li>
+                    <li><a href="#huffman">🌳 Huffman Coding</a></li>
+                    <li><a href="#lempel-ziv">🔄 Lempel-Ziv Coding</a></li>
+                    <li><a href="#channel">📡 Channel Capacity</a></li>
+                    <li><a href="#block-codes">🔲 Linear Block Codes</a></li>
+                    <li><a href="#cyclic">♻️ Cyclic Codes</a></li>
+                    <li><a href="#convolutional">🔗 Convolutional Codes</a></li>
+                    <li><a href="#viterbi">🎯 Viterbi Algorithm</a></li>
+                    <li><a href="#ber">📈 BER Simulation</a></li>
+                    <li><a href="#tips">💡 Tips & Best Practices</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction -->
+            <div class="section" id="intro">
+                <h2>🚀 Introduction & Setup</h2>
+                <p>This tutorial provides MATLAB implementations for key concepts in Information Theory and Coding. These examples will help you understand theoretical concepts through practical implementation and prepare you for course assignments and projects.</p>
+
+                <div class="info-box">
+                    <h4 style="color: white; margin-top: 0;">📋 Course Learning Outcome</h4>
+                    <p style="margin-bottom: 0;"><strong>CLO-6:</strong> Evaluate the performance of selected coding algorithms on some error-correction and coding techniques using MATLAB.</p>
+                </div>
+
+                <h3>Required Toolboxes</h3>
+                <div class="code-header">Check Installed Toolboxes</div>
+                <pre><code>% Check if Communications Toolbox is installed
+v = ver;
+hasCommToolbox = any(strcmp({v.Name}, 'Communications Toolbox'));
+if hasCommToolbox
+    disp('✓ Communications Toolbox is installed')
+else
+    disp('✗ Communications Toolbox not found - some functions may not work')
+end
+
+% Alternative: Use built-in functions for most examples in this tutorial</code></pre>
+
+                <h3>Basic Setup Template</h3>
+                <div class="code-header">Script Header Template</div>
+                <pre><code>%% ECOM 561 - Information Theory and Coding
+%  Assignment/Project: [Title]
+%  Student Name: [Your Name]
+%  Student ID: [Your ID]
+%  Date: [Date]
+%  Description: [Brief description of what this code does]
+
+clear all;    % Clear all variables
+close all;    % Close all figures
+clc;          % Clear command window
+
+%% Main Code Starts Here
+% Your implementation goes here</code></pre>
+
+                <div class="tip-box">
+                    <h4>💡 Tip: Using Sections</h4>
+                    <p>Use <code>%%</code> to create sections in your code. Press <strong>Ctrl+Enter</strong> to run the current section only. This is very useful for testing parts of your code!</p>
+                </div>
+            </div>
+
+            <!-- Entropy and Information -->
+            <div class="section" id="entropy">
+                <h2>📊 Entropy & Information Measures <span class="badge badge-clo">CLO-1</span></h2>
+                
+                <div class="theory-box">
+                    <h4>📐 Theory Review</h4>
+                    <p><strong>Self-Information:</strong> <span class="math">I(x) = -log₂(P(x))</span> bits</p>
+                    <p><strong>Entropy:</strong> <span class="math">H(X) = -Σ P(xᵢ) log₂(P(xᵢ))</span> bits</p>
+                    <p><strong>Joint Entropy:</strong> <span class="math">H(X,Y) = -Σᵢ Σⱼ P(xᵢ,yⱼ) log₂(P(xᵢ,yⱼ))</span></p>
+                    <p><strong>Mutual Information:</strong> <span class="math">I(X;Y) = H(X) + H(Y) - H(X,Y)</span></p>
+                </div>
+
+                <h3>Self-Information Calculator</h3>
+                <div class="code-header">self_information.m</div>
+                <pre><code>function I = self_information(p)
+% SELF_INFORMATION Calculate self-information of an event
+%   I = self_information(p) returns the self-information in bits
+%   Input: p - probability of the event (0 &lt; p &lt;= 1)
+%   Output: I - self-information in bits
+
+    if p &lt;= 0 || p &gt; 1
+        error('Probability must be in range (0, 1]');
+    end
+    
+    I = -log2(p);
+end
+
+%% Example Usage
+% Event with probability 0.5 (fair coin flip)
+p = 0.5;
+I = self_information(p);
+fprintf('Self-information for P=%.2f: %.4f bits\n', p, I);
+
+% Multiple events
+probs = [0.9, 0.5, 0.1, 0.01];
+for i = 1:length(probs)
+    I = self_information(probs(i));
+    fprintf('P = %.2f → I = %.4f bits\n', probs(i), I);
+end</code></pre>
+
+                <h3>Entropy Calculator</h3>
+                <div class="code-header">calculate_entropy.m</div>
+                <pre><code>function H = calculate_entropy(P)
+% CALCULATE_ENTROPY Calculate entropy of a discrete source
+%   H = calculate_entropy(P) returns entropy in bits
+%   Input: P - probability distribution (must sum to 1)
+%   Output: H - entropy in bits
+
+    % Validate input
+    if abs(sum(P) - 1) &gt; 1e-10
+        error('Probabilities must sum to 1. Sum = %.6f', sum(P));
+    end
+    
+    if any(P &lt; 0)
+        error('Probabilities cannot be negative');
+    end
+    
+    % Calculate entropy (handle P=0 case)
+    H = 0;
+    for i = 1:length(P)
+        if P(i) &gt; 0
+            H = H - P(i) * log2(P(i));
+        end
+    end
+end
+
+%% Example: Binary Source Entropy
+p = 0:0.01:1;
+H_binary = zeros(size(p));
+
+for i = 1:length(p)
+    if p(i) == 0 || p(i) == 1
+        H_binary(i) = 0;
+    else
+        H_binary(i) = calculate_entropy([p(i), 1-p(i)]);
+    end
+end
+
+% Plot binary entropy function
+figure('Position', [100, 100, 800, 500]);
+plot(p, H_binary, 'b-', 'LineWidth', 2);
+xlabel('Probability p', 'FontSize', 12);
+ylabel('H(p) [bits]', 'FontSize', 12);
+title('Binary Entropy Function', 'FontSize', 14);
+grid on;
+xlim([0 1]);
+ylim([0 1.1]);
+
+% Mark maximum entropy point
+hold on;
+plot(0.5, 1, 'ro', 'MarkerSize', 10, 'MarkerFaceColor', 'r');
+text(0.52, 1, 'Maximum at p=0.5', 'FontSize', 11);
+hold off;</code></pre>
+
+                <h3>Joint and Conditional Entropy</h3>
+                <div class="code-header">joint_conditional_entropy.m</div>
+                <pre><code>function [H_XY, H_X, H_Y, H_X_given_Y, H_Y_given_X, I_XY] = joint_conditional_entropy(P_XY)
+% JOINT_CONDITIONAL_ENTROPY Calculate all entropy measures
+%   Input: P_XY - joint probability matrix P(X,Y)
+%   Output: Various entropy measures
+
+    % Marginal distributions
+    P_X = sum(P_XY, 2);     % Sum over Y (columns)
+    P_Y = sum(P_XY, 1);     % Sum over X (rows)
+    
+    % Individual entropies
+    H_X = calculate_entropy(P_X);
+    H_Y = calculate_entropy(P_Y);
+    
+    % Joint entropy H(X,Y)
+    H_XY = 0;
+    [m, n] = size(P_XY);
+    for i = 1:m
+        for j = 1:n
+            if P_XY(i,j) &gt; 0
+                H_XY = H_XY - P_XY(i,j) * log2(P_XY(i,j));
+            end
+        end
+    end
+    
+    % Conditional entropies
+    H_X_given_Y = H_XY - H_Y;  % H(X|Y) = H(X,Y) - H(Y)
+    H_Y_given_X = H_XY - H_X;  % H(Y|X) = H(X,Y) - H(X)
+    
+    % Mutual information
+    I_XY = H_X + H_Y - H_XY;   % I(X;Y) = H(X) + H(Y) - H(X,Y)
+end
+
+%% Example: Binary Symmetric Channel Analysis
+p = 0.1;  % Crossover probability
+
+% Assume uniform input: P(X=0) = P(X=1) = 0.5
+P_XY = [0.5*(1-p), 0.5*p;      % P(X=0,Y=0), P(X=0,Y=1)
+        0.5*p,     0.5*(1-p)];  % P(X=1,Y=0), P(X=1,Y=1)
+
+[H_XY, H_X, H_Y, H_X_given_Y, H_Y_given_X, I_XY] = joint_conditional_entropy(P_XY);
+
+fprintf('===== Binary Symmetric Channel Analysis (p=%.2f) =====\n', p);
+fprintf('H(X) = %.4f bits\n', H_X);
+fprintf('H(Y) = %.4f bits\n', H_Y);
+fprintf('H(X,Y) = %.4f bits\n', H_XY);
+fprintf('H(X|Y) = %.4f bits\n', H_X_given_Y);
+fprintf('I(X;Y) = %.4f bits\n', I_XY);</code></pre>
+
+                <div class="success-box">
+                    <h4>✅ Key Relationships to Remember</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Chain Rule:</strong> H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)</li>
+                        <li><strong>Conditioning Reduces Entropy:</strong> H(X|Y) ≤ H(X)</li>
+                        <li><strong>Mutual Information:</strong> I(X;Y) = H(X) - H(X|Y) ≥ 0</li>
+                        <li><strong>Maximum Entropy:</strong> Uniform distribution maximizes entropy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Source Coding -->
+            <div class="section" id="source-coding">
+                <h2>📦 Source Coding Fundamentals <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Source Coding Theorem</h4>
+                    <p>For a discrete memoryless source with entropy H(X), the average codeword length L satisfies:</p>
+                    <p class="math">H(X) ≤ L &lt; H(X) + 1</p>
+                    <p>The minimum average length approaches H(X) for optimal prefix-free codes.</p>
+                </div>
+
+                <h3>Kraft Inequality Checker</h3>
+                <div class="code-header">kraft_inequality.m</div>
+                <pre><code>function [K, is_valid] = kraft_inequality(lengths, r)
+% KRAFT_INEQUALITY Check if codeword lengths satisfy Kraft inequality
+%   Input: lengths - vector of codeword lengths
+%          r - radix/alphabet size (default: 2 for binary)
+%   Output: K - Kraft sum
+%           is_valid - true if K &lt;= 1 (prefix-free code exists)
+
+    if nargin &lt; 2
+        r = 2;  % Binary by default
+    end
+    
+    K = sum(r.^(-lengths));
+    is_valid = K &lt;= 1;
+    
+    fprintf('===== Kraft Inequality Check =====\n');
+    fprintf('Codeword lengths: [%s]\n', num2str(lengths));
+    fprintf('Kraft sum K = %.4f\n', K);
+    
+    if is_valid
+        fprintf('✓ K ≤ 1: A prefix-free code EXISTS\n');
+    else
+        fprintf('✗ K &gt; 1: NO prefix-free code exists\n');
+    end
+end
+
+%% Examples
+fprintf('Example 1: Valid code\n');
+kraft_inequality([1, 2, 3, 3], 2);
+
+fprintf('\nExample 2: Invalid lengths\n');
+kraft_inequality([1, 1, 2, 2], 2);</code></pre>
+            </div>
+
+            <!-- Huffman Coding -->
+            <div class="section" id="huffman">
+                <h2>🌳 Huffman Coding <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Huffman Algorithm</h4>
+                    <p>Huffman coding produces an optimal prefix-free code:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li>Sort symbols by probability (ascending)</li>
+                        <li>Combine two lowest probability symbols</li>
+                        <li>Repeat until single node remains</li>
+                        <li>Assign bits by traversing tree (0=left, 1=right)</li>
+                    </ol>
+                </div>
+
+                <h3>Huffman Coding Implementation</h3>
+                <div class="code-header">huffman_encode.m</div>
+                <pre><code>function [codes, lengths, L_avg] = huffman_encode(symbols, P)
+% HUFFMAN_ENCODE Generate Huffman codes for given symbols
+%   Input: symbols - cell array of symbol names
+%          P - probability distribution
+%   Output: codes - cell array of binary code strings
+%           lengths - codeword lengths
+%           L_avg - average codeword length
+
+    n = length(P);
+    
+    % Initialize nodes
+    nodes = cell(1, n);
+    for i = 1:n
+        nodes{i}.prob = P(i);
+        nodes{i}.symbols = {i};
+        nodes{i}.code = '';
+    end
+    
+    % Build Huffman tree
+    while length(nodes) &gt; 1
+        % Sort by probability
+        probs = cellfun(@(x) x.prob, nodes);
+        [~, idx] = sort(probs);
+        nodes = nodes(idx);
+        
+        % Combine two smallest nodes
+        new_node.prob = nodes{1}.prob + nodes{2}.prob;
+        new_node.left = nodes{1};
+        new_node.right = nodes{2};
+        new_node.symbols = [nodes{1}.symbols, nodes{2}.symbols];
+        
+        % Remove combined nodes and add new node
+        nodes = nodes(3:end);
+        nodes{end+1} = new_node;
+    end
+    
+    % Generate codes by traversing tree
+    codes = cell(1, n);
+    lengths = zeros(1, n);
+    
+    function traverse(node, code)
+        if isfield(node, 'left')
+            traverse(node.left, [code '0']);
+            traverse(node.right, [code '1']);
+        else
+            idx = node.symbols{1};
+            codes{idx} = code;
+            lengths(idx) = length(code);
+        end
+    end
+    
+    traverse(nodes{1}, '');
+    
+    % Calculate average length
+    L_avg = sum(P .* lengths);
+    
+    % Display results
+    H = calculate_entropy(P);
+    fprintf('===== Huffman Coding Results =====\n');
+    fprintf('Symbol | Prob   | Length | Code\n');
+    fprintf('-------|--------|--------|----------\n');
+    for i = 1:n
+        fprintf('  %s    | %.4f |   %d    | %s\n', symbols{i}, P(i), lengths(i), codes{i});
+    end
+    fprintf('\nEntropy H(X) = %.4f bits\n', H);
+    fprintf('Average Length L = %.4f bits\n', L_avg);
+    fprintf('Efficiency = %.2f%%\n', H/L_avg*100);
+end
+
+%% Example
+symbols = {'A', 'B', 'C', 'D', 'E'};
+P = [0.4, 0.2, 0.2, 0.1, 0.1];
+[codes, lengths, L_avg] = huffman_encode(symbols, P);</code></pre>
+            </div>
+
+            <!-- Lempel-Ziv -->
+            <div class="section" id="lempel-ziv">
+                <h2>🔄 Lempel-Ziv Coding <span class="badge badge-clo">CLO-2</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 LZ78 Algorithm</h4>
+                    <p>Dictionary-based compression that builds a codebook dynamically:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li>Start with empty dictionary</li>
+                        <li>Read input until finding longest match in dictionary</li>
+                        <li>Output (index, next_symbol) pair</li>
+                        <li>Add new phrase to dictionary</li>
+                    </ol>
+                </div>
+
+                <h3>LZ78 Encoder</h3>
+                <div class="code-header">lz78_encode.m</div>
+                <pre><code>function [output, dictionary] = lz78_encode(input)
+% LZ78_ENCODE Encode a string using LZ78 algorithm
+%   Input: input - string to encode
+%   Output: output - cell array of (index, symbol) pairs
+%           dictionary - final dictionary
+
+    dictionary = {''};  % Start with empty string
+    output = {};
+    i = 1;
+    
+    fprintf('===== LZ78 Encoding Process =====\n');
+    
+    while i &lt;= length(input)
+        % Find longest match in dictionary
+        match_idx = 0;
+        match_len = 0;
+        
+        for j = 1:length(dictionary)
+            dict_entry = dictionary{j};
+            entry_len = length(dict_entry);
+            
+            if i + entry_len - 1 &lt;= length(input)
+                if strcmp(input(i:i+entry_len-1), dict_entry) &amp;&amp; entry_len &gt; match_len
+                    match_idx = j - 1;
+                    match_len = entry_len;
+                end
+            end
+        end
+        
+        % Get next symbol after match
+        next_pos = i + match_len;
+        if next_pos &lt;= length(input)
+            next_symbol = input(next_pos);
+        else
+            next_symbol = '';
+        end
+        
+        % Output pair
+        output{end+1} = {match_idx, next_symbol};
+        
+        % Add new phrase to dictionary
+        if ~isempty(next_symbol)
+            new_phrase = [dictionary{match_idx+1}, next_symbol];
+            dictionary{end+1} = new_phrase;
+        end
+        
+        i = next_pos + 1;
+    end
+    
+    fprintf('Final Dictionary: {%s}\n', strjoin(dictionary(2:end), ', '));
+end
+
+%% Example
+input_string = 'AABABAABAB';
+fprintf('Input: %s\n\n', input_string);
+[encoded, dict] = lz78_encode(input_string);</code></pre>
+            </div>
+
+            <!-- Channel Capacity -->
+            <div class="section" id="channel">
+                <h2>📡 Channel Capacity <span class="badge badge-clo">CLO-3</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Shannon's Channel Capacity</h4>
+                    <p><strong>Binary Symmetric Channel (BSC):</strong></p>
+                    <p class="math">C = 1 - H(p) = 1 + p log₂(p) + (1-p) log₂(1-p)</p>
+                    <p><strong>AWGN Channel:</strong></p>
+                    <p class="math">C = W log₂(1 + SNR) bits/second</p>
+                </div>
+
+                <h3>Binary Symmetric Channel Capacity</h3>
+                <div class="code-header">bsc_capacity.m</div>
+                <pre><code>function C = bsc_capacity(p)
+% BSC_CAPACITY Calculate capacity of Binary Symmetric Channel
+%   Input: p - crossover probability (error probability)
+%   Output: C - channel capacity in bits per channel use
+
+    if p == 0 || p == 1
+        C = 1;  % Perfect channel
+    else
+        H_p = -p*log2(p) - (1-p)*log2(1-p);  % Binary entropy
+        C = 1 - H_p;
+    end
+end
+
+%% Plot BSC Capacity vs Error Probability
+p = 0:0.001:0.5;
+C = zeros(size(p));
+
+for i = 1:length(p)
+    C(i) = bsc_capacity(p(i));
+end
+
+figure('Position', [100, 100, 800, 500]);
+plot(p, C, 'b-', 'LineWidth', 2);
+xlabel('Crossover Probability p', 'FontSize', 12);
+ylabel('Channel Capacity C (bits/use)', 'FontSize', 12);
+title('Binary Symmetric Channel Capacity', 'FontSize', 14);
+grid on;
+xlim([0 0.5]);
+ylim([0 1]);</code></pre>
+
+                <h3>AWGN Channel Capacity</h3>
+                <div class="code-header">awgn_capacity.m</div>
+                <pre><code>function C = awgn_capacity(SNR_dB, W)
+% AWGN_CAPACITY Calculate capacity of AWGN channel
+%   Input: SNR_dB - Signal-to-noise ratio in dB
+%          W - Bandwidth in Hz (default: 1 for normalized)
+%   Output: C - Channel capacity in bits/second
+
+    if nargin &lt; 2
+        W = 1;
+    end
+    
+    SNR_linear = 10^(SNR_dB/10);
+    C = W * log2(1 + SNR_linear);
+end
+
+%% Plot AWGN Capacity vs SNR
+SNR_dB = -10:0.5:30;
+C = zeros(size(SNR_dB));
+
+for i = 1:length(SNR_dB)
+    C(i) = awgn_capacity(SNR_dB(i), 1);
+end
+
+figure('Position', [100, 100, 800, 500]);
+plot(SNR_dB, C, 'b-', 'LineWidth', 2);
+xlabel('SNR (dB)', 'FontSize', 12);
+ylabel('Channel Capacity C (bits/s/Hz)', 'FontSize', 12);
+title('AWGN Channel Capacity (Shannon Limit)', 'FontSize', 14);
+grid on;</code></pre>
+            </div>
+
+            <!-- Linear Block Codes -->
+            <div class="section" id="block-codes">
+                <h2>🔲 Linear Block Codes <span class="badge badge-clo">CLO-4</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Linear Block Code Basics</h4>
+                    <p>An (n, k) linear block code encodes k information bits into n coded bits.</p>
+                    <p><strong>Generator Matrix G:</strong> c = m × G</p>
+                    <p><strong>Parity-Check Matrix H:</strong> c × H<sup>T</sup> = 0 for valid codewords</p>
+                    <p><strong>Syndrome:</strong> s = r × H<sup>T</sup> (non-zero indicates errors)</p>
+                </div>
+
+                <h3>Hamming (7,4) Code Implementation</h3>
+                <div class="code-header">hamming_74.m</div>
+                <pre><code>%% Hamming (7,4) Code - Complete Implementation
+% Parameters: n=7 (codeword length), k=4 (message length), d_min=3
+
+clear all; close all; clc;
+
+%% Generator Matrix (Systematic Form: G = [I_k | P])
+G = [1 0 0 0 1 1 0;
+     0 1 0 0 1 0 1;
+     0 0 1 0 0 1 1;
+     0 0 0 1 1 1 1];
+
+% Parity-check matrix H = [P' | I_(n-k)]
+H = [1 1 0 1 1 0 0;
+     1 0 1 1 0 1 0;
+     0 1 1 1 0 0 1];
+
+fprintf('===== Hamming (7,4) Code =====\n\n');
+fprintf('Generator Matrix G:\n');
+disp(G);
+fprintf('Parity-Check Matrix H:\n');
+disp(H);
+
+%% Verify G and H relationship: G * H' = 0
+GHt = mod(G * H', 2);
+fprintf('Verification G × H^T (should be all zeros):\n');
+disp(GHt);
+
+%% Generate all codewords
+fprintf('\n===== All 16 Codewords =====\n');
+fprintf('Message | Codeword    | Weight\n');
+fprintf('--------|-------------|-------\n');
+
+all_messages = dec2bin(0:15, 4) - '0';
+all_codewords = mod(all_messages * G, 2);
+
+for i = 1:16
+    msg = num2str(all_messages(i,:), '%d');
+    cw = num2str(all_codewords(i,:), '%d');
+    wt = sum(all_codewords(i,:));
+    fprintf(' %s   | %s   |   %d\n', msg, cw, wt);
+end
+
+% Minimum distance
+weights = sum(all_codewords, 2);
+d_min = min(weights(weights &gt; 0));
+fprintf('\nMinimum distance d_min = %d\n', d_min);
+fprintf('Error correction capability: %d error\n', floor((d_min-1)/2));</code></pre>
+
+                <h3>Encoding and Syndrome Decoding</h3>
+                <div class="code-header">hamming_codec.m</div>
+                <pre><code>function codeword = hamming_encode(message, G)
+% HAMMING_ENCODE Encode message using generator matrix
+    codeword = mod(message * G, 2);
+end
+
+function [syndrome, error_pos] = hamming_syndrome(received, H)
+% HAMMING_SYNDROME Calculate syndrome and find error position
+    syndrome = mod(received * H', 2);
+    
+    if all(syndrome == 0)
+        error_pos = 0;  % No error
+    else
+        error_pos = bi2de(syndrome, 'left-msb');
+    end
+end
+
+function corrected = hamming_correct(received, H)
+% HAMMING_CORRECT Correct single-bit error
+    [syndrome, error_pos] = hamming_syndrome(received, H);
+    corrected = received;
+    
+    if error_pos &gt; 0
+        corrected(error_pos) = mod(corrected(error_pos) + 1, 2);
+        fprintf('Error detected at position %d, corrected.\n', error_pos);
+    elseif error_pos == 0
+        fprintf('No error detected.\n');
+    end
+end
+
+%% Example: Encode, Add Error, Decode
+G = [1 0 0 0 1 1 0;
+     0 1 0 0 1 0 1;
+     0 0 1 0 0 1 1;
+     0 0 0 1 1 1 1];
+
+H = [1 1 0 1 1 0 0;
+     1 0 1 1 0 1 0;
+     0 1 1 1 0 0 1];
+
+message = [1 0 1 1];
+fprintf('Original message: %s\n', num2str(message, '%d'));
+
+codeword = hamming_encode(message, G);
+fprintf('Encoded codeword: %s\n', num2str(codeword, '%d'));
+
+% Introduce single-bit error
+error_position = 3;
+received = codeword;
+received(error_position) = mod(received(error_position) + 1, 2);
+fprintf('\nReceived with error at position %d: %s\n', error_position, num2str(received, '%d'));
+
+corrected = hamming_correct(received, H);
+fprintf('Corrected codeword: %s\n', num2str(corrected, '%d'));
+fprintf('Matches original: %s\n', string(isequal(corrected, codeword)));</code></pre>
+            </div>
+
+            <!-- Cyclic Codes -->
+            <div class="section" id="cyclic">
+                <h2>♻️ Cyclic Codes <span class="badge badge-clo">CLO-4</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Cyclic Code Properties</h4>
+                    <p>A cyclic code is a linear block code where any cyclic shift of a codeword is also a codeword.</p>
+                    <p><strong>Generator Polynomial g(x):</strong> Divides x<sup>n</sup> + 1</p>
+                </div>
+
+                <h3>CRC Implementation</h3>
+                <div class="code-header">crc_example.m</div>
+                <pre><code>function [codeword, fcs] = crc_encode(data, generator)
+% CRC_ENCODE Generate CRC codeword
+    r = length(generator) - 1;
+    augmented = [data, zeros(1, r)];
+    
+    temp = augmented;
+    for i = 1:(length(data))
+        if temp(i) == 1
+            temp(i:i+r) = xor(temp(i:i+r), generator);
+        end
+    end
+    
+    fcs = temp(end-r+1:end);
+    codeword = [data, fcs];
+end
+
+function is_valid = crc_check(received, generator)
+% CRC_CHECK Verify received codeword
+    r = length(generator) - 1;
+    
+    temp = received;
+    for i = 1:(length(received) - r)
+        if temp(i) == 1
+            temp(i:i+r) = xor(temp(i:i+r), generator);
+        end
+    end
+    
+    remainder = temp(end-r+1:end);
+    is_valid = all(remainder == 0);
+end
+
+%% Example: CRC-4
+data = [1 1 0 1 0 1 1];
+generator = [1 0 0 1 1];  % x^4 + x + 1
+
+fprintf('===== CRC Example =====\n');
+fprintf('Data: %s\n', num2str(data, '%d'));
+
+[codeword, fcs] = crc_encode(data, generator);
+fprintf('FCS (CRC): %s\n', num2str(fcs, '%d'));
+fprintf('Transmitted: %s\n', num2str(codeword, '%d'));
+
+is_valid = crc_check(codeword, generator);
+fprintf('Verification (no error): %s\n', string(is_valid));</code></pre>
+            </div>
+
+            <!-- Convolutional Codes -->
+            <div class="section" id="convolutional">
+                <h2>🔗 Convolutional Codes <span class="badge badge-clo">CLO-5</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Convolutional Code Parameters</h4>
+                    <p><strong>Rate:</strong> R = k/n (k input bits, n output bits)</p>
+                    <p><strong>Constraint Length:</strong> K (memory + 1)</p>
+                    <p><strong>Generator Polynomials:</strong> Define connections to output</p>
+                </div>
+
+                <h3>Rate 1/2 Convolutional Encoder</h3>
+                <div class="code-header">conv_encoder.m</div>
+                <pre><code>function [output, states] = conv_encode(input, g1, g2, K)
+% CONV_ENCODE Rate 1/2 convolutional encoder
+%   Input: input - binary input sequence
+%          g1, g2 - generator polynomials
+%          K - constraint length
+%   Output: output - encoded sequence (2× length of input)
+
+    memory = K - 1;
+    state = zeros(1, memory);
+    
+    n_bits = length(input);
+    output = zeros(1, 2*n_bits);
+    states = zeros(n_bits, memory);
+    
+    for i = 1:n_bits
+        in_bit = input(i);
+        reg = [in_bit, state];
+        
+        out1 = mod(sum(reg .* g1), 2);
+        out2 = mod(sum(reg .* g2), 2);
+        
+        output(2*i-1) = out1;
+        output(2*i) = out2;
+        states(i, :) = state;
+        state = [in_bit, state(1:end-1)];
+    end
+end
+
+%% Example: Standard rate 1/2, K=3 encoder
+K = 3;
+g1 = [1 1 1];  % Connections for output 1 (octal 7)
+g2 = [1 0 1];  % Connections for output 2 (octal 5)
+
+fprintf('===== Rate 1/2, K=3 Convolutional Encoder =====\n');
+fprintf('Generator 1: [%s] (octal 7)\n', num2str(g1, '%d '));
+fprintf('Generator 2: [%s] (octal 5)\n', num2str(g2, '%d '));
+
+input = [1 0 1 1 0];
+fprintf('\nInput sequence: %s\n', num2str(input, '%d'));
+
+[output, states] = conv_encode(input, g1, g2, K);
+fprintf('Output sequence: %s\n', num2str(output, '%d'));
+fprintf('\nCode rate: 1/2\n');</code></pre>
+
+                <h3>State Transition Table</h3>
+                <div class="code-header">state_table.m</div>
+                <pre><code>function print_state_table(g1, g2, K)
+% PRINT_STATE_TABLE Generate and display state transition table
+
+    memory = K - 1;
+    num_states = 2^memory;
+    
+    fprintf('===== State Transition Table =====\n');
+    fprintf('Current State | Input | Next State | Output\n');
+    fprintf('--------------|-------|------------|-------\n');
+    
+    for s = 0:num_states-1
+        state = de2bi(s, memory, 'left-msb');
+        
+        for in_bit = 0:1
+            reg = [in_bit, state];
+            
+            out1 = mod(sum(reg .* g1), 2);
+            out2 = mod(sum(reg .* g2), 2);
+            
+            next_state = [in_bit, state(1:end-1)];
+            next_dec = bi2de(next_state, 'left-msb');
+            
+            fprintf('     %s      |   %d   |     %s     |   %d%d\n', ...
+                dec2bin(s, memory), in_bit, dec2bin(next_dec, memory), out1, out2);
+        end
+    end
+end
+
+%% Generate table
+K = 3;
+g1 = [1 1 1];
+g2 = [1 0 1];
+print_state_table(g1, g2, K);</code></pre>
+            </div>
+
+            <!-- Viterbi Algorithm -->
+            <div class="section" id="viterbi">
+                <h2>🎯 Viterbi Algorithm <span class="badge badge-clo">CLO-5</span></h2>
+
+                <div class="theory-box">
+                    <h4>📐 Viterbi Decoding</h4>
+                    <p>Maximum likelihood sequence decoding algorithm:</p>
+                    <ol style="margin-left: 1.5rem;">
+                        <li><strong>Initialize:</strong> Set initial path metrics</li>
+                        <li><strong>Branch Metrics:</strong> Calculate Hamming distance to received bits</li>
+                        <li><strong>Add-Compare-Select:</strong> Keep best path to each state</li>
+                        <li><strong>Traceback:</strong> Find path with minimum metric</li>
+                    </ol>
+                </div>
+
+                <h3>Viterbi Decoder Implementation</h3>
+                <div class="code-header">viterbi_decode.m</div>
+                <pre><code>function [decoded, path_metric] = viterbi_decode(received, g1, g2, K)
+% VITERBI_DECODE Decode convolutional code using Viterbi algorithm
+
+    memory = K - 1;
+    num_states = 2^memory;
+    n_branches = length(received) / 2;
+    
+    path_metrics = inf(num_states, 1);
+    path_metrics(1) = 0;  % Start at state 00
+    
+    survivors = zeros(num_states, n_branches);
+    
+    for t = 1:n_branches
+        r1 = received(2*t - 1);
+        r2 = received(2*t);
+        
+        new_metrics = inf(num_states, 1);
+        
+        for curr_state = 0:num_states-1
+            if path_metrics(curr_state + 1) == inf
+                continue;
+            end
+            
+            state_bits = de2bi(curr_state, memory, 'left-msb');
+            
+            for in_bit = 0:1
+                reg = [in_bit, state_bits];
+                
+                exp1 = mod(sum(reg .* g1), 2);
+                exp2 = mod(sum(reg .* g2), 2);
+                
+                branch_metric = (r1 ~= exp1) + (r2 ~= exp2);
+                
+                next_state_bits = [in_bit, state_bits(1:end-1)];
+                next_state = bi2de(next_state_bits, 'left-msb');
+                
+                total_metric = path_metrics(curr_state + 1) + branch_metric;
+                
+                if total_metric &lt; new_metrics(next_state + 1)
+                    new_metrics(next_state + 1) = total_metric;
+                    survivors(next_state + 1, t) = curr_state * 2 + in_bit;
+                end
+            end
+        end
+        
+        path_metrics = new_metrics;
+    end
+    
+    % Traceback
+    [path_metric, final_state] = min(path_metrics);
+    final_state = final_state - 1;
+    
+    decoded = zeros(1, n_branches);
+    current_state = final_state;
+    
+    for t = n_branches:-1:1
+        survivor_info = survivors(current_state + 1, t);
+        prev_state = floor(survivor_info / 2);
+        input_bit = mod(survivor_info, 2);
+        
+        decoded(t) = input_bit;
+        current_state = prev_state;
+    end
+end
+
+%% Test Viterbi decoder
+K = 3;
+g1 = [1 1 1];
+g2 = [1 0 1];
+
+message = [1 0 1 1 0 0];
+fprintf('===== Viterbi Decoder Test =====\n');
+fprintf('Original message: %s\n', num2str(message, '%d'));
+
+[encoded, ~] = conv_encode(message, g1, g2, K);
+fprintf('Encoded: %s\n', num2str(encoded, '%d'));
+
+% Add error
+received = encoded;
+received(5) = mod(received(5) + 1, 2);
+fprintf('Received (with error): %s\n', num2str(received, '%d'));
+
+[decoded, metric] = viterbi_decode(received, g1, g2, K);
+fprintf('Decoded: %s\n', num2str(decoded, '%d'));
+fprintf('Path metric: %d\n', metric);
+fprintf('Decoding successful: %s\n', string(isequal(decoded, message)));</code></pre>
+            </div>
+
+            <!-- BER Simulation -->
+            <div class="section" id="ber">
+                <h2>📈 BER Performance Simulation <span class="badge badge-clo">CLO-6</span></h2>
+
+                <h3>Complete BER Simulation</h3>
+                <div class="code-header">ber_simulation.m</div>
+                <pre><code>function ber_simulation()
+% BER_SIMULATION Compare coded vs uncoded BER performance
+
+    K = 3;
+    g1 = [1 1 1];
+    g2 = [1 0 1];
+    
+    num_bits = 10000;
+    EbN0_dB = 0:0.5:10;
+    num_trials = 5;
+    
+    ber_uncoded = zeros(size(EbN0_dB));
+    ber_coded = zeros(size(EbN0_dB));
+    
+    fprintf('===== BER Simulation =====\n');
+    
+    for idx = 1:length(EbN0_dB)
+        errors_uncoded = 0;
+        errors_coded = 0;
+        total_bits = 0;
+        
+        for trial = 1:num_trials
+            bits = randi([0, 1], 1, num_bits);
+            bits_tail = [bits, zeros(1, K-1)];
+            
+            [coded, ~] = conv_encode(bits_tail, g1, g2, K);
+            
+            tx_uncoded = 2*bits - 1;
+            tx_coded = 2*coded - 1;
+            
+            EbN0_linear = 10^(EbN0_dB(idx)/10);
+            
+            noise_var_uncoded = 1 / (2 * EbN0_linear);
+            rx_uncoded = tx_uncoded + sqrt(noise_var_uncoded) * randn(size(tx_uncoded));
+            
+            noise_var_coded = 1 / (2 * EbN0_linear * 0.5);
+            rx_coded = tx_coded + sqrt(noise_var_coded) * randn(size(tx_coded));
+            
+            decoded_uncoded = rx_uncoded &lt; 0;
+            received_hard = rx_coded &lt; 0;
+            
+            [decoded_coded, ~] = viterbi_decode(double(received_hard), g1, g2, K);
+            
+            errors_uncoded = errors_uncoded + sum(bits ~= decoded_uncoded);
+            errors_coded = errors_coded + sum(bits ~= decoded_coded(1:num_bits));
+            total_bits = total_bits + num_bits;
+        end
+        
+        ber_uncoded(idx) = errors_uncoded / total_bits;
+        ber_coded(idx) = errors_coded / total_bits;
+        
+        fprintf('Eb/N0 = %4.1f dB: BER_coded = %.2e\n', EbN0_dB(idx), ber_coded(idx));
+    end
+    
+    figure('Position', [100, 100, 800, 600]);
+    semilogy(EbN0_dB, ber_uncoded, 'bo-', 'LineWidth', 1.5, 'DisplayName', 'Uncoded BPSK');
+    hold on;
+    semilogy(EbN0_dB, ber_coded, 'rs-', 'LineWidth', 1.5, 'DisplayName', 'Conv Code R=1/2, K=3');
+    
+    xlabel('E_b/N_0 (dB)', 'FontSize', 12);
+    ylabel('Bit Error Rate (BER)', 'FontSize', 12);
+    title('BER Performance: Coded vs Uncoded BPSK', 'FontSize', 14);
+    legend('Location', 'southwest');
+    grid on;
+    hold off;
+end
+
+ber_simulation();</code></pre>
+
+                <div class="warning-box">
+                    <h4>⚠️ Simulation Tips</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Use enough bits for statistical significance (≥10,000)</li>
+                        <li>Run multiple trials and average results</li>
+                        <li>Account for code rate when calculating noise variance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tips and Best Practices -->
+            <div class="section" id="tips">
+                <h2>💡 Tips & Best Practices</h2>
+
+                <h3>MATLAB Shortcuts</h3>
+                <table>
+                    <tr><th>Shortcut</th><th>Action</th></tr>
+                    <tr><td><code>Ctrl + C</code></td><td>Stop running code</td></tr>
+                    <tr><td><code>Ctrl + Enter</code></td><td>Run current section</td></tr>
+                    <tr><td><code>F5</code></td><td>Run script</td></tr>
+                    <tr><td><code>F9</code></td><td>Run selected code</td></tr>
+                    <tr><td><code>Ctrl + R</code></td><td>Comment lines</td></tr>
+                    <tr><td><code>Ctrl + T</code></td><td>Uncomment lines</td></tr>
+                </table>
+
+                <h3>Useful Functions Reference</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>Binary Operations</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>de2bi(), bi2de()</code></li>
+                            <li><code>dec2bin(), bin2dec()</code></li>
+                            <li><code>mod(x, 2)</code></li>
+                            <li><code>xor(), bitxor()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Matrix Operations</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>eye(), zeros(), ones()</code></li>
+                            <li><code>transpose(), '</code></li>
+                            <li><code>reshape(), repmat()</code></li>
+                            <li><code>sum(), prod()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Communications</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>gfdeconv()</code> - GF(2) division</li>
+                            <li><code>convenc()</code> - Conv encoding</li>
+                            <li><code>vitdec()</code> - Viterbi decoder</li>
+                            <li><code>biterr()</code> - Count bit errors</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>Plotting</h4>
+                        <ul style="margin-left: 1rem;">
+                            <li><code>semilogy()</code> - Log y-axis</li>
+                            <li><code>subplot()</code> - Multiple plots</li>
+                            <li><code>legend(), title()</code></li>
+                            <li><code>grid on, hold on</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Assignment Submission Checklist</h4>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>✓ Header with name, ID, assignment number</li>
+                        <li>✓ Code runs without errors from start to finish</li>
+                        <li>✓ All variables properly defined</li>
+                        <li>✓ Comments explain complex operations</li>
+                        <li>✓ Figures have titles, labels, and legends</li>
+                        <li>✓ Results displayed with <code>fprintf()</code></li>
+                        <li>✓ Code properly indented and readable</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: white; margin-top: 0;">📚 Additional Resources</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li><strong>MATLAB Documentation:</strong> <a href="https://www.mathworks.com/help/matlab/" target="_blank">mathworks.com/help/matlab/</a></li>
+                        <li><strong>Communications Toolbox:</strong> <a href="https://www.mathworks.com/help/comm/" target="_blank">mathworks.com/help/comm/</a></li>
+                        <li><strong>Textbook:</strong> Simon Haykin, Communication Systems, 4th Ed.</li>
+                        <li><strong>Course Materials:</strong> Check Blackboard for sample codes</li>
+                        <li><strong>YouTube:</strong> Dr. Al Bataineh's lecture videos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section" style="text-align: center; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+                <h3 style="color: white; margin-top: 0;">Need Help?</h3>
+                <p>Contact Dr. Al Bataineh during office hours (Tuesday/Thursday 11:00 AM - 12:00 PM)</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="513c373733302530383f343911243034247f30327f3034">[email&#160;protected]</a> | Office: F1-1175</p>
+                <p style="margin-top: 1rem;">
+                    <a href="ecom561.html" style="color: var(--accent-color); text-decoration: none;">← Back to ECOM 561 Course Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Password protection
+        const correctPassword = "entropy";
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input === correctPassword) {
+                // Hide password screen
+                document.getElementById('password-screen').style.display = 'none';
+                // Show content
+                document.getElementById('content').style.display = 'block';
+                // Store in session
+                sessionStorage.setItem('ecom561MatlabAccess', 'granted');
+            } else {
+                // Show error message
+                errorMsg.style.display = 'block';
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Check if already authenticated in this session
+        window.onload = function() {
+            if (sessionStorage.getItem('ecom561MatlabAccess') === 'granted') {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>

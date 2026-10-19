@@ -33,11 +33,172 @@
             min-height: 100vh;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav > ul > li {
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav > ul > li > a:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .has-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 77, 104, 0.98);
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a {
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            padding-left: 2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .page-nav {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--green) 100%);
+            padding: 0;
+            position: sticky;
+            top: 52px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-nav li {
+            position: relative;
+        }
+
+        .page-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            display: block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .page-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .page-nav a.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-bottom: 3px solid white;
+        }
+
+        .page-nav-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .page-nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: white;
             padding: 3rem 2rem;
+            padding-top: 6rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -299,6 +460,79 @@
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav > ul > li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                background: rgba(5, 191, 219, 0.2);
+            }
+
+            .has-dropdown.active .dropdown {
+                display: block;
+            }
+
+            .dropdown a {
+                padding-left: 3rem;
+            }
+
+            nav a {
+                padding: 1rem 1.5rem;
+            }
+
+            .page-nav {
+                top: 60px;
+            }
+
+            .page-nav-toggle {
+                display: block;
+            }
+
+            .page-nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            .page-nav ul.active {
+                display: flex;
+            }
+
+            .page-nav li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .page-nav a {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -354,15 +588,68 @@
     </style>
 </head>
 <body>
+    <!-- Navigation with Dropdowns -->
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        <ul id="mainMenu">
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">About</a>
+                <ul class="dropdown">
+                    <li><a href="biography.html">Biography</a></li>
+                    <li><a href="Curriculum_Vitae.pdf" target="_blank">CV / Resume</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="#" onclick="toggleDropdown(event, this)">Research</a>
+                <ul class="dropdown">
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="https://research.uaeu.ac.ae/en/persons/mohammad-al-bataineh" target="_blank">UAEU Pure Profile</a></li>
+                    <li><a href="talks.html">Talks & Presentations</a></li>
+                    <li><a href="research-projects.html">Projects & Funding</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a href="teaching.html" onclick="toggleDropdown(event, this)">Teaching</a>
+                <ul class="dropdown">
+                    <li><a href="teaching.html">Courses</a></li>
+                    <li><a href="students.html">Students & Supervision</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
         <h1>Awards & Honors</h1>
         <p>Dr. Mohammad Fayez Al Bataineh</p>
         <a href="index.html" class="back-link">← Back to Home</a>
     </header>
 
+    <!-- Secondary Page Navigation -->
+    <div class="page-nav">
+        <button class="page-nav-toggle" onclick="togglePageNav()">📑 Jump to Section ▼</button>
+        <ul id="pageNavMenu">
+            <li><a href="#highlight">Highlights</a></li>
+            <li><a href="#academic">Academic Excellence</a></li>
+            <li><a href="#scholarships">Scholarships</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#professional">Professional</a></li>
+            <li><a href="#funding">Funding</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+        </ul>
+    </div>
+
     <div class="container">
         <!-- Highlight -->
-        <div class="highlight-box fade-in">
+        <div id="highlight" class="highlight-box fade-in">
             <h2>🏆 Recognized for Excellence in Research, Teaching, and Academic Achievement</h2>
             <p>A lifetime of dedication to advancing knowledge and inspiring the next generation</p>
         </div>
@@ -388,7 +675,7 @@
         </div>
 
         <!-- Academic Excellence Awards -->
-        <div class="section fade-in">
+        <div id="academic" class="section fade-in">
             <h2>Academic Excellence Awards</h2>
             <div class="awards-grid">
                 <div class="award-card">
@@ -459,7 +746,7 @@
         </div>
 
         <!-- Scholarships & Fellowships -->
-        <div class="section fade-in">
+        <div id="scholarships" class="section fade-in">
             <h2>Scholarships & Fellowships</h2>
             <div class="awards-grid">
                 <div class="award-card">
@@ -504,7 +791,7 @@
         </div>
 
         <!-- Teaching Recognition -->
-        <div class="section fade-in">
+        <div id="teaching" class="section fade-in">
             <h2>Teaching Recognition</h2>
             <div class="awards-grid">
                 <div class="award-card">
@@ -549,7 +836,7 @@
         </div>
 
         <!-- Professional Recognition Timeline -->
-        <div class="section fade-in">
+        <div id="professional" class="section fade-in">
             <h2>Professional Recognition & Leadership</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -605,7 +892,7 @@
         </div>
 
         <!-- Research Funding Recognition -->
-        <div class="section fade-in">
+        <div id="funding" class="section fade-in">
             <h2>Research Funding Success</h2>
             <div class="category-section">
                 <h3>Total Research Funding Secured: 470,000+ AED</h3>
@@ -640,36 +927,340 @@
         </div>
 
         <!-- Professional Development -->
-        <div class="section fade-in">
+        <div id="certifications" class="section fade-in">
             <h2>Professional Development & Certifications</h2>
+            
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary);">📜 Academic Degrees & Credentials</h3>
             <div class="awards-grid">
                 <div class="award-card">
-                    <div class="award-icon">📚</div>
+                    <div class="award-icon">🎓</div>
                     <div class="award-content">
-                        <div class="award-title">Faculty Teaching Academy Program (FTAP)</div>
-                        <div class="award-institution">United Arab Emirates University</div>
-                        <div class="award-year">2023-2024</div>
-                        <div class="award-description">
-                            Completed comprehensive faculty development program focusing on Constructivist Learning 
-                            Theory implementation and evidence-based teaching practices.
-                        </div>
+                        <a href="certificates/1.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">B.Sc. in Communications Engineering</a>
+                        <div class="award-institution">Yarmouk University, Jordan</div>
+                        <div class="award-year">2004</div>
+                        <div class="award-description">Bachelor of Science degree in Communications Engineering with honors.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎓</div>
+                    <div class="award-content">
+                        <a href="certificates/2.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">M.S. in Electrical Engineering</a>
+                        <div class="award-institution">Illinois Institute of Technology, Chicago</div>
+                        <div class="award-year">May 13, 2006</div>
+                        <div class="award-description">Master of Science degree from Armour College of Engineering.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎓</div>
+                    <div class="award-content">
+                        <a href="certificates/3.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Ph.D. in Electrical Engineering</a>
+                        <div class="award-institution">Illinois Institute of Technology, Chicago</div>
+                        <div class="award-year">July 24, 2010</div>
+                        <div class="award-description">Doctor of Philosophy degree from Armour College of Engineering.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">✅</div>
+                    <div class="award-content">
+                        <a href="certificates/6.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">UAE PhD Degree Equivalency</a>
+                        <div class="award-institution">UAE Ministry of Education</div>
+                        <div class="award-year">March 25, 2021</div>
+                        <div class="award-description">Official recognition and equivalency of PhD degree for use within the UAE.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">🎤 Conference Presentations & Session Chairs</h3>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <a href="certificates/4.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">HIBIT 2012 Conference Presentation</a>
+                        <div class="award-institution">7th International Symposium on Health Informatics and Bioinformatics</div>
+                        <div class="award-year">April 19-22, 2012 | Cappadocia, Turkey</div>
+                        <div class="award-description">Paper: "TFBS Detection Algorithm Using Distance Metrics Based on Center of Mass and Polyphase Mapping"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <a href="certificates/5.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">ICBET 2016 Conference Presentation</a>
+                        <div class="award-institution">6th International Conference on Biomedical Engineering and Technology</div>
+                        <div class="award-year">March 12-14, 2016 | Singapore</div>
+                        <div class="award-description">Paper: "Temperature Compensation of Fiber Bragg-Grating Manometry Catheter Using Kalman Filter"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎯</div>
+                    <div class="award-content">
+                        <a href="certificates/14.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">ICBET 2023 Session Chair</a>
+                        <div class="award-institution">13th International Conference on Biomedical Engineering and Technology</div>
+                        <div class="award-year">June 15-18, 2023 | Tokyo, Japan</div>
+                        <div class="award-description">Session Chair for Medical Imaging and Biomedical Image Processing session.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <a href="certificates/12.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">ICBET 2024 Conference Presentation</a>
+                        <div class="award-institution">14th International Conference on Biomedical Engineering and Technology</div>
+                        <div class="award-year">June 14-17, 2024 | Seoul, South Korea</div>
+                        <div class="award-description">Paper: "Enhanced Detection and Localization of Zinc Finger Proteins Using Advanced Neural Network Techniques"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <a href="certificates/8.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">ICBET 2025 Conference Presentation</a>
+                        <div class="award-institution">15th International Conference on Biomedical Engineering and Technology</div>
+                        <div class="award-year">June 27-30, 2025 | Jeju Island, South Korea</div>
+                        <div class="award-description">Paper: "A Comparative Analysis of Computational Approaches for Gene Detection"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📊</div>
+                    <div class="award-content">
+                        <a href="certificates/19.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">ICMET 2025 Oral Presentation</a>
+                        <div class="award-institution">7th International Conference on Modern Educational Technology</div>
+                        <div class="award-year">2025</div>
+                        <div class="award-description">Paper: "Technology-Enhanced Active Learning in Engineering Education: Promoting Equity and Engagement Through Digital Innovation"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-content">
+                        <a href="certificates/18.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">IEEE AICT 2025 Conference Appreciation</a>
+                        <div class="award-institution">19th IEEE International Conference on Application of Information and Communication Technologies</div>
+                        <div class="award-year">October 29-31, 2025 | Al Ain, UAE</div>
+                        <div class="award-description">Certificate of appreciation for distinguished contribution to the conference held at UAEU.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">📰 Publication Certificates</h3>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">📝</div>
+                    <div class="award-content">
+                        <a href="certificates/10.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Sensors Journal Publication</a>
+                        <div class="award-institution">MDPI Sensors (IF: 3.9, CiteScore: 6.8)</div>
+                        <div class="award-year">September 2023</div>
+                        <div class="award-description">Paper: "Managing Energy Consumption of Devices with Multiconnectivity by Deep Learning and Software-Defined Networking"</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📝</div>
+                    <div class="award-content">
+                        <a href="certificates/11.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Sustainability Journal Publication</a>
+                        <div class="award-institution">MDPI Sustainability (IF: 3.9, CiteScore: 5.8)</div>
+                        <div class="award-year">April 2024</div>
+                        <div class="award-description">Paper: "Abolishing Single-Use Plastic Water Bottles in Dubai Hotels as a Voluntary Act—Scenarios and Environmental Impacts"</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">🏅 Service & Recognition</h3>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">👥</div>
+                    <div class="award-content">
+                        <a href="certificates/9.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Orientation Day Appreciation</a>
+                        <div class="award-institution">College of Engineering, UAEU</div>
+                        <div class="award-year">January 4, 2022</div>
+                        <div class="award-description">Certificate of appreciation for valuable contribution to Orientation Day 2022.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-content">
+                        <a href="certificates/7.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Ibn Trais Educational Award</a>
+                        <div class="award-institution">Ibn Trais Educational Award Committee</div>
+                        <div class="award-year">May 16, 2024</div>
+                        <div class="award-description">Certificate of appreciation for positive participation as a judge/evaluator.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">📋</div>
+                    <div class="award-content">
+                        <a href="certificates/17.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">UAE GSRC25 Reviewer</a>
+                        <div class="award-institution">10th UAE Graduate Students Research Conference</div>
+                        <div class="award-year">April 12, 2025 | American University of Sharjah</div>
+                        <div class="award-description">Certificate of appreciation for contribution as a reviewer at the conference.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">📚 Professional Development & Training</h3>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">🤖</div>
+                    <div class="award-content">
+                        <a href="certificates/20.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">AI and the Future of Higher Education</a>
+                        <div class="award-institution">Center for Excellence in Teaching and Learning (CETL), UAEU</div>
+                        <div class="award-year">March 26, 2025</div>
+                        <div class="award-description">60-minute workshop on artificial intelligence applications in higher education.</div>
                     </div>
                 </div>
 
                 <div class="award-card">
                     <div class="award-icon">✓</div>
                     <div class="award-content">
-                        <div class="award-title">Quality Matters Certification</div>
+                        <a href="certificates/16.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Quality Matters (QM) Certification</a>
                         <div class="award-institution">Quality Matters Program</div>
-                        <div class="award-year">Scheduled September 2025</div>
-                        <div class="award-description">
-                            Enrolled in "Applying the QM Rubric" certification program for course design excellence 
-                            and online learning quality assurance.
-                        </div>
+                        <div class="award-year">October 8, 2025</div>
+                        <div class="award-description">Completed "Applying the QM Rubric" (APPQMR) certification for course design excellence and online learning quality assurance.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🤖</div>
+                    <div class="award-content">
+                        <a href="certificates/13.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">AI Bootcamp V2.0</a>
+                        <div class="award-institution">Center for Excellence in Teaching and Learning (CETL), UAEU</div>
+                        <div class="award-year">Fall 2025</div>
+                        <div class="award-description">3-hour workshop on Assessment & Evaluation with AI, focusing on practical AI tools for teaching and learning.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎨</div>
+                    <div class="award-content">
+                        <a href="certificates/15.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">CETL Design Academy - Cohort 1</a>
+                        <div class="award-institution">Center for Excellence in Teaching and Learning (CETL), UAEU</div>
+                        <div class="award-year">Fall 2025</div>
+                        <div class="award-description">17.5-hour academy emphasizing design aesthetics and hands-on tools to elevate teaching materials and course experiences.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🎓</div>
+                    <div class="award-content">
+                        <a href="certificates/21.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Faculty Teaching Academy (FTAP) - Cohort 1</a>
+                        <div class="award-institution">Center for Excellence in Teaching and Learning (CETL), UAEU</div>
+                        <div class="award-year">2025</div>
+                        <div class="award-description">Completed the Faculty Teaching Academy — a 10-session (2.5 hours each) professional development program advancing teaching excellence, innovative pedagogy, and inclusive learning environments.</div>
+                    </div>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🤖</div>
+                    <div class="award-content">
+                        <a href="certificates/22.pdf" target="_blank" class="award-title" style="text-decoration: none; color: inherit;">Beyond ChatGPT: Building Agentic AI</a>
+                        <div class="award-institution">Center for Excellence in Teaching and Learning (CETL), UAEU</div>
+                        <div class="award-year">April 30, 2026</div>
+                        <div class="award-description">2-hour workshop on building agentic AI for education, research, and innovation, part of the ChatGPT Workshop Series V1.0.</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mainMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Mobile dropdown toggle
+        function toggleDropdown(event, element) {
+            if (window.innerWidth <= 968) {
+                event.preventDefault();
+                const parent = element.parentElement;
+                parent.classList.toggle('active');
+            }
+        }
+
+        // Page navigation toggle (for mobile)
+        function togglePageNav() {
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            pageNavMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menu = document.getElementById('mainMenu');
+            const pageNav = document.querySelector('.page-nav');
+            const pageNavMenu = document.getElementById('pageNavMenu');
+            
+            if (nav && !nav.contains(event.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+            
+            if (pageNav && !pageNav.contains(event.target) && pageNavMenu.classList.contains('active')) {
+                pageNavMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.page-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    const mainNavHeight = document.querySelector('nav').offsetHeight;
+                    const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+                    const totalOffset = mainNavHeight + pageNavHeight + 20;
+                    
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    const pageNavMenu = document.getElementById('pageNavMenu');
+                    if (pageNavMenu.classList.contains('active')) {
+                        pageNavMenu.classList.remove('active');
+                    }
+                    
+                    document.querySelectorAll('.page-nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('[id="highlight"], [id="academic"], [id="scholarships"], [id="teaching"], [id="professional"], [id="funding"], [id="certifications"]');
+            const navLinks = document.querySelectorAll('.page-nav a');
+            const mainNavHeight = document.querySelector('nav').offsetHeight;
+            const pageNavHeight = document.querySelector('.page-nav').offsetHeight;
+            const offset = mainNavHeight + pageNavHeight + 100;
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - offset;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

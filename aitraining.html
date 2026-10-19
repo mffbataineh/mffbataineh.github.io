@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Programs | AI in Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #00d9ff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #0a4d68;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #0a4d68, #05bfdb);
+            margin-top: 1rem;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #0a4d68;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            color: #05bfdb;
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        a {
+            color: #0a4d68;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #00d9ff;
+            text-decoration: underline;
+        }
+
+        /* Program Cards */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #05bfdb;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-top-color: #00d9ff;
+        }
+
+        .program-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .program-level {
+            display: inline-block;
+            background: linear-gradient(135deg, #0a4d68, #05bfdb);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .program-card h4 {
+            color: #0a4d68;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .program-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .meta-item strong {
+            color: #0a4d68;
+        }
+
+        .program-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .program-features li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .program-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #05bfdb;
+            font-weight: bold;
+        }
+
+        .enroll-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #0a4d68, #05bfdb);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .enroll-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(5, 191, 219, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.1) 0%, rgba(5, 191, 219, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #05bfdb;
+            margin: 2rem 0;
+        }
+
+        .info-box h4 {
+            color: #0a4d68;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-left-color: #FFD700;
+        }
+
+        /* Track Cards */
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .track-card {
+            background: linear-gradient(135deg, rgba(10, 77, 104, 0.05) 0%, rgba(5, 191, 219, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(5, 191, 219, 0.2);
+            transition: all 0.3s;
+        }
+
+        .track-card:hover {
+            border-color: #05bfdb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .track-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .track-card h4 {
+            margin-top: 0;
+            color: #0a4d68;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #0a4d68;
+            background: linear-gradient(135deg, #0a4d68 0%, #011627 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+        }
+
+        .cta-section h2::after {
+            background: linear-gradient(90deg, #00d9ff, #05bfdb);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #00d9ff;
+            color: #011627;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.6);
+            background: #05bfdb;
+            color: #011627;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #011627;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #00d9ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .programs-grid,
+            .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="aiedu.html" class="back-link">← Back to Main Guide</a>
+            <h1>🎓 Professional Training Programs</h1>
+            <p>Build AI literacy and practical skills for effective classroom integration</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Introduction -->
+            <section>
+                <h2>Transform Your Teaching with AI</h2>
+                <p>Our comprehensive training programs are designed to equip educators with the knowledge, skills, and confidence to integrate AI effectively in their classrooms. Whether you're just starting out or looking to become an AI champion in your institution, we have a program tailored to your needs.</p>
+                
+                <div class="info-box highlight-box">
+                    <h4>🌟 Why Choose Our Training Programs?</h4>
+                    <ul>
+                        <li><strong>Practical, Hands-On Learning:</strong> Real classroom applications, not just theory</li>
+                        <li><strong>Flexible Delivery:</strong> Self-paced online courses, live workshops, and hybrid options</li>
+                        <li><strong>Expert Instructors:</strong> Learn from experienced educators who've successfully implemented AI</li>
+                        <li><strong>Ongoing Support:</strong> Access to community forums, office hours, and resources</li>
+                        <li><strong>Certification:</strong> Earn recognized credentials to showcase your expertise</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Learning Tracks -->
+            <section>
+                <h2>Choose Your Learning Track</h2>
+                <p>Select the path that best matches your current experience level and professional goals.</p>
+                
+                <div class="tracks-grid">
+                    <div class="track-card">
+                        <div class="track-icon">🌱</div>
+                        <h4>Beginner Track</h4>
+                        <p><strong>Duration:</strong> 4-6 weeks</p>
+                        <p>Perfect for educators new to AI. Learn foundational concepts, explore basic tools, and start implementing simple AI solutions in your classroom.</p>
+                        <p><strong>Prerequisites:</strong> None</p>
+                    </div>
+
+                    <div class="track-card">
+                        <div class="track-icon">🚀</div>
+                        <h4>Intermediate Track</h4>
+                        <p><strong>Duration:</strong> 8-10 weeks</p>
+                        <p>Build on basic knowledge with advanced tools, pedagogical strategies, and more complex implementations. Learn to measure impact and iterate.</p>
+                        <p><strong>Prerequisites:</strong> Basic AI literacy or completion of Beginner Track</p>
+                    </div>
+
+                    <div class="track-card">
+                        <div class="track-icon">⭐</div>
+                        <h4>Advanced Track</h4>
+                        <p><strong>Duration:</strong> 12-16 weeks</p>
+                        <p>Become an AI education leader. Master cutting-edge applications, lead institutional change, and contribute to the field through research and innovation.</p>
+                        <p><strong>Prerequisites:</strong> Completion of Intermediate Track or demonstrated experience</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Programs -->
+            <section>
+                <h2>Featured Training Programs</h2>
+                
+                <div class="programs-grid">
+                    <!-- Program 1 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">BEGINNER</span>
+                            <h4>AI Foundations for Educators</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>8 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Self-paced</strong></div>
+                            <div class="meta-item">💰 <strong>Free</strong></div>
+                        </div>
+                        <p>Master the basics of AI and discover how to integrate intelligent tools into your teaching practice. Perfect for those taking their first steps with AI.</p>
+                        <ul class="program-features">
+                            <li>Understanding AI, ML, and NLP fundamentals</li>
+                            <li>Introduction to ChatGPT, Claude, and educational AI tools</li>
+                            <li>Creating AI-assisted lesson plans and materials</li>
+                            <li>Ethical considerations and student privacy</li>
+                            <li>Practical classroom implementation strategies</li>
+                        </ul>
+                        <a href="https://grow.google/ai-for-educators/" class="enroll-button" target="_blank">Explore Similar Course →</a>
+                    </div>
+
+                    <!-- Program 2 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">BEGINNER</span>
+                            <h4>AI Tools for Content Creation</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>4 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Online + Live Sessions</strong></div>
+                        </div>
+                        <p>Learn to leverage AI for creating engaging educational content, from lesson plans to multimedia presentations and assessments.</p>
+                        <ul class="program-features">
+                            <li>AI-powered presentation design (Canva Magic, Gamma)</li>
+                            <li>Automated lesson plan generation</li>
+                            <li>Creating quizzes and assessments with AI</li>
+                            <li>Video content creation with AI tools</li>
+                            <li>Customizing AI outputs for your subject area</li>
+                        </ul>
+                        <a href="https://www.linkedin.com/learning/topics/artificial-intelligence-ai" class="enroll-button" target="_blank">Find Similar Courses →</a>
+                    </div>
+
+                    <!-- Program 3 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">INTERMEDIATE</span>
+                            <h4>Personalized Learning with AI</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>10 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Hybrid</strong></div>
+                        </div>
+                        <p>Design and implement adaptive learning experiences that meet each student where they are and help them grow at their own pace.</p>
+                        <ul class="program-features">
+                            <li>Understanding adaptive learning platforms</li>
+                            <li>Using AI for differentiated instruction</li>
+                            <li>Implementing intelligent tutoring systems</li>
+                            <li>Data-driven personalization strategies</li>
+                            <li>Measuring impact on student outcomes</li>
+                        </ul>
+                        <a href="https://www.coursera.org/courses?query=ai%20education" class="enroll-button" target="_blank">Browse Courses →</a>
+                    </div>
+
+                    <!-- Program 4 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">INTERMEDIATE</span>
+                            <h4>AI-Enhanced Assessment & Feedback</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>6 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Self-paced</strong></div>
+                        </div>
+                        <p>Transform your assessment practices with AI-powered tools that save time while providing richer, more actionable feedback to students.</p>
+                        <ul class="program-features">
+                            <li>Automated grading tools (Gradescope, Turnitin)</li>
+                            <li>AI-assisted rubric creation</li>
+                            <li>Formative assessment with real-time analytics</li>
+                            <li>Personalized feedback at scale</li>
+                            <li>Academic integrity in the AI era</li>
+                        </ul>
+                        <a href="https://www.edx.org/learn/artificial-intelligence" class="enroll-button" target="_blank">Explore Similar Programs →</a>
+                    </div>
+
+                    <!-- Program 5 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">ADVANCED</span>
+                            <h4>AI Leadership in Education</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>16 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Cohort-based</strong></div>
+                        </div>
+                        <p>Become an AI champion in your institution. Lead change initiatives, develop institutional strategies, and mentor colleagues in AI adoption.</p>
+                        <ul class="program-features">
+                            <li>Strategic planning for AI integration</li>
+                            <li>Change management and faculty buy-in</li>
+                            <li>Policy development and ethical frameworks</li>
+                            <li>Professional development design</li>
+                            <li>Capstone: Institutional AI implementation plan</li>
+                        </ul>
+                        <a href="https://www.iste.org/professional-development" class="enroll-button" target="_blank">Learn More →</a>
+                    </div>
+
+                    <!-- Program 6 -->
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">ADVANCED</span>
+                            <h4>AI Research & Innovation in Education</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>12 weeks</strong></div>
+                            <div class="meta-item">💻 <strong>Research Intensive</strong></div>
+                        </div>
+                        <p>Contribute to the field through rigorous research. Design studies, analyze data, and share findings with the education community.</p>
+                        <ul class="program-features">
+                            <li>Research methodology for AI in education</li>
+                            <li>Experimental design and data collection</li>
+                            <li>Advanced analytics and impact measurement</li>
+                            <li>Publishing and presenting research</li>
+                            <li>Building an evidence base for AI interventions</li>
+                        </ul>
+                        <a href="https://link.springer.com/journal/40593" class="enroll-button" target="_blank">Explore Research →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specialized Workshops -->
+            <section>
+                <h2>Specialized Workshops & Mini-Courses</h2>
+                <p>Short, focused sessions on specific topics. Perfect for targeted professional development.</p>
+
+                <h3>Technical Skills Workshops (2-4 hours each)</h3>
+                <ul>
+                    <li><strong>Prompt Engineering for Educators:</strong> Master the art of getting the best results from AI language models</li>
+                    <li><strong>AI Image Generation for Education:</strong> Create custom visuals with DALL-E, Midjourney, and Stable Diffusion</li>
+                    <li><strong>Building Custom GPTs:</strong> Design specialized AI assistants for your classroom</li>
+                    <li><strong>AI Voice and Video Tools:</strong> Leverage text-to-speech, dubbing, and AI video creation</li>
+                </ul>
+
+                <h3>Subject-Specific Mini-Courses (4-6 hours each)</h3>
+                <ul>
+                    <li><strong>AI in STEM Education:</strong> Applications for math, science, and engineering classrooms</li>
+                    <li><strong>AI for Language Learning:</strong> Translation, conversation practice, and language acquisition</li>
+                    <li><strong>AI in Social Studies:</strong> Primary source analysis, debate facilitation, and research support</li>
+                    <li><strong>AI for Arts & Humanities:</strong> Creative writing, music generation, and art analysis</li>
+                </ul>
+
+                <h3>Policy & Ethics Seminars (3-4 hours each)</h3>
+                <ul>
+                    <li><strong>Student Data Privacy & FERPA Compliance:</strong> Legal requirements and best practices</li>
+                    <li><strong>AI Bias & Equity:</strong> Recognizing and mitigating algorithmic bias in education</li>
+                    <li><strong>Academic Integrity in the AI Age:</strong> Honor codes, detection, and teaching responsible use</li>
+                    <li><strong>Accessibility & Universal Design:</strong> Ensuring AI benefits all learners</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>💡 Custom Workshop Packages Available</h4>
+                    <p>We offer customized training programs tailored to your institution's specific needs, student population, and technological infrastructure. Contact us to design a professional development program that works for your team.</p>
+                </div>
+            </section>
+
+            <!-- Certification Programs -->
+            <section>
+                <h2>Certification Programs</h2>
+                <p>Earn recognized credentials that demonstrate your AI expertise to students, parents, and administrators.</p>
+
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">CERTIFICATE</span>
+                            <h4>Certified AI Educator (CAE)</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>3-6 months</strong></div>
+                            <div class="meta-item">📊 <strong>Portfolio-based</strong></div>
+                        </div>
+                        <p>Demonstrate comprehensive AI literacy and effective classroom implementation through a rigorous portfolio assessment.</p>
+                        <ul class="program-features">
+                            <li>Complete 40 hours of core training</li>
+                            <li>Implement AI tools in classroom for minimum 3 months</li>
+                            <li>Submit portfolio of lesson plans and student work</li>
+                            <li>Pass written assessment on AI fundamentals and ethics</li>
+                            <li>Present case study to panel of educators</li>
+                        </ul>
+                        <a href="https://www.iste.org/professional-development/iste-certification" class="enroll-button" target="_blank">Learn About ISTE Certification →</a>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-header">
+                            <span class="program-level">CERTIFICATE</span>
+                            <h4>AI Integration Specialist</h4>
+                        </div>
+                        <div class="program-meta">
+                            <div class="meta-item">⏱️ <strong>6-12 months</strong></div>
+                            <div class="meta-item">📊 <strong>Project-based</strong></div>
+                        </div>
+                        <p>Advanced certification for educators leading AI initiatives at the department or school level.</p>
+                        <ul class="program-features">
+                            <li>Complete 80 hours of advanced training</li>
+                            <li>Lead professional development for colleagues</li>
+                            <li>Develop institutional AI integration plan</li>
+                            <li>Conduct action research on AI impact</li>
+                            <li>Contribute to AI education community</li>
+                        </ul>
+                        <a href="https://www.google.com/edu/certifications/" class="enroll-button" target="_blank">Explore Google Certifications →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- External Resources -->
+            <section>
+                <h2>Recommended External Training Providers</h2>
+                <p>Explore high-quality training programs from leading organizations and universities.</p>
+
+                <h3>Universities & Academic Institutions</h3>
+                <ul>
+                    <li><strong><a href="https://www.coursera.org/specializations/ai-for-teaching-and-learning" target="_blank">AI for Teaching and Learning (University of Pennsylvania)</a>:</strong> Comprehensive Coursera specialization on AI in education</li>
+                    <li><strong><a href="https://www.edx.org/school/mitx" target="_blank">MIT Professional Education - AI Courses</a>:</strong> Technical deep dives from world-class faculty</li>
+                    <li><strong><a href="https://online.stanford.edu/courses/xcs224u-natural-language-understanding" target="_blank">Stanford Online - AI & ML Courses</a>:</strong> Graduate-level courses available to educators</li>
+                    <li><strong><a href="https://www.ox.ac.uk/admissions/continuing-education/courses/ai-business-and-society" target="_blank">Oxford University - AI: Cloud and Edge Implementations</a>:</strong> Professional development from Oxford</li>
+                </ul>
+
+                <h3>Professional Organizations</h3>
+                <ul>
+                    <li><strong><a href="https://www.iste.org/professional-development" target="_blank">ISTE (International Society for Technology in Education)</a>:</strong> Conferences, webinars, and online courses</li>
+                    <li><strong><a href="https://www.aace.org/" target="_blank">AACE (Association for the Advancement of Computing in Education)</a>:</strong> Workshops and certifications</li>
+                    <li><strong><a href="https://www.cosn.org/" target="_blank">CoSN (Consortium for School Networking)</a>:</strong> Leadership training for educational technology</li>
+                </ul>
+
+                <h3>Corporate Training Programs</h3>
+                <ul>
+                    <li><strong><a href="https://grow.google/ai-for-educators/" target="_blank">Google for Education - AI Training</a>:</strong> Free resources and certifications for Google Workspace</li>
+                    <li><strong><a href="https://www.microsoft.com/en-us/education/educators/ai" target="_blank">Microsoft Learn for Educators - AI Path</a>:</strong> Free AI training aligned with Microsoft tools</li>
+                    <li><strong><a href="https://www.amazon.com/aws-educate" target="_blank">AWS Educate - Machine Learning</a>:</strong> Cloud-based AI and ML training</li>
+                    <li><strong><a href="https://www.ibm.com/training/skills-build-for-educators" target="_blank">IBM SkillsBuild for Educators</a>:</strong> Professional development on AI and emerging tech</li>
+                </ul>
+
+                <h3>Open Learning Platforms</h3>
+                <ul>
+                    <li><strong><a href="https://www.elementsofai.com/" target="_blank">Elements of AI</a>:</strong> Free, comprehensive introduction to AI (University of Helsinki)</li>
+                    <li><strong><a href="https://www.fast.ai/" target="_blank">Fast.ai</a>:</strong> Free practical deep learning for coders</li>
+                    <li><strong><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.AI</a>:</strong> Courses from Andrew Ng on Coursera and standalone platform</li>
+                    <li><strong><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a>:</strong> Free micro-courses on AI, ML, and data science</li>
+                </ul>
+            </section>
+
+            <!-- Support & Community -->
+            <section>
+                <h2>Ongoing Support & Community</h2>
+                
+                <div class="info-box">
+                    <h4>🤝 Join Our Learning Community</h4>
+                    <p>All program participants get access to:</p>
+                    <ul>
+                        <li><strong>Private Online Forum:</strong> Connect with fellow educators, share resources, and troubleshoot challenges</li>
+                        <li><strong>Monthly Office Hours:</strong> Live Q&A sessions with AI education experts</li>
+                        <li><strong>Resource Library:</strong> Continuously updated collection of lesson plans, templates, and best practices</li>
+                        <li><strong>Mentorship Program:</strong> Pair with experienced AI educators for personalized guidance</li>
+                        <li><strong>Annual Conference:</strong> Network with peers and learn about cutting-edge developments</li>
+                    </ul>
+                </div>
+
+                <h3>Continuing Education Credits</h3>
+                <p>Most of our programs qualify for professional development credits. We provide documentation for:</p>
+                <ul>
+                    <li>State teaching license renewal (varies by state)</li>
+                    <li>National Board Certification renewal</li>
+                    <li>Institutional professional development requirements</li>
+                    <li>Graduate credit (through partner universities - additional fees apply)</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Start Your Training Journey?</h2>
+                <p style="color: white; font-size: 1.2rem; margin-bottom: 2rem;">Invest in your professional growth and transform your teaching practice.</p>
+                <a href="aiedu.html" class="cta-button">Return to Main Guide</a>
+                <a href="mailto:training@aiedu.example.com" class="cta-button">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI in Education Excellence Initiative. Empowering educators to shape the future of learning.</p>
+            <p style="margin-top: 1rem;"><a href="aiedu.html">Back to Main Guide</a></p>
+        </div>
+    </footer>
+</body>
+</html>

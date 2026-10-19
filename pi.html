@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>π — The Infinite Beauty of Pi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #12121a;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --gold-dim: #8b7355;
+            --text: #e8e6e3;
+            --text-dim: #6b6b7b;
+            --accent-blue: #4a90d9;
+            --accent-purple: #9b59b6;
+            --accent-teal: #1abc9c;
+            --accent-coral: #e74c3c;
+            --accent-orange: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(155, 89, 182, 0.03) 0%, transparent 50%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: var(--base-opacity); transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .pi-symbol {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(8rem, 25vw, 20rem);
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 100px rgba(212, 175, 55, 0.3);
+            animation: float 6s ease-in-out infinite;
+            line-height: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold-dim);
+            margin-top: 1rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .digit-stream {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 3rem;
+            letter-spacing: 0.1em;
+            max-width: 80%;
+            word-break: break-all;
+            opacity: 0.5;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--gold-dim);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 0.3em;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Visualization Cards */
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .viz-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .viz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .viz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .viz-card:hover::before {
+            opacity: 1;
+        }
+
+        .viz-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .viz-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .canvas-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        canvas {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        /* Full Width Visualizations */
+        .viz-full {
+            grid-column: 1 / -1;
+        }
+
+        .viz-full .canvas-container {
+            min-height: 400px;
+        }
+
+        /* Digit Color Legend */
+        .color-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        /* Mathematical Formulas Section */
+        .formulas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .formula-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .formula-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .formula-math {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text);
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+
+        .formula-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* Statistics Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 6rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.02));
+        }
+
+        .footer-pi {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 2rem;
+        }
+
+        .footer-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-credit {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="pi-symbol">π</div>
+            <h1 class="hero-title">The Infinite Beauty of Pi</h1>
+            <p class="hero-subtitle">
+                A visual exploration of mathematics' most enigmatic constant — 
+                irrational, transcendental, and eternally mysterious.
+            </p>
+            <div class="digit-stream" id="heroDigits"></div>
+            <div class="scroll-indicator"></div>
+        </header>
+
+        <!-- Digit Distribution Section -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Nature of Randomness</h2>
+                <p class="section-desc">
+                    In the first million digits of π, each digit appears with near-perfect uniformity — 
+                    a dance of chaos and order.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card viz-full">
+                    <h3 class="viz-title">Digit Frequency Distribution</h3>
+                    <p class="viz-subtitle">Occurrence of each digit (0-9) in the first 10,000 digits of π</p>
+                    <div class="canvas-container">
+                        <canvas id="distributionChart" width="900" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Visualizations Section -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Chromatic Sequences</h2>
+                <p class="section-desc">
+                    Each digit of π transformed into color, revealing hidden patterns in the infinite sequence.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3 class="viz-title">Digit Color Grid</h3>
+                    <p class="viz-subtitle">First 2,500 digits mapped to a color spectrum</p>
+                    <div class="canvas-container">
+                        <canvas id="colorGrid" width="350" height="350"></canvas>
+                    </div>
+                    <div class="color-legend" id="colorLegend"></div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3 class="viz-title">Radial Digit Wheel</h3>
+                    <p class="viz-subtitle">Digits spiraling outward from the center</p>
+                    <div class="canvas-container">
+                        <canvas id="radialWheel" width="350" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Geometric Visualizations -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Geometric Explorations</h2>
+                <p class="section-desc">
+                    The essence of π lies in circles — the ratio of circumference to diameter, 
+                    a relationship found throughout nature.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3 class="viz-title">The Circle Relationship</h3>
+                    <p class="viz-subtitle">π = Circumference ÷ Diameter</p>
+                    <div class="canvas-container">
+                        <canvas id="circleViz" width="350" height="350"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3 class="viz-title">Monte Carlo Estimation</h3>
+                    <p class="viz-subtitle">Random sampling to approximate π</p>
+                    <div class="canvas-container">
+                        <canvas id="monteCarlo" width="350" height="350"></canvas>
+                    </div>
+                    <p id="monteCarloResult" style="text-align: center; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; color: var(--gold);"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Walking Patterns -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Random Walks</h2>
+                <p class="section-desc">
+                    Digits of π guide a journey through space — each value determining direction, 
+                    creating organic, unpredictable paths.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card viz-full">
+                    <h3 class="viz-title">Pi Walk Visualization</h3>
+                    <p class="viz-subtitle">Each digit determines the angle of the next step (digit × 36°)</p>
+                    <div class="canvas-container">
+                        <canvas id="piWalk" width="900" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wave and Signal Section -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Waves & Oscillations</h2>
+                <p class="section-desc">
+                    π is fundamental to wave mechanics, appearing in sine functions 
+                    that describe everything from sound to quantum states.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3 class="viz-title">Sine Wave Harmony</h3>
+                    <p class="viz-subtitle">Multiple frequencies based on π</p>
+                    <div class="canvas-container">
+                        <canvas id="sineWave" width="400" height="300"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3 class="viz-title">Digit Waveform</h3>
+                    <p class="viz-subtitle">Pi digits as amplitude values</p>
+                    <div class="canvas-container">
+                        <canvas id="digitWave" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spiral Visualization -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Spiral Forms</h2>
+                <p class="section-desc">
+                    The golden spiral and Archimedean curves — nature's favorite patterns, 
+                    intimately connected to π.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3 class="viz-title">Archimedean Spiral</h3>
+                    <p class="viz-subtitle">r = a + bθ, colored by π digits</p>
+                    <div class="canvas-container">
+                        <canvas id="archSpiral" width="350" height="350"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3 class="viz-title">Digit Spiral</h3>
+                    <p class="viz-subtitle">Digits positioned along a spiral path</p>
+                    <div class="canvas-container">
+                        <canvas id="digitSpiral" width="350" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Binary and Base Representations -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">Alternative Bases</h2>
+                <p class="section-desc">
+                    π transcends any single representation — equally irrational in binary, 
+                    hexadecimal, or any base.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3 class="viz-title">Binary Representation</h3>
+                    <p class="viz-subtitle">First 256 binary digits of π</p>
+                    <div class="canvas-container">
+                        <canvas id="binaryGrid" width="350" height="350"></canvas>
+                    </div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3 class="viz-title">Hexadecimal Heatmap</h3>
+                    <p class="viz-subtitle">π in base-16, mapped to color intensity</p>
+                    <div class="canvas-container">
+                        <canvas id="hexGrid" width="350" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mathematical Series -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <h2 class="section-title">Infinite Series</h2>
+                <p class="section-desc">
+                    Throughout history, mathematicians have discovered beautiful formulas 
+                    that converge to π through infinite summation.
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card viz-full">
+                    <h3 class="viz-title">Series Convergence</h3>
+                    <p class="viz-subtitle">Leibniz, Nilakantha, and Ramanujan series approaching π</p>
+                    <div class="canvas-container">
+                        <canvas id="seriesConvergence" width="900" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="formulas-grid" style="margin-top: 3rem;">
+                <div class="formula-card">
+                    <h4 class="formula-name">Leibniz Formula</h4>
+                    <div class="formula-math">π/4 = 1 - 1/3 + 1/5 - 1/7 + ...</div>
+                    <p class="formula-desc">The simplest infinite series for π, discovered in 1674</p>
+                </div>
+                
+                <div class="formula-card">
+                    <h4 class="formula-name">Euler's Identity</h4>
+                    <div class="formula-math">e^(iπ) + 1 = 0</div>
+                    <p class="formula-desc">The most beautiful equation in mathematics</p>
+                </div>
+                
+                <div class="formula-card">
+                    <h4 class="formula-name">Wallis Product</h4>
+                    <div class="formula-math">π/2 = (2/1)(2/3)(4/3)(4/5)(6/5)...</div>
+                    <p class="formula-desc">An infinite product converging to π/2</p>
+                </div>
+                
+                <div class="formula-card">
+                    <h4 class="formula-name">Basel Problem</h4>
+                    <div class="formula-math">π²/6 = 1 + 1/4 + 1/9 + 1/16 + ...</div>
+                    <p class="formula-desc">Sum of reciprocals of perfect squares</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <h2 class="section-title">By the Numbers</h2>
+                <p class="section-desc">
+                    Fascinating statistics about the infinite constant.
+                </p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Digits Known</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">105T</div>
+                    <div class="stat-label">Record Digits (2024)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">~2000</div>
+                    <div class="stat-label">Years of Study</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3/14</div>
+                    <div class="stat-label">Pi Day (March 14)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connection Graph -->
+        <section class="fade-in">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">Digit Connections</h2>
+                <p class="section-desc">
+                    Visualizing transitions between consecutive digits — 
+                    which numbers follow which in the sequence of π?
+                </p>
+            </div>
+            
+            <div class="viz-grid">
+                <div class="viz-card viz-full">
+                    <h3 class="viz-title">Transition Network</h3>
+                    <p class="viz-subtitle">Lines connect consecutive digits, showing transition patterns</p>
+                    <div class="canvas-container">
+                        <canvas id="transitionNetwork" width="900" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-pi">π</div>
+        <p class="footer-quote">
+            "The universe cannot be read until we have learned the language and become 
+            familiar with the characters in which it is written. It is written in 
+            mathematical language, and the letters are triangles, circles and other 
+            geometrical figures."
+            <br><em>— Galileo Galilei</em>
+        </p>
+        <p class="footer-credit">Dr. Mohammad AL Bataineh</p>
+        <p class="footer-date">December 30, 2025</p>
+    </footer>
+
+    <script>
+        // First 10,000 digits of Pi (after the decimal point)
+        const PI_DIGITS = "1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632788659361533818279682303019520353018529689957736225994138912497217752834791315155748572424541506959508295331168617278558890750983817546374649393192550604009277016711390098488240128583616035637076601047101819429555961989467678374494482553797747268471040475346462080466842590694912933136770289891521047521620569660240580381501935112533824300355876402474964732639141992726042699227967823547816360093417216412199245863150302861829745557067498385054945885869269956909272107975093029553211653449872027559602364806654991198818347977535663698074265425278625518184175746728909777727938000816470600161452491921732172147723501414419735685481613611573525521334757418494684385233239073941433345477624168625189835694855620992192221842725502542568876717904946016534668049886272327917860857843838279679766814541009538837863609506800642251252051173929848960841284886269456042419652850222106611863067442786220391949450471237137869609563643719172874677646575739624138908658326459958133904780275900994657640789512694683983525957098258226205224894077267194782684826014769909026401363944374553050682034962524517493996514314298091906592509372216964615157098583874105978859597729754989301617539284681382686838689427741559918559252459539594310499725246808459872736446958486538367362226260991246080512438843904512441365497627807977156914359977001296160894416948685558484063534220722258284886481584560285060168427394522674676788952521385225499546667278239864565961163548862305774564980355936345681743241125150760694794510965960940252288797108931456691368672287489405601015033086179286809208747609178249385890097149096759852613655497818931297848216829989487226588048575640142704775551323796414515237462343645428584447952658678210511413547357395231134271661021359695362314429524849371871101457654035902799344037420073105785390621983874478084784896833214457138687519435064302184531910484810053706146806749192781911979399520614196634287544406437451237181921799983910159195618146751426912397489409071864942319615679452080951465502252316038819301420937621378559566389377870830390697920773467221825625996615014215030680384477345492026054146659252014974428507325186660021324340881907104863317346496514539057962685610055081066587969981635747363840525714591028970641401109712062804390397595156771577004203378699360072305587631763594218731251471205329281918261861258673215791984148488291644706095752706957220917567116722910981690915280173506712748583222871835209353965725121083579151369882091444210067510334671103141267111369908658516398315019701651511685171437657618351556508849099898599823873455283316355076479185358932261854896321329330898570642046752590709154814165498594616371802709819943099244889575712828905923233260972997120844335732654893823911932597463667305836041428138830320382490375898524374417029132765618093773444030707469211201913020330380197621101100449293215160842444859637669838952286847831235526582131449576857262433441893039686426243410773226978028073189154411010446823252716201052652272111660396665573092547110557853763466820653109896526918620564769312570586356620185581007293606598764861179104533488503461136576867532494416680396265797877185560845529654126654085306143444318586769751456614068007002378776591344017127494704205622305389945613140711270004078547332699390814546646458807972708266830634328587856983052358089330657574067954571637752542021149557615814002501262285941302164715509792592309907965473761255176567513575178296664547791745011299614890304639947132962107340437518957359614589019389713111790429782856475032031986915140287080859904801094121472213179476477726224142548545403321571853061422881375850430633217518297986622371721591607716692547487389866549494501146540628433663937900397692656721463853067360965712091807638327166416274888800786925602902284721040317211860820419000422966171196377921337575114959501566049631862947265473642523081770367515906735023507283540567040386743513622224771589150495309844489333096340878076932599397805419341447377441842631298608099888687413260472156951623965864573021631598193195167353812974167729478672422924654366800980676928238280689964004824354037014163149658979409243237896907069779422362508221688957383798623001593776471651228935786015881617557829735233446042815126272037343146531977774160319906655418763979293344195215413418994854234895170298183264162385159288452173944473540191037187";
+
+        // Color palette for digits 0-9
+        const DIGIT_COLORS = [
+            '#e74c3c', // 0 - Red
+            '#e67e22', // 1 - Orange
+            '#f1c40f', // 2 - Yellow
+            '#2ecc71', // 3 - Green
+            '#1abc9c', // 4 - Teal
+            '#3498db', // 5 - Blue
+            '#9b59b6', // 6 - Purple
+            '#e91e63', // 7 - Pink
+            '#00bcd4', // 8 - Cyan
+            '#8d6e63'  // 9 - Brown
+        ];
+
+        // Binary representation of Pi (first 500 bits after the decimal point)
+        const PI_BINARY = "00100100001111110110101010001000100001011010001100001000110100110001001100011001100010100010111000000011011100000111001101000100101001000000100100111000001000100010100110011111001100011101000000";
+
+        // Hex representation of Pi
+        const PI_HEX = "243F6A8885A308D313198A2E03707344A4093822299F31D0082EFA98EC4E6C89452821E638D01377BE5466CF34E90C6CC0AC29B7C97C50DD3F84D5B5B54709179216D5D98979FB1BD1310BA698DFB5AC2FFD72DBD01ADFB7B8E1AFED6A267E96BA7C9045F12C7F9924A19947B3916CF70801F2E2858EFC16636920D871574E69A458FEA3F4933D7E0D95748F728EB658718BCD5882154AEE7B54A41DC25A59B59C30D5392AF26013C5D1B02328608978C45F69C6AF48A6D1E6C37E568";
+
+        // Create starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                star.style.setProperty('--base-opacity', Math.random() * 0.5 + 0.2);
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starfield.appendChild(star);
+            }
+        }
+
+        // Animate hero digits
+        function animateHeroDigits() {
+            const container = document.getElementById('heroDigits');
+            let displayDigits = '3.' + PI_DIGITS.substring(0, 100);
+            container.textContent = displayDigits + '...';
+        }
+
+        // Create color legend
+        function createColorLegend() {
+            const legend = document.getElementById('colorLegend');
+            for (let i = 0; i < 10; i++) {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `<div class="legend-color" style="background: ${DIGIT_COLORS[i]}"></div><span>${i}</span>`;
+                legend.appendChild(item);
+            }
+        }
+
+        // Digit Distribution Chart
+        function drawDistributionChart() {
+            const canvas = document.getElementById('distributionChart');
+            const ctx = canvas.getContext('2d');
+            const digits = PI_DIGITS.substring(0, 10000);
+            const counts = new Array(10).fill(0);
+            
+            for (let d of digits) {
+                counts[parseInt(d)]++;
+            }
+            
+            const maxCount = Math.max(...counts);
+            const barWidth = 70;
+            const gap = 20;
+            const startX = (canvas.width - (10 * barWidth + 9 * gap)) / 2;
+            const maxHeight = 250;
+            const baseY = 300;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw bars
+            for (let i = 0; i < 10; i++) {
+                const height = (counts[i] / maxCount) * maxHeight;
+                const x = startX + i * (barWidth + gap);
+                const y = baseY - height;
+                
+                // Gradient bar
+                const gradient = ctx.createLinearGradient(x, y, x, baseY);
+                gradient.addColorStop(0, DIGIT_COLORS[i]);
+                gradient.addColorStop(1, DIGIT_COLORS[i] + '44');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.roundRect(x, y, barWidth, height, [4, 4, 0, 0]);
+                ctx.fill();
+                
+                // Count label
+                ctx.fillStyle = '#e8e6e3';
+                ctx.font = '14px JetBrains Mono';
+                ctx.textAlign = 'center';
+                ctx.fillText(counts[i], x + barWidth/2, y - 10);
+                
+                // Digit label
+                ctx.fillStyle = '#d4af37';
+                ctx.font = '20px Playfair Display';
+                ctx.fillText(i, x + barWidth/2, baseY + 30);
+            }
+            
+            // Expected line (1000 for 10000 digits)
+            ctx.strokeStyle = '#d4af3766';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            const expectedY = baseY - (1000 / maxCount) * maxHeight;
+            ctx.beginPath();
+            ctx.moveTo(startX - 20, expectedY);
+            ctx.lineTo(startX + 10 * (barWidth + gap), expectedY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            ctx.fillStyle = '#6b6b7b';
+            ctx.font = '12px JetBrains Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText('Expected: 1000', startX - 20, expectedY - 10);
+        }
+
+        // Color Grid
+        function drawColorGrid() {
+            const canvas = document.getElementById('colorGrid');
+            const ctx = canvas.getContext('2d');
+            const gridSize = 50;
+            const cellSize = canvas.width / gridSize;
+            
+            for (let i = 0; i < gridSize * gridSize; i++) {
+                const digit = parseInt(PI_DIGITS[i] || '0');
+                const x = (i % gridSize) * cellSize;
+                const y = Math.floor(i / gridSize) * cellSize;
+                
+                ctx.fillStyle = DIGIT_COLORS[digit];
+                ctx.fillRect(x, y, cellSize - 0.5, cellSize - 0.5);
+            }
+        }
+
+        // Radial Wheel
+        function drawRadialWheel() {
+            const canvas = document.getElementById('radialWheel');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            let angle = 0;
+            let radius = 10;
+            const radiusIncrement = 0.15;
+            const angleIncrement = 0.2;
+            
+            for (let i = 0; i < 1000 && radius < 170; i++) {
+                const digit = parseInt(PI_DIGITS[i]);
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                ctx.fillStyle = DIGIT_COLORS[digit];
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                angle += angleIncrement;
+                radius += radiusIncrement;
+            }
+        }
+
+        // Circle Visualization
+        function drawCircleViz() {
+            const canvas = document.getElementById('circleViz');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 100;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw circle
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Draw diameter
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX - radius, centerY);
+            ctx.lineTo(centerX + radius, centerY);
+            ctx.stroke();
+            
+            // Animate circumference unwrapping
+            ctx.strokeStyle = '#3498db';
+            ctx.lineWidth = 3;
+            const circumference = 2 * Math.PI * radius;
+            ctx.beginPath();
+            ctx.moveTo(centerX - radius, centerY + 50);
+            ctx.lineTo(centerX - radius + circumference, centerY + 50);
+            ctx.stroke();
+            
+            // Labels
+            ctx.fillStyle = '#e8e6e3';
+            ctx.font = '14px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.fillText('d = 200', centerX, centerY + 20);
+            ctx.fillText('C = 2πr ≈ 628.32', centerX, centerY + 70);
+            ctx.fillStyle = '#d4af37';
+            ctx.font = '18px Playfair Display';
+            ctx.fillText('π = C/d ≈ 3.14159...', centerX, centerY + 120);
+        }
+
+        // Monte Carlo
+        function drawMonteCarlo() {
+            const canvas = document.getElementById('monteCarlo');
+            const ctx = canvas.getContext('2d');
+            const size = 300;
+            const margin = 25;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw square
+            ctx.strokeStyle = '#6b6b7b';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(margin, margin, size, size);
+            
+            // Draw circle
+            ctx.strokeStyle = '#d4af37';
+            ctx.beginPath();
+            ctx.arc(margin + size/2, margin + size/2, size/2, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            let inside = 0;
+            const total = 3000;
+            
+            for (let i = 0; i < total; i++) {
+                const x = Math.random();
+                const y = Math.random();
+                const distance = Math.sqrt((x - 0.5) ** 2 + (y - 0.5) ** 2);
+                const isInside = distance <= 0.5;
+                
+                if (isInside) inside++;
+                
+                ctx.fillStyle = isInside ? '#3498db88' : '#e74c3c88';
+                ctx.beginPath();
+                ctx.arc(margin + x * size, margin + y * size, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            const piEstimate = (inside / total) * 4;
+            document.getElementById('monteCarloResult').textContent = 
+                `π ≈ ${piEstimate.toFixed(6)} (${total} samples)`;
+        }
+
+        // Pi Walk
+        function drawPiWalk() {
+            const canvas = document.getElementById('piWalk');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            let x = canvas.width / 2;
+            let y = canvas.height / 2;
+            const stepSize = 3;
+            
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            
+            for (let i = 0; i < 2000; i++) {
+                const digit = parseInt(PI_DIGITS[i]);
+                const angle = (digit / 10) * Math.PI * 2;
+                
+                const nextX = x + Math.cos(angle) * stepSize;
+                const nextY = y + Math.sin(angle) * stepSize;
+                
+                ctx.strokeStyle = DIGIT_COLORS[digit] + '88';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(nextX, nextY);
+                ctx.stroke();
+                
+                x = nextX;
+                y = nextY;
+            }
+        }
+
+        // Sine Wave
+        function drawSineWave() {
+            const canvas = document.getElementById('sineWave');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const waves = [
+                { freq: 1, amp: 50, color: '#d4af37', phase: 0 },
+                { freq: 2, amp: 30, color: '#3498db', phase: Math.PI / 4 },
+                { freq: 3, amp: 20, color: '#e74c3c', phase: Math.PI / 2 }
+            ];
+            
+            waves.forEach(wave => {
+                ctx.strokeStyle = wave.color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                for (let x = 0; x < canvas.width; x++) {
+                    const y = canvas.height / 2 + 
+                              Math.sin((x / canvas.width) * wave.freq * 2 * Math.PI + wave.phase) * wave.amp;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+            
+            // Label
+            ctx.fillStyle = '#6b6b7b';
+            ctx.font = '12px JetBrains Mono';
+            ctx.fillText('y = sin(2πx)', 10, 25);
+        }
+
+        // Digit Waveform
+        function drawDigitWave() {
+            const canvas = document.getElementById('digitWave');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const digits = PI_DIGITS.substring(0, 200);
+            const stepX = canvas.width / digits.length;
+            
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height / 2);
+            
+            for (let i = 0; i < digits.length; i++) {
+                const digit = parseInt(digits[i]);
+                const x = i * stepX;
+                const y = canvas.height - ((digit / 9) * (canvas.height - 40) + 20);
+                
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            
+            // Fill below
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.closePath();
+            ctx.fillStyle = '#d4af3722';
+            ctx.fill();
+        }
+
+        // Archimedean Spiral
+        function drawArchSpiral() {
+            const canvas = document.getElementById('archSpiral');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const a = 0;
+            const b = 3;
+            
+            for (let i = 0; i < 1500; i++) {
+                const digit = parseInt(PI_DIGITS[i % PI_DIGITS.length]);
+                const theta = i * 0.05;
+                const r = a + b * theta;
+                
+                if (r > 165) break;
+                
+                const x = centerX + r * Math.cos(theta);
+                const y = centerY + r * Math.sin(theta);
+                
+                ctx.fillStyle = DIGIT_COLORS[digit];
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Digit Spiral
+        function drawDigitSpiral() {
+            const canvas = document.getElementById('digitSpiral');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = '10px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            for (let i = 0; i < 500; i++) {
+                const digit = PI_DIGITS[i];
+                const theta = i * 0.12;
+                const r = 15 + i * 0.3;
+                
+                if (r > 165) break;
+                
+                const x = centerX + r * Math.cos(theta);
+                const y = centerY + r * Math.sin(theta);
+                
+                ctx.fillStyle = DIGIT_COLORS[parseInt(digit)];
+                ctx.fillText(digit, x, y);
+            }
+        }
+
+        // Binary Grid
+        function drawBinaryGrid() {
+            const canvas = document.getElementById('binaryGrid');
+            const ctx = canvas.getContext('2d');
+            const gridSize = 16;
+            const cellSize = canvas.width / gridSize;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < gridSize * gridSize && i < PI_BINARY.length; i++) {
+                const bit = PI_BINARY[i];
+                const x = (i % gridSize) * cellSize;
+                const y = Math.floor(i / gridSize) * cellSize;
+                
+                ctx.fillStyle = bit === '1' ? '#d4af37' : '#1a1a24';
+                ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+            }
+        }
+
+        // Hex Grid
+        function drawHexGrid() {
+            const canvas = document.getElementById('hexGrid');
+            const ctx = canvas.getContext('2d');
+            const gridSize = 16;
+            const cellSize = canvas.width / gridSize;
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < gridSize * gridSize && i < PI_HEX.length; i++) {
+                const hex = PI_HEX[i];
+                const value = parseInt(hex, 16);
+                const intensity = value / 15;
+                const x = (i % gridSize) * cellSize;
+                const y = Math.floor(i / gridSize) * cellSize;
+                
+                const r = Math.floor(212 * intensity);
+                const g = Math.floor(175 * intensity);
+                const b = Math.floor(55 * intensity);
+                
+                ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+            }
+        }
+
+        // Series Convergence
+        function drawSeriesConvergence() {
+            const canvas = document.getElementById('seriesConvergence');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const margin = 60;
+            const width = canvas.width - margin * 2;
+            const height = canvas.height - margin * 2;
+            
+            // Calculate series values
+            const terms = 100;
+            const leibniz = [];
+            const nilakantha = [];
+            
+            let leibnizSum = 0;
+            let nilakanthaSum = 3;
+            
+            for (let n = 0; n < terms; n++) {
+                // Leibniz: π/4 = 1 - 1/3 + 1/5 - ...
+                leibnizSum += Math.pow(-1, n) / (2 * n + 1);
+                leibniz.push(leibnizSum * 4);
+                
+                // Nilakantha: π = 3 + 4/(2·3·4) - 4/(4·5·6) + ...
+                if (n > 0) {
+                    const sign = Math.pow(-1, n + 1);
+                    nilakanthaSum += sign * 4 / ((2 * n) * (2 * n + 1) * (2 * n + 2));
+                }
+                nilakantha.push(nilakanthaSum);
+            }
+            
+            // Draw axes
+            ctx.strokeStyle = '#3b3b4b';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(margin, margin);
+            ctx.lineTo(margin, canvas.height - margin);
+            ctx.lineTo(canvas.width - margin, canvas.height - margin);
+            ctx.stroke();
+            
+            // Draw π line
+            const piY = margin + height - ((Math.PI - 2.5) / 1.5) * height;
+            ctx.strokeStyle = '#d4af3766';
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(margin, piY);
+            ctx.lineTo(canvas.width - margin, piY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            ctx.fillStyle = '#d4af37';
+            ctx.font = '12px JetBrains Mono';
+            ctx.fillText('π = 3.14159...', margin + 5, piY - 5);
+            
+            // Draw series
+            const drawSeries = (data, color, label) => {
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                for (let i = 0; i < data.length; i++) {
+                    const x = margin + (i / (terms - 1)) * width;
+                    const y = margin + height - ((data[i] - 2.5) / 1.5) * height;
+                    
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            };
+            
+            drawSeries(leibniz, '#3498db', 'Leibniz');
+            drawSeries(nilakantha, '#e74c3c', 'Nilakantha');
+            
+            // Legend
+            ctx.fillStyle = '#3498db';
+            ctx.fillRect(canvas.width - 180, 20, 15, 15);
+            ctx.fillStyle = '#e8e6e3';
+            ctx.font = '12px JetBrains Mono';
+            ctx.fillText('Leibniz', canvas.width - 160, 32);
+            
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(canvas.width - 180, 45, 15, 15);
+            ctx.fillStyle = '#e8e6e3';
+            ctx.fillText('Nilakantha', canvas.width - 160, 57);
+            
+            // Axis labels
+            ctx.fillStyle = '#6b6b7b';
+            ctx.font = '11px JetBrains Mono';
+            ctx.fillText('Terms →', canvas.width / 2, canvas.height - 20);
+        }
+
+        // Transition Network
+        function drawTransitionNetwork() {
+            const canvas = document.getElementById('transitionNetwork');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 150;
+            
+            // Calculate positions for digits 0-9
+            const positions = [];
+            for (let i = 0; i < 10; i++) {
+                const angle = (i / 10) * Math.PI * 2 - Math.PI / 2;
+                positions.push({
+                    x: centerX + Math.cos(angle) * radius,
+                    y: centerY + Math.sin(angle) * radius
+                });
+            }
+            
+            // Count transitions
+            const transitions = {};
+            for (let i = 0; i < 5000; i++) {
+                const from = parseInt(PI_DIGITS[i]);
+                const to = parseInt(PI_DIGITS[i + 1]);
+                const key = `${from}-${to}`;
+                transitions[key] = (transitions[key] || 0) + 1;
+            }
+            
+            const maxTransitions = Math.max(...Object.values(transitions));
+            
+            // Draw connections
+            for (let from = 0; from < 10; from++) {
+                for (let to = 0; to < 10; to++) {
+                    const key = `${from}-${to}`;
+                    const count = transitions[key] || 0;
+                    if (count < 10) continue;
+                    
+                    const opacity = (count / maxTransitions) * 0.8;
+                    ctx.strokeStyle = DIGIT_COLORS[from] + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+                    ctx.lineWidth = (count / maxTransitions) * 3;
+                    
+                    ctx.beginPath();
+                    if (from === to) {
+                        // Self-loop
+                        const angle = (from / 10) * Math.PI * 2 - Math.PI / 2;
+                        const loopRadius = 25;
+                        ctx.arc(
+                            positions[from].x + Math.cos(angle) * loopRadius,
+                            positions[from].y + Math.sin(angle) * loopRadius,
+                            loopRadius, 0, Math.PI * 2
+                        );
+                    } else {
+                        ctx.moveTo(positions[from].x, positions[from].y);
+                        ctx.lineTo(positions[to].x, positions[to].y);
+                    }
+                    ctx.stroke();
+                }
+            }
+            
+            // Draw digit nodes
+            for (let i = 0; i < 10; i++) {
+                ctx.fillStyle = DIGIT_COLORS[i];
+                ctx.beginPath();
+                ctx.arc(positions[i].x, positions[i].y, 25, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 18px Playfair Display';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(i, positions[i].x, positions[i].y);
+            }
+        }
+
+        // Intersection Observer for animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize everything
+        window.addEventListener('load', () => {
+            createStarfield();
+            animateHeroDigits();
+            createColorLegend();
+            
+            drawDistributionChart();
+            drawColorGrid();
+            drawRadialWheel();
+            drawCircleViz();
+            drawMonteCarlo();
+            drawPiWalk();
+            drawSineWave();
+            drawDigitWave();
+            drawArchSpiral();
+            drawDigitSpiral();
+            drawBinaryGrid();
+            drawHexGrid();
+            drawSeriesConvergence();
+            drawTransitionNetwork();
+            
+            setupScrollAnimations();
+        });
+    </script>
+</body>
+</html>
