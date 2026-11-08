@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="قناة د. محمد البطاينة">
+<meta property="og:description" content="سلسلة توجيهي 2027 رياضيات كاملة وقوائم التشغيل وحساباتي على مواقع التواصل">
+<title>قناة د. البطاينة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: one narrow column like a math notebook page on a graph-paper board, the channel's own indigo + chalk-yellow look */
+:root{
+  --board:#16112e;        /* deep indigo, the series background */
+  --board-2:#1f1842;      /* raised card */
+  --grid:rgba(160,150,255,.07);
+  --chalk:#f4f1ff;        /* main text */
+  --muted:#b7b0dc;
+  --yellow:#ffd23f;       /* chalk yellow, the accent */
+  --pink:#ff4fa3;         /* second accent, used sparingly */
+  --line:rgba(255,255,255,.12);
+  --display:"Lalezar","Tajawal",system-ui,sans-serif;
+  --body:"Tajawal",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--board);color:var(--chalk);font-family:var(--body);font-size:16px;line-height:1.6;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.page{max-width:520px;margin:0 auto;padding-block:36px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:14px}
+
+/* header */
+.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.badge{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:radial-gradient(circle at 30% 30%,#2b2260,#120d27);border:3px solid var(--yellow);
+  box-shadow:0 0 0 6px rgba(255,210,63,.12)}
+.badge canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:50%}
+.badge span{position:relative;font-family:var(--display);font-size:34px;color:var(--yellow);line-height:1}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(30px,8vw,38px);line-height:1.25;margin:6px 0 0;text-wrap:balance}
+.tag{color:var(--muted);margin:0;max-width:34ch;text-wrap:balance}
+.stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:14px}
+.stats span{padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--chalk)}
+
+/* primary CTA */
+.sub{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 20px;border-radius:16px;
+  background:var(--yellow);color:#1a1300;font-weight:800;font-size:19px;
+  box-shadow:0 6px 0 #c99a00;transition:transform .12s,box-shadow .12s}
+.sub:hover{transform:translateY(-2px);box-shadow:0 8px 0 #c99a00}
+.sub:active{transform:translateY(3px);box-shadow:0 3px 0 #c99a00}
+.sub svg{width:26px;height:26px;flex:none}
+
+/* schedule strip */
+.today{border:1px dashed rgba(255,210,63,.55);border-radius:16px;padding:14px 16px;display:grid;gap:6px;background:rgba(255,210,63,.05)}
+.today h2{margin:0;font-size:15px;color:var(--yellow);font-weight:800}
+.today ul{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:15px}
+.today li{display:flex;justify-content:space-between;gap:12px}
+.today time{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* sections */
+.sec{display:grid;gap:12px}
+.sec>h2{margin:0;font-family:var(--display);font-weight:400;font-size:24px;display:flex;align-items:baseline;gap:10px}
+.sec>h2 small{font-family:var(--body);font-size:13px;color:var(--muted);font-weight:500}
+
+.feature{display:grid;gap:10px;padding:18px;border-radius:18px;background:linear-gradient(160deg,#2a1f5c,#1d1645);
+  border:1px solid rgba(255,210,63,.45);position:relative;overflow:hidden}
+.feature .new{position:absolute;top:14px;left:14px;background:var(--pink);color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px}
+.feature h3{margin:0;font-family:var(--display);font-weight:400;font-size:26px;line-height:1.3;color:var(--yellow);padding-left:60px}
+.feature p{margin:0;color:var(--chalk);opacity:.9}
+.feature .eq{font-family:"Times New Roman",serif;font-style:italic;color:var(--muted);direction:ltr;text-align:left;font-size:15px}
+.feature .go{justify-self:start;background:var(--chalk);color:var(--board);font-weight:800;padding:9px 16px;border-radius:12px}
+
+.list{display:grid;gap:10px}
+.pl{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;
+  background:var(--board-2);border:1px solid var(--line);transition:border-color .15s,transform .15s}
+.pl:hover{border-color:var(--yellow);transform:translateX(-3px)}
+.pl .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#120d27;
+  font-family:"Times New Roman",serif;font-size:20px;color:var(--yellow);direction:ltr}
+.pl .tx{min-width:0;display:grid}
+.pl .tx b{font-size:16px;line-height:1.35}
+.pl .tx span{font-size:13px;color:var(--muted)}
+.pl .ar{color:var(--muted);font-size:20px}
+
+/* socials */
+.soc{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.so{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;background:var(--board-2);border:1px solid var(--line);transition:border-color .15s}
+.so:hover{border-color:var(--yellow)}
+.so svg{width:24px;height:24px;flex:none;fill:var(--chalk)}
+.so div{min-width:0;display:grid}
+.so b{font-size:15px}
+.so span{font-size:12px;color:var(--muted);direction:ltr;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.share{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.share button{font:inherit;font-weight:700;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--chalk);padding:10px 18px;border-radius:12px}
+.share button:hover{border-color:var(--yellow)}
+.share output{font-size:14px;color:var(--yellow);min-height:1.4em}
+.foot{text-align:center;color:var(--muted);font-size:13px;margin:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:360px){.soc{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<main class="page" dir="rtl" lang="ar">
+
+  <header class="head">
+    <div class="badge" aria-hidden="true"><canvas id="curve" width="224" height="224"></canvas><span>د.ب</span></div>
+    <h1>د. محمد فايز البطاينة</h1>
+    <p class="tag">رياضيات تفهمها من أول مرة: توجيهي 2027 بالمنهاج الجديد، تفاضل وتكامل، أولمبياد، مفارقات، وذكاء اصطناعي من الصفر.</p>
+    <div class="stats"><span><b>+13 ألف</b> مشترك</span><span><b>+770</b> فيديو</span><span>أستاذ هندسة كهربائية</span></div>
+  </header>
+
+  <a class="sub" href="https://www.youtube.com/@mffbataineh?sub_confirmation=1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="M9.8 15.1 15.6 12 9.8 8.9z"/></svg>
+    اشترك في القناة وفعّل الجرس 🔔
+  </a>
+
+  <section class="today" aria-label="مواعيد النشر">
+    <h2>موعدنا كل يوم على يوتيوب (بتوقيت الأردن)</h2>
+    <ul>
+      <li><span>حل أسئلة الدرس السابق كاملة</span><time>7:00 مساءً</time></li>
+      <li><span>درس جديد من كتاب التوجيهي</span><time>8:00 مساءً</time></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>ابدأ من هنا <small>قوائم التشغيل</small></h2>
+
+    <a class="feature" href="https://www.youtube.com/playlist?list=PLZ4xRutIsGd8" target="_blank" rel="noopener">
+      <span class="new">جديد</span>
+      <h3>رياضيات التوجيهي 2027 (المنهاج الجديد)</h3>
+      <p>كل دروس الكتاب، المسار الأكاديمي، درسًا درسًا، مع حل كل «أتحقق من فهمي» وكل تمارين الكتاب واختبارات الوحدات. لن تحتاج إلى فتح الكتاب.</p>
+      <div class="eq">(eˣ)′ = eˣ  ·  (ln x)′ = 1/x  ·  (uv)′ = u′v + uv′</div>
+      <span class="go">شاهد القائمة ←</span>
+    </a>
+
+    <div class="list">
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLZmaF7rDJzj8" target="_blank" rel="noopener">
+        <span class="ic">∇</span><span class="tx"><b>تعلّم الآلة من الصفر</b><span>Machine Learning from Scratch · بايثون خطوة بخطوة</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLBUsiS554Sus" target="_blank" rel="noopener">
+        <span class="ic">∑</span><span class="tx"><b>مسائل الأولمبياد</b><span>Math Olympiad · أشهر مسائل IMO محلولة</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLNJtsKSnaxUc" target="_blank" rel="noopener">
+        <span class="ic">∞</span><span class="tx"><b>مفارقات رياضية</b><span>Math Paradoxes · بوق جبرائيل، ‎−1/12، ‎0!‎</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BQLmWOKNct_0fUGNWSgXzIc" target="_blank" rel="noopener">
+        <span class="ic">∫</span><span class="tx"><b>التكامل</b><span>Integration · أصعب التكاملات بطرق ذكية</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BSR_e33vmBesPmLyzY1UwxG" target="_blank" rel="noopener">
+        <span class="ic">?</span><span class="tx"><b>ألغاز وتحديات</b><span>Brain Teasers · هل تستطيع حلها؟</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BRVc9Fzc8DsW_bXEl6nb2Un" target="_blank" rel="noopener">
+        <span class="ic">2ⁿ</span><span class="tx"><b>التفكير الأُسّي</b><span>Exponential Thinking</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BTxFS3HUOKWchv7jxMSH_EJ" target="_blank" rel="noopener">
+        <span class="ic">π</span><span class="tx"><b>عظماء العلم</b><span>The Great Minds Series</span></span><span class="ar">‹</span></a>
+      <a class="pl" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BRc3tCUflQnOQlAHqaIy7gw" target="_blank" rel="noopener">
+        <span class="ic">ض</span><span class="tx"><b>جمال اللغة العربية</b><span>شعر وبلاغة ومعانٍ</span></span><span class="ar">‹</span></a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>تابعني في كل مكان</h2>
+    <div class="soc">
+      <a class="so" href="https://www.tiktok.com/@mffbataineh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.8 3.7 4 4v3.1c-1.5 0-2.9-.4-4-1.2v6.3A5.8 5.8 0 1 1 10.8 9.4v3.2a2.7 2.7 0 1 0 2.7 2.6V3h3.1Z"/></svg>
+        <div><b>تيك توك</b><span>@mffbataineh</span></div></a>
+      <a class="so" href="https://www.instagram.com/mffbataineh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM21.9 8c-.1-1.6-.4-3-1.6-4.2S17.6 2.1 16 2c-1.6-.1-6.4-.1-8 0-1.6.1-3 .4-4.2 1.6S2.1 6.4 2 8c-.1 1.6-.1 6.4 0 8 .1 1.6.4 3 1.6 4.2S6.4 21.9 8 22c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.4.1-8Zm-2.1 9.9a3.2 3.2 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.9.4s-4.6.1-5.9-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.9s-.1-4.6.4-5.9A3.2 3.2 0 0 1 6.2 4.3C7.5 3.8 10.4 3.9 12 3.9s4.6-.1 5.9.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.9s.1 4.6-.4 5.9Z"/></svg>
+        <div><b>إنستغرام</b><span>@mffbataineh</span></div></a>
+      <a class="so" href="https://www.facebook.com/mffbataineh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22h3.4Z"/></svg>
+        <div><b>فيسبوك</b><span>الحساب الشخصي</span></div></a>
+      <a class="so" href="https://www.facebook.com/profile.php?id=100064362412116" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V22h3.4Z"/></svg>
+        <div><b>صفحة فيسبوك</b><span>ريلز قصيرة يوميًا</span></div></a>
+      <a class="so" href="https://x.com/mffbataineh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.5l11.2 14.5Z"/></svg>
+        <div><b>إكس</b><span>@mffbataineh</span></div></a>
+      <a class="so" href="https://www.linkedin.com/in/mffbataineh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.3ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13.1H3.5V9h3.6v11.5Z"/></svg>
+        <div><b>لينكدإن</b><span>mffbataineh</span></div></a>
+    </div>
+  </section>
+
+  <div class="share">
+    <button id="copy" type="button">انسخ رابط الصفحة وشاركه مع زملائك</button>
+    <output id="msg" aria-live="polite"></output>
+  </div>
+
+  <p class="foot">إذا فتحت الصفحة من تيك توك أو إنستغرام ولم تعمل الروابط، اضغط ⋯ ثم «فتح في المتصفح».</p>
+</main>
+
+<script>
+// faint plotted curve behind the monogram: y = sin x and its derivative, the channel's opening example
+(function(){
+  const c=document.getElementById('curve');if(!c)return;const g=c.getContext('2d');const W=c.width,H=c.height;
+  g.lineWidth=3;
+  function plot(f,col){g.strokeStyle=col;g.beginPath();for(let px=0;px<=W;px+=2){const x=(px/W)*4*Math.PI-2*Math.PI;const y=H/2-f(x)*H*0.18;px?g.lineTo(px,y):g.moveTo(px,y)}g.stroke()}
+  plot(Math.sin,'rgba(255,210,63,.35)');plot(Math.cos,'rgba(255,79,163,.30)');
+})();
+document.getElementById('copy').addEventListener('click',async()=>{
+  const url=location.href.split('#')[0];const m=document.getElementById('msg');
+  try{await navigator.clipboard.writeText(url);m.textContent='تم نسخ الرابط ✓'}
+  catch(e){m.textContent=url}
+});
+</script>
+
+</body>
+</html>
