@@ -168,9 +168,7 @@ $('next').onclick=function(){if(state.i<state.list.length-1){state.i++;show()}el
 $('start').onclick=function(){begin(1)};
 function stripTags(s){return s.replace(/<sup>/g,'^').replace(/<sub>/g,'_').replace(/<[^>]+>/g,'')}
 function epRow(e){
-  var rel=new Date(e[3]),live=Date.now()>=rel.getTime();
-  var d=rel.toLocaleDateString('ar',{day:'numeric',month:'long',timeZone:'Asia/Dubai'});
-  var act='<a class="btn alt sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+e[2]+'">شاهد</a>'+(live?'':'<div class="soon">تُنشر '+d+'</div>');
+  var act='<a class="btn alt sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+e[2]+'">شاهد</a>';
   return '<div class="ep"><div class="n">تأسيس '+e[0]+'</div><div><b>'+e[1]+'</b></div><div>'+act+'</div></div>'
 }
 function finish(){
