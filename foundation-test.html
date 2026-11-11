@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اختبار الجاهزية | سلسلة تأسيس الرياضيات للتوجيهي</title>
+<meta name="description" content="10 أسئلة تحدد لك أي حلقات سلسلة تأسيس الرياضيات تحتاجها قبل كتاب التوجيهي 2027. مجاني وبدون تسجيل.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:title" content="اختبار الجاهزية: هل أنت مستعد لكتاب التوجيهي؟">
+<meta property="og:description" content="10 أسئلة، دقيقتان، وتعرف بالضبط أي حلقات التأسيس تحتاجها.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F3EEE3;--paper2:#EAE3D3;--card:#FBF8F1;--ink:#172033;--ink2:#4A5468;--line:#D9D1BF;--accent:#D9482B;--accent-ink:#fff;--gold:#B9821F;--ok:#1E7A5A;--okbg:#DDF0E7;--bad:#B3261E;--badbg:#F9DEDA;--hero:#172033;--hero-ink:#F3EEE3;--hero-dim:#B9C0D0;--shadow:0 1px 0 rgba(23,32,51,.06),0 12px 30px -18px rgba(23,32,51,.35)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0E1522;--paper2:#141D2E;--card:#162033;--ink:#EEE8DA;--ink2:#A9B2C4;--line:#2A3650;--accent:#FF7F5E;--accent-ink:#1a0f0a;--gold:#E3B35C;--ok:#7FD6B2;--okbg:#14362B;--bad:#FF9A92;--badbg:#3A1B19;--hero:#0A101B;--shadow:0 12px 30px -18px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:17px;line-height:1.7;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:760px;margin:0 auto;padding-bottom:50px}
+h1,h2,h3{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:700}
+.n{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif}
+a{color:inherit}
+.top{margin:16px 0 0;border-radius:26px;background:var(--hero);color:var(--hero-ink);padding:clamp(24px,5vw,44px);background-image:linear-gradient(rgba(158,216,201,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(158,216,201,.07) 1px,transparent 1px);background-size:34px 34px}
+.kick{display:inline-block;font-size:14px;color:#9ED8C9;border:1px dashed rgba(158,216,201,.55);border-radius:999px;padding:3px 14px;margin:0 0 14px}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.15;margin:0 0 8px}
+h1 em{font-style:normal;color:var(--accent)}
+.top p{margin:0 0 20px;color:var(--hero-dim);max-width:34em}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:16px;padding:12px 22px;border-radius:13px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;text-decoration:none;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.go{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 8px 0 -3px rgba(0,0,0,.28)}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:default;transform:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,30px);margin:18px 0;box-shadow:var(--shadow)}
+.bar{height:8px;background:var(--paper2);border-radius:6px;overflow:hidden;margin:0 0 16px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.meta{display:flex;justify-content:space-between;color:var(--ink2);font-size:15px;margin:0 0 8px}
+.q{font-size:clamp(22px,4vw,30px);font-weight:600;margin:6px 0 18px;line-height:1.5}
+.q bdi,.opt bdi{unicode-bidi:isolate}
+.opts{display:grid;gap:10px}
+.opt{display:block;width:100%;text-align:start;font:inherit;font-size:19px;padding:13px 18px;border-radius:14px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{min-height:28px;margin:14px 0 0;font-weight:500}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap}
+.score{font-family:"Reem Kufi",sans-serif;font-size:clamp(44px,9vw,80px);line-height:1;color:var(--accent);margin:0}
+.ep{display:grid;grid-template-columns:auto 1fr auto;gap:6px 14px;align-items:center;padding:14px 0;border-top:1px dashed var(--line)}
+.ep .n{color:var(--accent);font-weight:600;font-size:18px;white-space:nowrap}
+.ep b{display:block;font-weight:600;line-height:1.5}.ep span{color:var(--ink2);font-size:14.5px}
+.ep .sm{font-size:15px;padding:8px 16px}
+.soon{font-size:12px;color:var(--gold);margin-top:2px;text-align:start;white-space:nowrap}
+.wrongs{margin:10px 0 0;padding:0;list-style:none}
+.wrongs li{padding:10px 0;border-top:1px dashed var(--line);color:var(--ink2);font-size:16px}
+.wrongs b{color:var(--ink)}
+.hide{display:none}
+.m{unicode-bidi:isolate;display:inline-block}
+.note{color:var(--ink2);font-size:15px;margin:10px 0 0}
+@media(max-width:560px){.ep{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="top" id="intro">
+ <span class="kick">سلسلة تأسيس الرياضيات · التوجيهي 2027</span>
+ <h1>اختبار <em>الجاهزية</em></h1>
+ <p>10 أسئلة قصيرة في أساسيات الرياضيات. بعدها تعرف بالضبط أي حلقات التأسيس تحتاجها، وأيها تتجاوزها. لا تسجيل ولا حفظ لإجاباتك.</p>
+ <button class="btn go" id="start">ابدأ الاختبار</button>
+</section>
+
+<section class="card hide" id="quiz">
+ <div class="meta"><span id="label"></span><span id="count"></span></div>
+ <div class="bar"><i id="prog"></i></div>
+ <div class="q" id="qtext"></div>
+ <div class="opts" id="opts"></div>
+ <div class="fb" id="fb" aria-live="polite"></div>
+ <div class="nav"><span></span><button class="btn" id="next" disabled>التالي</button></div>
+</section>
+
+<section class="hide" id="result"></section>
+<p class="note" style="text-align:center">د. محمد فايز البطاينة · <a href="tawjihi.html">صفحة السلسلة الكاملة</a></p>
+</div>
+
+<script>
+// Episode titles and release (Dubai 6:00 PM = 14:00 UTC; a few at 6:30 PM)
+var EP=[
+ [0,'اختبار الجاهزية','HVLI2oDrd94','2026-11-12T14:00Z'],
+ [1,'قوانين الأسس والجذور','d-l9oOq7dp4','2026-11-12T14:30Z'],
+ [2,'التحليل إلى العوامل والكسور الجبرية','fm3hCNbnMjg','2026-11-13T14:00Z'],
+ [3,'القسمة الطويلة والقسمة التركيبية','mN4AwSY6ZoM','2026-11-14T14:00Z'],
+ [4,'المعادلات والمتباينات والقانون العام','TIf37MWWwe0','2026-11-15T14:00Z'],
+ [5,'الاقترانات: المجال والمدى والترميز','COmQbaSuoX0','2026-11-16T14:00Z'],
+ [6,'التحويلات الهندسية للاقتران','tWcG0Qk0NV0','2026-11-17T14:00Z'],
+ [7,'الاقتران المركب والاقتران العكسي','K9mWm7HlL88','2026-11-18T14:00Z'],
+ [8,'الاقتران الأسي واللوغاريتم والعدد النيبيري','vkk5znqntaE','2026-11-18T14:30Z'],
+ [9,'النسب المثلثية ودائرة الوحدة','XZojF6Py-8s','2026-11-19T14:00Z'],
+ [10,'الراديان والزوايا الخاصة والرسوم المثلثية','9IVijoDXKPY','2026-11-19T14:30Z'],
+ [11,'النهايات','xT5XA3AUgNw','2026-11-20T14:00Z'],
+ [12,'الميل ومعدل التغير','eftci2jvSnA','2026-11-21T14:00Z'],
+ [13,'المتتاليات ورمز المجموع','P4SfozV_j7s','2026-11-22T14:00Z'],
+ [14,'الهندسة الإحداثية: المسافة والمستقيم والدائرة','mtHNsNGNlCk','2026-11-23T14:00Z'],
+ [15,'الإحداثيات ثلاثية الأبعاد والمتجهات','PWdG0PDITjg','2026-11-24T14:00Z'],
+ [16,'العد: المضروب والتباديل والتوافيق','E7-wDQ3gsRg','2026-11-25T14:00Z'],
+ [17,'الاحتمال والتوزيعات','at0awbOhVHU','2026-11-26T14:00Z'],
+ [18,'الوسط والانحراف المعياري والمنحنى الطبيعي','FYp5ce1gfb8','2026-11-27T14:00Z'],
+ [19,'فصل المتغيرات وتمهيد للمعادلات التفاضلية','NHk7MXrdkR4','2026-11-28T14:00Z'],
+ [20,'مراجعة شاملة بأسلوب الامتحان','Z6h-NFRAQKY','2026-11-29T14:00Z']
+];
+var MONTH='نوفمبر';
+// Questions: [episode, question html, correct, wrong1, wrong2, wrong3]
+var L1=[
+ [1,'2<sup>3</sup> × 2<sup>4</sup> = ؟','128','4096','16384','14'],
+ [1,'(x<sup>2</sup>)<sup>3</sup> = ؟','x<sup>6</sup>','x<sup>5</sup>','x<sup>8</sup>','x<sup>9</sup>'],
+ [1,'بسّط: √50','5√2','25√2','2√5','5√10'],
+ [2,'حلّل: x<sup>2</sup> − 9','(x − 3)(x + 3)','(x − 3)<sup>2</sup>','(x + 3)<sup>2</sup>','(x − 9)(x + 1)'],
+ [4,'حُلّ المعادلة: 2x + 3 = 11','x = 4','x = 7','x = 8','x = 5'],
+ [4,'حُلّ: x<sup>2</sup> − 5x + 6 = 0','x = 2 أو x = 3','x = −2 أو x = −3','x = 1 أو x = 6','x = −1 أو x = −6'],
+ [5,'إذا كان f(x) = 3x − 1، فما قيمة f(4)؟','11','12','13','9'],
+ [9,'sin 30° = ؟','1/2','√3/2','1','√2/2'],
+ [12,'ميل المستقيم المار بالنقطتين (1, 2) و(3, 8)','3','6','1/3','2'],
+ [16,'احسب قيمة 5! ÷ 3!','20','2','40','120']
+];
+var L2=[
+ [3,'باقي قسمة x<sup>3</sup> − 2x<sup>2</sup> + x − 5 على (x − 2) يساوي:','−3','3','−5','5'],
+ [6,'منحنى y = (x − 3)<sup>2</sup> هو منحنى y = x<sup>2</sup> بعد إزاحته:','3 وحدات إلى اليمين','3 وحدات إلى اليسار','3 وحدات إلى الأعلى','3 وحدات إلى الأسفل'],
+ [7,'إذا كان f(x) = x + 1 وَ g(x) = 3x، فما قيمة f(g(2))؟','7','9','6','10'],
+ [8,'ln(e<sup>3</sup>) = ؟','3','e<sup>3</sup>','1/3','0'],
+ [10,'الزاوية π/3 راديان تساوي بالدرجات:','60°','30°','45°','90°'],
+ [11,'lim<sub>x→3</sub> (x<sup>2</sup> − 9)/(x − 3) = ؟','6','0','3','غير موجودة'],
+ [13,'مجموع 2k من k = 1 إلى 4 يساوي:','20','10','16','24'],
+ [14,'المسافة بين النقطتين (−2, 1) و(4, 9):','10','14','100','8'],
+ [15,'إذا كانت A(−3, 6, 1) وَ B(4, 5, −2)، فإن المتجه AB =','(7, −1, −3)','(−7, 1, 3)','(1, 11, −1)','(7, 1, −3)'],
+ [17,'رُميت قطعة نقد عادلة مرتين. احتمال ظهور صورتين:','1/4','1/2','1/3','1/8'],
+ [18,'وفق القاعدة التجريبية، النسبة التقريبية للقيم ضمن انحراف معياري واحد عن الوسط:','68%','95%','99.7%','50%'],
+ [19,'المعادلة dy/dx = xy بعد فصل المتغيرات تصبح:','dy/y = x dx','y dy = x dx','dy = xy dx','dx/y = x dy']
+];
+function W(t){return t.replace(/[^؀-ۿ]*[A-Za-z0-9√π][^؀-ۿ]*/g,function(m){var lead=(m.match(/^\s*/)||[''])[0],trail=(m.match(/\s*$/)||[''])[0];return lead+'<span class="m" dir="ltr">'+m.trim()+'</span>'+trail})}
+var $=function(i){return document.getElementById(i)};
+var state={level:1,list:[],i:0,wrong:[],answered:false,missedAll:{}};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function begin(level){
+  state.level=level;state.list=(level==1?L1:L2).slice();state.i=0;state.wrong=[];
+  $('intro').classList.add('hide');$('result').classList.add('hide');$('quiz').classList.remove('hide');
+  $('label').textContent=level==1?'الاختبار الأساسي':'الاختبار الموسّع';
+  show();window.scrollTo({top:0,behavior:'smooth'})
+}
+function show(){
+  var q=state.list[state.i];state.answered=false;
+  $('count').textContent=(state.i+1)+' من '+state.list.length;
+  $('prog').style.width=(state.i/state.list.length*100)+'%';
+  $('qtext').innerHTML=W(q[1]);
+  var opts=shuffle([q[2],q[3],q[4],q[5]]);
+  $('opts').innerHTML='';
+  opts.forEach(function(o){var b=document.createElement('button');b.className='opt';b.dataset.c=(o===q[2])?'1':'0';b.innerHTML=W(o);b.onclick=function(){pick(b,o)};$('opts').appendChild(b)});
+  $('fb').textContent='';$('next').disabled=true;
+  $('next').textContent=state.i==state.list.length-1?'اعرض النتيجة':'التالي'
+}
+function pick(btn,o){
+  if(state.answered)return;state.answered=true;
+  var q=state.list[state.i],right=(o===q[2]);
+  [].forEach.call($('opts').children,function(b){b.disabled=true;if(b.dataset.c==='1')b.classList.add('ok')});
+  if(!right){btn.classList.add('no');state.wrong.push(q);state.missedAll[q[0]]=q}
+  $('fb').textContent=right?'إجابة صحيحة':'الإجابة الصحيحة موضّحة بالأخضر';
+  $('next').disabled=false
+}
+$('next').onclick=function(){if(state.i<state.list.length-1){state.i++;show()}else finish()};
+$('start').onclick=function(){begin(1)};
+function stripTags(s){return s.replace(/<sup>/g,'^').replace(/<sub>/g,'_').replace(/<[^>]+>/g,'')}
+function epRow(e){
+  var rel=new Date(e[3]),live=Date.now()>=rel.getTime();
+  var d=rel.toLocaleDateString('ar',{day:'numeric',month:'long',timeZone:'Asia/Dubai'});
+  var act='<a class="btn alt sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+e[2]+'">شاهد</a>'+(live?'':'<div class="soon">تُنشر '+d+'</div>');
+  return '<div class="ep"><div class="n">تأسيس '+e[0]+'</div><div><b>'+e[1]+'</b></div><div>'+act+'</div></div>'
+}
+function finish(){
+  $('prog').style.width='100%';
+  $('quiz').classList.add('hide');$('result').classList.remove('hide');
+  var total=state.list.length,ok=total-state.wrong.length;
+  var eps={};state.wrong.forEach(function(q){eps[q[0]]=1});
+  var ids=Object.keys(eps).map(Number).sort(function(a,b){return a-b});
+  var h='<div class="card"><p class="meta"><span>'+(state.level==1?'نتيجة الاختبار الأساسي':'نتيجة الاختبار الموسّع')+'</span></p><p class="score"><bdi>'+ok+' / '+total+'</bdi></p>';
+  if(!ids.length){
+    h+='<h2>ممتاز، أساسك قوي في هذا الجزء</h2><p>لا تحتاج أي حلقة من هذا الاختبار.</p>'
+  }else{
+    h+='<h2>ابدأ بهذه الحلقات</h2><p>رتّبناها بالترتيب الأنسب للمشاهدة، وكل حلقة تحل نقطة ضعف ظهرت في إجاباتك.</p>';
+    ids.forEach(function(id){h+=epRow(EP[id])})
+  }
+  h+='</div>';
+  if(state.wrong.length){
+    h+='<div class="card"><h3 style="margin:0 0 4px">الأسئلة التي أخطأت فيها</h3><ul class="wrongs">';
+    state.wrong.forEach(function(q){h+='<li><b>'+W(q[1])+'</b><br>الإجابة الصحيحة: '+W(q[2])+' · الحلقة: تأسيس '+q[0]+'</li>'})
+    h+='</ul></div>'
+  }
+  if(state.level==1){
+    h+='<div class="card"><h3 style="margin:0 0 6px">هل تريد تغطية أوسع؟</h3><p>الاختبار الأساسي يغطي 7 حلقات فقط. الاختبار الموسّع (12 سؤالًا) يفحص بقية الحلقات: القسمة، التحويلات، الاقتران المركب، اللوغاريتم، الراديان، النهايات، المتتاليات، الهندسة الإحداثية، المتجهات، الاحتمال، الإحصاء، وفصل المتغيرات.</p><button class="btn go" id="more">ابدأ الاختبار الموسّع</button></div>'
+  }else{
+    var all=Object.keys(state.missedAll).map(Number).sort(function(a,b){return a-b});
+    if(all.length){h+='<div class="card"><h3 style="margin:0 0 4px">قائمتك الكاملة</h3><p>كل الحلقات التي ظهرت في الاختبارين:</p>';all.forEach(function(id){h+=epRow(EP[id])});h+='</div>'}
+  }
+  h+='<div class="card"><h3 style="margin:0 0 6px">وبعد ذلك؟</h3><p>عندما تنتهي من الحلقات المقترحة، ابدأ الوحدة الأولى من الكتاب. وإن أردت التأكد قبل الامتحان، فحلقة «مراجعة شاملة بأسلوب الامتحان» (تأسيس 20) تجمع كل الوحدات.</p><div class="nav" style="justify-content:flex-start"><a class="btn go" href="tawjihi.html">صفحة السلسلة الكاملة</a><button class="btn alt" id="again">أعد الاختبار</button></div></div>';
+  $('result').innerHTML=h;
+  var m=$('more');if(m)m.onclick=function(){begin(2)};
+  $('again').onclick=function(){state.missedAll={};begin(1)};
+  window.scrollTo({top:0,behavior:'smooth'})
+}
+</script>
+</body>
+</html>
