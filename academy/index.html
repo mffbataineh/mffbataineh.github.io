@@ -240,7 +240,7 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
     <p class="err" id="err" role="alert"></p>
     <div class="tabs" role="group" aria-label="طريقة الدفع">
       <button type="button" data-tab="cliq" aria-pressed="true">كليك CliQ</button>
-      <button type="button" data-tab="card" aria-pressed="false">بطاقة بنكية</button>
+      <button type="button" data-tab="card" aria-pressed="false">بطاقة / Apple Pay</button>
     </div>
     <div class="pay on" id="pay-cliq">
       <div id="cliqReady">
@@ -255,8 +255,12 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
       <p class="soon" id="cliqSoon" hidden>الدفع عبر كليك سيتوفر قريبًا.</p>
     </div>
     <div class="pay" id="pay-card">
-      <p class="note">ادفع بأي بطاقة فيزا أو ماستركارد عبر صفحة دفع آمنة، وتصلك المذكرة على واتساب بعد الدفع.</p>
-      <button class="btn card-btn" id="cardBtn" type="button">الانتقال إلى صفحة الدفع</button>
+      <div id="cardReady">
+        <p class="note">ادفع بأي بطاقة فيزا أو ماستركارد، أو بـ Apple Pay وGoogle Pay، عبر صفحة دفع آمنة.</p>
+        <button class="btn card-btn" id="cardBtn" type="button">1. الانتقال إلى صفحة الدفع</button>
+        <p class="note" style="margin:12px 0 8px">بعد إتمام الدفع، أرسل رقم الطلب الذي يصلك على البريد الإلكتروني لنرسل لك نسختك:</p>
+        <button class="btn wa" id="waCard" type="button">2. أرسل رقم الطلب على واتساب</button>
+      </div>
       <p class="soon" id="cardSoon" hidden>الدفع بالبطاقة سيتوفر قريبًا. استخدم كليك الآن.</p>
     </div>
   </div>
@@ -348,7 +352,7 @@ document.addEventListener("click",e=>{
   $("#buyName").textContent=item.name;$("#buyPrice").textContent=money(item.price);
   $("#cAlias").textContent=CONFIG.cliqAlias;$("#cAmt").textContent=item.price.toFixed(2)+" JOD";$("#cRef").textContent=ref();
   $("#cliqReady").hidden=!CONFIG.cliqAlias||!CONFIG.whatsapp;$("#cliqSoon").hidden=!!(CONFIG.cliqAlias&&CONFIG.whatsapp);
-  const hasCard=!!CONFIG.card[item.id];$("#cardBtn").hidden=!hasCard;$("#cardSoon").hidden=hasCard;
+  const hasCard=!!(CONFIG.card[item.id]&&CONFIG.whatsapp);$("#cardReady").hidden=!hasCard;$("#cardSoon").hidden=hasCard;
   $("#err").textContent="";dlg.showModal();
 });
 document.querySelectorAll("[data-tab]").forEach(t=>t.onclick=()=>{
@@ -371,6 +375,11 @@ $("#cardBtn").onclick=()=>{
   const u=new URL(CONFIG.card[item.id]);
   u.searchParams.set("checkout[name]",b.n);u.searchParams.set("checkout[custom][phone]",b.p);u.searchParams.set("checkout[custom][stamp_name]",b.n);
   window.open(u.toString(),"_blank");
+};
+$("#waCard").onclick=()=>{
+  const b=buyer();if(!b)return;
+  const msg=`مرحبًا د. محمد، دفعت بالبطاقة ثمن:\n${item.name}\nرقم الطلب: (اكتب الرقم من البريد الإلكتروني)\nالاسم على المذكرة: ${b.n}\nالهاتف: ${b.p}`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
 };
 document.querySelectorAll("[data-copy]").forEach(c=>c.onclick=()=>{
   try{navigator.clipboard.writeText($("#"+c.dataset.copy).textContent);c.textContent="تم";setTimeout(()=>c.textContent="نسخ",1200);}catch(e){}
