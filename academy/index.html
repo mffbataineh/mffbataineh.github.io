@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أكاديمية البطاينة: مذكرات توجيهي 2027</title>
+<meta name="description" content="مذكرات رياضيات توجيهي 2027 المرافقة للسلسلة المجانية على يوتيوب: مذكرة الدروس وكتاب حلول تمارين الكتاب للفصلين الأول والثاني.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:title" content="مذكرات رياضيات توجيهي 2027 | د. محمد البطاينة">
+<meta property="og:description" content="مذكرة الدروس وحلول تمارين الكتاب كاملة للفصلين، مرتبطة بفيديوهات السلسلة عبر رموز QR.">
+<meta property="og:image" content="img/s1-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EEE3;--paper2:#EAE3D3;--card:#FBF8F1;--ink:#172033;--ink2:#4A5468;--line:#D9D1BF;
+  --accent:#D9482B;--accent-ink:#fff;--gold:#B9821F;--shadow:0 1px 0 rgba(23,32,51,.06),0 12px 30px -18px rgba(23,32,51,.35);
+  --hero:#1F3A6B;--hero2:#172033;--hero-ink:#FFFFFF;--hero-dim:#D6DEEE;--chalk:#E3B35C;--ok:#1F7A5A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1522;--paper2:#141D2E;--card:#162033;--ink:#EEE8DA;--ink2:#A9B2C4;--line:#2A3650;
+  --accent:#FF7F5E;--accent-ink:#1a0f0a;--gold:#E3B35C;--shadow:0 12px 30px -18px rgba(0,0,0,.7);
+  --hero:#1A3260;--hero2:#0A101B;--ok:#4FC49A}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:17px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:1100px;margin:0 auto}
+h1,h2,h3,.price,.tag{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* top bar */
+.bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;gap:12px;flex-wrap:wrap}
+.brand{font-family:"Reem Kufi",sans-serif;font-weight:700;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--hero);color:#fff;font-style:normal;font-size:18px}
+.bar nav{display:flex;gap:16px;font-size:15px}.bar nav a{text-decoration:none;color:var(--ink2)}.bar nav a:hover{color:var(--accent)}
+
+/* hero: blue background, white text */
+.hero{margin:16px 0 0;border-radius:28px;background:var(--hero);color:var(--hero-ink);overflow:hidden;position:relative;
+  background-image:radial-gradient(circle at 12% 110%,rgba(227,179,92,.22),transparent 45%),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,34px 34px,34px 34px}
+.hero-in{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;padding:clamp(26px,5vw,60px);align-items:center}
+.kick{display:inline-block;font-size:14px;color:#fff;border:1px dashed rgba(255,255,255,.6);border-radius:999px;padding:4px 14px;margin:0 0 16px}
+h1{font-size:clamp(34px,6vw,66px);line-height:1.12;margin:0 0 6px;font-weight:700}
+h1 em{font-style:normal;color:var(--chalk)}
+.lead{font-size:clamp(16px,2vw,20px);color:var(--hero-dim);max-width:33em;margin:12px 0 24px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:14px;font-weight:600;text-decoration:none;font-size:16px;border:0;cursor:pointer;font-family:inherit;transition:transform .15s}
+.pill.p{background:#fff;color:#1F3A6B}
+.pill.s{border:1.5px solid rgba(255,255,255,.55);color:#fff;background:transparent}
+.pill:hover{transform:translateY(-2px)}
+.stack{position:relative;height:clamp(260px,34vw,380px)}
+.stack img{position:absolute;width:56%;border-radius:10px;box-shadow:0 22px 40px -18px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25)}
+.stack img:nth-child(1){right:2%;top:4%;transform:rotate(5deg)}
+.stack img:nth-child(2){right:22%;top:10%;transform:rotate(-2deg)}
+.stack img:nth-child(3){left:2%;top:2%;transform:rotate(-7deg)}
+
+/* trust strip */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 0}
+.trust div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;font-size:15px;color:var(--ink2)}
+.trust b{display:block;color:var(--ink);font-family:"Reem Kufi",sans-serif;font-size:18px}
+
+/* section heads */
+.sh{margin:52px 0 18px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.sh h2{font-size:clamp(26px,4vw,40px);margin:0;line-height:1.2}
+.sh span{color:var(--ink2);font-size:16px}
+.sh:before{content:"";flex:0 0 46px;height:6px;border-radius:3px;background:var(--accent);align-self:center}
+
+/* products */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:150px 1fr;gap:18px;padding:18px;align-items:start}
+.thumb{position:relative;cursor:zoom-in;border:0;padding:0;background:none;border-radius:10px}
+.thumb img{width:100%;display:block;border-radius:8px;border:1px solid var(--line)}
+.thumb span{position:absolute;bottom:8px;right:8px;left:8px;font-size:12.5px;background:rgba(23,32,51,.86);color:#fff;border-radius:8px;padding:3px 8px;text-align:center}
+.tag{display:inline-block;font-size:13px;color:var(--gold);font-weight:600}
+.prod h3{margin:2px 0 4px;font-size:22px;line-height:1.3}
+.prod p{margin:0 0 10px;color:var(--ink2);font-size:15px}
+.prod ul{margin:0 0 12px;padding:0 18px 0 0;font-size:14.5px;color:var(--ink2)}
+.buyrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:12px}
+.price{font-size:28px;font-weight:700;line-height:1}.price small{font-size:15px;color:var(--ink2);font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:10px 18px;border-radius:12px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;font-family:inherit;text-decoration:none;transition:transform .12s,background .12s}
+.btn:hover{transform:translateY(-2px);background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+
+/* bundles: blue cards, white text */
+.bundles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.bun{background:var(--hero);color:#fff;border-radius:24px;padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.bun.best{background:linear-gradient(150deg,#1F3A6B,#2C5296);outline:3px solid var(--chalk);outline-offset:-3px}
+.bun .ribbon{position:absolute;top:20px;left:-30px;transform:rotate(-35deg);background:var(--chalk);color:#172033;font-weight:700;font-size:13px;padding:3px 40px}
+.bun h3{margin:0 0 4px;font-size:24px}
+.bun p{margin:0 0 12px;color:#D6DEEE;font-size:15px}
+.bun ul{margin:0 0 16px;padding:0 18px 0 0;color:#fff;font-size:15px;flex:1}
+.bun .price{color:#fff}.bun .price small{color:#D6DEEE}
+.bun .was{text-decoration:line-through;color:#D6DEEE;font-size:16px;margin-inline-start:8px;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500}
+.bun .save{display:inline-block;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;font-size:13px;padding:2px 10px;margin:8px 0 14px}
+.bun .btn{background:#fff;color:#1F3A6B;border-color:#fff;justify-content:center}
+.bun .btn:hover{background:var(--chalk);border-color:var(--chalk);color:#172033}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.step{background:var(--paper2);border-radius:20px;padding:20px;counter-increment:s}
+.step:before{content:counter(s);font-family:"Reem Kufi",sans-serif;font-size:40px;line-height:1;color:var(--accent);display:block;margin-bottom:6px}
+.step h3{margin:0 0 4px;font-size:19px}.step p{margin:0;color:var(--ink2);font-size:15px}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:0 0 10px}
+summary{cursor:pointer;font-weight:600;list-style:none}summary::-webkit-details-marker{display:none}
+summary:after{content:"+";float:left;color:var(--accent);font-size:22px;line-height:1}
+details[open] summary:after{content:"−"}
+details p{margin:8px 0 0;color:var(--ink2);font-size:15.5px}
+
+footer{margin:50px 0 36px;padding:28px;border-radius:26px;background:var(--hero);color:#fff;text-align:center}
+footer h2{margin:0 0 8px;font-size:clamp(24px,3.6vw,34px)}
+footer p{margin:0 auto 18px;max-width:36em;color:#D6DEEE}
+footer .cta{justify-content:center}
+.fine{font-size:13px;color:#D6DEEE;margin:20px 0 0!important}
+
+/* modal */
+dialog{border:0;border-radius:24px;padding:0;width:min(560px,calc(100vw - 24px));background:var(--card);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(10,16,27,.6)}
+.mh{background:var(--hero);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mh h3{margin:0;font-size:21px}.mh .x{background:none;border:0;color:#fff;font-size:28px;cursor:pointer;line-height:1}
+.mb{padding:20px 22px}
+.field{display:block;margin:0 0 12px}
+.field span{display:block;font-size:14px;color:var(--ink2);margin-bottom:4px}
+.field input{width:100%;font:inherit;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--accent)}
+.note{font-size:13.5px;color:var(--ink2);margin:0 0 14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px}
+.tabs button{font:inherit;font-weight:600;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.pay{display:none}.pay.on{display:block}
+.box{background:var(--paper2);border-radius:14px;padding:14px 16px;margin:0 0 12px}
+.kv{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.kv b{font-family:"Reem Kufi",sans-serif;font-size:19px;direction:ltr}
+.copy{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:2px 10px;cursor:pointer;margin-inline-start:8px}
+.wa{background:#1F7A5A;border-color:#1F7A5A;color:#fff;width:100%;justify-content:center;padding:13px}
+.wa:hover{background:#17614a;border-color:#17614a;color:#fff}
+.card-btn{width:100%;justify-content:center;padding:13px}
+.err{color:var(--accent);font-size:14px;min-height:1.2em;margin:0 0 8px}
+.soon{background:var(--paper2);border-radius:12px;padding:12px;font-size:14.5px;color:var(--ink2);text-align:center}
+.lb{width:min(820px,calc(100vw - 24px))}
+.lb img{width:100%;display:block}
+.lbn{display:flex;gap:8px;padding:12px;justify-content:center}
+
+@media (max-width:900px){
+  .hero-in{grid-template-columns:1fr}.stack{height:260px;max-width:420px;width:100%;justify-self:center}
+  .grid,.bundles{grid-template-columns:1fr}.trust,.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){
+  .prod{grid-template-columns:100px 1fr;gap:12px;padding:14px}.prod h3{font-size:19px}
+  .trust,.steps{grid-template-columns:1fr}.bar nav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="bar">
+  <a class="brand" href="#"><i>ب</i>أكاديمية البطاينة</a>
+  <nav><a href="#products">المذكرات</a><a href="#bundles">الباقات</a><a href="#how">طريقة الشراء</a><a href="#faq">أسئلة شائعة</a><a href="https://mffbataineh.github.io/tawjihi.html">الفيديوهات المجانية</a></nav>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="kick">رفيق سلسلة «توجيهي 2027 رياضيات» على يوتيوب</p>
+      <h1>كل ما في الفيديو،<br><em>على الورق.</em></h1>
+      <p class="lead">مذكرة الدروس وكتاب حلول تمارين الكتاب للفصلين الأول والثاني. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR.</p>
+      <div class="cta">
+        <a class="pill p" href="#bundles">اختر باقتك</a>
+        <a class="pill s" href="#products">شاهد صفحات من المذكرات</a>
+      </div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <img src="img/s2-cover.jpg" alt="">
+      <img src="img/s1sol-cover.jpg" alt="">
+      <img src="img/s1-cover.jpg" alt="">
+    </div>
+  </div>
+</header>
+
+<div class="trust">
+  <div><b>315 صفحة</b>في أربع مذكرات للفصلين</div>
+  <div><b>7 وحدات</b>منهاج المسار الأكاديمي كاملًا</div>
+  <div><b>رموز QR</b>لكل درس ولحلول أسئلته</div>
+  <div><b>نسخة باسمك</b>اسمك مطبوع على كل صفحة</div>
+</div>
+
+<section id="products">
+  <div class="sh"><h2>المذكرات</h2><span>اضغط على الصورة لترى صفحة حقيقية من المذكرة</span></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="bundles">
+  <div class="sh"><h2>الباقات</h2><span>وفّر أكثر عند شراء المذكرة مع حلولها</span></div>
+  <div class="bundles" id="bgrid"></div>
+</section>
+
+<section id="how">
+  <div class="sh"><h2>طريقة الشراء</h2><span>تصلك المذكرة على واتساب خلال ساعات</span></div>
+  <div class="steps">
+    <div class="step"><h3>اختر</h3><p>اختر المذكرة أو الباقة واكتب اسمك ورقم هاتفك كما تريده أن يظهر على المذكرة.</p></div>
+    <div class="step"><h3>ادفع</h3><p>حوّل المبلغ عبر كليك (CliQ) من تطبيق بنكك أو محفظتك، أو ادفع بالبطاقة.</p></div>
+    <div class="step"><h3>أرسل الإيصال</h3><p>بعد التحويل، أرسل صورة الإيصال على واتساب بزر واحد، والرسالة جاهزة.</p></div>
+    <div class="step"><h3>استلم</h3><p>تصلك نسختك الخاصة بصيغة PDF وعليها اسمك، جاهزة للطباعة.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="sh"><h2>أسئلة شائعة</h2></div>
+  <details><summary>هل الفيديوهات مجانية؟</summary><p>نعم، كل فيديوهات السلسلة مجانية على يوتيوب وستبقى كذلك. المذكرات اختيارية لمن يريد ملخّصًا مطبوعًا مرتبطًا بالفيديوهات.</p></details>
+  <details><summary>ما الفرق بين المذكرة وكتاب الحلول؟</summary><p>المذكرة تلخّص كل درس: المفاهيم والقوانين والأمثلة المحلولة والأخطاء الشائعة وتمارين إضافية. كتاب الحلول يحلّ تمارين كتاب الطالب كلها خطوة بخطوة، مرتبة حسب الصفحة ورقم السؤال.</p></details>
+  <details><summary>هل يناسب الطبعة الجديدة من الكتاب؟</summary><p>نعم، مبني على كتاب الطالب للمسار الأكاديمي (طبعة 2025 للفصل الأول، والطبعة التجريبية للفصل الثاني). إذا تغيّر شيء في الكتاب، تصلك النسخة المحدّثة مجانًا.</p></details>
+  <details><summary>متى تصلني المذكرة؟</summary><p>عادة خلال ساعات من وصول الإيصال، وفي أقصى حد خلال 24 ساعة.</p></details>
+  <details><summary>هل يمكن مشاركة الملف مع الأصدقاء؟</summary><p>النسخة شخصية وعليها اسمك ورقمك في كل صفحة. يمكنك طباعتها لنفسك، لكن يرجى عدم نشرها. سعرها منخفض حتى يستطيع كل طالب شراء نسخته.</p></details>
+  <details><summary>هل أستطيع الطباعة؟</summary><p>نعم، الملف بحجم A4 ومصمم ليُطبع بالألوان أو بالأبيض والأسود.</p></details>
+</section>
+
+<footer>
+  <h2>د. محمد البطاينة</h2>
+  <p>أستاذ جامعي، وصاحب سلسلة «توجيهي 2027 رياضيات» المجانية على يوتيوب.</p>
+  <div class="cta">
+    <a class="pill p" href="https://mffbataineh.github.io/tawjihi.html">الفيديوهات المجانية</a>
+    <a class="pill s" id="footWa" href="#">تواصل على واتساب</a>
+  </div>
+  <p class="fine">المذكرات عمل مستقل يرافق كتاب الطالب ويشير إلى صفحاته وأرقام أسئلته فقط، ولا ينسخ محتواه.</p>
+</footer>
+</div>
+
+<!-- checkout -->
+<dialog id="buy" aria-labelledby="buyTitle">
+  <div class="mh"><h3 id="buyTitle">شراء</h3><button class="x" aria-label="إغلاق" data-close>×</button></div>
+  <div class="mb">
+    <div class="box">
+      <div class="kv"><span id="buyName"></span><b id="buyPrice"></b></div>
+    </div>
+    <label class="field"><span>الاسم كما سيظهر على المذكرة</span><input id="fName" autocomplete="name" placeholder="مثال: أحمد محمد"></label>
+    <label class="field"><span>رقم الهاتف (واتساب)</span><input id="fPhone" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="07XXXXXXXX"></label>
+    <p class="err" id="err" role="alert"></p>
+    <div class="tabs" role="group" aria-label="طريقة الدفع">
+      <button type="button" data-tab="cliq" aria-pressed="true">كليك CliQ</button>
+      <button type="button" data-tab="card" aria-pressed="false">بطاقة بنكية</button>
+    </div>
+    <div class="pay on" id="pay-cliq">
+      <div id="cliqReady">
+        <div class="box">
+          <div class="kv"><span>الاسم المستعار (Alias)</span><span><b id="cAlias"></b><button class="copy" data-copy="cAlias">نسخ</button></span></div>
+          <div class="kv"><span>المبلغ</span><span><b id="cAmt"></b><button class="copy" data-copy="cAmt">نسخ</button></span></div>
+          <div class="kv"><span>رقم الطلب (اكتبه في ملاحظة التحويل)</span><span><b id="cRef"></b><button class="copy" data-copy="cRef">نسخ</button></span></div>
+        </div>
+        <p class="note">حوّل المبلغ من تطبيق بنكك أو محفظتك عبر كليك، ثم اضغط الزر وأرفق صورة الإيصال في المحادثة.</p>
+        <button class="btn wa" id="waBtn" type="button">أرسل الإيصال على واتساب</button>
+      </div>
+      <p class="soon" id="cliqSoon" hidden>الدفع عبر كليك سيتوفر قريبًا.</p>
+    </div>
+    <div class="pay" id="pay-card">
+      <p class="note">ادفع بأي بطاقة فيزا أو ماستركارد عبر صفحة دفع آمنة، وتصلك المذكرة على واتساب بعد الدفع.</p>
+      <button class="btn card-btn" id="cardBtn" type="button">الانتقال إلى صفحة الدفع</button>
+      <p class="soon" id="cardSoon" hidden>الدفع بالبطاقة سيتوفر قريبًا. استخدم كليك الآن.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="lb" class="lb" aria-label="معاينة">
+  <div class="mh"><h3 id="lbT">معاينة</h3><button class="x" aria-label="إغلاق" data-close>×</button></div>
+  <img id="lbImg" alt="">
+  <div class="lbn"><button class="btn ghost" id="lbCover" type="button">الغلاف</button><button class="btn ghost" id="lbPage" type="button">صفحة من الداخل</button></div>
+</dialog>
+
+<script>
+/* ======== EDIT HERE ======== */
+const CONFIG = {
+  currency: "د.أ",
+  cliqAlias: "",            // e.g. "MBATAINEH"   (leave empty to show "coming soon")
+  whatsapp: "",             // international, digits only, e.g. "9627XXXXXXXX"
+  // Lemon Squeezy checkout links per item (leave empty to hide card payment for that item)
+  card: { s1:"", s1sol:"", s2:"", s2sol:"", b1:"", b2:"", year:"" }
+};
+const PRODUCTS = [
+  {id:"s1",   tag:"الفصل الأول · 80 صفحة", name:"مذكرة الرياضيات: الفصل الأول", price:4,
+   desc:"ملخّص كل درس مع أمثلة محلولة وأخطاء شائعة وتمارين إضافية، واختبار تجريبي شامل.",
+   pts:["الوحدة 1: الاقترانات والمقادير الجبرية","الوحدة 2: المتطابقات والمعادلات المثلثية","الوحدة 3: التفاضل وتطبيقاته","الوحدة 4: الأعداد المركّبة"]},
+  {id:"s1sol",tag:"الفصل الأول · 99 صفحة", name:"حلول تمارين الكتاب: الفصل الأول", price:6,
+   desc:"حل كل تمارين كتاب الطالب خطوة بخطوة مع سبب كل خطوة، مرتبة حسب الصفحة ورقم السؤال.",
+   pts:["أتحقق من فهمي، أتدرب وأحل المسائل","مهارات التفكير العليا","اختبارات نهاية الوحدات"]},
+  {id:"s2",   tag:"الفصل الثاني · 49 صفحة", name:"مذكرة الرياضيات: الفصل الثاني", price:4,
+   desc:"ملخّص كل درس مع أمثلة محلولة وأخطاء شائعة وتمارين إضافية، واختبار تجريبي شامل.",
+   pts:["الوحدة 5: التكامل","الوحدة 6: المتجهات","الوحدة 7: الإحصاء والاحتمالات"]},
+  {id:"s2sol",tag:"الفصل الثاني · 87 صفحة", name:"حلول تمارين الكتاب: الفصل الثاني", price:6,
+   desc:"حل كل تمارين كتاب الطالب خطوة بخطوة مع سبب كل خطوة، مرتبة حسب الصفحة ورقم السؤال.",
+   pts:["أتحقق من فهمي، أتدرب وأحل المسائل","مهارات التفكير العليا","اختبارات نهاية الوحدات"]}
+];
+const BUNDLES = [
+  {id:"b1",  name:"باقة الفصل الأول", price:8, items:["s1","s1sol"], sub:"المذكرة مع كتاب الحلول"},
+  {id:"year",name:"باقة السنة كاملة", price:15, items:["s1","s1sol","s2","s2sol"], sub:"المذكرات الأربع للفصلين", best:true},
+  {id:"b2",  name:"باقة الفصل الثاني", price:8, items:["s2","s2sol"], sub:"المذكرة مع كتاب الحلول"}
+];
+/* =========================== */
+
+const $=s=>document.querySelector(s);
+const byId=Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
+const money=n=>`${n} ${CONFIG.currency}`;
+
+$("#grid").innerHTML=PRODUCTS.map(p=>`
+  <article class="prod">
+    <button class="thumb" type="button" data-prev="${p.id}" aria-label="معاينة ${p.name}">
+      <img src="img/${p.id}-cover.jpg" alt="غلاف ${p.name}" loading="lazy"><span>معاينة</span>
+    </button>
+    <div>
+      <span class="tag">${p.tag}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <ul>${p.pts.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <div class="buyrow"><span class="price">${p.price} <small>${CONFIG.currency}</small></span>
+        <button class="btn" type="button" data-buy="${p.id}">اشترِ الآن</button></div>
+    </div>
+  </article>`).join("");
+
+$("#bgrid").innerHTML=BUNDLES.map(b=>{
+  const full=b.items.reduce((s,i)=>s+byId[i].price,0);
+  return `<article class="bun${b.best?" best":""}">
+    ${b.best?'<span class="ribbon">الأوفر</span>':""}
+    <h3>${b.name}</h3><p>${b.sub}</p>
+    <ul>${b.items.map(i=>`<li>${byId[i].name}</li>`).join("")}</ul>
+    <div><span class="price">${b.price} <small>${CONFIG.currency}</small></span><span class="was">${full}</span></div>
+    <span class="save">توفّر ${full-b.price} ${CONFIG.currency}</span>
+    <button class="btn" type="button" data-buy="${b.id}">اشترِ الباقة</button>
+  </article>`}).join("");
+
+/* lightbox */
+const lb=$("#lb");let cur=null;
+function showPrev(id,which){cur=id;$("#lbImg").src=`img/${id}-${which}.jpg`;$("#lbImg").alt=byId[id].name;$("#lbT").textContent=byId[id].name;}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-prev]");if(t){showPrev(t.dataset.prev,"page");lb.showModal();}
+  if(e.target.closest("[data-close]"))e.target.closest("dialog").close();
+});
+$("#lbCover").onclick=()=>showPrev(cur,"cover");$("#lbPage").onclick=()=>showPrev(cur,"page");
+document.querySelectorAll("dialog").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)d.close();}));
+
+/* checkout */
+const dlg=$("#buy");let item=null;
+const find=id=>byId[id]||BUNDLES.find(b=>b.id===id);
+const ref=()=>"TJ-"+Math.random().toString(36).slice(2,6).toUpperCase();
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-buy]");if(!b)return;
+  item=find(b.dataset.buy);
+  $("#buyName").textContent=item.name;$("#buyPrice").textContent=money(item.price);
+  $("#cAlias").textContent=CONFIG.cliqAlias;$("#cAmt").textContent=item.price.toFixed(2)+" JOD";$("#cRef").textContent=ref();
+  $("#cliqReady").hidden=!CONFIG.cliqAlias||!CONFIG.whatsapp;$("#cliqSoon").hidden=!!(CONFIG.cliqAlias&&CONFIG.whatsapp);
+  const hasCard=!!CONFIG.card[item.id];$("#cardBtn").hidden=!hasCard;$("#cardSoon").hidden=hasCard;
+  $("#err").textContent="";dlg.showModal();
+});
+document.querySelectorAll("[data-tab]").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll("[data-tab]").forEach(x=>x.setAttribute("aria-pressed",x===t));
+  document.querySelectorAll(".pay").forEach(p=>p.classList.toggle("on",p.id==="pay-"+t.dataset.tab));
+});
+function buyer(){
+  const n=$("#fName").value.trim(),p=$("#fPhone").value.trim();
+  if(n.length<3){$("#err").textContent="اكتب اسمك كما تريده على المذكرة.";$("#fName").focus();return null;}
+  if(!/^[+0-9 ]{9,15}$/.test(p)){$("#err").textContent="اكتب رقم هاتف صحيحًا.";$("#fPhone").focus();return null;}
+  $("#err").textContent="";return {n,p};
+}
+$("#waBtn").onclick=()=>{
+  const b=buyer();if(!b)return;
+  const msg=`مرحبًا د. محمد، حوّلت عبر كليك ثمن:\n${item.name}\nالمبلغ: ${item.price} د.أ\nرقم الطلب: ${$("#cRef").textContent}\nالاسم على المذكرة: ${b.n}\nالهاتف: ${b.p}\n(مرفق صورة الإيصال)`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
+};
+$("#cardBtn").onclick=()=>{
+  const b=buyer();if(!b)return;
+  const u=new URL(CONFIG.card[item.id]);
+  u.searchParams.set("checkout[name]",b.n);u.searchParams.set("checkout[custom][phone]",b.p);u.searchParams.set("checkout[custom][stamp_name]",b.n);
+  window.open(u.toString(),"_blank");
+};
+document.querySelectorAll("[data-copy]").forEach(c=>c.onclick=()=>{
+  try{navigator.clipboard.writeText($("#"+c.dataset.copy).textContent);c.textContent="تم";setTimeout(()=>c.textContent="نسخ",1200);}catch(e){}
+});
+$("#footWa").href=CONFIG.whatsapp?`https://wa.me/${CONFIG.whatsapp}`:"https://mffbataineh.github.io/contact.html";
+</script>
+</body>
+</html>
