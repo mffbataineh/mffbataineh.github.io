@@ -130,10 +130,18 @@ footer .cta{justify-content:center}
   .b1{left:-2%}.b2{right:-2%}.b3{left:-2%;bottom:34%}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.topnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 14px;padding:8px 10px;border-radius:999px;background:rgba(20,12,51,.92);position:sticky;top:8px;z-index:50;backdrop-filter:blur(6px)}
+.topnav a{color:#efe9ff;text-decoration:none;font-weight:600;font-size:15px;padding:7px 14px;border-radius:999px}
+.topnav a:hover{background:rgba(255,181,71,.15)}
+.topnav a.on{background:#ffb547;color:#140c33}
+.topnav .home{display:flex;align-items:center;gap:8px;margin-inline-end:auto}
+.topnav .home i{font:normal 700 20px "Times New Roman",serif;color:#ffb547;width:30px;height:30px;display:grid;place-items:center;border:1.5px solid #ffb547;border-radius:9px}
+@media(max-width:560px){.topnav .home span{display:none}.topnav a{padding:6px 10px;font-size:14px}}
 </style>
 </head>
 <body>
 <div class="wrap">
+<nav class="topnav" aria-label="أكاديمية البطاينة"><a class="home" href="academy.html"><i aria-hidden="true">π</i><span>أكاديمية البطاينة</span></a><a href="tawjihi.html" class="on">الرياضيات</a><a href="physics.html">الفيزياء</a><a href="academy/">المذكرات</a></nav>
 <section class="hero">
  <div class="hero-in">
   <div>
