@@ -176,7 +176,7 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
       <h1>كل ما في الفيديو،<br><em>على الورق.</em></h1>
       <p class="lead">لكل مادة مذكرة للدروس وكتاب لحلول أسئلة الكتاب. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR. <b>مذكرات الرياضيات مجانية.</b></p>
       <div class="cta">
-        <a class="pill p" href="#math">حمّل مذكرات الرياضيات مجانًا</a>
+        <a class="pill p" href="#math" data-go="math">حمّل مذكرات الرياضيات مجانًا</a>
         <a class="pill s" href="#products">شاهد صفحات من المذكرات</a>
       </div>
     </div>
@@ -362,8 +362,11 @@ function setSubj(k){
   document.querySelectorAll("[data-cat]").forEach(el=>{const c=el.dataset.cat;el.hidden=!(k==="all"||c==="all"||c===SUBJ[k]);});
 }
 document.querySelectorAll(".subj button").forEach(b=>b.onclick=()=>{const k=b.dataset.subj;history.replaceState(null,"",k==="all"?location.pathname:"#"+k);setSubj(k);});
+function goSubj(k){setSubj(k);const t=document.querySelector(".subj");if(t)t.scrollIntoView({behavior:"smooth",block:"start"});}
+document.querySelectorAll("[data-go]").forEach(a=>a.onclick=e=>{e.preventDefault();const k=a.dataset.go;history.replaceState(null,"","#"+k);goSubj(k);});
 setSubj(location.hash.slice(1));
-window.addEventListener("hashchange",()=>setSubj(location.hash.slice(1)));
+if(location.hash.slice(1) in SUBJ)setTimeout(()=>goSubj(location.hash.slice(1)),300);
+window.addEventListener("hashchange",()=>goSubj(location.hash.slice(1)));
 /* lightbox */
 const lb=$("#lb");let cur=null;
 function showPrev(id,which){cur=id;$("#lbImg").src=`img/${id}-${which}.jpg`;$("#lbImg").alt=byId[id].name;$("#lbT").textContent=byId[id].name;}
