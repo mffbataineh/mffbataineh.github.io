@@ -86,6 +86,9 @@ h1 em{font-style:normal;color:var(--chalk)}
 .price{font-size:28px;font-weight:700;line-height:1}.price small{font-size:15px;color:var(--ink2);font-weight:500}
 .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:10px 18px;border-radius:12px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;font-family:inherit;text-decoration:none;transition:transform .12s,background .12s}
 .btn:hover{transform:translateY(-2px);background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.soon{background:transparent;color:var(--ink2);border-color:var(--line);cursor:default}.bun .btn.soon{background:transparent;color:#D6DEEE;border-color:#D6DEEE}
+.price.free{color:var(--ok)}
+.gift{margin:22px auto 0;max-width:760px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:var(--shadow);line-height:1.9}.gift b{color:var(--ok)}
 .btn.ghost{background:transparent;color:var(--ink)}
 
 /* bundles: blue cards, white text */
@@ -171,9 +174,9 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
     <div>
       <p class="kick">رفيق سلسلتي «توجيهي 2027» للرياضيات والفيزياء على يوتيوب</p>
       <h1>كل ما في الفيديو،<br><em>على الورق.</em></h1>
-      <p class="lead">لكل مادة مذكرة للدروس وكتاب لحلول أسئلة الكتاب، للفصلين الأول والثاني. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR.</p>
+      <p class="lead">لكل مادة مذكرة للدروس وكتاب لحلول أسئلة الكتاب. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR. <b>مذكرات الرياضيات مجانية.</b></p>
       <div class="cta">
-        <a class="pill p" href="#bundles">اختر باقتك</a>
+        <a class="pill p" href="#math">حمّل مذكرات الرياضيات مجانًا</a>
         <a class="pill s" href="#products">شاهد صفحات من المذكرات</a>
       </div>
     </div>
@@ -189,8 +192,10 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
   <div><b>859 صفحة</b>في ست مذكرات للمادتين</div>
   <div><b>15 وحدة</b>7 للرياضيات و8 للفيزياء، المنهاج كاملًا</div>
   <div><b>رموز QR</b>لكل درس ولحلول أسئلته</div>
-  <div><b>نسخة باسمك</b>اسمك مطبوع على كل صفحة</div>
+  <div><b>الرياضيات مجانًا</b>صدقة عن روح الوالدين</div>
 </div>
+
+<p class="gift"><b>مذكرات الرياضيات مجانية لكل طالب</b>، صدقة جارية عن روح والديّ رحمهما الله. حمّلها واطبعها وشاركها مع زملائك، ولا تنسَهما من دعائك.</p>
 
 <div class="subj" role="tablist" aria-label="اختر المادة"><button type="button" role="tab" data-subj="all">الكل</button><button type="button" role="tab" data-subj="math">الرياضيات</button><button type="button" role="tab" data-subj="physics">الفيزياء</button></div>
 
@@ -200,12 +205,12 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
 </section>
 
 <section id="bundles">
-  <div class="sh"><h2>الباقات</h2><span>وفّر أكثر عند شراء المذكرة مع حلولها، أو المادتين معًا</span></div>
+  <div class="sh"><h2>الباقات</h2><span>مذكرات الفيزياء متاحة قريبًا مع نشر فيديوهاتها</span></div>
   <div class="bundles" id="bgrid"></div>
 </section>
 
 <section id="how">
-  <div class="sh"><h2>طريقة الشراء</h2><span>تصلك المذكرة على واتساب خلال ساعات</span></div>
+  <div class="sh"><h2>طريقة الشراء</h2><span>لمذكرات الفيزياء عند توفرها؛ تصلك المذكرة على واتساب خلال ساعات</span></div>
   <div class="steps">
     <div class="step"><h3>اختر</h3><p>اختر المذكرة أو الباقة واكتب اسمك ورقم هاتفك كما تريده أن يظهر على المذكرة.</p></div>
     <div class="step"><h3>ادفع</h3><p>حوّل المبلغ عبر كليك (CliQ) من تطبيق بنكك أو محفظتك، أو ادفع بالبطاقة.</p></div>
@@ -216,12 +221,14 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
 
 <section id="faq">
   <div class="sh"><h2>أسئلة شائعة</h2></div>
-  <details><summary>هل الفيديوهات مجانية؟</summary><p>نعم، كل فيديوهات السلسلة مجانية على يوتيوب وستبقى كذلك. المذكرات اختيارية لمن يريد ملخّصًا مطبوعًا مرتبطًا بالفيديوهات.</p></details>
+  <details><summary>هل الفيديوهات مجانية؟</summary><p>نعم، كل فيديوهات السلسلتين مجانية على يوتيوب وستبقى كذلك.</p></details>
+  <details><summary>هل مذكرات الرياضيات مجانية فعلًا؟</summary><p>نعم، مذكرات الرياضيات مجانية بالكامل، صدقة جارية عن روح والديّ رحمهما الله. حمّلها مباشرة بلا تسجيل، واطبعها وشاركها كما تشاء. مذكرتا الفصل الثاني تُضافان هنا قريبًا.</p></details>
+  <details><summary>متى تتوفر مذكرات الفيزياء؟</summary><p>مع نشر فيديوهات سلسلة فيزياء التوجيهي 2027 على القناة.</p></details>
   <details><summary>ما الفرق بين المذكرة وكتاب الحلول؟</summary><p>المذكرة تلخّص كل درس: المفاهيم والقوانين والأمثلة المحلولة والأخطاء الشائعة وتمارين إضافية. كتاب الحلول يحلّ تمارين كتاب الطالب كلها خطوة بخطوة، مرتبة حسب الصفحة ورقم السؤال.</p></details>
   <details><summary>هل يناسب الطبعة الجديدة من الكتاب؟</summary><p>نعم. مذكرات الرياضيات مبنية على كتاب الطالب للمسار الأكاديمي (طبعة 2025 للفصل الأول، والطبعة التجريبية للفصل الثاني)، ومذكرتا الفيزياء على كتاب الفيزياء للصف الثاني عشر، المسار الأكاديمي، بفصليه. إذا تغيّر شيء في الكتاب، تصلك النسخة المحدّثة مجانًا.</p></details>
   <details><summary>لماذا مذكرة الفيزياء واحدة للفصلين؟</summary><p>لأن وحدات الفيزياء الثماني مترابطة، فجمعناها في مذكرة واحدة وكتاب حلول واحد يغطيان الفصلين، وتبدأ كل وحدة بصفحات تذكير بالأساسيات من سلسلة «تأسيس الفيزياء».</p></details>
   <details><summary>متى تصلني المذكرة؟</summary><p>عادة خلال ساعات من وصول الإيصال، وفي أقصى حد خلال 24 ساعة.</p></details>
-  <details><summary>هل يمكن مشاركة الملف مع الأصدقاء؟</summary><p>النسخة شخصية وعليها اسمك ورقمك في كل صفحة. يمكنك طباعتها لنفسك، لكن يرجى عدم نشرها. سعرها منخفض حتى يستطيع كل طالب شراء نسخته.</p></details>
+  <details><summary>هل يمكن مشاركة الملف مع الأصدقاء؟</summary><p>مذكرات الرياضيات: نعم، شاركها مع من تشاء. مذكرات الفيزياء عند توفرها نسخة شخصية عليها اسمك، فيرجى عدم نشرها.</p></details>
   <details><summary>هل أستطيع الطباعة؟</summary><p>نعم، الملف بحجم A4 ومصمم ليُطبع بالألوان أو بالأبيض والأسود.</p></details>
 </section>
 
@@ -290,31 +297,27 @@ const CONFIG = {
   card: { s1:"", s1sol:"", s2:"", s2sol:"", phy:"", physol:"", b1:"", b2:"", year:"", bphy:"", ball:"" }
 };
 const PRODUCTS = [
-  {id:"s1",   cat:"m", tag:"الفصل الأول · 80 صفحة", name:"مذكرة الرياضيات: الفصل الأول", price:4,
+  {id:"s1",   cat:"m", free:"pdf/Tawjihi2027_Math_Sem1.pdf", tag:"الفصل الأول · 80 صفحة", name:"مذكرة الرياضيات: الفصل الأول", price:4,
    desc:"ملخّص كل درس مع أمثلة محلولة وأخطاء شائعة وتمارين إضافية، واختبار تجريبي شامل.",
    pts:["الوحدة 1: الاقترانات والمقادير الجبرية","الوحدة 2: المتطابقات والمعادلات المثلثية","الوحدة 3: التفاضل وتطبيقاته","الوحدة 4: الأعداد المركّبة"]},
-  {id:"s1sol", cat:"m",tag:"الفصل الأول · 99 صفحة", name:"حلول تمارين الكتاب: الفصل الأول", price:6,
+  {id:"s1sol", cat:"m", free:"pdf/Tawjihi2027_Math_Sem1_Solutions.pdf",tag:"الفصل الأول · 99 صفحة", name:"حلول تمارين الكتاب: الفصل الأول", price:6,
    desc:"حل كل تمارين كتاب الطالب خطوة بخطوة مع سبب كل خطوة، مرتبة حسب الصفحة ورقم السؤال.",
    pts:["أتحقق من فهمي، أتدرب وأحل المسائل","مهارات التفكير العليا","اختبارات نهاية الوحدات"]},
-  {id:"s2",   cat:"m", tag:"الفصل الثاني · 49 صفحة", name:"مذكرة الرياضيات: الفصل الثاني", price:4,
+  {id:"s2",   cat:"m", free:"soon", tag:"الفصل الثاني · 49 صفحة", name:"مذكرة الرياضيات: الفصل الثاني", price:4,
    desc:"ملخّص كل درس مع أمثلة محلولة وأخطاء شائعة وتمارين إضافية، واختبار تجريبي شامل.",
    pts:["الوحدة 5: التكامل","الوحدة 6: المتجهات","الوحدة 7: الإحصاء والاحتمالات"]},
-  {id:"s2sol", cat:"m",tag:"الفصل الثاني · 87 صفحة", name:"حلول تمارين الكتاب: الفصل الثاني", price:6,
+  {id:"s2sol", cat:"m", free:"soon",tag:"الفصل الثاني · 87 صفحة", name:"حلول تمارين الكتاب: الفصل الثاني", price:6,
    desc:"حل كل تمارين كتاب الطالب خطوة بخطوة مع سبب كل خطوة، مرتبة حسب الصفحة ورقم السؤال.",
    pts:["أتحقق من فهمي، أتدرب وأحل المسائل","مهارات التفكير العليا","اختبارات نهاية الوحدات"]},
-  {id:"phy",  cat:"p", tag:"الفصلان الأول والثاني · 291 صفحة", name:"مذكرة الفيزياء: الفصلان الأول والثاني", price:8,
+  {id:"phy",  cat:"p", soon:true, tag:"الفصلان الأول والثاني · 291 صفحة", name:"مذكرة الفيزياء: الفصلان الأول والثاني", price:8,
    desc:"ملخّص كل درس من الوحدات الثماني: المفاهيم والقوانين برسوم توضيحية، وأمثلة محلولة خطوة بخطوة وأخطاء شائعة، ولكل درس رمزا QR لفيديو الشرح وفيديو حل الأسئلة.",
    pts:["الفصل الأول: الزخم الخطي والتصادمات، الحركة الدورانية، الكهرباء السكونية، التيار الكهربائي","الفصل الثاني: المغناطيسية، التيار المتردد والدارات الإلكترونية، الفيزياء الحديثة، الفيزياء النووية","صفحات تذكير بالأساسيات قبل كل وحدة"]},
-  {id:"physol",cat:"p", tag:"الفصلان الأول والثاني · 253 صفحة", name:"حلول أسئلة كتاب الفيزياء: الفصلان", price:10,
+  {id:"physol",cat:"p", soon:true, tag:"الفصلان الأول والثاني · 253 صفحة", name:"حلول أسئلة كتاب الفيزياء: الفصلان", price:10,
    desc:"حل كل أسئلة كتاب الطالب بكل الخطوات: المعطيات، والقانون، والتعويض بالوحدات، والجواب في إطار، مع رسوم توضيحية حيث تلزم.",
    pts:["أتحقق، أفكر، والأسئلة داخل الدروس","مراجعة الدرس ومراجعة الوحدة","مرتبة حسب الوحدة والدرس ورقم السؤال"]}
 ];
 const BUNDLES = [
-  {id:"b1",  cat:"m", name:"باقة الفصل الأول", price:8, items:["s1","s1sol"], sub:"المذكرة مع كتاب الحلول"},
-  {id:"year",cat:"m", name:"باقة الرياضيات كاملة", price:15, items:["s1","s1sol","s2","s2sol"], sub:"المذكرات الأربع للفصلين"},
-  {id:"b2",  cat:"m", name:"باقة الفصل الثاني", price:8, items:["s2","s2sol"], sub:"المذكرة مع كتاب الحلول"},
-  {id:"bphy",name:"باقة الفيزياء كاملة", price:15, items:["phy","physol"], sub:"مذكرة الفيزياء مع كتاب الحلول للفصلين", cat:"p"},
-  {id:"ball",name:"الباقة الشاملة", price:27, items:["s1","s1sol","s2","s2sol","phy","physol"], sub:"المذكرات الست: الرياضيات والفيزياء للفصلين", best:true, cat:"all"}
+  {id:"bphy",name:"باقة الفيزياء كاملة", price:15, items:["phy","physol"], sub:"مذكرة الفيزياء مع كتاب الحلول للفصلين", cat:"p", soon:true}
 ];
 /* =========================== */
 
@@ -333,8 +336,9 @@ const card=p=>`
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
       <ul>${p.pts.map(x=>`<li>${x}</li>`).join("")}</ul>
-      <div class="buyrow"><span class="price">${p.price} <small>${CONFIG.currency}</small></span>
-        <button class="btn" type="button" data-buy="${p.id}">اشترِ الآن</button></div>
+      <div class="buyrow">${p.free?`<span class="price free">مجانًا</span>${p.free==="soon"?'<span class="btn soon" aria-disabled="true">قريبًا</span>':`<a class="btn" href="${p.free}" download>تحميل مجاني</a>`}`
+        :p.soon?`<span class="price">${p.price} <small>${CONFIG.currency}</small></span><span class="btn soon" aria-disabled="true">قريبًا</span>`
+        :`<span class="price">${p.price} <small>${CONFIG.currency}</small></span><button class="btn" type="button" data-buy="${p.id}">اشترِ الآن</button>`}</div>
     </div>
   </article>`;
 $("#grid").innerHTML=Object.keys(CATS).map(c=>`<h3 class="cat" data-cat="${c}">${CATS[c]}</h3>`+PRODUCTS.filter(p=>p.cat===c).map(p=>card(p).replace('<article class="prod">',`<article class="prod" data-cat="${c}">`)).join("")).join("");
@@ -347,7 +351,7 @@ $("#bgrid").innerHTML=BUNDLES.map(b=>{
     <ul>${b.items.map(i=>`<li>${byId[i].name}</li>`).join("")}</ul>
     <div><span class="price">${b.price} <small>${CONFIG.currency}</small></span><span class="was">${full}</span></div>
     <span class="save">توفّر ${full-b.price} ${CONFIG.currency}</span>
-    <button class="btn" type="button" data-buy="${b.id}">اشترِ الباقة</button>
+    ${b.soon?'<span class="btn soon" aria-disabled="true">قريبًا</span>':`<button class="btn" type="button" data-buy="${b.id}">اشترِ الباقة</button>`}
   </article>`}).join("");
 
 /* subject switch: #math, #physics or all */
