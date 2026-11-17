@@ -166,9 +166,10 @@ function pick(btn,o){
 $('next').onclick=function(){if(state.i<state.list.length-1){state.i++;show()}else finish()};
 $('start').onclick=function(){begin(1)};
 function stripTags(s){return s.replace(/<sup>/g,'^').replace(/<sub>/g,'_').replace(/<[^>]+>/g,'')}
+function yt(id){return 'https://www.youtube.com/watch?v='+id}
 function epRow(e){
-  var act=e[2]?'<a class="btn alt sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v='+e[2]+'">شاهد</a>':'<span class="soon">قريبًا على القناة</span>';
-  return '<div class="ep"><div class="n">تأسيس الفيزياء '+e[0]+'</div><div><b>'+e[1]+'</b></div><div>'+act+'</div></div>'
+  if(!e[2]) return '<div class="ep"><div class="n">تأسيس الفيزياء '+e[0]+'</div><div><b>'+e[1]+'</b></div><div><span class="soon">قريبًا على القناة</span></div></div>';
+  return '<div class="ep"><div class="n">تأسيس الفيزياء '+e[0]+'</div><div><a href="'+yt(e[2])+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline"><b>'+e[1]+'</b></a></div><div><a class="btn alt sm" target="_blank" rel="noopener" href="'+yt(e[2])+'">شاهد الحلقة</a></div></div>'
 }
 function finish(){
   $('prog').style.width='100%';
@@ -186,7 +187,7 @@ function finish(){
   h+='</div>';
   if(state.wrong.length){
     h+='<div class="card"><h3 style="margin:0 0 4px">الأسئلة التي أخطأت فيها</h3><ul class="wrongs">';
-    state.wrong.forEach(function(q){h+='<li><b>'+W(q[1])+'</b><br>الإجابة الصحيحة: '+W(q[2])+' · الحلقة: تأسيس الفيزياء '+q[0]+'</li>'})
+    state.wrong.forEach(function(q){h+='<li><b>'+W(q[1])+'</b><br>الإجابة الصحيحة: '+W(q[2])+' · <a href="'+yt(EP[q[0]][2])+'" target="_blank" rel="noopener">شاهد الحلقة '+q[0]+' على يوتيوب</a></li>'})
     h+='</ul></div>'
   }
   if(state.level==1){
