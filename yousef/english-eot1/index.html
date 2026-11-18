@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إنجليزي يوسف · امتحان نهاية الفصل الأول · Grade 8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213d; --ink2:#4a5672; --muted:#7a8499; --bg:#f6f3ec; --card:#ffffff; --line:#e6e0d3;
+  --gold:#b8862b; --gold-soft:#f6ecd6; --navy:#1d2b53;
+  --ok:#15803d; --ok-bg:#e7f6ec; --bad:#c0262d; --bad-bg:#fdecec; --hint:#8a5a00; --hint-bg:#fff6dc;
+  --ocean:#0e7c86; --space:#4f46e5; --wonders:#c2410c; --who:#9d174d; --gram:#15803d;
+  --r:18px; --sh:0 1px 2px rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.07);
+  --ar:'Tajawal','Segoe UI','Noto Sans Arabic',Tahoma,sans-serif;
+  --en:'Lexend','Segoe UI',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ar);font-size:18px;line-height:1.75}
+button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
+.en{font-family:var(--en);direction:ltr;unicode-bidi:isolate}
+.enb{font-family:var(--en);direction:ltr;text-align:left}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:8px}
+
+/* ---------- header & nav ---------- */
+header.top{background:var(--navy);color:#fff;padding:14px 20px 0;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+.top-row{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.brand .logo{width:42px;height:42px;border-radius:12px;background:var(--gold);display:grid;place-items:center;font-family:var(--en);font-weight:700;font-size:20px;color:var(--navy);flex:none}
+.brand>div{min-width:0}
+.brand h1{font-size:19px;margin:0;line-height:1.3;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:block;font-size:13px;color:#c9d1e6;font-weight:500}
+.tools{display:flex;gap:8px;align-items:center}
+.pill{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:6px 12px;font-size:15px;display:flex;gap:6px;align-items:center}
+.pill:hover{background:rgba(255,255,255,.18)}
+.pill.on{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+nav.tabs{display:flex;gap:4px;max-width:1180px;margin:10px auto 0;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{border:0;background:transparent;color:#c9d1e6;padding:10px 14px 12px;border-radius:12px 12px 0 0;font-weight:700;font-size:16px;white-space:nowrap;display:flex;gap:6px;align-items:center}
+nav.tabs button[aria-selected=true]{background:var(--bg);color:var(--navy)}
+nav.tabs button:hover:not([aria-selected=true]){color:#fff;background:rgba(255,255,255,.07)}
+
+main{max-width:1180px;margin:0 auto;padding:22px 18px 80px}
+section.view{display:none}
+section.view.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- common ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:20px}
+.grid{display:grid;gap:16px}
+h2.sec{font-size:28px;margin:6px 0 4px;font-weight:800}
+h3{margin:0 0 6px;font-size:21px}
+.lead{color:var(--ink2);margin:0 0 14px}
+.coach{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(0deg,#fff,#fff);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);margin:10px 0 20px;position:relative}
+.coach .av{width:52px;height:52px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;font-size:28px;flex:none;border:2px solid var(--gold)}
+.coach p{margin:0;flex:1}
+.spk{border:0;background:var(--gold-soft);color:var(--navy);border-radius:999px;padding:6px 12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;font-size:15px;line-height:1.2;flex:none;transition:transform .1s}
+.spk:hover{background:#efdcb2}
+.spk:active{transform:scale(.95)}
+.spk.mini{padding:3px 8px;font-size:14px}
+.spk.playing{background:var(--gold);color:#fff}
+.btn{border:0;background:var(--navy);color:#fff;border-radius:12px;padding:10px 18px;font-weight:700;display:inline-flex;gap:8px;align-items:center}
+.btn:hover{filter:brightness(1.15)}
+.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.sm{padding:6px 12px;font-size:15px;border-radius:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;font-size:16px;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip.t-ocean[aria-pressed=true]{background:var(--ocean);border-color:var(--ocean)}
+.chip.t-space[aria-pressed=true]{background:var(--space);border-color:var(--space)}
+.chip.t-wonders[aria-pressed=true]{background:var(--wonders);border-color:var(--wonders)}
+.chip.t-who[aria-pressed=true]{background:var(--who);border-color:var(--who)}
+.chip.t-gram[aria-pressed=true]{background:var(--gram);border-color:var(--gram)}
+.seg{display:inline-flex;background:#ebe5d8;border-radius:14px;padding:4px;gap:4px;flex-wrap:wrap;margin-bottom:16px}
+.seg button{border:0;background:transparent;border-radius:10px;padding:8px 14px;font-weight:700;font-size:16px;color:var(--ink2)}
+.seg button[aria-pressed=true]{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.badge{display:inline-block;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700;background:var(--gold-soft);color:var(--hint)}
+.note{background:var(--hint-bg);border:1px solid #f0dca0;border-radius:14px;padding:12px 16px;color:#5c4100;font-size:16px}
+.muted{color:var(--muted)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+kbd{font-family:var(--en);background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:0 6px;font-size:15px}
+
+/* ---------- home ---------- */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:stretch}
+.hero .welcome{background:var(--navy);color:#fff;border-radius:22px;padding:26px;position:relative;overflow:hidden}
+.hero .welcome h2{font-size:32px;margin:0 0 8px}
+.hero .welcome p{color:#d7def0;margin:0 0 16px}
+.hero .welcome .big8{position:absolute;left:-10px;bottom:-60px;font-family:var(--en);font-size:220px;font-weight:700;color:rgba(255,255,255,.06);line-height:1}
+.marks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mk{border-radius:16px;padding:14px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh)}
+.mk b{font-family:var(--en);font-size:30px;display:block;line-height:1.1}
+.examMap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.part{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:right;box-shadow:var(--sh);border-top:6px solid var(--c,#999);transition:transform .15s}
+.part:hover{transform:translateY(-3px)}
+.part .n{font-family:var(--en);font-weight:700;color:var(--c);font-size:14px}
+.part h4{margin:2px 0 4px;font-size:18px}
+.part .pts{font-family:var(--en);font-weight:700;font-size:22px}
+.part .what{font-size:14px;color:var(--ink2);line-height:1.5}
+.stars{color:var(--gold);letter-spacing:2px;font-size:16px;margin-top:6px}
+.how li{margin-bottom:6px}
+
+/* ---------- vocab cards ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.flip{perspective:900px;height:230px;border:0;background:none;padding:0;text-align:inherit}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh);padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+.face.back{transform:rotateY(180deg);background:var(--c,#333);color:#fff;border:0}
+.face .emo{font-size:40px;line-height:1}
+.face .w{font-family:var(--en);font-size:26px;font-weight:600;direction:ltr}
+.face .syl{font-family:var(--en);color:var(--muted);font-size:15px;direction:ltr}
+.face .ar{font-size:21px;font-weight:800}
+.face .pron{font-size:15px;opacity:.9}
+.face .ex{font-family:var(--en);font-size:13.5px;line-height:1.45;direction:ltr;opacity:.95}
+.face .ex b{text-decoration:underline}
+.face .acts{display:flex;gap:6px;margin-top:4px}
+.face.back .spk{background:rgba(255,255,255,.2);color:#fff}
+.flip-hint{font-size:12px;color:var(--muted)}
+
+/* games */
+.game{max-width:760px;margin:0 auto}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{width:100%;border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;font-weight:700;font-size:18px;margin-bottom:10px;transition:all .15s;min-height:56px}
+.tile.en{font-family:var(--en)}
+.tile.sel{border-color:var(--navy);background:#eef1fa}
+.tile.done{opacity:.25;pointer-events:none;border-color:var(--ok);background:var(--ok-bg)}
+.tile.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.bigplay{width:110px;height:110px;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:44px;display:grid;place-items:center;margin:10px auto 18px;box-shadow:0 10px 30px rgba(29,43,83,.35)}
+.bigplay:hover{transform:scale(1.04)}
+.opts4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.scorebar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
+.spellbox{display:flex;gap:6px;justify-content:center;direction:ltr;margin:14px 0}
+.spellbox span{width:38px;height:46px;border-bottom:3px solid var(--navy);font-family:var(--en);font-size:26px;display:grid;place-items:center;font-weight:600}
+.spellbox span.ok{color:var(--ok);border-color:var(--ok)}
+.spellbox span.bad{color:var(--bad);border-color:var(--bad)}
+input.spell{font-family:var(--en);font-size:26px;text-align:center;direction:ltr;width:100%;max-width:380px;border:2px solid var(--line);border-radius:14px;padding:10px;display:block;margin:0 auto}
+
+/* ---------- MCQ ---------- */
+.q{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.q .stem{display:flex;gap:10px;align-items:flex-start}
+.q .num{flex:none;width:34px;height:34px;border-radius:10px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--en);font-weight:700}
+.q .txt{flex:1;font-family:var(--en);direction:ltr;text-align:left;font-size:18px;font-weight:500}
+.q .gap{display:inline-block;min-width:90px;border-bottom:2px solid var(--ink);text-align:center;color:var(--ok);font-weight:700}
+.q .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;direction:ltr}
+.opt{border:2px solid var(--line);background:#fff;border-radius:12px;padding:8px 14px;font-family:var(--en);font-size:17px;display:flex;gap:8px;align-items:center;text-align:left;transition:all .12s}
+.opt .L{width:24px;height:24px;border-radius:7px;background:#eef0f5;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.opt:hover:not(:disabled){border-color:var(--navy)}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.right .L{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .L{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+.opt.picked{border-color:var(--navy);background:#e6eaf6}
+.opt.picked .L{background:var(--navy);color:#fff}
+.q.col .opts{flex-direction:column}
+.fb{margin-top:10px;border-radius:12px;padding:10px 14px;font-size:16.5px;display:none}
+.fb.show{display:flex;gap:10px;align-items:flex-start}
+.fb.ok{background:var(--ok-bg);color:#0d4f27}
+.fb.no{background:var(--bad-bg);color:#7a1418}
+.fb .t{flex:1}
+.result{border-radius:18px;padding:18px;text-align:center;background:var(--navy);color:#fff;margin-top:14px}
+.result b{font-family:var(--en);font-size:40px;display:block}
+
+/* ---------- grammar ---------- */
+.lesson{margin-bottom:24px}
+.lesson .head{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.lesson .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:var(--gold-soft);flex:none}
+.formula{display:flex;flex-wrap:wrap;gap:8px;align-items:center;direction:ltr;justify-content:center;background:#f8f6f0;border-radius:14px;padding:14px;margin:12px 0;font-family:var(--en)}
+.fx{border-radius:10px;padding:6px 12px;font-weight:600;color:#fff}
+.plus{font-weight:700;color:var(--muted)}
+.c1{background:#2563eb}.c2{background:#c2410c}.c3{background:#15803d}.c4{background:#9d174d}.c5{background:#6d28d9}.c6{background:#0e7c86}.c7{background:#475569}
+.ex-list{display:grid;gap:8px;margin:10px 0}
+.exl{display:flex;gap:10px;align-items:center;background:#fafaf7;border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.exl .s{flex:1;font-family:var(--en);direction:ltr;text-align:left}
+.exl .a{font-size:15px;color:var(--ink2)}
+.cluetable{width:100%;border-collapse:separate;border-spacing:0 6px}
+.cluetable td{background:#fafaf7;padding:8px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cluetable td:first-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
+.cluetable td:last-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px}
+.cluetable .clue{font-family:var(--en);font-weight:700;color:#c2410c;direction:ltr}
+.builder{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.builder label{font-size:14px;color:var(--ink2);font-weight:700;display:block}
+.builder select{width:100%;font-family:var(--en);font-size:17px;padding:8px;border-radius:10px;border:1.5px solid var(--line);background:#fff;direction:ltr}
+.out{font-family:var(--en);direction:ltr;text-align:left;font-size:22px;background:#f8f6f0;border-radius:14px;padding:14px 16px;min-height:60px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.out .hl{border-radius:8px;padding:2px 8px;color:#fff}
+.out .x{color:var(--bad);text-decoration:line-through}
+.transform{display:grid;gap:10px}
+.word-tiles{display:flex;flex-wrap:wrap;gap:8px;direction:ltr;justify-content:center;min-height:52px;padding:8px;border-radius:14px}
+.word-tiles.target{background:#f8f6f0;border:2px dashed var(--line)}
+.wt{border:2px solid var(--navy);background:#fff;border-radius:10px;padding:6px 14px;font-family:var(--en);font-size:19px;font-weight:600}
+.wt.used{visibility:hidden}
+.orderbar{display:flex;gap:4px;direction:ltr;flex-wrap:wrap;justify-content:center;font-family:var(--en);font-size:14px;margin:8px 0}
+.orderbar span{padding:4px 10px;border-radius:8px;color:#fff}
+
+/* passage */
+.passage{font-family:var(--en);direction:ltr;text-align:left;font-size:19px;line-height:1.85;background:#fffdf8;border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.passage p{margin:0 0 14px}
+.passage .w{cursor:pointer;border-radius:5px;transition:background .1s}
+.passage .w:hover{background:var(--gold-soft)}
+.passage .s.reading{background:#fff1c7;box-shadow:0 0 0 3px #fff1c7;border-radius:4px}
+.passage .s.evid{background:#d8f3e0;box-shadow:0 0 0 3px #d8f3e0;border-radius:4px;transition:background .3s}
+.passage .gapslot{display:inline-block;min-width:110px;border-bottom:2px solid var(--navy);text-align:center;font-weight:700;color:var(--muted);padding:0 4px}
+.passage .gapslot.filled{color:var(--ok);border-color:var(--ok)}
+.pgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:start}
+.sticky{position:sticky;top:130px;max-height:calc(100vh - 150px);overflow:auto}
+.tip{position:fixed;z-index:80;background:var(--navy);color:#fff;border-radius:12px;padding:8px 12px;font-size:16px;box-shadow:0 10px 30px rgba(0,0,0,.25);pointer-events:none;display:none;max-width:260px;text-align:center}
+.tip .e{font-family:var(--en);font-weight:700;display:block}
+.qtype{font-size:12.5px;font-weight:800;border-radius:999px;padding:1px 9px;margin-inline-start:6px}
+.qt-info{background:#e0ecff;color:#1e40af}.qt-detail{background:#e3f6f4;color:#0b6169}.qt-word{background:#fde8f1;color:#9d174d}.qt-infer{background:#efe7ff;color:#5b21b6}.qt-main{background:#fdeedd;color:#9a3412}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pcard{text-align:right;border:1px solid var(--line);background:#fff;border-radius:18px;padding:16px;box-shadow:var(--sh);border-right:6px solid var(--c)}
+.pcard:hover{transform:translateY(-2px)}
+.pcard .t{font-family:var(--en);font-weight:600;font-size:18px;direction:ltr;text-align:left}
+.strat{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.strat div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:15px;line-height:1.55}
+.strat b{display:block;margin-bottom:4px}
+
+/* writing */
+textarea.pad{width:100%;min-height:260px;font-family:var(--en);font-size:18px;line-height:1.7;direction:ltr;text-align:left;border:2px solid var(--line);border-radius:14px;padding:14px;resize:vertical}
+textarea.pad:focus{border-color:var(--navy);outline:none}
+.meter{height:12px;background:#ebe5d8;border-radius:999px;overflow:hidden;margin:8px 0}
+.meter i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+.meter.full i{background:var(--ok)}
+.stats{display:flex;gap:16px;flex-wrap:wrap;font-weight:700;font-size:16px}
+.stats span b{font-family:var(--en)}
+.starter{border:1.5px dashed var(--navy);background:#fff;border-radius:10px;padding:4px 10px;font-family:var(--en);font-size:15px;direction:ltr;margin:3px}
+.starter:hover{background:#eef1fa}
+.checks li{margin-bottom:6px}
+.prompts{direction:ltr;text-align:left;font-family:var(--en);margin:0;padding-left:22px}
+.prompts li{margin-bottom:8px}
+.rubric{width:100%;border-collapse:collapse;font-size:16px}
+.rubric td,.rubric th{border-bottom:1px solid var(--line);padding:8px;text-align:right}
+.rubric .m{font-family:var(--en);font-weight:700;text-align:center}
+.fl{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.fl .card{padding:14px}
+.fl .it{display:flex;justify-content:space-between;align-items:center;gap:6px;direction:ltr;font-family:var(--en);font-size:16px;padding:4px 0;border-bottom:1px dashed var(--line)}
+.model{font-family:var(--en);direction:ltr;text-align:left;background:#f4f8f2;border:1px solid #cfe5c9;border-radius:14px;padding:14px 18px;font-size:17.5px}
+.model p{margin:0 0 10px}
+
+/* modal */
+dialog{border:0;border-radius:20px;padding:0;max-width:560px;width:calc(100% - 30px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(20,33,61,.55)}
+.dlg{padding:22px}
+.dlg select{width:100%;padding:8px;border-radius:10px;border:1.5px solid var(--line);font-size:15px;margin:4px 0 12px;direction:ltr}
+.dlg input[type=range]{width:100%}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:14px;z-index:90;display:none;max-width:90%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .examMap{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr}
+  .sticky{position:static;max-height:none}
+  .strat{grid-template-columns:1fr 1fr}
+  .builder{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .brand h1{font-size:16px}
+  .brand small{display:none}
+  .examMap{grid-template-columns:1fr}
+  .opts4{grid-template-columns:1fr}
+  .match{gap:8px}
+  .tile{font-size:16px;padding:10px}
+  .q .txt{font-size:17px}
+  .pill .lbl{display:none}
+  .pill{padding:6px 9px}
+  .brand .logo{width:34px;height:34px;font-size:16px}
+  .coach{flex-wrap:wrap}
+  .coach .av{width:40px;height:40px;font-size:22px}
+  .coach p{flex-basis:calc(100% - 60px)}
+  .sticky{top:0}
+  main{padding:16px 12px 70px}
+  h2.sec{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div class="brand">
+      <div class="logo">E8</div>
+      <div><h1>إنجليزي يوسف · امتحان نهاية الفصل الأول</h1><small>Grade 8 · End-of-Term 1 · 2026–2027</small></div>
+    </div>
+    <div class="tools">
+      <button class="pill" id="slowBtn" aria-pressed="false" title="نطق أبطأ">🐢 <span class="lbl">بطيء</span></button>
+      <button class="pill" id="stopBtn" title="إيقاف الصوت">⏹ <span class="lbl">إيقاف</span></button>
+      <button class="pill" id="setBtn" title="إعدادات الصوت">⚙️ <span class="lbl">الصوت</span></button>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-v="home" aria-selected="true">🏠 الرئيسية</button>
+    <button role="tab" data-v="vocab" aria-selected="false">📚 الكلمات</button>
+    <button role="tab" data-v="grammar" aria-selected="false">✏️ القواعد</button>
+    <button role="tab" data-v="reading" aria-selected="false">📖 القراءة</button>
+    <button role="tab" data-v="writing" aria-selected="false">✍️ الكتابة</button>
+    <button role="tab" data-v="mock" aria-selected="false">🏆 اختبار تجريبي</button>
+  </nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="view active" id="v-home">
+  <div class="hero">
+    <div class="welcome">
+      <div class="big8">8</div>
+      <h2>أهلاً يوسف! 👋</h2>
+      <p>هذه صفحتك للاستعداد لامتحان <span class="en">English</span> نهاية الفصل الأول. كل الكلمات الإنجليزية لها زر 🔊 لتسمع نطقها الصحيح، والشرح كله بالعربي.</p>
+      <div class="row">
+        <button class="btn gold" id="helloBtn">🔊 اسمع الترحيب</button>
+        <button class="btn ghost" style="background:transparent;color:#fff;border-color:#fff" data-go="vocab">ابدأ بالكلمات ←</button>
+      </div>
+    </div>
+    <div class="marks">
+      <div class="mk"><span class="muted">القراءة</span><b>60</b><span class="en muted">Reading &amp; Viewing</span></div>
+      <div class="mk"><span class="muted">الكتابة</span><b>40</b><span class="en muted">Writing</span></div>
+      <div class="mk" style="grid-column:1/-1"><span class="muted">جرّب صوت النطق الآن:</span>
+        <div class="row" style="margin-top:6px"><button class="spk" data-say="pollution">🔊 <span class="en">pollution</span></button><button class="spk" data-say="astronaut">🔊 <span class="en">astronaut</span></button><button class="spk" data-say="determination">🔊 <span class="en">determination</span></button></div>
+        <div class="muted" style="font-size:14px;margin-top:6px">إذا كان الصوت غير واضح، اضغط ⚙️ الصوت واختر صوتاً آخر.</div>
+      </div>
+    </div>
+  </div>
+  <h3 style="margin-top:26px">🗺️ خريطة الامتحان</h3>
+  <div class="examMap" id="examMap"></div>
+  <div class="card how" style="margin-top:20px">
+    <h3>💡 كيف تذاكر بهذه الصفحة؟</h3>
+    <ol>
+      <li><b>الكلمات:</b> قلّب البطاقات واسمع كل كلمة، ثم العب "التوصيل" و"اسمع واختر" و"التهجئة".</li>
+      <li><b>القواعد:</b> تعلّم سرّ <b>الكلمة الدليل</b> حول الفراغ، ثم حلّ التمارين.</li>
+      <li><b>القراءة:</b> اضغط على أي كلمة في النص لتسمعها وتعرف معناها. زر "📍 أين الدليل؟" يُريك الجواب داخل النص.</li>
+      <li><b>الكتابة:</b> تدرّب على الملخص ثم اكتب فقرتك، والصفحة تعدّ كلماتك وتفحص الأخطاء.</li>
+      <li><b>الاختبار التجريبي:</b> في النهاية، اختبر نفسك وشوف درجتك من 60.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- VOCAB -->
+<section class="view" id="v-vocab">
+  <h2 class="sec">📚 الكلمات <span class="en muted" style="font-size:18px">Part 1 · Vocabulary</span></h2>
+  <div class="coach"><div class="av">🧑‍🏫</div><p id="coach-vocab"></p><button class="spk" data-narr="coach-vocab">🔊 اسمع</button></div>
+  <div class="seg" id="vmode">
+    <button aria-pressed="true" data-m="cards">🃏 بطاقات</button>
+    <button aria-pressed="false" data-m="match">🔗 توصيل</button>
+    <button aria-pressed="false" data-m="listen">👂 اسمع واختر</button>
+    <button aria-pressed="false" data-m="spell">⌨️ تهجئة</button>
+    <button aria-pressed="false" data-m="school">📝 تمارين المدرسة</button>
+  </div>
+  <div class="chips" id="vthemes"></div>
+  <div id="vbody"></div>
+</section>
+
+<!-- GRAMMAR -->
+<section class="view" id="v-grammar">
+  <h2 class="sec">✏️ القواعد <span class="en muted" style="font-size:18px">Part 2 · Grammar</span></h2>
+  <div class="coach"><div class="av">🧑‍🏫</div><p id="coach-grammar"></p><button class="spk" data-narr="coach-grammar">🔊 اسمع</button></div>
+  <div class="seg" id="gmode">
+    <button aria-pressed="true" data-m="clues">🔎 الكلمة الدليل</button>
+    <button aria-pressed="false" data-m="modals">can / should</button>
+    <button aria-pressed="false" data-m="cond2">If … would</button>
+    <button aria-pressed="false" data-m="passive">is + done</button>
+    <button aria-pressed="false" data-m="nouns">a huge bottle</button>
+    <button aria-pressed="false" data-m="sets">📝 تمارين المدرسة</button>
+  </div>
+  <div id="gbody"></div>
+</section>
+
+<!-- READING -->
+<section class="view" id="v-reading">
+  <h2 class="sec">📖 القراءة <span class="en muted" style="font-size:18px">Part 3A + 3B · Reading</span></h2>
+  <div class="coach"><div class="av">🧑‍🏫</div><p id="coach-reading"></p><button class="spk" data-narr="coach-reading">🔊 اسمع</button></div>
+  <div id="rbody"></div>
+</section>
+
+<!-- WRITING -->
+<section class="view" id="v-writing">
+  <h2 class="sec">✍️ الكتابة <span class="en muted" style="font-size:18px">Part 4 · Writing</span></h2>
+  <div class="coach"><div class="av">🧑‍🏫</div><p id="coach-writing"></p><button class="spk" data-narr="coach-writing">🔊 اسمع</button></div>
+  <div id="wbody"></div>
+</section>
+
+<!-- MOCK -->
+<section class="view" id="v-mock">
+  <h2 class="sec">🏆 اختبار تجريبي <span class="en muted" style="font-size:18px">Mock Test · Reading 60</span></h2>
+  <div class="coach"><div class="av">🧑‍🏫</div><p id="coach-mock"></p><button class="spk" data-narr="coach-mock">🔊 اسمع</button></div>
+  <div id="mbody"></div>
+</section>
+</main>
+
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+
+<dialog id="dlg">
+  <div class="dlg">
+    <h3>⚙️ إعدادات الصوت</h3>
+    <p class="muted" style="font-size:15px;margin-top:0">أفضل نطق إنجليزي يكون في متصفح <b class="en">Microsoft Edge</b> (أصوات <span class="en">Natural</span>) أو <b class="en">Google Chrome</b>. اختر الصوت الأوضح لك.</p>
+    <label>🇬🇧 الصوت الإنجليزي</label>
+    <select id="selEn"></select>
+    <label>🇦🇪 الصوت العربي</label>
+    <select id="selAr"></select>
+    <label>سرعة النطق الإنجليزي: <b id="rateLbl" class="en">0.9</b></label>
+    <input type="range" id="rate" min="0.5" max="1.2" step="0.05" value="0.9">
+    <div class="row" style="margin-top:14px">
+      <button class="btn sm" id="testEn">🔊 جرّب الإنجليزي</button>
+      <button class="btn sm ghost" id="testAr">🔊 جرّب العربي</button>
+      <span class="spacer"></span>
+      <button class="btn sm gold" id="dlgClose">تم ✓</button>
+    </div>
+  </div>
+</dialog>
+<script>
+// ================= DATA =================
+const THEMES = {
+  ocean:   {en:'The Ocean', ar:'المحيط', icon:'🌊', color:'#0e7c86'},
+  space:   {en:'Space', ar:'الفضاء', icon:'🚀', color:'#4f46e5'},
+  wonders: {en:'Scientific Wonders', ar:'عجائب العلوم', icon:'🌋', color:'#c2410c'},
+  who:     {en:'Who am I?', ar:'من أنا؟', icon:'🪪', color:'#9d174d'},
+  gram:    {en:'Ocean (Grammar unit)', ar:'كلمات وحدة القواعد', icon:'♻️', color:'#15803d'}
+};
+
+// word, Arabic meaning, syllables, Arabic pronunciation guide, emoji, theme, example
+const WORDS = [
+ ['pollution','تلوّث','pol·lu·tion','پَلُوشَن','🏭','ocean','Plastic and other waste cause pollution in the ocean.'],
+ ['toxins','سُموم','tox·ins','تُوكْسِنز','☠️','ocean','Oil and chemicals release toxins into the water.'],
+ ['predator','حيوان مُفترِس (يصطاد غيره)','pred·a·tor','پْرِيدَتَر','🦈','ocean','Some sea animals can be dangerous predators.'],
+ ['carnivore','آكِل لُحوم','car·ni·vore','كارْنِڤُور','🥩','ocean','A shark is a carnivore because it eats other animals.'],
+ ['creature','مخلوق / كائن حيّ','crea·ture','كْرِيتْشَر','🐙','ocean','A whale is a large and unusual creature.'],
+ ['bacteria','بكتيريا (كائنات صغيرة جداً)','bac·te·ri·a','باكْتِيرْيا','🦠','ocean','Tiny bacteria can be harmful to sea animals.'],
+ ['habitat','موطِن (المكان الذي يعيش فيه الكائن)','hab·i·tat','هابِتات','🏝️','ocean','Sea turtles need a safe habitat to live and lay their eggs.'],
+ ['reef','شِعاب مرجانية','reef','رِيف','🪸','ocean','Coral reefs are home to many different sea animals.'],
+ ['erosion','تآكُل / تَعْرِية','e·ro·sion','إيرُوجَن','🏜️','ocean','Wave action can cause erosion of the coastline.'],
+ ['climate','مُناخ','cli·mate','كْلايْمِت','🌍','ocean','The climate of the ocean affects the temperature and weather.'],
+ ['weather','طَقْس','weath·er','وِيذَر','⛅','space','The weather can change from hot to cold.'],
+ ['gravity','جاذبية','grav·i·ty','گْراڤِتي','🍎','space','Gravity keeps us on the ground.'],
+ ['oxygen','أكسجين','ox·y·gen','أوكْسِجِن','🫁','space','Astronauts need oxygen to breathe in space.'],
+ ['mission','مُهِمّة','mis·sion','مِيشَن','🎯','space','A mission is a task or journey with a special goal.'],
+ ['experiment','تجربة علمية','ex·per·i·ment','إكْسْپيرِمِنْت','🧪','space','Scientists do an experiment to test new ideas.'],
+ ['satellite','قمر صناعي','sat·el·lite','ساتَلايْت','🛰️','space','A satellite moves around Earth and sends information.'],
+ ['astronaut','رائد فضاء','as·tro·naut','أَسْتْرَنوت','👨‍🚀','space','An astronaut is a person who travels to space.'],
+ ['orbit','مَدار','or·bit','أورْبِت','🌕','space','The Moon goes around the Earth in a regular orbit.'],
+ ['surface','سَطْح','sur·face','سِيرْفِس','🪨','space','The surface of Mars is rocky and covered in dust.'],
+ ['canyon','وادٍ عميق (أُخدود)','can·yon','كانْيَن','🏞️','wonders','A canyon is a deep valley with steep sides.'],
+ ['volcano','بُركان','vol·ca·no','ڤولْكَيْنو','🌋','wonders','A volcano is a mountain that can erupt hot lava, ash and gas.'],
+ ['arteries','شَرايين','ar·ter·ies','آرْتَريز','❤️','wonders','Arteries carry blood away from the heart.'],
+ ['veins','أوْرِدة','veins','ڤَيْنز','🩸','wonders','Blood returns to the heart through veins.'],
+ ['trench','خندق عميق في قاع المحيط','trench','تْرِنْتْش','🕳️','wonders','A trench is a long, narrow and very deep part of the ocean.'],
+ ['earthquake','زِلْزال','earth·quake','إيرْثْكْوَيْك','🫨','wonders','A sudden movement of the earth\'s surface is called an earthquake.'],
+ ['minerals','مَعادن','min·er·als','مِنَرَلْز','💎','wonders','Natural substances found in rocks, such as gold and salt, are called minerals.'],
+ ['fossil','أُحفورة (بقايا كائن قديم)','fos·sil','فوسِل','🦴','wonders','The remains of a plant or animal from a long time ago are called a fossil.'],
+ ['identity','هُويّة','i·den·ti·ty','آيْدِنْتِتي','🪪','who','Your identity is who you are, including your culture, values and beliefs.'],
+ ['personality','شخصيّة','per·son·al·i·ty','پيرْسَنالِتي','😊','who','A person\'s personality shows their feelings, behaviour and the way they think.'],
+ ['qualities','صِفات','qual·i·ties','كْوالِتيز','⭐','who','Being kind and honest are important qualities.'],
+ ['skills','مهارات','skills','سْكِلْز','🛠️','who','Skills are the things you can do well, such as speaking or drawing.'],
+ ['respect','احترام','re·spect','رِسْپِكْت','🤝','who','You should always show respect to your teachers and parents.'],
+ ['trust','ثِقة (بالآخرين)','trust','تْرَسْت','🫂','who','When someone believes in you, they show trust.'],
+ ['confidence','ثقة بالنفس','con·fi·dence','كونْفِدِنْس','💪','who','Feeling sure about yourself is called confidence.'],
+ ['responsible','مسؤول','re·spon·si·ble','رِسْپونْسَبِل','✅','who','Being responsible means doing what you should do and making good choices.'],
+ ['responsibility','مسؤولية','re·spon·si·bil·i·ty','رِسْپونْسَبِلِتي','📋','who','Responsibility means being in charge of your actions and duties.'],
+ ['teamwork','عمل جماعي','team·work','تيمْ وِيرْك','👥','who','Teamwork means working together with others to reach a goal.'],
+ ['challenge','تَحَدٍّ (شيء صعب)','chal·lenge','تْشالِنْج','🧗','who','A challenge is something difficult that needs effort.'],
+ ['determination','إصرار / عزيمة','de·ter·mi·na·tion','دِتيرْمِنَيْشَن','🔥','who','Determination helps you keep trying even when something is difficult.'],
+ ['goal','هَدَف','goal','گُول','🥅','who','A goal is something you want to achieve in the future.'],
+ ['plastic','بلاستيك','plas·tic','پْلاسْتِك','🧴','gram','Plastic can harm fish and other marine animals.'],
+ ['chemicals','مواد كيميائية','chem·i·cals','كِيمِكَلْز','⚗️','gram','Chemicals from factories can pollute rivers.'],
+ ['garbage','قُمامة','gar·bage','گارْبِج','🗑️','gram','Many beaches are covered with plastic and garbage.'],
+ ['trash','قُمامة','trash','تْراش','🚮','gram','Volunteers go to beaches to collect trash.'],
+ ['harbor','ميناء','har·bor','هارْبَر','⚓','gram','Big ships stop at the harbor.'],
+ ['current','تيّار مائي','cur·rent','كَرَنْت','〰️','gram','The ocean current moves the water.'],
+ ['huge','ضَخْم جداً','huge','هْيُوج','🐋','gram','Fishing boats use huge nets.'],
+ ['floats','يَطْفو','floats','فْلوتْس','🛟','gram','Plastic floats on the surface of the water.'],
+ ['installed','رُكِّبَ / تمّ تركيبه','in·stalled','إنْسْتولْد','🔧','gram','New machines are installed in the harbor.'],
+ ['machine','آلة','ma·chine','مَشين','⚙️','gram','This machine collects plastic from the water.'],
+ ['technology','تكنولوجيا','tech·nol·o·gy','تِكْنولَجي','💻','gram','New technology helps us clean the oceans.'],
+ ['river','نَهْر','riv·er','رِڤَر','🏞️','gram','Chemicals flow into the river.'],
+ ['ocean','محيط','o·cean','أوشَن','🌊','gram','The ocean is home to many animals.']
+];
+
+// extra dictionary for tap-to-translate in reading passages
+const DICT_EXTRA = {
+ diversity:'تنوّع', heritage:'تُراث', traditions:'تقاليد', volunteers:'متطوّعون', volunteering:'التطوّع', volunteer:'متطوّع', sustainable:'مُستدام', generations:'أجيال', contribute:'يُساهم', contribution:'مساهمة', engineer:'مهندس', organised:'مُنظّم', elderly:'كبار السن', patient:'صبور', magma:'صُهارة', crust:'قِشرة', nutrients:'مغذّيات', fertile:'خصبة', eruptions:'ثورانات', erupt:'يثور', predict:'يتنبّأ', dissolves:'يُذيب', limestone:'حجر جيري', stalactites:'هوابط (من السقف)', stalagmites:'صواعد (من الأرض)', adaptations:'تكيّفات', fragile:'هشّ / سهل الكسر', preserve:'يحافظ على', polyps:'بوليبات (حيوانات مرجانية صغيرة)', bleaching:'ابيضاض', coastlines:'سواحل', depend:'يعتمد', layers:'طبقات', protected:'محميّ', nervous:'متوتّر', honesty:'صدق / أمانة', kindness:'لُطف', recycle:'يُعيد التدوير', represent:'يمثّل', achieve:'يحقّق', encourage:'يشجّع', encouraged:'شجّع', mistakes:'أخطاء', effort:'جهد', awareness:'وعي', impact:'أثر', communication:'تواصل', respectful:'محترم / مؤدّب', monitoring:'مراقبة', ancient:'قديم جداً', curious:'فضولي / يحب الاستكشاف', creative:'مبدع', solutions:'حلول', success:'نجاح', opportunities:'فُرص', community:'مجتمع', cultures:'ثقافات', culture:'ثقافة', values:'قِيَم', beliefs:'معتقدات', experiences:'تجارب / خبرات', hardworking:'مُجتهد', promises:'وعود', proud:'فخور', environment:'بيئة', cooperation:'تعاون', backgrounds:'خلفيات', shaped:'تتشكّل', 'open-minded':'منفتح', positive:'إيجابي', brighter:'أكثر إشراقاً', knowledge:'معرفة', participate:'يشارك', remind:'يذكّر', grow:'ينمو / يتطوّر', amazing:'مدهش', famous:'مشهور', wonders:'عجائب', kilometres:'كيلومترات', formed:'تشكّل', slowly:'ببطء', rock:'صخر', rocks:'صخور', history:'تاريخ', scientists:'علماء', planet:'كوكب', eagles:'نسور', deer:'غزلان', unique:'فريد', desert:'صحراء', attracts:'يجذب', visitors:'زوّار', hiking:'المشي في الطبيعة', powerful:'قويّ', dangerous:'خطير', useful:'مفيد', opening:'فتحة', escape:'يخرج / يهرب', pressure:'ضغط', destroy:'يدمّر', agriculture:'زراعة', warnings:'تحذيرات', temperature:'درجة الحرارة', caves:'كهوف', drawings:'رسومات', explore:'يستكشف', exploring:'استكشاف', damage:'يُتلف', extraordinary:'استثنائي', rainforests:'غابات مطيرة', skeletons:'هياكل', marine:'بحري', turtles:'سلاحف', storms:'عواصف', waves:'أمواج', rising:'ارتفاع', colour:'لون', patience:'صبر', friendship:'صداقة', advice:'نصيحة', disagreements:'خلافات', calmly:'بهدوء', universe:'الكون', spacecraft:'مركبة فضائية', exercise:'يتمرّن', muscles:'عضلات', equipment:'معدّات', devices:'أجهزة', extreme:'شديد جداً', supplies:'إمدادات', investigate:'يتحقّق / يدرس', distant:'بعيد', probe:'مسبار', achievements:'إنجازات', discoveries:'اكتشافات', whales:'حيتان', dolphins:'دلافين', danger:'خطر', mistake:'يخطئ / خطأ', trap:'يحبس / يصطاد', organisations:'منظّمات', conservation:'حماية / صون', beaches:'شواطئ', fishing:'صيد السمك', nets:'شِباك', microplastics:'جزيئات بلاستيك صغيرة', remove:'يزيل', pollute:'يلوّث', fuel:'وقود', ships:'سفن', laws:'قوانين', campaigns:'حملات', solar:'شمسي', reduce:'يقلّل', protect:'يحمي', healthy:'صحّي / سليم', rubbish:'نفايات', factories:'مصانع', properly:'بشكل صحيح', interests:'اهتمامات', special:'مميّز', different:'مختلف', important:'مهم', collected:'جمعنا', bottles:'زجاجات', project:'مشروع', develop:'يتطوّر', skills:'مهارات', care:'رعاية', centre:'مركز', stories:'قصص', role:'دور', valuable:'قيّم'
+};
+
+// ---------- Vocabulary practice (teacher worksheets, Part 1) ----------
+const VOCAB_SETS = [
+ {id:'v1', theme:'ocean', title:'Practice 1 · The Ocean', qs:[
+  ['Plastic and other waste cause ___ in the ocean.',['pollution','climate','habitat'],[0],'النفايات والبلاستيك تُسبّب "تلوّث" في المحيط ← pollution.'],
+  ['Some sea animals can be dangerous ___.',['predators','bacteria','erosion'],[0],'الحيوانات الخطيرة التي تصطاد غيرها اسمها predators.'],
+  ['A shark is a ___ because it eats other animals.',['predator','carnivore','creature'],[0,1],'مفتاح المعلمة: predator. وكلمة carnivore (آكل لحوم) صحيحة أيضاً لأن الجملة تقول "يأكل حيوانات أخرى". تذكّر الفرق: predator = يصطاد، carnivore = يأكل لحم.'],
+  ['Tiny ___ can be harmful to sea animals.',['creatures','bacteria','reefs'],[1],'كلمة Tiny (صغيرة جداً) + harmful (ضارّة) ← bacteria.'],
+  ['Coral ___ are home to many different sea animals.',['toxins','habitats','reefs'],[2],'Coral reefs = الشِّعاب المرجانية. الكلمتان تأتيان معاً دائماً.'],
+  ['Oil and chemicals release ___ into the water.',['pollution','toxins','climate'],[1],'الزيت والمواد الكيميائية تُطلق "سموم" ← toxins.'],
+  ['A whale is a large and unusual ___.',['creature','carnivore','erosion'],[0],'الحوت كائن حيّ كبير ← creature.'],
+  ['The ___ of the ocean affects the temperature and weather.',['climate','reef','habitat'],[0],'الشيء الذي يؤثّر في الحرارة والطقس هو المناخ ← climate.'],
+  ['Wave action can cause ___ of the coastline.',['erosion','bacteria','pollution'],[0],'الأمواج تُآكل الشاطئ ← erosion (تآكل).'],
+  ['Sea turtles need a safe ___ to live and lay their eggs.',['climate','habitat','predator'],[1],'مكان آمن للعيش ووضع البيض = موطن ← habitat.']
+ ]},
+ {id:'v2', theme:'space', title:'Practice 2 · Space', qs:[
+  ['Astronauts need ___ to breathe in space.',['climate','oxygen','gravity'],[1],'breathe = يتنفّس، والتنفّس يحتاج أكسجين ← oxygen.'],
+  ['An ___ is a person who travels to space.',['satellite','astronaut','experiment'],[1],'a person = شخص ← astronaut (رائد فضاء). القمر الصناعي ليس شخصاً.'],
+  ['A ___ is a task or journey with a special goal.',['mission','weather','surface'],[0],'task (مهمة) أو journey (رحلة) لها هدف ← mission.'],
+  ['The Moon goes around the Earth in a regular ___.',['orbit','climate','mission'],[0],'goes around = يدور حول ← orbit (مدار).'],
+  ['Scientists do an ___ to test new ideas.',['experiment','gravity','weather'],[0],'to test = ليختبروا ← experiment. لاحظ أيضاً "an" قبلها لأنها تبدأ بحرف e.'],
+  ['A ___ is a machine that moves around Earth and sends information.',['satellite','astronaut','surface'],[0],'machine (آلة) تدور حول الأرض وترسل معلومات ← satellite.'],
+  ['The ___ on Mars is rocky and covered in dust.',['surface','oxygen','climate'],[0],'rocky (صخري) وعليه غبار = سطح الكوكب ← surface.'],
+  ['Space is a place with almost no ___.',['oxygen','gravity','weather'],[0],'الفضاء تقريباً بلا أكسجين ← oxygen.'],
+  ['The ___ on Earth can change from hot to cold.',['climate','weather','surface'],[0,1],'مفتاح المعلمة: climate. وweather صحيحة أيضاً. الفرق: weather = طقس اليوم، climate = المناخ على مدى سنوات.'],
+  ['The ___ pull keeps us on the ground.',['gravity','mission','experiment'],[0],'القوة التي تشدّنا للأرض ← gravity (جاذبية).']
+ ]},
+ {id:'v3', theme:'wonders', title:'Practice 3 · Scientific Wonders (A)', qs:[
+  ['A ___ is a deep valley with steep sides, often formed by a river.',['canyon','trench','reef'],[0],'deep valley (وادٍ عميق) صنعه نهر ← canyon. أما trench فهو في قاع المحيط.'],
+  ['A ___ is a mountain that can erupt hot lava, ash and gas.',['reef','volcano','canyon'],[1],'mountain + erupt + lava ← volcano (بركان).'],
+  ['This word means the process of soil or rock being worn away.',['erosion','experiment','creature'],[0],'worn away = يتآكل ← erosion.'],
+  ['Blood travels through ___ to carry oxygen from the heart to the body.',['veins','arteries','trenches'],[1],'من القلب إلى الجسم (FROM the heart) ← arteries (شرايين). خدعة: A = Away (بعيداً عن القلب).'],
+  ['Blood returns to the heart through ___.',['reefs','veins','arteries'],[1],'returns (يعود) إلى القلب ← veins (أوردة).'],
+  ['Scientists do an ___ to test a new idea or find an answer.',['trench','experiment','bacteria'],[1],'test a new idea ← experiment.'],
+  ['A ___ is a long, narrow and very deep part of the ocean.',['reef','trench','canyon'],[1],'جزء عميق جداً من المحيط ← trench.'],
+  ['Coral ___ is home to many sea animals.',['arteries','reef','bacteria'],[1],'Coral reef = شِعاب مرجانية.'],
+  ['Tiny living things that can cause disease are called ___.',['experiments','creatures','bacteria'],[2],'كائنات صغيرة تسبّب المرض ← bacteria.'],
+  ['A ___ is a living thing, such as a fish, bird or insect.',['creature','canyon','erosion'],[0],'living thing (كائن حيّ) ← creature.']
+ ]},
+ {id:'v4', theme:'who', title:'Practice 4 · Who am I? (A)', qs:[
+  ['Your ___ is who you are, including your culture, values and beliefs.',['personality','identity','challenge'],[1],'who you are (من أنت) + ثقافتك وقيمك ← identity (هوية).'],
+  ['A person\'s ___ shows their feelings, behaviour and the way they think.',['personality','skills','respect'],[0],'المشاعر والسلوك وطريقة التفكير ← personality (شخصية).'],
+  ['Good ___ help you succeed, such as being kind and honest.',['qualities','teamwork','confidence'],[0],'kind and honest (لطيف وصادق) = صفات ← qualities.'],
+  ['___ are the things you can do well, such as speaking, drawing or using a computer.',['Skills','Qualities','Challenge'],[0],'أشياء تُتقن فعلها ← skills (مهارات).'],
+  ['You should always show ___ to your teachers, parents and classmates.',['respect','trust','challenge'],[0],'show respect to = يُظهر احتراماً لـ. عبارة مشهورة!'],
+  ['When someone believes in you, they show ___.',['identity','trust','teamwork'],[1],'believes in you (يؤمن بك) ← trust (ثقة).'],
+  ['___ means working together with others to reach a goal.',['Teamwork','Confidence','Skills'],[0],'working together (العمل معاً) ← teamwork.'],
+  ['Feeling sure about yourself is called ___.',['challenge','confidence','personality'],[1],'sure about yourself (واثق من نفسك) ← confidence.'],
+  ['A ___ is something difficult that needs effort and problem solving.',['skill','quality','challenge'],[2],'something difficult (شيء صعب) ← challenge.'],
+  ['Being ___ means doing what you should do and making good choices.',['responsible','personality','identity'],[0],'بعد Being نحتاج صفة (adjective) ← responsible (مسؤول).']
+ ]},
+ {id:'v5', theme:'wonders', title:'Practice 5 · Scientific Wonders (B)', qs:[
+  ['A deep, narrow valley with steep sides is called a ___.',['canyon','trench','reef'],[0],'valley (وادٍ) على اليابسة ← canyon.'],
+  ['A ___ is a mountain that can erupt with lava, ash and gas.',['volcano','earthquake','fossil'],[0],'mountain + erupt ← volcano.'],
+  ['The long, thin tubes that carry blood away from the heart are called ___.',['veins','arteries','minerals'],[1],'away from the heart ← arteries (A = Away).'],
+  ['___ are tubes that carry blood back to the heart.',['Arteries','Veins','Fossils'],[1],'back to the heart ← veins.'],
+  ['The deepest part of the ocean is called a ___.',['canyon','trench','reef'],[1],'أعمق جزء في المحيط ← trench.'],
+  ['Waves, wind and water can cause ___ of rocks and soil.',['erosion','earthquake','minerals'],[0],'الماء والرياح تُآكل الصخور ← erosion.'],
+  ['A sudden movement of the earth\'s surface is called an ___.',['earthquake','canyon','trench'],[0],'sudden movement (حركة مفاجئة) للأرض ← earthquake. لاحظ "an" قبلها.'],
+  ['A ___ is a group of rocks or coral that is home to many sea animals.',['reef','volcano','artery'],[0],'rocks or coral + sea animals ← reef.'],
+  ['Natural substances found in rocks, such as gold and salt, are called ___.',['minerals','veins','erosion'],[0],'الذهب والملح ← minerals (معادن).'],
+  ['The remains of a plant or animal from a long time ago are called a ___.',['fossil','canyon','artery'],[0],'بقايا كائن من زمن بعيد ← fossil (أحفورة).']
+ ]},
+ {id:'v6', theme:'who', title:'Practice 6 · Who am I? (B)', qs:[
+  ['Your ___ is what makes you different from other people.',['identity','respect','goal'],[0],'ما يجعلك مختلفاً ← identity.'],
+  ['A person\'s ___ is the combination of their thoughts, feelings and behaviour.',['personality','skills','determination'],[0],'أفكار + مشاعر + سلوك ← personality.'],
+  ['Being kind and honest are important ___.',['qualities','skills','goals'],[0],'kind and honest = صفات ← qualities.'],
+  ['The ability to do something well is called a ___.',['skill','trust','responsibility'],[0],'القدرة على فعل شيء جيداً ← skill.'],
+  ['It is important to show ___ to your teachers, family and friends.',['confidence','respect','personality'],[1],'show respect to ← respect.'],
+  ['When people believe in you, they have ___ in you.',['identity','trust','goal'],[1],'have trust in you = يثقون بك.'],
+  ['___ means being in charge of your actions and duties.',['Responsibility','Confidence','Qualities'],[0],'in charge of your actions (مسؤول عن أفعالك) ← responsibility.'],
+  ['___ helps you keep trying even when something is difficult.',['Determination','Trust','Respect'],[0],'keep trying (الاستمرار في المحاولة) ← determination (إصرار).'],
+  ['Having ___ means believing in yourself.',['confidence','responsibility','identity'],[0],'believing in yourself ← confidence.'],
+  ['A ___ is something you want to achieve in the future.',['goal','skill','personality'],[0],'something you want to achieve (شيء تريد تحقيقه) ← goal.']
+ ]}
+];
+
+// ---------- Grammar lessons: practice items written for the 4 grammar points ----------
+const GRAMMAR_DRILLS = {
+ modals: [
+  ['We ___ recycle plastic to help the ocean. (نصيحة)',['should','shoulds','should to'],0,'بعد should يأتي الفعل مباشرة بدون to وبدون s.'],
+  ['Turtles ___ swim very far.',['can','cans','can to'],0,'can = يستطيع. لا نضيف s على can أبداً.'],
+  ['You ___ wear a seatbelt in the car. (قانون/إلزام)',['must','might','can'],0,'إلزام وقانون ← must.'],
+  ['Astronauts must ___ every day in space.',['exercise','exercises','exercising'],0,'بعد must الفعل في أصله: exercise.'],
+  ['It ___ rain tomorrow. I am not sure.',['might','must','should'],0,'لست متأكداً = احتمال ← might.']
+ ],
+ cond2: [
+  ['If I ___ an astronaut, I would visit Mars.',['were','am','will be'],0,'الشرط الثاني: If + ماضي. ومع I نستخدم were.'],
+  ['If we cleaned the beach, more turtles ___ safe.',['would be','will be','are'],0,'الجملة الثانية: would + فعل أساسي.'],
+  ['If I ___ a million dirhams, I would build a clean-energy company.',['had','have','will have'],0,'If + had (ماضي have).'],
+  ['If people ___ less plastic, the ocean would be cleaner.',['used','use','will use'],0,'If + ماضي ← used.'],
+  ['If I could fly, I ___ over the Grand Canyon.',['would fly','will fly','flew'],0,'would + fly.']
+ ],
+ passive: [
+  ['Plastic ___ by volunteers every week.',['is collected','collects','collected'],0,'المبني للمجهول: is/are + التصريف الثالث. وكلمة by دليل قوي!'],
+  ['These machines ___ by solar energy.',['are powered','power','powered'],0,'machines (جمع) ← are + powered.'],
+  ['English ___ in many countries.',['is spoken','speaks','is speak'],0,'is + spoken (التصريف الثالث لـ speak).'],
+  ['New laws ___ to reduce plastic use.',['are made','make','is made'],0,'laws (جمع) ← are + made.'],
+  ['The beach ___ every morning.',['is cleaned','cleans','are cleaned'],0,'beach (مفرد) ← is + cleaned.']
+ ],
+ nouns: [
+  ['Choose the correct noun phrase:',['a huge plastic bottle','a plastic huge bottle','a bottle huge plastic'],0,'الترتيب: أداة + حجم + مادة + اسم.'],
+  ['Choose the correct noun phrase:',['the beautiful blue ocean','the blue beautiful ocean','the ocean beautiful blue'],0,'الرأي (beautiful) قبل اللون (blue).'],
+  ['Choose the correct noun phrase:',['some small colourful fish','some colourful small fish','some fish small colourful'],0,'الحجم (small) قبل اللون (colourful).'],
+  ['Choose the correct noun phrase:',['an amazing natural wonder','a amazing natural wonder','an natural amazing wonder'],0,'amazing يبدأ بحرف علّة ← an. والرأي قبل النوع.'],
+  ['Choose the correct noun phrase:',['a big old wooden boat','a wooden old big boat','a old big wooden boat'],0,'حجم ← عمر ← مادة ← اسم.']
+ ],
+ clues: [
+  ['Volunteers often ___ to beaches to collect trash.',['go','are going','went'],0,'often (غالباً) = عادة ← المضارع البسيط go.'],
+  ['Look! The boat ___ the nets now.',['is pulling','pulls','pulled'],0,'Look! و now ← المضارع المستمر is pulling.'],
+  ['Last year, we ___ plastic bottles.',['collected','collect','are collecting'],0,'Last year ← الماضي البسيط collected.'],
+  ['Every year, millions of tons of plastic ___ the sea.',['enter','entered','is entering'],0,'Every year = عادة كل سنة ← المضارع البسيط. الفاعل جمع فلا نضيف s.'],
+  ['At the moment, scientists ___ new machines.',['are designing','designed','design'],0,'At the moment (حالياً) ← المضارع المستمر.']
+ ]
+};
+
+// ---------- Teacher's grammar practices (Part 2) ----------
+// ok = accepted indices; key = teacher's marked answer
+const GRAMMAR_SETS = [
+ {id:'g1', title:'Grammar Practice 1', sub:'How do humans affect the health of the oceans?',
+  text:'The oceans are very important for our planet. They give us food, oxygen and help control the weather. However, human activities are damaging the oceans. Every year, millions of tons of plastic {1} into the sea. This plastic can harm fish and other marine animals. It can also break down into small pieces called microplastics, which are difficult to remove.\n\nLarge ships travel across the oceans and {2} fuel. Chemicals and oil from ships can pollute the water. In some places, fishing boats {3} huge nets, which can catch many animals by mistake.\n\nTo help protect the oceans, we should {4} recycling, reduce plastic use and keep our beaches clean. New technology, such as underwater cleaning machines, {5} already being used in some countries. If we all take action, the oceans can stay healthy for future generations.',
+  qs:[
+   [['floats','is floating','float'],[2],2,'Every year (كل سنة) = عادة متكررة ← المضارع البسيط. والفاعل millions of tons (جمع) فلا نضيف s ← float.'],
+   [['use','are using','used'],[0,1],1,'الأفضل use لأنها مثل travel (مضارع بسيط) في نفس الجملة. ورقة الحل اختارت are using. المهم: ليست used لأن النص كله بالمضارع.'],
+   [['install','are installing','installed'],[0,2],2,'ورقة الحل اختارت installed. والمضارع البسيط install صحيح أيضاً لأنه يصف حقيقة عامة "In some places".'],
+   [['start','are starting','started'],[0],0,'بعد should يأتي الفعل الأساسي فقط ← start.'],
+   [['is','are','was'],[0,1],1,'ورقة الحل: are (بسبب machines). لكن الفاعل الحقيقي New technology (مفرد) فالأدق is. لاحظ: being used = مبني للمجهول.']
+  ]},
+ {id:'g2', title:'Grammar Practice 2', sub:'How should we clean up the oceans?',
+  text:'Many beaches around the world are covered with plastic and garbage. People should take action to keep the oceans clean. Volunteers often {1} to beaches to collect trash. They wear gloves and use bags to carry the waste.\n\nGovernments {2} new laws to reduce plastic use. For example, many countries have banned single-use plastic bags. Schools and local communities {3} awareness campaigns to teach people about the importance of clean oceans.\n\nIn addition, scientists {4} new machines that can remove plastic from the water. These machines {5} by solar energy and can collect large amounts of floating trash. If we all work together, we can protect the oceans and the amazing animals that live in them.',
+  qs:[
+   [['go','are going','went'],[0],1,'كلمة often (غالباً) تعني عادة ← المضارع البسيط go. (ورقة الحل كتبت are going، لكن قاعدة often واضحة: go).'],
+   [['make','are making','made'],[0,1],1,'ورقة الحل: are making (يحدث هذه الأيام). وmake صحيحة أيضاً. ليست made.'],
+   [['start','are starting','started'],[0,1],1,'ورقة الحل: are starting. وstart صحيحة أيضاً.'],
+   [['design','are designing','designed'],[0,1],1,'ورقة الحل: are designing (يعملون عليها الآن).'],
+   [['power','are powered','powered'],[1],2,'by solar energy ← مبني للمجهول = are + powered. (ورقة الحل كتبت powered وحدها، لكن تنقصها are).']
+  ]},
+ {id:'g3', title:'Grammar Practice 3', sub:'How do we keep the oceans clean?',
+  text:'The world\'s oceans are facing many problems. People {1} a lot of plastic into the sea, and this is harming marine animals. Plastic bags and bottles can {2} on the surface of the water for a long time. Animals such as turtles and dolphins sometimes eat this plastic and become very sick.\n\nThere are also chemicals from factories that {3} into rivers and then reach the ocean. These chemicals can change the water and make it dangerous for sea life.\n\nTo keep the oceans clean, everyone {4} do their part. We should reduce plastic use, recycle properly and take our rubbish home. In many countries, people {5} special machines to collect plastic from the water. If we all work together, we can protect the oceans and keep them healthy for future generations.',
+  qs:[
+   [['throw','are throwing','threw'],[1,2],2,'ورقة الحل: threw. لكن "this is harming" تدل على الآن، فـ are throwing مناسبة جداً أيضاً.'],
+   [['float','are floating','floated'],[0],0,'بعد can الفعل الأساسي ← float.'],
+   [['flow','are flowing','flowed'],[0],0,'حقيقة عامة بالمضارع البسيط، والفاعل chemicals جمع ← flow.'],
+   [['can','should','must'],[1],1,'نصيحة للجميع ← should. وبعدها do (فعل أساسي).'],
+   [['install','are installing','installed'],[1,2],2,'ورقة الحل: installed. وare installing مناسبة أيضاً (يحدث هذه الأيام).']
+  ]}
+];
+
+// ---------- Reading passages (Part 3A and 3B) ----------
+// q: [question, options, correctIndex, type, evidence, Arabic explanation]
+const READINGS = [
+ {id:'r1', part:'3A', theme:'who', title:'Understanding My Identity', sub:'Who Am I? | Understanding Identity',
+  sumAr:'مريم طالبة إماراتية عمرها 14 سنة. تقول إن الهوية تشمل الثقافة والقيم والشخصية. هي لطيفة ومسؤولة لكنها تتوتّر أمام الناس فانضمّت لنادي الخطابة. تعلّمت من عائلتها الصدق والاحترام، وتعلّمت من مشروع البيئة قيمة العمل الجماعي.',
+  text:'My name is Mariam, and I am a fourteen-year-old student from the UAE. I believe that identity is more than a name or where a person comes from. It includes our culture, values, personality, interests and experiences. Every person has a special identity that makes them different from others.\n\nI am a friendly and hardworking person. I enjoy reading books, learning English and helping my classmates. My friends say that I am kind and responsible because I always try to keep my promises. However, I sometimes feel nervous when speaking in front of a large group. To improve my confidence, I joined the school speaking club.\n\nMy family has taught me important values such as honesty, respect and kindness. I am proud of my Emirati identity and enjoy celebrating National Day with my family. I also respect people from different countries and cultures.\n\nLast year, I worked with my classmates on a project about protecting the environment. We collected plastic bottles and encouraged students to recycle. This experience taught me that teamwork and responsibility are important qualities.\n\nI believe our identities can develop as we learn new skills, meet people and face challenges. We should be proud of who we are while continuing to improve ourselves.',
+  qs:[
+   ['What country is Mariam from?',['Oman','The UAE','Saudi Arabia'],1,'info','student from the UAE','في أول سطر: a student from the UAE.'],
+   ['What does Mariam enjoy doing?',['Reading books','Playing football','Cooking food'],0,'info','I enjoy reading books','تقول: I enjoy reading books.'],
+   ['Why did Mariam join the speaking club?',['To learn cooking','To make videos','To improve her confidence'],2,'detail','To improve my confidence, I joined the school speaking club','الجملة تبدأ بالسبب: To improve my confidence (لتحسين ثقتها بنفسها).'],
+   ['Which values did Mariam learn from her family?',['Honesty and respect','Competition and wealth','Speed and strength'],0,'detail','honesty, respect and kindness','عائلتها علّمتها honesty, respect and kindness.'],
+   ['What did Mariam and her classmates collect?',['Old books','Plastic bottles','School uniforms'],1,'info','We collected plastic bottles','We collected plastic bottles = جمعنا زجاجات بلاستيك.'],
+   ['What did the environmental project teach Mariam?',['How to travel','How to cook','The value of teamwork and responsibility'],2,'detail','teamwork and responsibility are important qualities','This experience taught me that teamwork and responsibility are important.'],
+   ['The word "challenges" in the final paragraph means:',['Difficult situations','Easy games','Happy celebrations'],0,'word','face challenges','challenges = تحديات = مواقف صعبة. "نواجه" التحديات (face) تدل على شيء صعب.'],
+   ['What is the main idea of the text?',['Everyone should have the same personality','Identity includes our values, experiences and personal growth','Speaking English is the only important skill'],1,'main','It includes our culture, values, personality, interests and experiences','الفكرة الرئيسية تغطي كل النص: الهوية = قيم + تجارب + نمو شخصي. الخياران الآخران غير مذكورين.']
+  ]},
+ {id:'r2', part:'3A', theme:'who', title:'A Step Towards My Future', sub:'Who Am I? | My Goals and Future',
+  sumAr:'ليلى طالبة في الصف الثامن تحب العلوم والتكنولوجيا وتريد أن تصبح مهندسة تصمّم حلولاً مثل الطاقة النظيفة والمباني الذكية. هي منظّمة وتنجز واجباتها، وعائلتها ومعلّموها يشجّعونها، وهي لا تستسلم وتتعلّم من أخطائها.',
+  text:'My name is Layla and I am a Grade 8 student from the UAE. I have always been curious and enjoy learning new things. I like science and technology because I can be creative and find solutions to problems. I also enjoy helping others and working in a team.\n\nI want to become an engineer in the future. I hope to design solutions that can help the environment, such as clean energy and smart buildings. I believe that small ideas can make a big difference.\n\nTo achieve my goal, I try to be organised and responsible. I manage my time well and always complete my homework. I also participate in school activities, such as science projects and community events. These activities help me build my skills and confidence.\n\nMy family and teachers support me and encourage me to work hard. They remind me that success takes time and effort. Although I sometimes face challenges, I never give up. I believe that learning from mistakes helps me grow and become a better person.\n\nI am proud of my Emirati identity and the opportunities my country gives me. I hope to use my knowledge and skills to make a positive contribution to the UAE and help build a brighter future.',
+  qs:[
+   ['What is Layla interested in?',['Sports and art','Science and technology','Cooking and travel'],1,'info','I like science and technology','I like science and technology.'],
+   ['What does Layla want to become?',['A teacher','An engineer','A doctor'],1,'info','I want to become an engineer','I want to become an engineer = أريد أن أصبح مهندسة.'],
+   ['What kind of solutions does she hope to design?',['New games','Clean energy and smart buildings','Mobile phones'],1,'detail','such as clean energy and smart buildings','such as = مثل، وبعدها الأمثلة: clean energy and smart buildings.'],
+   ['How does Layla achieve her goal?',['She is organised and completes her homework.','She only studies at home.','She watches TV every day.'],0,'detail','I try to be organised and responsible','To achieve my goal ← organised + always complete my homework.'],
+   ['What do her family and teachers do?',['They give her money.','They support and encourage her.','They help her with science projects only.'],1,'detail','My family and teachers support me and encourage me','support and encourage = يدعمونها ويشجّعونها.'],
+   ['What does the word "challenges" mean in the text?',['Easy tasks','Difficult situations','Happy moments'],1,'word','I sometimes face challenges, I never give up','"لا أستسلم" تدل أن challenges شيء صعب.'],
+   ['What can we infer about Layla?',['She gives up easily.','She learns from mistakes and grows.','She does not like school.'],1,'infer','learning from mistakes helps me grow','الاستنتاج من: learning from mistakes helps me grow. والخيار A عكس I never give up.'],
+   ['What is the main idea of the text?',['Layla wants to travel around the world.','Layla has goals and works hard to build a better future.','Layla enjoys playing sports.'],1,'main','I hope to use my knowledge and skills','النص كله عن هدف ليلى واجتهادها لمستقبل أفضل.']
+  ]},
+ {id:'r3', part:'3A', theme:'who', title:'Making a Difference', sub:'Who Am I? | Helping Others',
+  sumAr:'عائشة عمرها 16 سنة وتحب مساعدة الآخرين. تتطوّع في تنظيف الشواطئ وتزور كبار السن وتستمع لقصصهم. تشجّع زملاءها على التطوّع وتؤمن أن الأفعال الصغيرة تصنع تغييراً كبيراً، وتعلّمت مهارات التواصل وحلّ المشكلات.',
+  text:'Aisha is a sixteen-year-old student who believes that helping others is an important part of who she is. She spends her free time volunteering in her local community. She helps at a beach clean-up programme with her school club, where students collect plastic, sort the waste and raise awareness about keeping the beaches clean.\n\nAisha also enjoys visiting elderly people at a care centre. She listens to their stories and spends time with them. She feels that these visits make them happy, and she learns a lot from their experiences. It also teaches her to be more patient, kind and respectful.\n\nAt school, Aisha encourages her classmates to take part in volunteer activities. She says that small actions can create big changes. She likes working in a team and believes that everyone has a role to play. Through volunteering, she has become more confident and responsible. She has also learned valuable skills, such as communication and problem-solving.\n\nAisha is proud to be part of the UAE, a country that values helping the community and protecting the environment. She hopes to continue volunteering in the future and make a positive impact on people\'s lives.',
+  qs:[
+   ['What does Aisha do in her free time?',['Watches movies','Plays football','Volunteers in her community'],2,'info','She spends her free time volunteering','free time ← volunteering in her local community.'],
+   ['What do students do during the beach clean-up programme?',['Build sandcastles','Collect and sort plastic waste','Swim in the sea'],1,'detail','students collect plastic, sort the waste','collect plastic, sort the waste = يجمعون البلاستيك ويفرزونه.'],
+   ['Why does Aisha visit elderly people?',['To learn how to cook','To help with homework','To listen to their stories and make them happy'],2,'detail','She listens to their stories','تستمع لقصصهم والزيارات تجعلهم سعداء (make them happy).'],
+   ['What does Aisha encourage her classmates to do?',['Take part in volunteer activities','Focus only on exams','Travel to other countries'],0,'detail','encourages her classmates to take part in volunteer activities','الجملة نفسها تقريباً موجودة في النص.'],
+   ['What skills has Aisha learned through volunteering?',['Swimming and running','Communication and problem-solving','Cooking and drawing'],1,'info','such as communication and problem-solving','skills ... such as communication and problem-solving.'],
+   ['The word "respectful" in the text means:',['Rude','Careful','Kind and polite'],2,'word','patient, kind and respectful','respectful = محترم ومؤدّب. جاءت مع patient و kind (كلمات إيجابية).'],
+   ['What can we infer about Aisha?',['She works alone.','She believes small actions can make a big change.','She is not interested in the environment.'],1,'infer','small actions can create big changes','small actions can create big changes. وخيار "تعمل وحدها" عكس likes working in a team.'],
+   ['What is the main idea of the text?',['Aisha enjoys playing sports.','Aisha helps others and makes a positive impact.','Aisha wants to become a famous singer.'],1,'main','make a positive impact on people','النص كله عن مساعدة عائشة للآخرين.']
+  ]},
+ {id:'r4', part:'3A', theme:'who', title:'My Community, My Identity', sub:'Who Am I? | My Community and Identity',
+  sumAr:'الكاتبة تعيش في الإمارات، دولة تجمع ثقافات كثيرة. هويتها تتشكّل من عائلتها وثقافتها ومعتقداتها. الناس في مجتمعها يتعاونون: تنظيف الشواطئ وزراعة الأشجار وإعادة التدوير. المجتمع يجعلها أفضل، وهدفها أن تمثّل بلدها بشكل إيجابي.',
+  text:'I live in the UAE, a country that brings together people from many cultures and backgrounds. This diversity makes our community special and helps us learn from each other. I am proud to be part of a community that values respect, kindness and cooperation.\n\nMy identity is shaped by my family, my culture, my beliefs and the place where I live. I am Emirati, and I feel proud of my heritage and traditions. At the same time, I enjoy learning about other cultures through my friends at school. We sometimes share food, celebrate different events and learn new languages.\n\nIn my community, people work together to solve problems. For example, volunteers organise beach clean-ups to protect our environment. Students take part in tree-planting projects, and families support recycling programmes. These activities show that we care about our country and want to keep it beautiful for future generations.\n\nBeing part of a community also helps me become a better person. I learn to be more responsible, confident and open-minded. I listen to others, respect different opinions and try to help when I can. I believe that small actions, like helping a classmate or taking care of the environment, can make a big difference.\n\nMy goal is to continue learning, contribute to my community and represent my country in a positive way. I want to use my skills and knowledge to help build a brighter and more sustainable future for the UAE.',
+  qs:[
+   ['What makes the UAE community special?',['It has the same culture.','It brings together people from many cultures.','It is only Emirati people.'],1,'info','brings together people from many cultures','a country that brings together people from many cultures.'],
+   ['What does the word "diversity" mean in the text?',['Different cultures and backgrounds','Only one culture','A small community'],0,'word','This diversity makes our community special','This diversity تشير للجملة السابقة: many cultures and backgrounds ← تنوّع.'],
+   ['What activities do volunteers organise?',['Sports competitions','Beach clean-ups','Cooking classes'],1,'info','volunteers organise beach clean-ups','volunteers organise beach clean-ups.'],
+   ['Why do students take part in tree-planting projects?',['To learn new languages','To protect the environment','To win prizes'],1,'detail','These activities show that we care about our country','هذه الأنشطة لحماية البيئة والحفاظ على جمال البلد.'],
+   ['What can we infer about the writer?',['She does not like her community.','She wants to help and make a positive impact.','She only cares about school.'],1,'infer','try to help when I can','تقول: try to help when I can و small actions can make a big difference.'],
+   ['The word "represent" in the last paragraph means:',['Show or present','Change','Leave'],0,'word','represent my country in a positive way','represent my country = تمثّل بلدها، أي تُظهره بصورة جيدة.'],
+   ['What is one value the writer mentions?',['Respect','Richness','Fame'],0,'info','values respect, kindness and cooperation','values respect, kindness and cooperation.'],
+   ['What is the main idea of the text?',['The UAE is a country with many buildings.','Being part of a community helps shape identity and make a positive difference.','Students should focus only on academic subjects.'],1,'main','Being part of a community also helps me become a better person','العنوان My Community, My Identity يلخّص الفكرة: المجتمع يشكّل الهوية.']
+  ]},
+ {id:'r5', part:'3B', theme:'wonders', title:'The Grand Canyon', sub:'Scientific Wonders | Amazing Natural Places',
+  sumAr:'الغراند كانيون من أشهر عجائب الطبيعة، في الولايات المتحدة، طوله أكثر من 440 كم. شكّله نهر كولورادو على مدى ملايين السنين. طبقات الصخور تحكي تاريخ الأرض، ويعيش فيه نسور وغزلان، ويزوره الملايين، وهو محمي كحديقة وطنية.',
+  text:'The Grand Canyon is one of the most famous natural wonders in the world. It is located in the United States and is over 440 kilometres long, up to 29 kilometres wide and more than 1.8 kilometres deep. The canyon was formed over millions of years by the Colorado River, which slowly cut through layers of rock.\n\nThe colourful rock layers show the history of the Earth. Each layer tells a story about the climate and environment at a different time. Scientists study these rocks to learn how our planet has changed.\n\nThe Grand Canyon is also home to many plants and animals such as eagles, deer and unique desert plants. It attracts millions of visitors every year who enjoy hiking, taking photos and learning about nature. The area is protected as a national park to keep it safe for future generations. This natural wonder reminds us how powerful nature is and how important it is to protect our planet.',
+  qs:[
+   ['Where is the Grand Canyon located?',['in the UAE','in the United States','in Canada'],1,'info','located in the United States','It is located in the United States.'],
+   ['How long is the Grand Canyon?',['29 kilometres','440 kilometres','1.8 kilometres'],1,'info','over 440 kilometres long','long ← 440. انتبه: 29 = العرض (wide)، و1.8 = العمق (deep). سؤال فخّ!'],
+   ['What formed the Grand Canyon over millions of years?',['strong winds','the Colorado River','volcanic eruptions'],1,'detail','formed over millions of years by the Colorado River','formed ... by the Colorado River.'],
+   ['Why do scientists study the rock layers?',['to find treasure','to learn how the Earth has changed','to build roads'],1,'detail','to learn how our planet has changed','planet = Earth. نفس المعنى بكلمات مختلفة.'],
+   ['Which animal is mentioned in the text?',['camel','dolphin','eagle'],2,'info','eagles, deer','eagles, deer ← eagle موجودة.'],
+   ['What does the word "protected" mean?',['safe','visited','destroyed'],0,'word','protected as a national park to keep it safe','الجملة نفسها تشرحها: to keep it safe.'],
+   ['What can we infer about the Grand Canyon?',['It was formed quickly.','It attracts many visitors every year.','It is located under the sea.'],1,'infer','It attracts millions of visitors every year','millions of visitors. وخيار "بسرعة" عكس slowly و millions of years.'],
+   ['What is the main idea of the text?',['The Grand Canyon is an important natural wonder that shows the power of nature and should be protected.','The Grand Canyon is a dangerous place to visit.','The Grand Canyon is a new city in the United States.'],0,'main','reminds us how powerful nature is','الجملة الأخيرة تلخّص: قوة الطبيعة + أهمية الحماية.']
+  ]},
+ {id:'r6', part:'3B', theme:'wonders', title:'The Power of Volcanoes', sub:'Scientific Wonders | How Nature Can Teach Us',
+  sumAr:'البركان فتحة في قشرة الأرض تخرج منها الصهارة والرماد والغازات. البراكين خطيرة لأنها تدمّر البيوت، لكنها مفيدة لأن رمادها يجعل التربة خصبة للزراعة. العلماء يراقبون الأرض والغازات والحرارة ليتنبّؤوا بالثوران ويحذّروا الناس.',
+  text:'Volcanoes are amazing natural wonders. They can be both dangerous and useful. A volcano is an opening in the Earth\'s crust that allows hot magma, ash and gases to escape from below the surface. When pressure builds up, the volcano can erupt.\n\nVolcanoes can destroy homes and change the land, but they also help our planet. The ash from volcanoes makes the soil rich in nutrients, which helps plants grow. Many fertile farms are located near volcanoes because the soil is excellent for agriculture.\n\nScientists study volcanoes to learn more about the Earth and to predict future eruptions. By monitoring changes in the ground, gases and temperature, they can give early warnings to keep people safe.\n\nVolcanoes remind us how powerful nature is and how important it is to respect the natural world. They also show how nature can create both challenges and opportunities for people.',
+  qs:[
+   ['What is a volcano?',['a type of mountain','an opening in the Earth\'s crust','a large hole in the sea'],1,'info','A volcano is an opening in the Earth\'s crust','التعريف موجود حرفياً: A volcano is an opening in the Earth\'s crust.'],
+   ['What comes out of a volcano when it erupts?',['water, sand and rocks','hot magma, ash and gases','snow, rain and ice'],1,'info','hot magma, ash and gases','hot magma, ash and gases.'],
+   ['Why is the soil near volcanoes good for farming?',['because it has many nutrients','because it is easy to dig','because it is very dry'],0,'detail','rich in nutrients','makes the soil rich in nutrients.'],
+   ['How do scientists predict future eruptions?',['by watching animals','by monitoring changes in the ground, gases and temperature','by building houses on the volcano'],1,'detail','By monitoring changes in the ground, gases and temperature','By monitoring = عن طريق مراقبة.'],
+   ['What does the word "fertile" mean in the text?',['rich in nutrients','very hot','full of rocks'],0,'word','Many fertile farms','الجملة السابقة تشرحها: the soil rich in nutrients ← fertile = خصبة.'],
+   ['What can we infer about living near a volcano?',['It is always safe.','It can be dangerous but also helpful.','It is not useful for people.'],1,'infer','They can be both dangerous and useful','both dangerous and useful.'],
+   ['Which of the following is a benefit of volcanoes?',['They destroy homes.','They make the soil rich for plants.','They cover the land with snow.'],1,'detail','helps plants grow','benefit = فائدة. تدمير البيوت ضرر وليس فائدة.'],
+   ['What is the main idea of the text?',['Volcanoes are only dangerous.','Volcanoes are amazing natural wonders that can be dangerous and useful.','Scientists build volcanoes to help farmers.'],1,'main','They can be both dangerous and useful','الفقرة الأولى تعطي الفكرة الرئيسية. كلمة only خطأ لأن البراكين مفيدة أيضاً.']
+  ]},
+ {id:'r7', part:'3B', theme:'wonders', title:'Hidden Worlds Beneath Our Feet', sub:'Scientific Wonders | The Amazing World of Caves',
+  sumAr:'الكهوف تتكوّن عندما يذيب الماء الصخر ببطء. الماء المتساقط يترك معادن تصنع أشكالاً اسمها الهوابط والصواعد. حيوانات الكهوف ضعيفة البصر أو بلا عيون. الكهوف تعلّمنا عن تاريخ الأرض، وفيها رسومات قديمة، وهي هشّة ويجب حمايتها.',
+  text:'Caves are amazing natural wonders that exist all over the world. They are formed over thousands of years when water slowly dissolves rock, such as limestone. Dripping water leaves behind tiny minerals that build unique shapes called stalactites and stalagmites.\n\nSome caves are very deep, dark and cold, and they can be home to unique animals. For example, cave fish and many types of insects have special adaptations because they live in complete darkness. They often have weak or no eyes, and they use other senses to survive.\n\nCaves also tell us important stories about the Earth\'s past. Scientists study cave rocks to learn about climate changes, ancient plants and animals, and even human history. Some caves contain old drawings made by people who lived thousands of years ago.\n\nExploring caves can be dangerous, so it is important to protect them. Caves are fragile, and even small actions can damage their natural beauty and the living creatures inside. By keeping caves clean and following rules, we can help preserve these extraordinary places for the future.',
+  qs:[
+   ['How are caves formed?',['By wind and sand','By water dissolving rock','By volcanic eruptions'],1,'info','water slowly dissolves rock','water slowly dissolves rock.'],
+   ['What shapes are formed by dripping water?',['Rivers and lakes','Stalactites and stalagmites','Mountains and valleys'],1,'info','called stalactites and stalagmites','Dripping water ... shapes called stalactites and stalagmites.'],
+   ['What special adaptations do cave animals have?',['Strong eyes to see in the dark','Wings to fly','Weak or no eyes and other strong senses'],2,'detail','weak or no eyes, and they use other senses','weak or no eyes + use other senses.'],
+   ['What can scientists learn from cave rocks?',['The weather today','Climate changes and ancient life','How to build houses'],1,'detail','climate changes, ancient plants and animals','climate changes, ancient plants and animals.'],
+   ['What did some people leave in caves?',['Old drawings','Treasure and gold','Food and tools'],0,'info','old drawings made by people','old drawings made by people.'],
+   ['Why can exploring caves be dangerous?',['Because they are very hot','Because they are deep, dark and cold','Because there are too many trees'],1,'infer','very deep, dark and cold','الفقرة الثانية تصفها: very deep, dark and cold. وليست hot.'],
+   ['What does the word "fragile" mean in the text?',['Easy to break or damage','Very large','Very dark'],0,'word','Caves are fragile, and even small actions can damage','بعدها مباشرة: even small actions can damage ← fragile = هشّ سهل التلف.'],
+   ['What is the main idea of the text?',['Caves are dangerous and should be closed.','Caves are amazing natural wonders that tell us about the Earth and must be protected.','Caves are only home to plants.'],1,'main','preserve these extraordinary places','النص: عجائب طبيعية + تعلّمنا عن الأرض + يجب حمايتها.']
+  ]},
+ {id:'r8', part:'3B', theme:'wonders', title:'Coral Reefs – Nature\'s Cities', sub:'Scientific Wonders | Coral Reefs – Nature\'s Cities',
+  sumAr:'الشعاب المرجانية تُسمّى "غابات المحيط المطيرة" لأنها مليئة بالحياة. تصنعها حيوانات صغيرة اسمها البوليبات. هي بيت لآلاف الكائنات وتحمي السواحل من الأمواج. لكنها في خطر بسبب ارتفاع حرارة الماء والتلوّث (الابيضاض)، والعلماء والمجتمعات يعملون لحمايتها.',
+  text:'Coral reefs are often called the "rainforests of the ocean" because they are full of life. They are not made of rocks, but of tiny animals called coral polyps. These polyps live together in large groups and build hard skeletons over many years, forming reefs.\n\nCoral reefs provide homes for thousands of marine animals, including colourful fish, crabs, sea turtles and many other creatures. They also protect coastlines from strong waves and storms, which helps keep beaches and nearby communities safe.\n\nHowever, coral reefs are in danger. Rising ocean temperatures, pollution and human activities can cause coral bleaching. When the water becomes too warm, corals lose their colour and can die. This affects all the animals that depend on the reef.\n\nScientists and local communities are working to protect coral reefs. They study the health of reefs, reduce plastic waste, create marine protected areas and teach people about the importance of keeping the oceans clean. By working together, we can help protect coral reefs and the amazing life they support for future generations.',
+  qs:[
+   ['What are coral reefs made of?',['Rocks and sand','Tiny animals called coral polyps','Plants and shells'],1,'info','tiny animals called coral polyps','They are not made of rocks, but of tiny animals. انتبه لكلمة not!'],
+   ['Why are coral reefs called the "rainforests of the ocean"?',['Because they are very large','Because they are full of life','Because they are dark and deep'],1,'detail','because they are full of life','because they are full of life.'],
+   ['What is one function of coral reefs?',['They produce food for people','They protect coastlines from strong waves','They create new islands'],1,'detail','protect coastlines from strong waves','function = وظيفة ← protect coastlines.'],
+   ['What causes coral bleaching?',['Too much light','Rising ocean temperatures','Too many fish'],1,'detail','Rising ocean temperatures','Rising ocean temperatures ... can cause coral bleaching.'],
+   ['What happens when corals die?',['The water becomes cleaner','Many marine animals lose their habitat','New coral reefs grow quickly'],1,'infer','affects all the animals that depend on the reef','الحيوانات تعتمد على الشعاب كبيت، فإذا ماتت تفقد موطنها (habitat).'],
+   ['What are scientists doing to help coral reefs?',['Building more boats','Reducing plastic waste and creating protected areas','Collecting corals for aquariums'],1,'detail','reduce plastic waste, create marine protected areas','reduce plastic waste, create marine protected areas.'],
+   ['What does the word "depend" mean in the text?',['need and rely on','destroy','move away'],0,'word','animals that depend on the reef','depend on = يعتمد على / يحتاج.'],
+   ['What is the main idea of the text?',['Coral reefs are made of rocks.','Coral reefs are important, but they are in danger and we must protect them.','Fish are the most important animals in the ocean.'],1,'main','By working together, we can help protect coral reefs','النص: مهمة + في خطر (However) + الحماية.']
+  ]}
+];
+
+// ---------- Writing ----------
+const WRITINGS = [
+ {id:'w1', title:'A Journey into Space', theme:'space', task:'What would you take on a space journey?',
+  prompts:['What three important things would you take?','Why would you need these things?','What would you like to explore or do in space?'],
+  text:'Space travel is one of the most exciting achievements of modern science. Astronauts travel into space to explore new places and learn more about our universe. However, living in space is very different from living on Earth. There is very little gravity, so astronauts float inside their spacecraft. They must exercise every day to keep their muscles strong.\n\nBefore a mission, astronauts prepare carefully. They pack special food, water, clothes and medical equipment. They also take communication devices to stay in contact with scientists on Earth. During their journey, astronauts carry out experiments and collect important information about space.\n\nSpace travel can be dangerous because astronauts face extreme temperatures and limited supplies. They must follow safety rules and work together to solve problems. Some missions study the Moon, while others investigate Mars and distant planets.\n\nThe UAE has contributed to space exploration through its astronauts and the Hope Probe mission to Mars. These achievements encourage young people to study science and technology. Exploring space helps scientists make new discoveries and understand our universe better.',
+  paraMap:[[0,0],[1,2],[2,1],[3,3]],
+  summary:['Astronauts travel into space to explore new places and learn more about our universe.','Life in space is different and can be dangerous, so astronauts must follow rules and work together.','They prepare special food, equipment and communication devices, and carry out experiments during the mission.','The UAE contributes to space exploration, and these achievements inspire young people to study science.'],
+  sample:'If I could go on a space journey, I would take three important things: a camera, a tablet and some special food. I would take a camera because I want to take photos of the planets, stars and the beautiful view from space. I would take a tablet to learn more about space, read information and stay in contact with my family and scientists on Earth. I would also take special food because astronauts need food that is easy to eat and gives energy.\n\nI would like to explore the Moon and see its surface. I would also like to float in space and watch the Earth from above. It would be an amazing experience to learn new things and help scientists discover more about our universe.',
+  starters:[
+   ['If I could go on a space journey, I would take three important things: ','First, I would take ','I would also take '],
+   ['I would need it because ','This is important because ','It would help me to '],
+   ['I would like to explore ','In space, I would like to ','It would be an amazing experience to ']
+  ]},
+ {id:'w2', title:'The Importance of Good Friendship', theme:'who', task:'How can you be a good friend?',
+  prompts:['What are your best personality qualities?','How do you help and support your friends?','What advice would you give someone who wants to be a good friend?'],
+  text:'Friendship is an important part of our lives. Good friends make us feel happy, confident and supported. They share our interests, listen to our problems and help us during difficult times. However, being a good friend requires more than spending time together.\n\nA good friend should be honest, kind and respectful. Friends need to trust each other and keep their promises. When someone makes a mistake, a true friend offers advice instead of making fun of them. Good communication is also important because it helps friends understand each other\'s feelings.\n\nSometimes, friends have different opinions or interests. They should respect these differences and solve disagreements calmly. For example, if two friends disagree about a school project, they can listen to each other\'s ideas and find a solution together.\n\nFriendship can also help students develop important life skills such as teamwork, patience and responsibility. In the UAE, respect, kindness and cooperation are important values that help build strong communities. Good friendships make our school and community better places for everyone.',
+  paraMap:[[0,0],[1,1],[2,2],[3,3]],
+  summary:['Good friends make us feel happy, confident and supported.','A good friend is honest, kind and respectful and keeps promises.','Friends should communicate well and solve disagreements calmly.','Friendship helps us develop important life skills and makes our school and community better.'],
+  sample:'I think I can be a good friend because I am kind, honest and supportive. I always try to listen to my friends and respect their opinions. I help my friends by giving them advice when they have a problem, encouraging them and being there when they feel sad. I also enjoy spending time with my friends and doing activities together, such as studying, playing sports and sharing ideas.\n\nMy advice to someone who wants to be a good friend is to be honest, respectful and trustworthy. It is important to listen, keep promises and support your friends, even when things are difficult. A good friend should also respect differences and try to solve problems calmly. Good friendship makes our lives better and helps us build a happy and positive community.',
+  starters:[
+   ['I think I can be a good friend because I am ','My best qualities are ','My friends say that I am '],
+   ['I help my friends by ','When my friend feels sad, I ','I also enjoy '],
+   ['My advice to someone who wants to be a good friend is ','You should ','It is important to ']
+  ]},
+ {id:'w3', title:'Saving Our Oceans', theme:'ocean', task:'What can we do to protect our oceans?',
+  prompts:['What actions can individuals take to protect the oceans?','How can schools and communities help?','Why is it important to keep our oceans clean for the future?'],
+  text:'The oceans are home to many amazing creatures, such as whales, dolphins, turtles and colourful fish. They provide us with food, clean air and help control the Earth\'s climate.\n\nHowever, our oceans are in danger. Every year, millions of tons of plastic waste enter the sea. This plastic can harm marine animals. Many animals, such as turtles, mistake plastic bags for food, which can make them very sick or even kill them. Fishing nets and other waste can also trap dolphins and whales.\n\nThere are many ways we can help. We can reduce the use of plastic, recycle, and join beach clean-up activities. We can also choose sustainable products and encourage others to take care of our oceans. Governments, schools and communities are working together to protect marine life. In the UAE, many people and organisations support ocean conservation projects and raise awareness about keeping our beaches and seas clean.\n\nIf we all take small actions, we can make a big difference and keep our oceans healthy for future generations.',
+  paraMap:[[0,0],[1,1],[2,2]],
+  summary:['The oceans are home to many amazing animals and provide us with food, clean air and a healthy climate.','Plastic waste and fishing waste are dangerous and can harm or kill marine animals.','We can help by reducing plastic, recycling and joining clean-up activities.','People, schools and the UAE support ocean conservation to keep our oceans clean for the future.'],
+  sample:'We can do many things to protect our oceans. First, individuals can reduce the use of plastic, recycle waste and choose reusable products such as water bottles and bags. We should also avoid throwing litter on beaches and join beach clean-up activities. In school, we can organise awareness campaigns, take part in clean-up projects and share information about how to keep our environment clean.\n\nCommunities and the government can provide recycling bins, support marine conservation projects and educate people about the impact of plastic waste. It is very important to keep our oceans clean because marine animals depend on the ocean for their survival. Clean oceans also give us food, clean air and a healthy climate. If we all take action, we can protect our oceans and make sure they remain healthy for future generations.',
+  starters:[
+   ['First, individuals can ','We should ','We can also '],
+   ['In school, we can ','Communities can ','The government can '],
+   ['It is very important to keep our oceans clean because ','If we all take action, ','In the future, ']
+  ]}
+];
+
+const FUNCTIONAL = [
+ {ar:'التعبير عن الرأي', code:'FL.16', items:['I think that ...','In my opinion, ...','I believe that ...','I feel that ...','For me, the most important thing is ...']},
+ {ar:'وصف الأماكن', code:'FL.6', items:['It is a beautiful place with ...','It is famous for ...','There are many ...','It is located in ...','It is one of the most amazing places in the world.']},
+ {ar:'طلب النصيحة', code:'FL.24', items:['What should I do?','Can you give me some advice?','What do you think I should do?']},
+ {ar:'إعطاء النصيحة', code:'FL.24', items:['You should ...','You shouldn\'t ...','My advice is to ...','It is a good idea to ...','Why don\'t you ...?']},
+ {ar:'كلمات الربط', code:'', items:['First, ...','Also, ...','However, ...','because','so','For example, ...','such as','Finally, ...']}
+];
+// ================= APP =================
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const LET = ['A','B','C','D'];
+
+// ---------- storage (best scores) ----------
+const Store = {
+  k:'yousef-eng-eot1',
+  get(){ try { return JSON.parse(localStorage.getItem(this.k)) || {}; } catch(e){ return {}; } },
+  set(o){ try { localStorage.setItem(this.k, JSON.stringify(o)); } catch(e){} },
+  best(id, score, total){ const o = this.get(); const p = Math.round(100*score/total); if(!o[id] || o[id] < p){ o[id] = p; this.set(o); } renderHomeMap(); },
+  pref(key, val){ const o = this.get(); if(val === undefined) return (o.prefs||{})[key]; o.prefs = o.prefs || {}; o.prefs[key] = val; this.set(o); }
+};
+
+// ---------- toast ----------
+let toastT;
+function toast(msg, ms=2600){ const t = $('#toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(toastT); toastT = setTimeout(()=> t.style.display = 'none', ms); }
+
+// ---------- feedback sounds ----------
+let actx;
+function beep(ok){
+  try{
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const notes = ok ? [660, 880] : [220, 180];
+    notes.forEach((f,i)=>{ const o = actx.createOscillator(), g = actx.createGain(); o.type = ok ? 'sine' : 'triangle'; o.frequency.value = f; o.connect(g); g.connect(actx.destination); const t = actx.currentTime + i*0.11; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.18, t+0.02); g.gain.exponentialRampToValueAtTime(0.0001, t+0.18); o.start(t); o.stop(t+0.2); });
+  }catch(e){}
+}
+
+// ================= SPEECH =================
+const TTS = {
+  ok: 'speechSynthesis' in window, voices: [], en: null, ar: null, rate: 0.9, slow: false, queue: [], token: 0,
+  score(v, lang){
+    const n = v.name.toLowerCase(), l = (v.lang||'').toLowerCase().replace('_','-'); let s = 0;
+    if(!l.startsWith(lang)) return -1;
+    if(n.includes('natural') || n.includes('neural')) s += 60;
+    if(n.includes('online')) s += 10;
+    if(n.includes('google')) s += 35;
+    if(lang==='en'){ if(l==='en-us') s += 12; if(l==='en-gb') s += 11; if(/aria|jenny|guy|sonia|libby|ryan|ava|andrew|emma|samantha|allison|daniel|serena/.test(n)) s += 20; if(/zira|david|mark|hazel|george/.test(n)) s += 5; if(/novelty|bells|bad|whisper|zarvox|trinoids|albert|jester|organ|bubbles|boing|cellos|hysterical|wobble|superstar|grandma|grandpa|eddy|flo|reed|rocko|sandy|shelley/.test(n)) s -= 80; }
+    if(lang==='ar'){ if(l==='ar-ae') s += 15; if(l==='ar-sa') s += 10; if(/hamed|zariyah|fatima|hamdan|shakir|maged|laila|tarik|majed|mariam/.test(n)) s += 10; }
+    return s;
+  },
+  load(){
+    if(!this.ok) return;
+    this.voices = speechSynthesis.getVoices();
+    const pick = lang => this.voices.map(v=>[this.score(v,lang),v]).filter(x=>x[0]>=0).sort((a,b)=>b[0]-a[0]).map(x=>x[1]);
+    const ens = pick('en'), ars = pick('ar');
+    const pEn = Store.pref('en'), pAr = Store.pref('ar');
+    this.en = ens.find(v=>v.name===pEn) || ens[0] || null;
+    this.ar = ars.find(v=>v.name===pAr) || ars[0] || null;
+    const r = Store.pref('rate'); if(r) this.rate = +r;
+    const fill = (sel, list, cur) => { sel.innerHTML = list.length ? list.map(v=>`<option value="${esc(v.name)}" ${cur&&v.name===cur.name?'selected':''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('') : '<option>— لا يوجد —</option>'; };
+    fill($('#selEn'), ens, this.en); fill($('#selAr'), ars, this.ar);
+    $('#rate').value = this.rate; $('#rateLbl').textContent = this.rate;
+  },
+  stop(){ this.token++; if(this.ok) speechSynthesis.cancel(); $$('.spk.playing').forEach(b=>b.classList.remove('playing')); $$('.s.reading').forEach(s=>s.classList.remove('reading')); },
+  // segs: [{t, l:'en'|'ar', onstart}]
+  play(segs, btn, done){
+    if(!this.ok){ toast('المتصفح لا يدعم النطق. جرّب Chrome أو Edge.'); return; }
+    this.stop();
+    const my = this.token;
+    if(btn) btn.classList.add('playing');
+    let i = 0;
+    const next = () => {
+      if(my !== this.token) return;
+      if(i >= segs.length){ if(btn) btn.classList.remove('playing'); if(done) done(); return; }
+      const sg = segs[i++];
+      const txt = sg.t.replace(/\p{Extended_Pictographic}/gu,'').replace(/[←→✅❌✔️]/g,' ').replace(/___/g,' blank ').trim();
+      if(!txt || !/[\p{L}\p{N}]/u.test(txt)){ next(); return; }
+      if(sg.l==='ar' && !this.ar){ next(); return; }
+      const u = new SpeechSynthesisUtterance(txt);
+      const v = sg.l==='en' ? this.en : this.ar;
+      if(v){ u.voice = v; u.lang = v.lang; } else u.lang = sg.l==='en' ? 'en-US' : 'ar-AE';
+      u.rate = sg.l==='en' ? (this.slow ? Math.max(0.5, this.rate*0.65) : this.rate) * (sg.rate||1) : 1;
+      u.onstart = () => sg.onstart && sg.onstart();
+      u.onend = () => { sg.onend && sg.onend(); next(); };
+      u.onerror = () => { sg.onend && sg.onend(); next(); };
+      speechSynthesis.speak(u);
+    };
+    setTimeout(next, 60);
+  },
+  en1(text, btn, rate){ this.play([{t:text, l:'en', rate}], btn); },
+  // Arabic narration with English words spoken by English voice
+  split(text){
+    const segs = []; const re = /[A-Za-z][A-Za-z0-9'’\-]*(?:[\s,.!?:;"“”()…\/]+[A-Za-z0-9][A-Za-z0-9'’\-]*)*[.?!]?/g;
+    let last = 0, m;
+    while((m = re.exec(text))){ if(m.index > last) segs.push({t:text.slice(last, m.index), l:'ar'}); segs.push({t:m[0], l:'en'}); last = m.index + m[0].length; }
+    if(last < text.length) segs.push({t:text.slice(last), l:'ar'});
+    return segs;
+  },
+  narrate(text, btn){
+    if(!this.ar && !this._warned){ this._warned = true; toast('لا يوجد صوت عربي على هذا الجهاز، سأنطق الكلمات الإنجليزية فقط. جرّب Edge أو Chrome.', 4500); }
+    this.play(this.split(text), btn);
+  }
+};
+if(TTS.ok){ TTS.load(); speechSynthesis.onvoiceschanged = () => TTS.load(); setTimeout(()=>TTS.load(), 700); }
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-say]');
+  if(b){ e.stopPropagation(); TTS.en1(b.dataset.say, b, b.dataset.rate ? +b.dataset.rate : 1); return; }
+  const n = e.target.closest('[data-narr]');
+  if(n){ e.stopPropagation(); const el = document.getElementById(n.dataset.narr); TTS.narrate(el ? el.textContent : n.dataset.narr, n); return; }
+  const g = e.target.closest('[data-go]');
+  if(g){ go(g.dataset.go); }
+});
+$('#stopBtn').onclick = () => TTS.stop();
+$('#slowBtn').onclick = e => { TTS.slow = !TTS.slow; e.currentTarget.classList.toggle('on', TTS.slow); e.currentTarget.setAttribute('aria-pressed', TTS.slow); toast(TTS.slow ? '🐢 النطق البطيء مفعّل' : 'النطق بالسرعة العادية'); };
+$('#setBtn').onclick = () => { TTS.load(); $('#dlg').showModal(); };
+$('#dlgClose').onclick = () => $('#dlg').close();
+$('#selEn').onchange = e => { TTS.en = TTS.voices.find(v=>v.name===e.target.value) || TTS.en; Store.pref('en', e.target.value); };
+$('#selAr').onchange = e => { TTS.ar = TTS.voices.find(v=>v.name===e.target.value) || TTS.ar; Store.pref('ar', e.target.value); };
+$('#rate').oninput = e => { TTS.rate = +e.target.value; $('#rateLbl').textContent = TTS.rate; Store.pref('rate', TTS.rate); };
+$('#testEn').onclick = e => TTS.en1('Coral reefs are home to many different sea animals.', e.currentTarget);
+$('#testAr').onclick = e => TTS.narrate('أهلاً يوسف، هذا هو الصوت العربي. والكلمة الإنجليزية هي volcano.', e.currentTarget);
+
+const spk = (text, label='🔊', cls='') => `<button class="spk ${cls}" data-say="${esc(text)}" aria-label="استمع">${label}</button>`;
+
+// ================= NAV =================
+function go(v){
+  TTS.stop();
+  $$('nav.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.v===v));
+  $$('section.view').forEach(s => s.classList.toggle('active', s.id==='v-'+v));
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(v==='mock' && !$('#mbody').dataset.ready) renderMockIntro();
+}
+$$('nav.tabs button').forEach(b => b.onclick = () => go(b.dataset.v));
+
+// ================= COACH TEXT =================
+const COACH = {
+  hello:'أهلاً يا يوسف! هذه صفحتك للاستعداد لامتحان English نهاية الفصل الأول. الامتحان فيه Reading من ستين درجة، و Writing من أربعين درجة. في أي مكان ترى فيه زر السمّاعة، اضغط عليه لتسمع النطق الصحيح. يلّا نبدأ، وأنا متأكد أنك تقدر!',
+  vocab:'في الجزء الأول، Vocabulary، ستجد خمس جمل، وكل جملة فيها فراغ وثلاثة خيارات: A, B, C. كل سؤال بدرجتين. ابدأ بالبطاقات واسمع كل كلمة، ثم العب التوصيل والتهجئة، وفي النهاية حلّ تمارين المدرسة.',
+  grammar:'في الجزء الثاني، Grammar، تقرأ نصاً قصيراً فيه خمس فراغات. السرّ هو أن تبحث عن الكلمة الدليل حول الفراغ، مثل often أو now أو should أو by. القواعد المطلوبة: Modals، و Second conditional، و Passive، و Noun phrases.',
+  reading:'في الجزء الثالث، Reading، يوجد نصّان. الأول عن Who am I، وكل سؤال بثلاث درجات. والثاني عن Scientific Wonders، وكل سؤال بدرجتين. الخطة: اقرأ السؤال أولاً، استخرج الكلمة المهمة، ثم ابحث عنها في النص. اضغط على أي كلمة لا تعرفها لتسمعها وتعرف معناها.',
+  writing:'في الجزء الرابع، Writing، تقرأ نصاً ثم تكتب ملخصاً من ثلاث إلى أربع جمل بكلماتك، وعليه خمس عشرة درجة. ثم تكتب فقرة لا تقل عن مئة وعشر كلمات تجيب فيها عن ثلاثة أسئلة، وعليها خمس وعشرون درجة. انتبه للحروف الكبيرة والنقطة في آخر الجملة.',
+  mock:'هذا اختبار مثل الامتحان الحقيقي: خمسة أسئلة Vocabulary، وخمسة Grammar، ونص Reading عن Who am I، ونص عن Scientific Wonders. المجموع ستون درجة. أجب عن كل الأسئلة ثم اضغط تصحيح.'
+};
+['vocab','grammar','reading','writing','mock'].forEach(k => $('#coach-'+k).textContent = COACH[k]);
+$('#helloBtn').onclick = e => TTS.narrate(COACH.hello, e.currentTarget);
+
+// ================= HOME =================
+const PARTS = [
+  {v:'vocab', n:'Part 1', ar:'الكلمات', en:'Vocabulary', pts:10, c:'var(--ocean)', what:'5 جمل × درجتين · اختر A أو B أو C', ids:VOCAB_SETS.map(s=>s.id)},
+  {v:'grammar', n:'Part 2', ar:'القواعد', en:'Grammar', pts:10, c:'var(--gram)', what:'نص فيه 5 فراغات × درجتين', ids:['gd-clues','gd-modals','gd-cond2','gd-passive','gd-nouns','g1','g2','g3']},
+  {v:'reading', n:'Part 3A', ar:'قراءة: من أنا؟', en:'Reading · Who am I?', pts:24, c:'var(--who)', what:'نص + 8 أسئلة × 3 درجات', ids:READINGS.filter(r=>r.part==='3A').map(r=>r.id)},
+  {v:'reading', n:'Part 3B', ar:'قراءة: عجائب العلوم', en:'Reading · Scientific Wonders', pts:16, c:'var(--wonders)', what:'نص + 8 أسئلة × درجتين', ids:READINGS.filter(r=>r.part==='3B').map(r=>r.id)},
+  {v:'writing', n:'Part 4', ar:'الكتابة', en:'Writing', pts:40, c:'var(--space)', what:'ملخص (15) + فقرة 110 كلمات (25)', ids:WRITINGS.map(w=>'wsum-'+w.id)}
+];
+function renderHomeMap(){
+  const st = Store.get();
+  $('#examMap').innerHTML = PARTS.map(p => {
+    const done = p.ids.filter(id => st[id] >= 80).length;
+    const stars = '★'.repeat(done) + '☆'.repeat(p.ids.length - done);
+    return `<button class="part" style="--c:${p.c}" data-go="${p.v}"><div class="n">${p.n}</div><h4>${p.ar}</h4><div class="en muted" style="font-size:13px">${p.en}</div><div class="pts">${p.pts} <span style="font-size:14px;font-family:var(--ar)">درجة</span></div><div class="what">${p.what}</div><div class="stars" title="نجمة لكل تمرين نجحت فيه بنسبة 80% أو أكثر">${stars}</div></button>`;
+  }).join('');
+}
+
+// ================= MCQ COMPONENT =================
+// item: {stem(html), opts[], ok[], exp, say(text spoken after answer), type}
+function mcq(item, idx, onAns, opts={}){
+  const d = document.createElement('div');
+  d.className = 'q' + (opts.col ? ' col' : '');
+  const typeBadge = item.type ? `<span class="qtype qt-${item.type}">${QT[item.type]}</span>` : '';
+  d.innerHTML = `<div class="stem"><div class="num">${idx+1}</div><div class="txt">${item.stem}</div>${item.qsay ? spk(item.qsay,'🔊','mini') : ''}</div>
+   ${typeBadge ? `<div style="margin-top:4px">${typeBadge}</div>` : ''}
+   <div class="opts">${item.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="L">${LET[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+   <div class="fb"><div class="t"></div></div>`;
+  const fb = $('.fb', d), t = $('.t', fb);
+  $$('.opt', d).forEach(b => b.onclick = () => {
+    if(opts.silent){
+      if(d.dataset.locked) return;
+      $$('.opt', d).forEach(x => x.classList.remove('picked'));
+      b.classList.add('picked'); d.dataset.done = 1;
+      onAns && onAns(item.ok.includes(+b.dataset.i), +b.dataset.i); return;
+    }
+    if(d.dataset.done) return;
+    const i = +b.dataset.i, right = item.ok.includes(i);
+    d.dataset.done = 1;
+    $$('.opt', d).forEach(x => { x.disabled = true; if(item.ok.includes(+x.dataset.i)) x.classList.add('right'); });
+    if(!right) b.classList.add('wrong');
+    if(!opts.silent){
+      beep(right);
+      fb.className = 'fb show ' + (right ? 'ok' : 'no');
+      t.innerHTML = (right ? '<b>✅ أحسنت!</b> ' : `<b>❌ الجواب الصحيح: <span class="en">${esc(item.opts[item.ok[0]])}</span></b><br>`) + esc(item.exp);
+      fb.insertAdjacentHTML('beforeend', `<button class="spk mini" data-narr="${esc(item.exp)}" title="اسمع الشرح">🔊</button>`);
+      if(item.onReveal) item.onReveal(fb);
+      const g = $('.gap', d); if(g) g.textContent = item.opts[item.ok[0]];
+      if(item.say) TTS.en1(item.say);
+    }
+    onAns && onAns(right, i);
+  });
+  d.reveal = () => {
+    d.dataset.locked = 1;
+    $$('.opt', d).forEach(x => { x.disabled = true; x.classList.remove('picked'); const i = +x.dataset.i; if(item.ok.includes(i)) x.classList.add('right'); else if(String(i) === d.dataset.pick) x.classList.add('wrong'); });
+    fb.className = 'fb show ' + (d.dataset.right==='1' ? 'ok' : 'no');
+    t.innerHTML = (d.dataset.right==='1' ? '<b>✅ صحيح.</b> ' : `<b>❌ الصحيح: <span class="en">${esc(item.opts[item.ok[0]])}</span></b><br>`) + esc(item.exp);
+    if(item.onReveal) item.onReveal(fb);
+  };
+  return d;
+}
+const QT = {info:'معلومة محددة', detail:'تفاصيل', word:'معنى كلمة', infer:'استنتاج', main:'الفكرة الرئيسية'};
+const gapHtml = s => esc(s).replace('___','<span class="gap">&nbsp;</span>');
+const fill = (s, w) => s.replace('___', w);
+
+function quizBlock(container, items, id, marks=1, colOpts=false){
+  container.innerHTML = '';
+  let ans = 0, score = 0;
+  const res = document.createElement('div');
+  items.forEach((it, i) => container.appendChild(mcq(it, i, r => {
+    ans++; if(r) score++;
+    if(ans === items.length){
+      Store.best(id, score, items.length);
+      const msg = score === items.length ? 'ممتاز يا يوسف! علامة كاملة 🌟' : score >= items.length*0.7 ? 'شغل حلو! راجع الأخطاء وجرّب مرة ثانية 💪' : 'لا بأس، اقرأ الشرح تحت كل سؤال وأعد المحاولة 🔁';
+      res.className = 'result';
+      res.innerHTML = `<b>${score*marks} / ${items.length*marks}</b>${msg}<div style="margin-top:10px"><button class="btn gold sm">🔁 أعد المحاولة</button></div>`;
+      $('button', res).onclick = () => quizBlock(container, items, id, marks, colOpts);
+      if(score === items.length) TTS.narrate('ممتاز يا يوسف! Excellent!');
+      res.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  }, {col:colOpts})));
+  container.appendChild(res);
+}
+
+// ================= VOCAB =================
+const WORD_MAP = Object.fromEntries(WORDS.map(w => [w[0], w]));
+let vTheme = 'ocean', vMode = 'cards';
+function renderVThemes(){
+  const showGram = vMode === 'cards' || vMode === 'match' || vMode === 'listen' || vMode === 'spell';
+  const keys = Object.keys(THEMES).filter(k => k !== 'gram' || showGram);
+  if(!keys.includes(vTheme)) vTheme = 'ocean';
+  $('#vthemes').innerHTML = keys.map(k => `<button class="chip t-${k}" aria-pressed="${k===vTheme}" data-t="${k}">${THEMES[k].icon} <span class="en">${THEMES[k].en}</span> · ${THEMES[k].ar}</button>`).join('');
+  $$('#vthemes .chip').forEach(c => c.onclick = () => { vTheme = c.dataset.t; renderVThemes(); renderVocab(); });
+}
+$$('#vmode button').forEach(b => b.onclick = () => { $$('#vmode button').forEach(x => x.setAttribute('aria-pressed', x===b)); vMode = b.dataset.m; TTS.stop(); renderVThemes(); renderVocab(); });
+const themeWords = t => WORDS.filter(w => w[5] === t);
+
+function renderVocab(){
+  const body = $('#vbody'); body.innerHTML = '';
+  if(vMode === 'cards') return vCards(body);
+  if(vMode === 'match') return vMatch(body);
+  if(vMode === 'listen') return vListen(body);
+  if(vMode === 'spell') return vSpell(body);
+  if(vMode === 'school') return vSchool(body);
+}
+function vCards(body){
+  const col = THEMES[vTheme].color;
+  body.innerHTML = `<div class="row" style="margin-bottom:12px"><span class="muted">اضغط على البطاقة لتقلبها وترى المعنى. 🔊 = النطق، 🐢 = النطق ببطء.</span><span class="spacer"></span><button class="btn sm ghost" id="playAll">▶️ اسمع كل الكلمات</button></div><div class="vgrid"></div>`;
+  const g = $('.vgrid', body);
+  themeWords(vTheme).forEach(w => {
+    const [en, ar, syl, pron, emo, , ex] = w;
+    const exH = esc(ex).replace(new RegExp('\\b(' + en + ')\\b','i'), '<b>$1</b>');
+    const c = document.createElement('div');
+    c.className = 'flip'; c.tabIndex = 0; c.setAttribute('role','button'); c.setAttribute('aria-label', en);
+    c.innerHTML = `<div class="in">
+      <div class="face"><div class="emo">${emo}</div><div class="w">${en}</div><div class="syl">${syl}</div>
+        <div class="acts">${spk(en,'🔊')}${spk(en,'🐢','')}</div><div class="flip-hint">اضغط للقلب ↺</div></div>
+      <div class="face back" style="--c:${col}"><div class="ar">${ar}</div><div class="pron">النطق: ${pron}</div><div class="ex">${exH}</div>
+        <div class="acts">${spk(en,'🔊 الكلمة')}${spk(ex,'🔊 الجملة')}</div></div></div>`;
+    $$('.acts .spk', c)[1].dataset.rate = '0.6';
+    c.onclick = e => { if(e.target.closest('.spk')) return; c.classList.toggle('on'); if(c.classList.contains('on')) TTS.en1(en); };
+    c.onkeydown = e => { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); c.click(); } };
+    g.appendChild(c);
+  });
+  $('#playAll').onclick = e => {
+    const segs = [];
+    themeWords(vTheme).forEach(w => { segs.push({t:w[0], l:'en'}); segs.push({t:w[1], l:'ar'}); });
+    TTS.play(segs, e.currentTarget);
+  };
+}
+function vMatch(body){
+  const pool = shuffle(themeWords(vTheme)).slice(0, 5);
+  let sel = null, left = pool.length, mistakes = 0;
+  body.innerHTML = `<div class="game card"><div class="scorebar"><span>🔗 صِل الكلمة الإنجليزية بمعناها العربي</span><span>الأخطاء: <b class="en" id="mm">0</b></span></div>
+    <div class="match"><div id="mcolEn"></div><div id="mcolAr"></div></div><div id="mres"></div></div>`;
+  const ce = $('#mcolEn'), ca = $('#mcolAr');
+  shuffle(pool).forEach(w => ce.insertAdjacentHTML('beforeend', `<button class="tile en" data-k="${w[0]}">${w[0]}</button>`));
+  shuffle(pool).forEach(w => ca.insertAdjacentHTML('beforeend', `<button class="tile" data-k="${w[0]}">${w[4]} ${w[1]}</button>`));
+  const click = b => {
+    const isEn = b.classList.contains('en');
+    if(isEn) TTS.en1(b.dataset.k);
+    if(!sel || sel.classList.contains('en') === isEn){ $$('.tile.sel', body).forEach(x=>x.classList.remove('sel')); sel = b; b.classList.add('sel'); return; }
+    if(sel.dataset.k === b.dataset.k){ beep(true); sel.classList.add('done'); b.classList.add('done'); sel.classList.remove('sel'); sel = null; left--;
+      if(!left){ const s = Math.max(0, 5 - mistakes); Store.best('match-'+vTheme, s, 5); $('#mres').innerHTML = `<div class="result"><b>🎉</b>${mistakes ? 'أنهيت بـ ' + mistakes + ' أخطاء' : 'بدون أي خطأ! رائع'}<div style="margin-top:10px"><button class="btn gold sm" id="again">🔁 كلمات جديدة</button></div></div>`; $('#again').onclick = () => vMatch(body); }
+    } else { beep(false); mistakes++; $('#mm').textContent = mistakes; [sel, b].forEach(x => { x.classList.add('shake'); setTimeout(()=>x.classList.remove('shake'), 400); }); sel.classList.remove('sel'); sel = null; }
+  };
+  $$('.tile', body).forEach(b => b.onclick = () => click(b));
+}
+function vListen(body){
+  const words = themeWords(vTheme); let n = 0, score = 0; const total = Math.min(8, words.length);
+  const order = shuffle(words).slice(0, total);
+  const round = () => {
+    if(n >= total){ Store.best('listen-'+vTheme, score, total); body.innerHTML = `<div class="game"><div class="result"><b>${score} / ${total}</b>${score===total ? 'أذن ذهبية! 👂🌟' : 'جرّب مرة ثانية لتصل للعلامة الكاملة'}<div style="margin-top:10px"><button class="btn gold sm" id="again">🔁 العب مرة أخرى</button></div></div></div>`; $('#again').onclick = () => vListen(body); return; }
+    const w = order[n];
+    const opts = shuffle([w, ...shuffle(words.filter(x => x !== w)).slice(0, 3)]);
+    body.innerHTML = `<div class="game card"><div class="scorebar"><span>👂 اسمع الكلمة واختر الصحيحة</span><span class="en">${n+1} / ${total} · ⭐ ${score}</span></div>
+      <button class="bigplay" id="bp" aria-label="شغّل الكلمة">🔊</button><div class="center muted" style="text-align:center;margin-top:-8px;margin-bottom:12px">اضغط للاستماع مرة أخرى</div>
+      <div class="opts4">${opts.map(o => `<button class="tile en" data-k="${o[0]}">${o[0]}</button>`).join('')}</div><div id="lfb" style="margin-top:12px"></div></div>`;
+    const play = () => TTS.en1(w[0], $('#bp'));
+    $('#bp').onclick = play; setTimeout(play, 300);
+    $$('.tile', body).forEach(b => b.onclick = () => {
+      if(body.dataset.lock) return; body.dataset.lock = 1;
+      const ok = b.dataset.k === w[0]; beep(ok); if(ok) score++;
+      $$('.tile', body).forEach(x => { if(x.dataset.k === w[0]) { x.style.borderColor = 'var(--ok)'; x.style.background = 'var(--ok-bg)'; } });
+      if(!ok){ b.style.borderColor = 'var(--bad)'; b.style.background = 'var(--bad-bg)'; }
+      $('#lfb').innerHTML = `<div class="fb show ${ok?'ok':'no'}"><div class="t"><b class="en">${w[0]}</b> = ${w[1]} ${w[4]}</div></div>`;
+      setTimeout(() => { delete body.dataset.lock; n++; round(); }, ok ? 1300 : 2300);
+    });
+  };
+  round();
+}
+function vSpell(body){
+  const words = shuffle(themeWords(vTheme)).slice(0, 6); let n = 0, score = 0;
+  const round = () => {
+    if(n >= words.length){ Store.best('spell-'+vTheme, score, words.length); body.innerHTML = `<div class="game"><div class="result"><b>${score} / ${words.length}</b>${score===words.length ? 'إملاء ممتاز! ✍️' : 'التهجئة مهمة في الكتابة (5 درجات). جرّب مرة ثانية.'}<div style="margin-top:10px"><button class="btn gold sm" id="again">🔁 كلمات جديدة</button></div></div></div>`; $('#again').onclick = () => vSpell(body); return; }
+    const w = words[n]; let tries = 0;
+    body.innerHTML = `<div class="game card"><div class="scorebar"><span>⌨️ اسمع الكلمة واكتبها بالإنجليزي</span><span class="en">${n+1} / ${words.length} · ⭐ ${score}</span></div>
+      <div class="row" style="justify-content:center"><button class="bigplay" id="bp" style="margin:0">🔊</button><button class="spk" data-say="${w[0]}" data-rate="0.55">🐢 ببطء</button></div>
+      <p style="text-align:center;font-size:20px;margin:8px 0">المعنى: <b>${w[1]}</b> ${w[4]}</p>
+      <div class="spellbox" id="sb">${[...w[0]].map(()=>'<span></span>').join('')}</div>
+      <input class="spell" id="si" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="${w[0].length+3}" placeholder="type here" aria-label="اكتب الكلمة">
+      <div class="row" style="justify-content:center;margin-top:12px"><button class="btn" id="chk">تحقّق ✓</button><button class="btn ghost" id="hint">💡 تلميح</button><button class="btn ghost" id="skip">تخطَّ</button></div>
+      <div id="sfb" style="margin-top:12px"></div></div>`;
+    const sb = $$('#sb span'), si = $('#si');
+    const play = () => TTS.en1(w[0], $('#bp'));
+    $('#bp').onclick = play; setTimeout(play, 300); si.focus();
+    si.oninput = () => { const v = si.value.toLowerCase(); sb.forEach((s,i)=>{ s.textContent = v[i] || ''; s.className = ''; }); };
+    $('#hint').onclick = () => { si.value = w[0].slice(0, Math.min(w[0].length-1, Math.max(si.value.length, 0) + 1)); si.oninput(); si.focus(); $('#sfb').innerHTML = `<div class="note">المقاطع: <span class="en">${w[2]}</span></div>`; };
+    const check = () => {
+      const v = si.value.trim().toLowerCase(); tries++;
+      sb.forEach((s,i)=>{ s.className = v[i] === w[0][i] ? 'ok' : 'bad'; });
+      if(v === w[0]){ beep(true); if(tries === 1) score++; $('#sfb').innerHTML = `<div class="fb show ok"><div class="t">✅ صحيح! <b class="en">${w[0]}</b></div></div>`; TTS.en1(w[0]); setTimeout(()=>{ n++; round(); }, 1400); }
+      else { beep(false); $('#sfb').innerHTML = `<div class="fb show no"><div class="t">الحروف الحمراء خطأ. ${tries >= 2 ? 'الكلمة الصحيحة: <b class="en">' + w[0] + '</b>' : 'حاول مرة أخرى 💪'}</div></div>`; }
+    };
+    $('#chk').onclick = check; si.onkeydown = e => { if(e.key === 'Enter') check(); };
+    $('#skip').onclick = () => { n++; round(); };
+  };
+  round();
+}
+function vSchool(body){
+  const sets = VOCAB_SETS.filter(s => s.theme === vTheme);
+  body.innerHTML = `<div class="note" style="margin-bottom:14px">هذه نفس تمارين المعلمة (<span class="en">T. Muna Albalooshi</span>). اقرأ الجملة، ابحث عن <b>الكلمة الدليل</b>، ثم اختر. اضغط 🔊 لتسمع الجملة.</div>
+    <div class="seg" id="vsets">${sets.map((s,i)=>`<button aria-pressed="${i===0}" data-i="${i}" class="en">${s.title}</button>`).join('')}</div><div id="vq"></div>`;
+  const show = i => {
+    const s = sets[i];
+    const box = $('#vq');
+    const items = s.qs.map(q => ({stem: gapHtml(q[0]), qsay: q[0].replace('___', 'blank'), opts: q[1], ok: q[2], exp: q[3], say: fill(q[0], q[1][q[2][0]])}));
+    quizBlock(box, items, s.id, 2);
+  };
+  $$('#vsets button').forEach(b => b.onclick = () => { $$('#vsets button').forEach(x=>x.setAttribute('aria-pressed', x===b)); show(+b.dataset.i); });
+  show(0);
+}
+
+// ================= GRAMMAR =================
+let gMode = 'clues';
+$$('#gmode button').forEach(b => b.onclick = () => { $$('#gmode button').forEach(x => x.setAttribute('aria-pressed', x===b)); gMode = b.dataset.m; TTS.stop(); renderGrammar(); });
+
+const G_EXPLAIN = {
+  clues:'قبل أن تختار الجواب، ابحث عن الكلمة الدليل حول الفراغ. إذا رأيت often أو every year، استخدم المضارع البسيط. إذا رأيت now أو at the moment، استخدم am أو is أو are مع ing. إذا رأيت yesterday أو last year، استخدم الماضي. وبعد can أو should أو must، الفعل يبقى كما هو بدون أي إضافة.',
+  modals:'الأفعال الناقصة Modals تأتي قبل الفعل الأساسي. can تعني يستطيع، should تعني ينبغي كنصيحة، must تعني يجب كإلزام، might تعني ربما. القاعدة الذهبية: بعد الـ modal يأتي الفعل بدون to، وبدون s، وبدون ing. نقول She can swim، ولا نقول She can swims.',
+  cond2:'الجملة الشرطية الثانية Second conditional نستخدمها للأحلام والأشياء الخيالية التي ليست حقيقية الآن. الجزء الأول: If مع فعل في الماضي. الجزء الثاني: would مع فعل أساسي. مثال: If I were an astronaut, I would visit Mars. انتبه: مع I نستخدم were وليس was.',
+  passive:'المبني للمجهول Passive نستخدمه عندما يكون الشيء أهمّ من الشخص الذي قام بالفعل. القاعدة: is أو are، ثم التصريف الثالث للفعل. مثال: Volunteers collect plastic، تصبح: Plastic is collected by volunteers. إذا رأيت كلمة by بعد الفراغ، فكّر مباشرة في المبني للمجهول.',
+  nouns:'العبارة الاسمية Noun phrase هي اسم مع الكلمات التي تصفه. في الإنجليزي الصفة تأتي قبل الاسم، عكس العربي. نقول a huge bottle وليس a bottle huge. والترتيب: أداة مثل a أو the، ثم الرأي مثل beautiful، ثم الحجم مثل huge، ثم اللون، ثم المادة مثل plastic، وفي النهاية الاسم.'
+};
+function lessonHead(icon, en, ar, key){
+  return `<div class="head"><div class="ic">${icon}</div><div><h3 style="margin:0"><span class="en">${en}</span></h3><div class="muted">${ar}</div></div></div>
+  <div class="coach" style="margin:8px 0 12px;box-shadow:none;background:#fbfaf6"><div class="av" style="width:42px;height:42px;font-size:22px">💬</div><p id="gx-${key}">${G_EXPLAIN[key]}</p><button class="spk" data-narr="gx-${key}">🔊 اسمع الشرح</button></div>`;
+}
+const exl = (s, a) => `<div class="exl"><div class="s">${s}</div><div class="a">${a||''}</div>${spk(s.replace(/<[^>]+>/g,''),'🔊','mini')}</div>`;
+function drill(container, key){
+  const items = GRAMMAR_DRILLS[key].map(q => ({stem: gapHtml(q[0]), qsay: q[0].replace(/\(.*?\)/,'').replace('___','blank'), opts: q[1], ok:[q[2]], exp:q[3], say: q[0].includes('___') ? fill(q[0].replace(/\s*\(.*?\)/,''), q[1][q[2]]) : q[1][q[2]]}));
+  quizBlock(container, items, 'gd-'+key, 2);
+}
+function renderGrammar(){
+  const body = $('#gbody');
+  if(gMode === 'clues'){
+    body.innerHTML = `<div class="card lesson">${lessonHead('🔎','Clue words','الكلمة الدليل: تخبرك أي زمن تختار','clues')}
+     <table class="cluetable">
+      <tr><td class="clue">every day / often / always / usually / every year</td><td>المضارع البسيط</td><td class="enb">They <b>go</b> · She <b>goes</b></td><td>${spk('Volunteers often go to beaches to collect trash.','🔊','mini')}</td></tr>
+      <tr><td class="clue">now / at the moment / Look! / these days</td><td>المضارع المستمر</td><td class="enb">am / is / are + <b>-ing</b></td><td>${spk('At the moment, scientists are designing new machines.','🔊','mini')}</td></tr>
+      <tr><td class="clue">yesterday / last year / ago / in 2020</td><td>الماضي البسيط</td><td class="enb">collect<b>ed</b> · <b>went</b></td><td>${spk('Last year, we collected plastic bottles.','🔊','mini')}</td></tr>
+      <tr><td class="clue">can / should / must / might</td><td>فعل أساسي فقط</td><td class="enb">should <b>start</b></td><td>${spk('We should start recycling.','🔊','mini')}</td></tr>
+      <tr><td class="clue">… by + someone/something</td><td>مبني للمجهول</td><td class="enb">is / are + <b>V3</b></td><td>${spk('These machines are powered by solar energy.','🔊','mini')}</td></tr>
+     </table>
+     <div class="note" style="margin-top:12px">🧠 <b>انتبه للفاعل:</b> إذا كان جمعاً (<span class="en">people, ships, chemicals</span>) لا نضيف <span class="en">s</span> للفعل. إذا كان مفرداً (<span class="en">she, the machine, technology</span>) نضيف <span class="en">s</span> في المضارع البسيط.</div>
+     <h3 style="margin-top:18px">🎯 تدريب: ابحث عن الدليل واختر</h3><div id="gd"></div></div>`;
+    drill($('#gd'), 'clues');
+  }
+  if(gMode === 'modals'){
+    body.innerHTML = `<div class="card lesson">${lessonHead('🛟','Modals (present): can · should · must · might','الأفعال الناقصة','modals')}
+     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+      ${[['can','قدرة: يستطيع','Turtles can swim very far.','#2563eb'],['should','نصيحة: ينبغي','We should reduce plastic use.','#15803d'],['must','إلزام: يجب','Astronauts must follow safety rules.','#c0262d'],['might','احتمال: ربما','It might rain tomorrow.','#6d28d9']].map(m=>`<div class="card" style="border-top:5px solid ${m[3]};padding:14px"><div class="en" style="font-size:26px;font-weight:700;color:${m[3]}">${m[0]}</div><div>${m[1]}</div><div class="row" style="margin-top:6px"><span class="en" style="font-size:16px">${m[2]}</span>${spk(m[2],'🔊','mini')}</div></div>`).join('')}
+     </div>
+     <h3 style="margin-top:18px">🧩 ابنِ جملتك</h3>
+     <div class="builder"><div><label>الفاعل</label><select id="mS"><option>I</option><option>She</option><option>We</option><option>Astronauts</option><option>Layla</option></select></div>
+      <div><label>Modal</label><select id="mM"><option>can</option><option>should</option><option>must</option><option>might</option></select></div>
+      <div><label>الفعل</label><select id="mV"><option value="recycle plastic">recycle plastic</option><option value="swim in the sea">swim in the sea</option><option value="exercise every day">exercise every day</option><option value="help my friends">help my friends</option><option value="visit Mars">visit Mars</option></select></div></div>
+     <div class="out" id="mOut"></div>
+     <div class="muted" id="mWhy" style="margin-top:6px;font-size:16px"></div>
+     <h3 style="margin-top:18px">🎯 تدريب</h3><div id="gd"></div></div>`;
+    const upd = () => {
+      const s = $('#mS').value, m = $('#mM').value, v = $('#mV').value; const v1 = v.split(' ')[0], rest = v.split(' ').slice(1).join(' ');
+      const third = ['She','Layla'].includes(s);
+      const wrong = third ? v1.replace(/(s|sh|ch|x)$/,'$1e') + 's' : 'to ' + v1;
+      $('#mOut').innerHTML = `<span class="hl c1">${s}</span><span class="hl c3">${m}</span><span class="hl c2">${v1}</span><span>${rest}.</span> ${spk(`${s} ${m} ${v}.`,'🔊','mini')}`;
+      $('#mWhy').innerHTML = `✅ الفعل <b class="en">${v1}</b> بقي كما هو. ❌ لا تقل: <span class="en" style="color:var(--bad);text-decoration:line-through">${s} ${m} ${wrong}</span>`;
+    };
+    ['#mS','#mM','#mV'].forEach(x => $(x).onchange = upd); upd();
+    drill($('#gd'), 'modals');
+  }
+  if(gMode === 'cond2'){
+    const dreams = [
+      ['If I were an astronaut,','I would visit Mars.','لو كنت رائد فضاء، لزرت المريخ.'],
+      ['If I had a robot,','it would clean the beach.','لو كان عندي روبوت، لنظّف الشاطئ.'],
+      ['If I lived under the sea,','I would swim with dolphins.','لو عشت تحت البحر، لسبحت مع الدلافين.'],
+      ['If people used less plastic,','the ocean would be cleaner.','لو استخدم الناس بلاستيك أقل، لكان المحيط أنظف.'],
+      ['If I could fly,','I would fly over the Grand Canyon.','لو كنت أستطيع الطيران، لطرت فوق الغراند كانيون.'],
+      ['If I won a prize,','I would buy a telescope.','لو فزت بجائزة، لاشتريت تلسكوباً.']
+    ];
+    body.innerHTML = `<div class="card lesson">${lessonHead('💭','Second conditional','الشرط الثاني: الأحلام والخيال','cond2')}
+     <div class="formula"><span class="fx c4">If</span><span class="plus">+</span><span class="fx c2">past (were / had / used)</span><span class="plus">,</span><span class="fx c3">would</span><span class="plus">+</span><span class="fx c1">verb</span></div>
+     <h3>✨ آلة الأحلام: اضغط على حلم</h3>
+     <div class="chips" id="dreams">${dreams.map((d,i)=>`<button class="chip" data-i="${i}">${['🚀','🤖','🐬','♻️','🦅','🏆'][i]} ${d[2].split('،')[0]}</button>`).join('')}</div>
+     <div class="out" id="dOut"><span class="muted" style="font-family:var(--ar);font-size:17px">اختر حلماً من فوق ☝️</span></div>
+     <div class="muted" id="dAr" style="margin-top:6px"></div>
+     <h3 style="margin-top:18px">🎯 تدريب</h3><div id="gd"></div></div>`;
+    $$('#dreams .chip').forEach(c => c.onclick = () => {
+      const d = dreams[+c.dataset.i];
+      const a = d[0].replace(/^If /,''), b = d[1];
+      const colorA = a.replace(/\b(were|had|lived|used|could|won)\b/, '<span class="hl c2">$1</span>');
+      const colorB = b.replace(/\bwould (\w+)/, '<span class="hl c3">would</span> <span class="hl c1">$1</span>');
+      $('#dOut').innerHTML = `<span class="hl c4">If</span> ${colorA} ${colorB} ${spk(d[0]+' '+d[1],'🔊','mini')}`;
+      $('#dAr').textContent = d[2]; TTS.en1(d[0] + ' ' + d[1]);
+    });
+    drill($('#gd'), 'cond2');
+  }
+  if(gMode === 'passive'){
+    const ex = [
+      ['Volunteers','collect','plastic','Plastic','is','collected'],
+      ['Solar energy','powers','these machines','These machines','are','powered'],
+      ['Governments','make','new laws','New laws','are','made'],
+      ['Scientists','design','new machines','New machines','are','designed'],
+      ['People','speak','English','English','is','spoken']
+    ];
+    let k = 0;
+    body.innerHTML = `<div class="card lesson">${lessonHead('🔄','Present simple passive','المبني للمجهول (المضارع البسيط)','passive')}
+     <div class="formula"><span class="fx c3">Object</span><span class="plus">+</span><span class="fx c2">is / are</span><span class="plus">+</span><span class="fx c4">V3 (past participle)</span><span class="plus">+</span><span class="fx c7">by …</span></div>
+     <h3>🪄 آلة التحويل</h3>
+     <div class="transform"><div class="out" id="pA"></div><div style="text-align:center"><button class="btn gold" id="pGo">⬇️ حوّل إلى المبني للمجهول</button></div><div class="out" id="pP" style="opacity:.35"></div>
+     <div class="row" style="justify-content:center"><button class="btn sm ghost" id="pNext">مثال آخر ←</button></div></div>
+     <h3 style="margin-top:18px">📋 التصريف الثالث (V3) لأفعال الوحدة</h3>
+     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(170px,1fr))">${[['make','made'],['use','used'],['power','powered'],['clean','cleaned'],['protect','protected'],['recycle','recycled'],['throw','thrown'],['install','installed'],['design','designed'],['collect','collected'],['speak','spoken'],['build','built']].map(v=>`<div class="exl"><div class="s"><b>${v[0]}</b> → <span style="color:var(--who);font-weight:700">${v[1]}</span></div>${spk(v[0]+', '+v[1],'🔊','mini')}</div>`).join('')}</div>
+     <h3 style="margin-top:18px">🎯 تدريب</h3><div id="gd"></div></div>`;
+    const showA = () => { const e = ex[k]; $('#pA').innerHTML = `<span class="hl c1">${e[0]}</span><span class="hl c2" style="background:#94a3b8">${e[1]}</span><span class="hl c3">${e[2]}</span><span>.</span> ${spk(`${e[0]} ${e[1]} ${e[2]}.`,'🔊','mini')}`; $('#pP').innerHTML = '<span class="muted" style="font-family:var(--ar);font-size:17px">اضغط زر التحويل ☝️</span>'; $('#pP').style.opacity = .35; };
+    $('#pGo').onclick = () => { const e = ex[k]; const s = `${e[3]} ${e[4]} ${e[5]} by ${e[0].toLowerCase()}.`; $('#pP').style.opacity = 1; $('#pP').innerHTML = `<span class="hl c3">${e[3]}</span><span class="hl c2">${e[4]}</span><span class="hl c4">${e[5]}</span><span class="hl c7">by ${e[0].toLowerCase()}</span><span>.</span> ${spk(s,'🔊','mini')}`; TTS.en1(s); };
+    $('#pNext').onclick = () => { k = (k+1) % ex.length; showA(); };
+    showA();
+    drill($('#gd'), 'passive');
+  }
+  if(gMode === 'nouns'){
+    const sets = [['a','huge','plastic','bottle'],['the','beautiful','blue','ocean'],['some','small','colourful','fish'],['an','amazing','natural','wonder'],['a','long','narrow','trench'],['the','old','wooden','boat']];
+    let k = 0;
+    body.innerHTML = `<div class="card lesson">${lessonHead('🧱','Noun phrases','العبارة الاسمية: الصفات قبل الاسم','nouns')}
+     <div class="orderbar"><span class="c7">a / the / some</span><span class="c4">opinion</span><span class="c2">size</span><span class="c5">age</span><span class="c1">colour</span><span class="c6">material</span><span class="c3">NOUN</span></div>
+     <div class="ex-list">${exl('a <b>huge plastic</b> bottle','زجاجة بلاستيك ضخمة')}${exl('the <b>beautiful blue</b> ocean','المحيط الأزرق الجميل')}${exl('<b>colourful</b> fish and <b>sea</b> turtles','أسماك ملوّنة وسلاحف بحرية')}</div>
+     <h3 style="margin-top:14px">🧩 رتّب الكلمات: اضغط عليها بالترتيب الصحيح</h3>
+     <div class="word-tiles target" id="nT"></div><div class="word-tiles" id="nS"></div>
+     <div class="row" style="justify-content:center"><button class="btn sm ghost" id="nR">↺ من جديد</button><button class="btn sm" id="nN">التالي ←</button></div><div id="nFb" style="margin-top:8px"></div>
+     <h3 style="margin-top:18px">🎯 تدريب</h3><div id="gd"></div></div>`;
+    const build = () => {
+      const s = sets[k]; const tiles = shuffle(s.map((w,i)=>({w,i}))); let pos = 0; $('#nT').innerHTML = ''; $('#nFb').innerHTML = '';
+      $('#nS').innerHTML = tiles.map(t => `<button class="wt" data-i="${t.i}">${t.w}</button>`).join('');
+      $$('#nS .wt').forEach(b => b.onclick = () => {
+        const i = +b.dataset.i;
+        if(s[i] === s[pos]){ b.classList.add('used'); $('#nT').insertAdjacentHTML('beforeend', `<span class="wt" style="border-color:var(--ok);background:var(--ok-bg)">${s[pos]}</span>`); pos++; beep(true);
+          if(pos === s.length){ const p = s.join(' '); $('#nFb').innerHTML = `<div class="fb show ok"><div class="t">✅ ممتاز: <b class="en">${p}</b></div>${spk(p,'🔊','mini')}</div>`; TTS.en1(p); }
+        } else { beep(false); b.classList.add('shake'); setTimeout(()=>b.classList.remove('shake'), 400); $('#nFb').innerHTML = `<div class="note">تذكّر الترتيب: أداة ← رأي ← حجم ← لون ← مادة ← <b>الاسم في الآخر</b></div>`; }
+      });
+    };
+    $('#nR').onclick = build; $('#nN').onclick = () => { k = (k+1) % sets.length; build(); };
+    build();
+    drill($('#gd'), 'nouns');
+  }
+  if(gMode === 'sets') renderGrammarSets(body);
+}
+function renderGrammarSets(body){
+  body.innerHTML = `<div class="note" style="margin-bottom:14px">📝 هذه تمارين المعلمة (نص + 5 فراغات). عندما تجيب، تمتلئ الكلمة في النص. <br>⚠️ <b>ملاحظة:</b> في بعض الأسئلة يوجد أكثر من جواب مقبول قواعدياً، فقبلنا الاثنين وشرحنا السبب. وفي سؤالين (<span class="en">Practice 2: Q1, Q5</span>) القاعدة تخالف ورقة الحل، فاعتمدنا القاعدة الصحيحة.</div>
+   <div class="seg" id="gsets">${GRAMMAR_SETS.map((s,i)=>`<button aria-pressed="${i===0}" data-i="${i}" class="en">${s.title}</button>`).join('')}</div><div id="gset"></div>`;
+  const show = i => {
+    const s = GRAMMAR_SETS[i]; const box = $('#gset');
+    box.innerHTML = `<div class="pgrid"><div class="sticky"><h3 class="en" style="direction:ltr;text-align:left">${s.sub}</h3><div class="row" style="margin-bottom:8px"><button class="btn sm ghost" id="gRead">🔊 اقرأ لي النص</button></div><div class="passage" id="gp"></div></div><div id="gq"></div></div>`;
+    renderPassage($('#gp'), s.text, {gaps:true});
+    $('#gRead').onclick = e => readPassage($('#gp'), e.currentTarget);
+    const items = s.qs.map((q, j) => ({stem: `Gap <b>(${j+1})</b>`, opts: q[0], ok: q[1], exp: q[3],
+      onReveal: () => { const g = $(`#gp .gapslot[data-g="${j+1}"]`); if(g){ g.textContent = q[0][q[1][0]]; g.classList.add('filled'); } } }));
+    quizBlock($('#gq'), items, s.id, 2);
+  };
+  $$('#gsets button').forEach(b => b.onclick = () => { $$('#gsets button').forEach(x=>x.setAttribute('aria-pressed', x===b)); show(+b.dataset.i); });
+  show(0);
+}
+
+// ================= PASSAGE RENDERING (tap words, read aloud, evidence) =================
+const DICT = Object.assign({}, DICT_EXTRA, Object.fromEntries(WORDS.map(w => [w[0], w[1]])));
+function lookup(w){
+  w = w.toLowerCase().replace(/[’']s$/,'');
+  if(DICT[w]) return DICT[w];
+  for(const suf of ['s','es','ed','d','ing','ly']) if(w.endsWith(suf) && DICT[w.slice(0, -suf.length)]) return DICT[w.slice(0, -suf.length)];
+  if(w.endsWith('ies') && DICT[w.slice(0,-3)+'y']) return DICT[w.slice(0,-3)+'y'];
+  return '';
+}
+function renderPassage(el, text, opt={}){
+  let si = 0;
+  el.innerHTML = text.split('\n\n').map(p => {
+    const sents = p.split(/(?<=[.!?]["”]?)\s+(?=["“A-Z])/);
+    return '<p>' + sents.map(s => {
+      const inner = s.split(/(\s+)/).map(tok => {
+        if(/^\s+$/.test(tok)) return tok;
+        const gm = tok.match(/^\{(\d)\}(.*)$/);
+        if(gm) return `<span class="gapslot" data-g="${gm[1]}">(${gm[1]})</span>${esc(gm[2])}`;
+        const core = tok.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g,'');
+        if(!core) return esc(tok);
+        return `<span class="w" data-w="${esc(core)}">${esc(tok)}</span>`;
+      }).join('');
+      return `<span class="s" data-i="${si++}">${inner}</span>`;
+    }).join(' ') + '</p>';
+  }).join('');
+  $$('.w', el).forEach(w => w.onclick = ev => {
+    const word = w.dataset.w; TTS.en1(word);
+    const ar = lookup(word); const tip = $('#tip');
+    tip.innerHTML = `<span class="e">${esc(word)}</span>${ar ? esc(ar) : '<span style="opacity:.7">🔊</span>'}`;
+    const r = w.getBoundingClientRect(); tip.style.display = 'block';
+    tip.style.left = Math.max(8, Math.min(window.innerWidth - tip.offsetWidth - 8, r.left + r.width/2 - tip.offsetWidth/2)) + 'px';
+    tip.style.top = (r.top - tip.offsetHeight - 8 < 70 ? r.bottom + 8 : r.top - tip.offsetHeight - 8) + 'px';
+    clearTimeout(window._tipT); window._tipT = setTimeout(()=> tip.style.display = 'none', 2600);
+  });
+}
+window.addEventListener('scroll', () => { $('#tip').style.display = 'none'; }, {passive:true});
+function readPassage(el, btn){
+  const sents = $$('.s', el);
+  if(btn.classList.contains('playing')){ TTS.stop(); return; }
+  TTS.play(sents.map(s => ({t: s.textContent.replace(/\(\d\)/g,'blank'), l:'en', onstart: () => { $$('.s.reading', el).forEach(x=>x.classList.remove('reading')); s.classList.add('reading'); }, onend: () => s.classList.remove('reading')})), btn);
+}
+function showEvidence(el, ev){
+  $$('.s.evid', el).forEach(x => x.classList.remove('evid'));
+  const s = $$('.s', el).find(x => x.textContent.includes(ev));
+  if(s){ s.classList.add('evid'); s.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(()=>s.classList.remove('evid'), 6000); }
+}
+
+// ================= READING =================
+function renderReadingHome(){
+  const body = $('#rbody');
+  const card = r => `<button class="pcard" style="--c:${THEMES[r.theme].color}" data-r="${r.id}"><div class="badge">Part ${r.part} · ${r.part==='3A' ? '3 درجات للسؤال' : 'درجتان للسؤال'}</div><div class="t" style="margin-top:6px">${r.title}</div><div class="muted en" style="font-size:13px;direction:ltr;text-align:left">${r.sub}</div><div class="stars">${(Store.get()[r.id]||0) >= 80 ? '★ تم' : ''}</div></button>`;
+  body.innerHTML = `<div class="card" style="margin-bottom:18px"><h3>🧭 أنواع الأسئلة وكيف تجد الجواب</h3>
+   <div class="strat">
+    <div><span class="qtype qt-info">معلومة محددة</span><b class="en">What / Where / Who</b>خذ الكلمة المهمة من السؤال (مثل <span class="en">country</span>) وابحث عنها بعينك بسرعة في النص.</div>
+    <div><span class="qtype qt-detail">تفاصيل</span><b class="en">Why / How</b>ابحث عن <span class="en">because, to, by, such as</span>. الجواب غالباً بعدها.</div>
+    <div><span class="qtype qt-word">معنى كلمة</span><b class="en">The word "…" means</b>اقرأ الجملة كاملة. الكلمات حولها تشرح معناها.</div>
+    <div><span class="qtype qt-infer">استنتاج</span><b class="en">What can we infer…?</b>الجواب غير مكتوب حرفياً. اختر ما <b>يتفق</b> مع النص، واحذف ما يعاكسه.</div>
+    <div><span class="qtype qt-main">الفكرة الرئيسية</span><b class="en">Main idea</b>اقرأ العنوان وأول وآخر فقرة. الجواب يغطي النص <b>كله</b>، لا تفصيلة صغيرة.</div>
+   </div>
+   <div class="note" style="margin-top:12px">🕵️ <b>خدعة الامتحان:</b> كلمات مثل <span class="en">only, always, never</span> في الخيارات غالباً تكون خاطئة!</div></div>
+   <h3>🪪 Part 3A · <span class="en">Who am I?</span></h3><div class="plist">${READINGS.filter(r=>r.part==='3A').map(card).join('')}</div>
+   <h3 style="margin-top:22px">🌋 Part 3B · <span class="en">Scientific Wonders</span></h3><div class="plist">${READINGS.filter(r=>r.part==='3B').map(card).join('')}</div>`;
+  $$('.pcard', body).forEach(b => b.onclick = () => openReading(b.dataset.r));
+}
+function openReading(id){
+  const r = READINGS.find(x => x.id === id); const body = $('#rbody'); TTS.stop();
+  const keyWords = [...new Set((r.text.toLowerCase().match(/[a-z\-]+/g)||[]))].filter(w => DICT_EXTRA[w] || WORD_MAP[w]).slice(0, 14);
+  body.innerHTML = `<div class="row" style="margin-bottom:12px"><button class="btn sm ghost" id="rBack">→ كل النصوص</button><span class="badge">Part ${r.part}</span></div>
+   <div class="pgrid"><div class="sticky">
+     <h3 class="en" style="direction:ltr;text-align:left;font-size:24px">${r.title}</h3>
+     <div class="row" style="margin-bottom:10px"><button class="btn sm" id="rRead">🔊 اقرأ لي النص</button><button class="btn sm ghost" id="rSum">📝 الملخص بالعربي</button><button class="btn sm ghost" id="rKw">🔤 كلمات مهمة</button></div>
+     <div id="rExtra"></div>
+     <div class="muted" style="font-size:14px;margin-bottom:6px">👆 اضغط على أي كلمة لتسمعها وترى معناها.</div>
+     <div class="passage" id="rp"></div></div>
+     <div><h3>❓ الأسئلة</h3><div id="rq"></div></div></div>`;
+  renderPassage($('#rp'), r.text);
+  $('#rBack').onclick = () => { TTS.stop(); renderReadingHome(); window.scrollTo({top:0}); };
+  $('#rRead').onclick = e => readPassage($('#rp'), e.currentTarget);
+  $('#rSum').onclick = () => { const x = $('#rExtra'); x.innerHTML = x.dataset.m === 's' ? '' : `<div class="note" style="margin-bottom:10px"><b>الملخص:</b> <span id="rsumt">${r.sumAr}</span> <button class="spk mini" data-narr="rsumt">🔊</button><div class="muted" style="font-size:13px;margin-top:4px">اقرأ النص الإنجليزي أولاً، واستخدم الملخص فقط للتأكد من فهمك.</div></div>`; x.dataset.m = x.dataset.m === 's' ? '' : 's'; };
+  $('#rKw').onclick = () => { const x = $('#rExtra'); x.innerHTML = x.dataset.m === 'k' ? '' : `<div class="card" style="padding:12px;margin-bottom:10px"><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px">${keyWords.map(w=>`<div class="exl" style="padding:5px 8px"><div class="s" style="font-size:15px"><b>${w}</b><br><span style="font-family:var(--ar);font-size:14px">${lookup(w)}</span></div>${spk(w,'🔊','mini')}</div>`).join('')}</div></div>`; x.dataset.m = x.dataset.m === 'k' ? '' : 'k'; };
+  const marks = r.part === '3A' ? 3 : 2;
+  const items = r.qs.map(q => ({stem: esc(q[0]), qsay: q[0], opts: q[1], ok:[q[2]], exp: q[5], type: q[3],
+    onReveal: fb => { if($('.evbtn', fb)) return; const b = document.createElement('button'); b.className = 'spk mini evbtn'; b.textContent = '📍 أين الدليل؟'; b.onclick = () => showEvidence($('#rp'), q[4]); fb.appendChild(b); }}));
+  quizBlock($('#rq'), items, r.id, marks, true);
+  window.scrollTo({top:0});
+}
+
+// ================= WRITING =================
+let wIdx = 0;
+function renderWriting(){
+  const body = $('#wbody'); const w = WRITINGS[wIdx];
+  body.innerHTML = `<div class="card" style="margin-bottom:16px"><h3>📋 شكل سؤال الكتابة في الامتحان</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+     <div class="exl" style="display:block"><b>1.1 الملخص · <span class="en">Summary</span> (15 درجة)</b><br>اقرأ النص واكتب الأفكار الرئيسية <b>بكلماتك</b> في 3 إلى 4 جمل.</div>
+     <div class="exl" style="display:block"><b>1.2 الكتابة · <span class="en">Writing</span> (25 درجة)</b><br>فقرة لا تقل عن <b class="en">110</b> كلمات، تجيب فيها عن 3 أسئلة (<span class="en">prompts</span>).</div>
+    </div>
+    <table class="rubric" style="margin-top:12px"><tr><th>معيار التصحيح (<span class="en">Rubric</span>)</th><th class="m">/40</th></tr>
+     <tr><td><span class="en">Task Completion</span>: أجبت عن كل الأسئلة الثلاثة ووضّحت أفكارك</td><td class="m">10</td></tr>
+     <tr><td><span class="en">Vocabulary</span>: استخدمت كلمات مناسبة ومتنوعة</td><td class="m">10</td></tr>
+     <tr><td><span class="en">Grammar</span>: جمل صحيحة ومتنوعة</td><td class="m">10</td></tr>
+     <tr><td><span class="en">Punctuation</span>: حرف كبير في البداية، نقطة في النهاية، فواصل</td><td class="m">5</td></tr>
+     <tr><td><span class="en">Spelling</span>: تهجئة الكلمات صحيحة</td><td class="m">5</td></tr></table></div>
+   <div class="seg" id="wsel">${WRITINGS.map((x,i)=>`<button aria-pressed="${i===wIdx}" data-i="${i}">${THEMES[x.theme].icon} <span class="en">${x.title}</span></button>`).join('')}</div>
+   <div class="pgrid"><div class="sticky"><div class="row" style="margin-bottom:8px"><button class="btn sm" id="wRead">🔊 اقرأ لي النص</button></div><h3 class="en" style="direction:ltr;text-align:left">${w.title}</h3><div class="passage" id="wp"></div></div>
+    <div>
+     <div class="card" style="margin-bottom:16px"><h3>✏️ الخطوة 1: الملخص <span class="en muted" style="font-size:15px">Summary</span></h3>
+      <p class="muted" style="margin-top:0">لكل فقرة، اختر الجملة التي تلخّص <b>الفقرة كلها</b> (وليس تفصيلة صغيرة).</p><div id="wsum"></div></div>
+     <div class="card" style="margin-bottom:16px"><h3>✍️ الخطوة 2: اكتب فقرتك <span class="en muted" style="font-size:15px">Writing Task</span></h3>
+      <div class="en" style="font-weight:700;font-size:19px;direction:ltr;text-align:left">${w.task} ${spk(w.task,'🔊','mini')}</div>
+      <ol class="prompts">${w.prompts.map((p,i)=>`<li>${p} ${spk(p,'🔊','mini')}<div>${w.starters[i].map(s=>`<button class="starter" data-s="${esc(s)}">${esc(s)}</button>`).join('')}</div></li>`).join('')}</ol>
+      <p class="muted" style="font-size:15px">💡 اضغط على بداية جملة لتضيفها، ثم أكمل بأفكارك. ابدأ فقرة جديدة بسطر فارغ.</p>
+      <textarea class="pad" id="pad" placeholder="Start writing here..." spellcheck="true"></textarea>
+      <div class="meter" id="meter"><i></i></div>
+      <div class="stats"><span>الكلمات: <b id="wc">0</b> / 110</span><span>الجمل: <b id="sc">0</b></span><span>الفقرات: <b id="pc">0</b></span><span>كلمات الربط: <b id="lc">0</b></span></div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="wCheck">🔍 افحص كتابتي</button><button class="btn ghost" id="wModel">👀 نموذج الإجابة</button><button class="btn ghost" id="wListen">🔊 اسمع ما كتبت</button></div>
+      <div id="wfb" style="margin-top:12px"></div><div id="wmod" style="margin-top:12px"></div></div>
+    </div></div>
+   <h3 style="margin-top:22px">🗣️ عبارات جاهزة للكتابة <span class="en muted" style="font-size:15px">Functional language</span></h3>
+   <div class="fl">${FUNCTIONAL.map(f=>`<div class="card"><b>${f.ar}</b> <span class="en muted" style="font-size:12px">${f.code}</span>${f.items.map(i=>`<div class="it"><span>${esc(i)}</span>${spk(i.replace(/\.\.\./g,''),'🔊','mini')}</div>`).join('')}</div>`).join('')}</div>`;
+  renderPassage($('#wp'), w.text);
+  $('#wRead').onclick = e => readPassage($('#wp'), e.currentTarget);
+  $$('#wsel button').forEach(b => b.onclick = () => { wIdx = +b.dataset.i; TTS.stop(); renderWriting(); });
+  // summary trainer
+  const paras = w.text.split('\n\n');
+  const others = WRITINGS.filter(x => x !== w).flatMap(x => x.summary);
+  const items = w.paraMap.map(([p, s], j) => {
+    const sents = paras[p].split(/(?<=[.!?])\s+(?=[A-Z])/);
+    const detail = sents[sents.length - 1] === sents[0] ? sents[0] : sents[sents.length - 1];
+    const wrong = others[(j*3 + wIdx) % others.length];
+    const opts = shuffle([w.summary[s], detail, wrong]);
+    return {stem: `Paragraph <b>${p+1}</b> — main idea?`, opts, ok:[opts.indexOf(w.summary[s])], exp: 'الجملة الصحيحة تجمع فكرة الفقرة كلها بكلمات مختلفة. الخيار المنسوخ حرفياً من آخر الفقرة مجرّد تفصيلة، والخيار الآخر من نص مختلف.', say: w.summary[s]};
+  });
+  const sumBox = $('#wsum');
+  quizBlock(sumBox, items, 'wsum-'+w.id, 1, true);
+  const model = document.createElement('div');
+  model.innerHTML = `<button class="btn sm gold" style="margin-top:6px">📄 اعرض الملخص النموذجي</button>`;
+  sumBox.after(model);
+  $('button', model).onclick = () => { model.innerHTML = `<div class="model"><p><b>Summary (model):</b></p>${w.summary.map((s,i)=>`<p>${i+1}. ${s}</p>`).join('')}</div><div class="row" style="margin-top:6px">${spk(w.summary.join(' '),'🔊 اسمع الملخص')}</div><div class="note" style="margin-top:8px">⭐ في الامتحان لا تنسخ الجمل من النص. غيّر بعض الكلمات: مثلاً <span class="en">achievements → successes</span>، <span class="en">encourage → help</span>.</div>`; };
+  // writing pad
+  const pad = $('#pad');
+  const key = 'pad-' + w.id; try { pad.value = localStorage.getItem('yousef-' + key) || ''; } catch(e){}
+  const LINK = ['and','because','also','however','first','firstly','second','then','finally','so','such as','for example','but','in addition','although','when','if'];
+  const stats = () => {
+    const v = pad.value; const words = (v.match(/[A-Za-z']+/g) || []).length;
+    const sents = (v.match(/[^.!?]+[.!?]/g) || []).length; const paras = v.split(/\n\s*\n/).filter(x => x.trim()).length;
+    const lc = LINK.reduce((a, l) => a + ((' ' + v.toLowerCase() + ' ').match(new RegExp('[^a-z]' + l + '[^a-z]', 'g')) || []).length, 0);
+    $('#wc').textContent = words; $('#sc').textContent = sents; $('#pc').textContent = paras; $('#lc').textContent = lc;
+    $('#meter i').style.width = Math.min(100, words / 110 * 100) + '%'; $('#meter').classList.toggle('full', words >= 110);
+    try { localStorage.setItem('yousef-' + key, v); } catch(e){}
+    return {v, words, sents, paras, lc};
+  };
+  pad.oninput = stats; stats();
+  $$('.starter').forEach(b => b.onclick = () => {
+    const s = b.dataset.s; const pos = pad.selectionStart ?? pad.value.length; const before = pad.value.slice(0, pos), after = pad.value.slice(pos);
+    const sep = before && !/\s$/.test(before) ? ' ' : '';
+    pad.value = before + sep + s + after; pad.focus(); const np = (before + sep + s).length; pad.setSelectionRange(np, np); stats(); TTS.en1(s);
+  });
+  $('#wCheck').onclick = () => {
+    const st = stats(); const out = [];
+    if(st.words < 110) out.push(['no', `عدد الكلمات ${st.words}. تحتاج <b class="en">${110 - st.words}</b> كلمة إضافية على الأقل.`]); else out.push(['ok', `عدد الكلمات ${st.words} ✓ ممتاز.`]);
+    const sentArr = st.v.split(/(?<=[.!?])\s+/).map(s => s.trim()).filter(Boolean);
+    const lowStart = sentArr.filter(s => /^[a-z]/.test(s));
+    if(lowStart.length) out.push(['no', `ابدأ كل جملة بحرف كبير: <span class="en">${esc(lowStart.slice(0,2).map(s=>s.split(' ').slice(0,3).join(' ')).join(' · '))}…</span>`]); else if(st.words) out.push(['ok','كل الجمل تبدأ بحرف كبير ✓']);
+    if(/(^|[\s,])i([\s,.']|$)/.test(st.v)) out.push(['no', 'كلمة <span class="en">I</span> (أنا) تُكتب دائماً كبيرة.']);
+    if(st.words && !/[.!?]\s*$/.test(st.v.trim())) out.push(['no','ضع نقطة <span class="en">( . )</span> في آخر الفقرة.']);
+    if(st.lc < 4) out.push(['no', `استخدم كلمات ربط أكثر مثل <span class="en">because, also, First, However, such as</span> (عندك ${st.lc}).`]); else out.push(['ok', `كلمات الربط: ${st.lc} ✓`]);
+    if(st.paras < 2 && st.words > 60) out.push(['no','قسّم كتابتك إلى فقرتين على الأقل (اترك سطراً فارغاً).']);
+    const long = sentArr.filter(s => (s.match(/[A-Za-z']+/g)||[]).length > 35);
+    if(long.length) out.push(['no','عندك جملة طويلة جداً. قسّمها بنقطة إلى جملتين.']);
+    out.push(['hint', 'تأكّد بنفسك: هل أجبت عن الأسئلة الثلاثة؟ ' + w.prompts.map((p,i)=>`<span class="en">(${i+1})</span>`).join(' ')]);
+    $('#wfb').innerHTML = out.map(([c, m]) => `<div class="fb show ${c==='ok'?'ok':c==='no'?'no':''}" style="${c==='hint'?'background:var(--hint-bg);color:#5c4100':''}margin-bottom:6px"><div class="t">${m}</div></div>`).join('');
+    if(st.words >= 110 && !lowStart.length) beep(true);
+  };
+  $('#wModel').onclick = () => { $('#wmod').innerHTML = `<div class="model">${w.sample.split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div><div class="row" style="margin-top:6px">${spk(w.sample.replace(/\n\n/g,' '),'🔊 اسمع النموذج')}<span class="muted" style="font-size:14px">(${w.sample.match(/[A-Za-z']+/g).length} كلمة)</span></div><div class="note" style="margin-top:8px">لا تحفظه حرفياً. استفد من الأفكار والعبارات، واكتب عن نفسك.</div>`; };
+  $('#wListen').onclick = e => { const v = pad.value.trim(); if(!v) return toast('اكتب شيئاً أولاً ✍️'); TTS.play(v.split(/(?<=[.!?])\s+/).map(t => ({t, l:'en'})), e.currentTarget); };
+}
+
+// ================= MOCK TEST =================
+function renderMockIntro(){
+  const b = $('#mbody'); b.dataset.ready = 1;
+  b.innerHTML = `<div class="card" style="text-align:center;padding:30px"><div style="font-size:54px">🏆</div><h3>اختبار تجريبي · <span class="en">Reading &amp; Viewing</span> · 60 درجة</h3>
+   <table class="rubric" style="max-width:480px;margin:10px auto"><tr><td><span class="en">Part 1 Vocabulary</span></td><td class="m">5 × 2 = 10</td></tr><tr><td><span class="en">Part 2 Grammar</span></td><td class="m">5 × 2 = 10</td></tr><tr><td><span class="en">Part 3A Reading</span></td><td class="m">8 × 3 = 24</td></tr><tr><td><span class="en">Part 3B Reading</span></td><td class="m">8 × 2 = 16</td></tr></table>
+   <p class="muted">في هذا الاختبار لن يظهر الجواب حتى تضغط "صحّح الاختبار". الأسئلة تتغيّر كل مرة.</p><button class="btn gold" id="mStart">ابدأ الاختبار ▶</button></div>`;
+  $('#mStart').onclick = startMock;
+}
+function startMock(){
+  const b = $('#mbody');
+  const vq = shuffle(VOCAB_SETS.flatMap(s => s.qs.filter(q => q[2].length === 1))).slice(0, 5);
+  const gk = shuffle(['modals','cond2','passive','clues','nouns']);
+  const gq = gk.map(k => shuffle(GRAMMAR_DRILLS[k])[0]);
+  const ra = shuffle(READINGS.filter(r => r.part==='3A'))[0], rb = shuffle(READINGS.filter(r => r.part==='3B'))[0];
+  const sections = [
+    {t:'Part 1 · Vocabulary', m:2, items: vq.map(q => ({stem: gapHtml(q[0]), opts: q[1], ok: q[2], exp: q[3]}))},
+    {t:'Part 2 · Grammar', m:2, items: gq.map(q => ({stem: gapHtml(q[0]), opts: q[1], ok: [q[2]], exp: q[3]}))},
+    {t:'Part 3A · Reading: ' + ra.title, m:3, r: ra, items: ra.qs.map(q => ({stem: esc(q[0]), opts: q[1], ok: [q[2]], exp: q[5], type: q[3]}))},
+    {t:'Part 3B · Reading: ' + rb.title, m:2, r: rb, items: rb.qs.map(q => ({stem: esc(q[0]), opts: q[1], ok: [q[2]], exp: q[5], type: q[3]}))}
+  ];
+  const t0 = Date.now();
+  b.innerHTML = `<div class="row" style="margin-bottom:10px"><span class="badge">⏱️ <span id="mt" class="en">00:00</span></span><span class="muted">أجب عن كل الأسئلة ثم اضغط "صحّح" في الأسفل.</span></div><div id="msec"></div>
+    <div style="text-align:center;margin:20px 0"><button class="btn gold" id="mDone">✅ صحّح الاختبار</button></div><div id="mres"></div>`;
+  const timer = setInterval(() => { const s = Math.floor((Date.now()-t0)/1000); const el = $('#mt'); if(!el){ clearInterval(timer); return; } el.textContent = String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }, 1000);
+  const all = [];
+  sections.forEach((s, si) => {
+    const sec = document.createElement('div'); sec.className = 'card'; sec.style.marginBottom = '18px';
+    sec.innerHTML = `<h3 class="en" style="direction:ltr;text-align:left">${s.t} <span class="badge">${s.items.length} × ${s.m}</span></h3>`;
+    if(s.r){ const g = document.createElement('div'); g.className = 'pgrid'; g.innerHTML = `<div class="sticky"><div class="passage" id="mp${si}"></div></div><div class="qs"></div>`; sec.appendChild(g); renderPassage($('.passage', g), s.r.text); }
+    const holder = s.r ? $('.qs', sec) : sec;
+    s.items.forEach((it, i) => { const d = mcq(it, i, (right, pick) => { d.dataset.right = right ? 1 : 0; d.dataset.pick = pick; }, {silent:true, col: !!s.r}); d.dataset.m = s.m; d.dataset.sec = si; holder.appendChild(d); all.push(d); });
+    $('#msec').appendChild(sec);
+  });
+  $('#mDone').onclick = () => {
+    const unanswered = all.filter(d => !d.dataset.done).length;
+    if(unanswered && !$('#mDone').dataset.warned){ $('#mDone').dataset.warned = 1; $('#mDone').textContent = '✅ صحّح على أي حال'; toast(`يوجد ${unanswered} سؤال بدون إجابة. أكملها أو اضغط مرة أخرى للتصحيح.`, 4000); return; }
+    clearInterval(timer);
+    let tot = 0; const per = [0,0,0,0];
+    all.forEach(d => { if(d.dataset.right === '1'){ tot += +d.dataset.m; per[+d.dataset.sec] += +d.dataset.m; } if(!d.dataset.done){ $$('.opt', d).forEach(x => x.disabled = true); d.dataset.right = 0; } d.reveal(); });
+    Store.best('mock', tot, 60);
+    const msg = tot >= 54 ? 'ممتاز جداً يا يوسف! أنت جاهز 🌟' : tot >= 42 ? 'مستوى جيد جداً! راجع الأخطاء بالأسفل 💪' : tot >= 30 ? 'بداية جيدة. راجع الكلمات والقواعد ثم أعد الاختبار.' : 'لا تقلق، ارجع للدروس وتدرّب، ثم جرّب مرة أخرى 🔁';
+    $('#mres').innerHTML = `<div class="result"><b>${tot} / 60</b>${msg}<div class="en" style="margin-top:8px;font-size:15px;opacity:.9">Vocab ${per[0]}/10 · Grammar ${per[1]}/10 · Reading A ${per[2]}/24 · Reading B ${per[3]}/16</div><div style="margin-top:12px"><button class="btn gold sm" id="mAgain">🔁 اختبار جديد</button></div></div>`;
+    $('#mDone').style.display = 'none';
+    $('#mAgain').onclick = () => { startMock(); window.scrollTo({top:0}); };
+    $('#mres').scrollIntoView({behavior:'smooth', block:'center'});
+    TTS.narrate(`درجتك ${tot} من ستين. ${msg}`);
+  };
+}
+
+// ================= INIT =================
+renderHomeMap(); renderVThemes(); renderVocab(); renderGrammar(); renderReadingHome(); renderWriting();
+
+</script>
+</body>
+</html>
