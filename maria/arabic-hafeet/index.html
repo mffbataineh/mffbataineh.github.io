@@ -310,6 +310,7 @@ footer{color:var(--muted);text-align:center;font-size:14px;padding:20px}
       <div class="hello"><div class="mascot big" aria-hidden="true"></div><div class="bubble"><b id="greet">أهلاً يا ماريا! أنا شاهين 🦅</b><div class="en" id="greetEn" style="font-size:15px">Hi Maria! I'm Shaheen the falcon. Let's fly to the top!</div></div></div>
       <h2 class="sec" style="margin-top:12px">رحلة إلى قمة جبل حفيت</h2>
       <p class="en" style="font-size:17px;margin:6px 0">Hi Maria! This page covers <b>everything</b> on your Arabic review sheet. Each section explains the idea in English first, then you practise in Arabic with games and quick questions. Climb all 6 sections to reach the top of the mountain! 🏔️</p>
+      <div class="row" style="margin:8px 0"><button class="btn sun small" id="testSnd">🔊 جرّبي الصوت · Test sound</button><span class="en muted" id="sndInfo" style="font-size:13px"></span></div>
       <p class="en muted" style="font-size:15px;margin:0">Tip: tap any <span style="border-bottom:2px dotted #c9a227">dotted word</span> to see its meaning, and press 🔊 to hear Arabic (works if your device has an Arabic voice).</p>
     </div>
     <svg viewBox="0 0 400 240" role="img" aria-label="Jebel Hafeet mountain with your progress">
@@ -572,9 +573,21 @@ if(canSpeak){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; setTimeout
   const unlock=e=>{ if(e.target.closest&&e.target.closest('[data-say],.say,.fc,.w,#readAll')) return; try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(err){} document.removeEventListener('touchend',unlock,true); document.removeEventListener('click',unlock,true); };
   document.addEventListener('touchend',unlock,true); document.addEventListener('click',unlock,true);
   setInterval(()=>{ try{ if(speechSynthesis.paused) speechSynthesis.resume(); }catch(e){} },1000); }
-let warned=false;
-function say(t){ if(!canSpeak) return; try{ if(!arVoice) pickVoice(); if(!arVoice&&!warned){warned=true; toast('No Arabic voice on this device. Try Chrome or Edge.');}
-  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t.replace(/[«»()\[\]]/g,'')); if(arVoice){u.voice=arVoice;u.lang=arVoice.lang;} else u.lang='ar-AE'; u.rate=.85; speechSynthesis.speak(u);}catch(e){} }
+let warned=false, sayToken=0;
+function say(t){
+  if(!canSpeak){ try{toast('This browser cannot read aloud. Try Safari or Chrome.');}catch(e){} return; }
+  try{
+    if(!arVoice) pickVoice();
+    const ss=speechSynthesis, txt=t.replace(/[«»()\[\]]/g,'');
+    if(!arVoice && ss.getVoices().length && !warned){ warned=true; toast('No Arabic voice found on this device'); }
+    const mk=()=>{ const u=new SpeechSynthesisUtterance(txt); if(arVoice){u.voice=arVoice;u.lang=arVoice.lang;} else u.lang='ar-SA'; u.rate=.85; u.volume=1; return u; };
+    const my=++sayToken; let started=false;
+    if(ss.speaking||ss.pending) ss.cancel();      /* iPhone drops speech if cancel() is always called first */
+    if(ss.paused) ss.resume();
+    const u=mk(); u.onstart=()=>{started=true;}; ss.speak(u);   /* must start inside the tap itself (iOS rule) */
+    setTimeout(()=>{ if(my===sayToken && !started && !ss.speaking){ ss.cancel(); const u2=mk(); ss.speak(u2); } },900);
+  }catch(e){}
+}
 function sayBtn(t){ if(!canSpeak) return ''; return `<button class="say" aria-label="Listen" data-say="${t.replace(/"/g,'&quot;')}">🔊</button>`; }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-say]'); if(b){e.stopPropagation(); say(b.dataset.say);}});
 
@@ -1077,7 +1090,11 @@ const BADGES=[
 
 let soundOn=true; try{ soundOn=localStorage.getItem(KEY+'-snd')!=='0'; }catch(e){}
 let actx;
-function tone(freqs,type,gap,vol){ if(!soundOn) return; try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume();
+/* iPhone: let page sounds play even when the ring/silent switch is on (Safari 16.4+), and unlock audio on first touch */
+try{ if(navigator.audioSession) navigator.audioSession.type='playback'; }catch(e){}
+function unlockAudio(){ try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state!=='running') actx.resume(); const b=actx.createBuffer(1,1,22050), src=actx.createBufferSource(); src.buffer=b; src.connect(actx.destination); src.start(0); }catch(e){} }
+['touchend','pointerdown','click'].forEach(ev=>document.addEventListener(ev,function once(){ unlockAudio(); document.removeEventListener(ev,once,true); },true));
+function tone(freqs,type,gap,vol){ if(!soundOn) return; try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state!=='running') actx.resume();
   freqs.forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain(); o.type=type; o.frequency.value=f; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*gap; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.2); o.start(t); o.stop(t+0.22);}); }catch(e){} }
 function beep(ok){ ok?tone([660,880],'sine',.1,.16):tone([240,190],'triangle',.11,.14); }
 function fanfare(){ tone([523,659,784,1047],'sine',.11,.16); }
@@ -1132,6 +1149,9 @@ Game.init();
 let factI=Math.floor(Math.random()*FACTS.length);
 function renderFact(){ const f=FACTS[factI]; $('#fact').innerHTML=`<div class="fi">${f[0]}</div><div style="flex:1;min-width:220px"><div class="en" style="font-size:17px">${f[1]}</div><div class="ar2" style="margin-top:4px">${f[2]}</div></div><button class="btn small" id="factNext">التالي ←</button>`; $('#factNext').onclick=()=>{factI=(factI+1)%FACTS.length;renderFact();}; }
 renderFact();
+$('#testSnd').onclick=()=>{ const was=soundOn; soundOn=true; unlockAudio(); beep(true); soundOn=was; say('مرحباً يا ماريا، أنا شاهين');
+  setTimeout(()=>{ const n=canSpeak?speechSynthesis.getVoices().length:0;
+    $('#sndInfo').innerHTML=!canSpeak?'This browser cannot read aloud.':(arVoice?('Arabic voice: '+arVoice.name+'. No sound? Check the silent switch and volume.'):(n?'No Arabic voice on this device.':'Voices still loading, tap again.')); },1200); };
 const gr=GREET[Math.floor(Math.random()*GREET.length)]; $('#greet').textContent=gr[0]; $('#greetEn').textContent=gr[1];
 
 /* ---------------- init ---------------- */
