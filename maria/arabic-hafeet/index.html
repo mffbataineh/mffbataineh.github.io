@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مراجعة اللغة العربية: جبل حفيت | Maria's Arabic Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Baloo+2:wght@600;700;800&family=Tajawal:wght@400;500;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8ef; --card:#ffffff; --ink:#2b2340; --muted:#6b6385; --line:#ece4f7;
+  --teal:#7c4dff; --teal-2:#a78bfa; --teal-soft:#efe8ff; --pri-dark:#5a2fd6;
+  --sun:#ffb020; --sun-soft:#fff3d6; --coral:#ff7a59; --mint:#1fb989;
+  --disp:"Baloo Bhaijaan 2","Tajawal",system-ui,sans-serif;
+  --mub:#2563eb; --mub-soft:#e3ecff;      /* مبتدأ */
+  --khb:#d9480f; --khb-soft:#ffe8dc;      /* خبر */
+  --ok:#15803d; --ok-soft:#dcfce7; --bad:#b91c1c; --bad-soft:#fde2e2;
+  --gold:#d4a017; --purple:#d6336c; --purple-soft:#ffe3ec;
+  --r:22px; --shadow:0 6px 0 var(--line),0 10px 30px rgba(80,50,160,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg) radial-gradient(circle at 12% 0%,#fff1d6 0,transparent 38%) no-repeat;color:var(--ink);font-family:"Tajawal",system-ui,sans-serif;font-size:18px;line-height:1.7}
+button{font-family:inherit;font-size:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--teal-2);outline-offset:2px;border-radius:8px}
+.en{font-family:"Nunito",system-ui,sans-serif;direction:ltr;text-align:left;unicode-bidi:isolate}
+.ar{font-family:"Noto Naskh Arabic","Tajawal",serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header.top{background:linear-gradient(120deg,#6d3cf5 0%,#9b5de5 45%,#ff7a59 100%);color:#fff;padding:18px 0 0;position:relative;overflow:hidden}
+header.top::after{content:"ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي";position:absolute;inset:auto 0 -6px 0;font-family:var(--disp);font-size:38px;letter-spacing:14px;white-space:nowrap;opacity:.12;pointer-events:none}
+h1,h2,h3,h4,.btn,.pill,nav.tabs a,.qt,.chip,.tn{font-family:var(--disp)}
+.mascot svg{display:block;width:100%;height:auto}
+.mascot.sm{width:62px;flex:0 0 auto;filter:drop-shadow(0 4px 0 rgba(0,0,0,.12))}
+.mascot.big{width:120px;flex:0 0 auto;animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.xpchip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.35);border-radius:16px;padding:6px 10px}
+.xpchip .lv{font-size:26px;line-height:1}
+.xpchip b{font-family:"Baloo 2",Nunito,sans-serif;font-size:16px;display:block;line-height:1.1}
+.xpchip .mini{width:90px;height:7px;background:rgba(255,255,255,.3);border-radius:9px;overflow:hidden;margin-top:3px}
+.xpchip .mini i{display:block;height:100%;background:var(--sun);width:0;transition:width .4s}
+.mutebtn{border:none;background:rgba(255,255,255,.22);border-radius:12px;width:38px;height:38px;font-size:18px;color:#fff}
+.hello{display:flex;gap:12px;align-items:flex-end}
+.bubble{position:relative;background:var(--sun-soft);border:2px solid #ffd98a;border-radius:18px;padding:10px 14px;font-size:18px}
+.bubble::before{content:"";position:absolute;bottom:14px;right:-10px;border:9px solid transparent;border-left-color:#ffd98a}
+.lvcard{display:flex;gap:14px;align-items:center}
+.lvcard .ic{font-size:54px;line-height:1}
+.bigbar{height:14px;background:#efe8ff;border-radius:99px;overflow:hidden;margin:6px 0}
+.bigbar i{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--coral));width:0;transition:width .5s}
+.mission ul{list-style:none;padding:0;margin:6px 0 0}
+.mission li{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font-weight:600}
+.mission li .ck{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+.mission li.done .ck{background:var(--mint);border-color:var(--mint);color:#fff}
+.mission li.done .t{text-decoration:line-through;color:var(--muted)}
+.mission li .btn{white-space:nowrap}
+.mission li .cnt{margin-inline-start:auto;font-family:"Baloo 2",sans-serif;color:var(--muted)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px}
+.bdg{background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px 8px;text-align:center;box-shadow:0 4px 0 var(--line)}
+.bdg .i{font-size:36px;line-height:1.1;display:block}
+.bdg .n{font-family:var(--disp);font-weight:700;font-size:15px;display:block;margin-top:4px}
+.bdg .d{font-size:12px;color:var(--muted);line-height:1.4;display:block;font-family:Nunito,sans-serif}
+.bdg.locked{opacity:.45;filter:grayscale(1)}
+.bdg:not(.locked){border-color:#ffd98a;background:linear-gradient(180deg,#fff7e0,#fff)}
+.fact{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.fact .fi{font-size:46px;line-height:1}
+.fact .ar2{font-family:var(--disp);font-size:20px;font-weight:700}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:97;background:#2b2340;color:#fff;border-radius:999px;padding:9px 20px;font-weight:700;display:none;box-shadow:0 10px 30px rgba(0,0,0,.25);font-family:var(--disp);font-size:18px;white-space:nowrap}
+.xpfloat{position:fixed;z-index:95;font-family:"Baloo 2",sans-serif;font-weight:800;color:#e9a400;font-size:22px;pointer-events:none;animation:xpup 1s ease-out forwards;text-shadow:0 2px 0 #fff}
+@keyframes xpup{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-50px)}}
+.combo{position:fixed;top:120px;left:50%;transform:translateX(-50%);z-index:95;background:linear-gradient(90deg,#ef476f,#f78c6b);color:#fff;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:22px;padding:8px 22px;border-radius:999px;box-shadow:0 10px 30px rgba(239,71,111,.4);animation:pop .9s ease forwards;pointer-events:none}
+@keyframes pop{0%{transform:translateX(-50%) scale(.5);opacity:0}20%{transform:translateX(-50%) scale(1.1);opacity:1}80%{opacity:1}100%{transform:translateX(-50%) translateY(-20px);opacity:0}}
+.celebrate{position:fixed;inset:0;z-index:96;display:grid;place-items:center;background:rgba(43,35,64,.55);animation:fade .2s;padding:16px}
+.celebrate .box{background:#fff;border-radius:26px;padding:24px 30px;text-align:center;max-width:380px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.celebrate .box .big{font-size:64px;line-height:1}
+.celebrate .box h3{font-size:26px;color:var(--teal);margin:6px 0}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:98}
+.brand{display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap}
+.brand h1{margin:0;font-size:28px;font-weight:800;line-height:1.25;text-shadow:0 2px 0 rgba(0,0,0,.12)}
+.brand .sub{opacity:.85;font-size:15px}
+.brand .en{font-size:15px;opacity:.9}
+nav.tabs{position:sticky;top:0;z-index:20;background:#5b34d6;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+nav.tabs .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:#ece6ff;padding:7px 14px;border-radius:999px;font-weight:700;font-size:16px;display:flex;flex-direction:column;align-items:center;line-height:1.25}
+nav.tabs a small{font-family:"Nunito",system-ui,sans-serif;font-weight:600;font-size:11px;opacity:.8}
+nav.tabs a[aria-current="page"]{background:#fff;color:var(--teal)}
+main{padding:26px 0 80px}
+.view{display:none}
+.view.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2.sec{font-size:28px;margin:0 0 4px;font-weight:800}
+.sec-en{color:var(--muted);margin:0 0 18px;font-size:16px}
+h3{font-size:21px;margin:0 0 8px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 22px;margin:0 0 18px}
+.card.tip{background:var(--sun-soft);border-color:#ffd98a;box-shadow:0 6px 0 #ffe4a8}
+.card.en-help{background:#f1f7ff;border-color:#cfe0ff;box-shadow:0 6px 0 #dce8ff}
+.pill{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:2px solid var(--line);background:#fff;border-radius:14px;padding:8px 16px;font-weight:700;font-size:16px;box-shadow:0 4px 0 var(--line);transition:transform .08s,background .15s}
+.btn:hover{background:#faf8f3}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 4px 0 var(--pri-dark)}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:#3a2600;box-shadow:0 4px 0 #d18a00}
+.btn.primary:hover{background:#6a3cf0}
+.btn.on{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+.btn.small{font-size:14px;padding:5px 10px;border-radius:10px}
+.say{border:none;background:var(--teal-soft);color:var(--teal);border-radius:999px;width:34px;height:34px;display:inline-grid;place-items:center;font-size:16px;flex:0 0 auto}
+.say:hover{background:#c9ece6}
+.muted{color:var(--muted)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* Home */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.hero svg{width:100%;height:auto;border-radius:var(--r)}
+.topic{display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit}
+.topic .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex:0 0 auto}
+.topic h3{margin:0;font-size:19px}
+.topic .en{font-size:14px;color:var(--muted)}
+.bar{height:8px;background:#eee7da;border-radius:99px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--teal-2);width:0;transition:width .5s}
+
+/* Passage */
+.passage{font-family:"Noto Naskh Arabic",serif;font-size:24px;line-height:2.15}
+.sent{padding:10px 12px;border-radius:14px;margin:4px 0;display:flex;gap:10px;align-items:flex-start}
+.sent:hover{background:#faf7f0}
+.sent .t{flex:1}
+.sent .tr{display:none;font-family:"Nunito",system-ui,sans-serif;font-size:16px;line-height:1.6;color:#334155;background:#f2f7ff;border-radius:10px;padding:6px 12px;margin-top:6px;direction:ltr;text-align:left}
+.show-en .sent .tr{display:block}
+.w{font-weight:inherit;border-bottom:2px dotted #c9a227;cursor:pointer;border-radius:4px}
+.hl-words .w{background:#fff3c4;border-bottom-color:#d4a017}
+.w:hover{background:#ffe9a3}
+.hz{font-style:normal}
+.hl-hz .hz-a{background:#d9f99d;outline:2px solid #65a30d;border-radius:4px}
+.hl-hz .hz-y{background:#e9d5ff;outline:2px solid #9333ea;border-radius:4px}
+.hl-hz .hz-e{background:#fecaca;outline:2px solid #dc2626;border-radius:4px}
+.legend{display:none;gap:12px;flex-wrap:wrap;font-size:15px;margin-top:8px}
+.hl-hz .legend{display:flex}
+.legend span{padding:2px 10px;border-radius:8px}
+
+/* glossary sheet */
+.sheet{position:fixed;inset:auto 0 0 0;z-index:50;transform:translateY(110%);transition:transform .25s ease}
+.sheet{visibility:hidden}
+.sheet.open{transform:none;visibility:visible}
+.sheet .in{max-width:620px;margin:0 auto 14px;background:#fff;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.25);padding:18px 20px;border:1px solid var(--line)}
+.sheet .word{font-family:"Noto Naskh Arabic",serif;font-size:34px;font-weight:700;color:var(--teal)}
+.sheet .in{border:2px solid var(--line)}
+.sheet .x{border:none;background:#f1ede4;border-radius:999px;width:34px;height:34px}
+
+/* MCQ */
+.q{border:2px solid var(--line);box-shadow:0 4px 0 var(--line);border-radius:18px;padding:16px 18px;margin:0 0 14px;background:#fff}
+.q .qh{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.q .qt{font-weight:700;font-size:19px}
+.q .src{font-size:12px;color:var(--muted);font-family:"Nunito",system-ui,sans-serif;white-space:nowrap}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:10px}
+.opt{border:2px solid var(--line);background:#fcfbf8;border-radius:12px;padding:9px 12px;text-align:right;font-weight:600;display:flex;gap:8px;align-items:center}
+.opt .l{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#efe9dc;font-size:14px;flex:0 0 auto}
+.opt:hover:not(:disabled){border-color:var(--teal-2);background:#f3fbf9}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok);color:#14532d}
+.opt.ok .l{background:var(--ok);color:#fff}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad);color:#7f1d1d;text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{display:none;margin-top:12px;border-radius:12px;padding:10px 14px;font-size:16px}
+.fb.show{display:block}
+.fb.ok{background:var(--ok-soft)}
+.fb.bad{background:#fff4e5}
+.fb .en{margin-top:4px;font-size:15px;color:#334155}
+.hint{display:none;margin-top:10px;background:#f2f7ff;border-radius:10px;padding:8px 12px;font-size:15px}
+.hint.show{display:block}
+.score{font-weight:800;color:var(--teal)}
+
+/* flashcards */
+.fc{perspective:900px;height:210px;border:none;background:none;padding:0}
+.fc .fi{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fi{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center}
+.fc .front{background:#fff}
+.fc .front .ar{font-size:36px;font-weight:700;color:var(--teal)}
+.fc .back{background:linear-gradient(135deg,#7c4dff,#ff7a59);color:#fff;transform:rotateY(180deg)}
+.fc .back .m{font-size:20px;font-weight:700}
+.fc .back .en{text-align:center;font-size:16px;opacity:.95}
+.fc .back .ex{font-size:15px;opacity:.9;margin-top:6px}
+@media (prefers-reduced-motion:reduce){.fc .fi{transition:none}.view.on{animation:none}*{scroll-behavior:auto}}
+
+/* chips / games */
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:6px 14px;font-weight:700;font-size:18px;font-family:"Noto Naskh Arabic",serif}
+.chip.sel{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 0 0 3px #99f6e4}
+.chip.done{background:var(--ok-soft);border-color:var(--ok);color:#14532d}
+.chip.used{opacity:.35;pointer-events:none}
+.shake{animation:shake .35s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.pool{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:2px dashed var(--line);border-radius:14px;min-height:58px;background:#fdfcf9}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+.bucket{cursor:pointer;border:2px solid var(--line);border-radius:16px;padding:10px;min-height:120px;background:#fff;text-align:right}
+.bucket h4{margin:0 0 6px;font-size:18px}
+.bucket .en{font-size:13px;color:var(--muted)}
+.bucket .in{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bucket:hover{border-color:var(--teal-2)}
+.gamefb{margin-top:10px;min-height:28px;font-size:16px}
+.match{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}
+.match .col{display:flex;flex-direction:column;gap:8px}
+.mbtn{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;font-weight:700;text-align:right;min-height:48px}
+.mbtn.sel{border-color:var(--teal);background:var(--teal-soft)}
+.mbtn.done{background:var(--ok-soft);border-color:var(--ok);color:#14532d}
+.mbtn .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;font-size:12px;margin-inline-start:6px}
+.blank{display:inline-block;min-width:96px;border:none;border-bottom:3px solid var(--teal-2);background:#f0fbf9;border-radius:8px 8px 0 0;padding:0 10px;margin:0 4px;font-weight:700;font-family:"Noto Naskh Arabic",serif;font-size:19px;color:var(--teal)}
+.blank.ok{background:var(--ok-soft);border-bottom-color:var(--ok);color:#14532d}
+.fill li{margin:8px 0;font-size:19px}
+
+/* grammar */
+.diagram{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;justify-content:center;margin:12px 0}
+.box{border-radius:14px;padding:10px 16px;text-align:center;min-width:120px}
+.box .w2{font-family:"Noto Naskh Arabic",serif;font-size:24px;font-weight:700}
+.box .lab{font-size:14px;font-weight:700}
+.box.m{background:var(--mub-soft);border:2px solid var(--mub);color:#1e3a8a}
+.box.k{background:var(--khb-soft);border:2px solid var(--khb);color:#7c2d12}
+.m-t{color:var(--mub);font-weight:800}.k-t{color:var(--khb);font-weight:800}
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.type{border-radius:16px;padding:14px;border:1.5px solid var(--line);background:#fff;cursor:pointer;text-align:right}
+.type.active{border-color:var(--khb);box-shadow:0 0 0 3px #fed7c3}
+.type .tn{font-weight:800;font-size:19px}
+.type .ex{font-family:"Noto Naskh Arabic",serif;font-size:20px;margin-top:6px}
+.tok{border:2px solid var(--line);background:#fff;border-radius:12px;padding:6px 14px;font-family:"Noto Naskh Arabic",serif;font-size:24px;font-weight:700}
+.tok.m{background:var(--mub-soft);border-color:var(--mub);color:#1e3a8a}
+.tok.k{background:var(--khb-soft);border-color:var(--khb);color:#7c2d12}
+.brush.m.on{background:var(--mub);border-color:var(--mub);color:#fff}
+.brush.k.on{background:var(--khb);border-color:var(--khb);color:#fff}
+.built{font-family:"Noto Naskh Arabic",serif;font-size:28px;font-weight:700;text-align:center;padding:14px;border-radius:14px;background:#fbfaf6;min-height:74px}
+
+/* hamza */
+.vow{display:flex;gap:8px;flex-wrap:wrap}
+.vbtn{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:6px 12px;font-weight:700;min-width:96px;text-align:center}
+.vbtn.on{background:var(--purple-soft);border-color:var(--purple);color:#4c1d95}
+.vbtn .sym{font-family:"Noto Naskh Arabic",serif;font-size:26px;line-height:1}
+.power{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;align-items:end}
+.pw{text-align:center;font-size:14px;font-weight:700}
+.pw .col{background:#ece7dd;border-radius:10px 10px 4px 4px;margin:0 auto 4px;width:60%;transition:background .3s,transform .3s}
+.pw.win .col{background:var(--purple);transform:scaleX(1.12)}
+.pw.in .col{background:#f9a8c3}
+.seat{display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.seat .big{font-family:"Noto Naskh Arabic",serif;font-size:76px;line-height:1.1;color:var(--purple);background:var(--purple-soft);border-radius:20px;width:120px;text-align:center}
+.seat .exw{font-family:"Noto Naskh Arabic",serif;font-size:36px;font-weight:700}
+.seat .exw em{font-style:normal;color:var(--purple);background:#f3edff;border-radius:6px}
+.letters{font-family:"Noto Naskh Arabic",serif;font-size:26px;letter-spacing:6px;font-weight:700}
+.seatpick{display:flex;gap:8px}
+.seatpick button{font-family:"Noto Naskh Arabic",serif;font-size:26px;width:56px;height:52px;border-radius:12px;border:1.5px solid var(--line);background:#fff}
+.seatpick button.ok{background:var(--ok-soft);border-color:var(--ok)}
+.seatpick button.bad{background:var(--bad-soft);border-color:var(--bad)}
+input.txt,textarea{width:100%;font-family:"Noto Naskh Arabic",serif;font-size:20px;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;color:var(--ink)}
+textarea{min-height:220px;line-height:2}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
+.chk input{width:20px;height:20px;margin-top:6px;accent-color:var(--teal)}
+.phr{display:flex;flex-wrap:wrap;gap:8px}
+.phr button{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:6px 10px;text-align:right}
+.phr button .a{font-family:"Noto Naskh Arabic",serif;font-weight:700;display:block}
+.phr button .en{font-size:12px;color:var(--muted);display:block}
+.stats{display:flex;gap:14px;flex-wrap:wrap;font-size:15px}
+.stats b{color:var(--teal)}
+.model{display:none;margin-top:12px}
+.model.show{display:block}
+
+/* exam */
+.exambox{max-width:720px;margin:0 auto}
+.prog{height:10px;background:#eee7da;border-radius:99px;overflow:hidden;margin:6px 0 16px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#14b8a6,#0f766e);width:0;transition:width .3s}
+.result{text-align:center}
+.result .big{font-size:56px;font-weight:800;color:var(--teal)}
+.stars{font-size:40px;letter-spacing:6px}
+footer{color:var(--muted);text-align:center;font-size:14px;padding:20px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap brand">
+    <div class="row" style="flex-wrap:nowrap;gap:12px">
+    <div class="mascot sm" aria-hidden="true"></div>
+    <div>
+      <div class="sub">مدارس الظفرة الخاصة: العين · الصف الخامس · الفصل الدراسي الأول</div>
+      <h1>مراجعة امتحان اللغة العربية: جَبَلُ حَفِيتٍ ⛰️</h1>
+      <div class="en">Maria's Arabic exam review: learn it, play it, master it</div>
+    </div>
+    </div>
+    <div class="row" style="gap:8px">
+      <a class="xpchip" href="#home" style="color:#fff;text-decoration:none" aria-label="Your level and points"><span class="lv" id="xpLvl">🌱</span><div><b id="xpTop" dir="ltr">0 XP</b><div class="mini"><i id="xpMini"></i></div></div></a>
+      <button class="mutebtn" id="mute" aria-label="Sound effects on or off">🔔</button>
+    </div>
+  </div>
+  <div style="height:16px"></div>
+</header>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <a href="#home">🏠 البداية<small>Start</small></a>
+    <a href="#read">📖 النص<small>Reading</small></a>
+    <a href="#words">🔤 المفردات<small>Vocabulary</small></a>
+    <a href="#grammar">🧩 الجملة الاسمية<small>Grammar</small></a>
+    <a href="#hamza">✏️ الهمزة<small>Spelling</small></a>
+    <a href="#write">📝 التعبير<small>Writing</small></a>
+    <a href="#exam">🏆 الاختبار<small>Practice exam</small></a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ HOME ============ -->
+<section class="view" id="v-home">
+  <div class="hero card">
+    <div>
+      <div class="hello"><div class="mascot big" aria-hidden="true"></div><div class="bubble"><b id="greet">أهلاً يا ماريا! أنا شاهين 🦅</b><div class="en" id="greetEn" style="font-size:15px">Hi Maria! I'm Shaheen the falcon. Let's fly to the top!</div></div></div>
+      <h2 class="sec" style="margin-top:12px">رحلة إلى قمة جبل حفيت</h2>
+      <p class="en" style="font-size:17px;margin:6px 0">Hi Maria! This page covers <b>everything</b> on your Arabic review sheet. Each section explains the idea in English first, then you practise in Arabic with games and quick questions. Climb all 6 sections to reach the top of the mountain! 🏔️</p>
+      <p class="en muted" style="font-size:15px;margin:0">Tip: tap any <span style="border-bottom:2px dotted #c9a227">dotted word</span> to see its meaning, and press 🔊 to hear Arabic (works if your device has an Arabic voice).</p>
+    </div>
+    <svg viewBox="0 0 400 240" role="img" aria-label="Jebel Hafeet mountain with your progress">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde7c7"/><stop offset="1" stop-color="#fff7ea"/></linearGradient></defs>
+      <rect width="400" height="240" fill="url(#sky)"/>
+      <circle cx="320" cy="58" r="24" fill="#f6c453"/>
+      <path d="M0 240 L60 170 L110 190 L200 52 L260 130 L300 110 L400 200 L400 240Z" fill="#b08968"/>
+      <path d="M200 52 L230 98 L214 92 L200 108 L186 90 L172 96Z" fill="#8a6a4e"/>
+      <path id="road" d="M140 232 C 190 220, 240 210, 205 190 S 150 160, 200 145 S 250 120, 210 105 S 190 80, 200 60" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <rect x="0" y="222" width="400" height="18" fill="#7fb069"/>
+      <g id="climber"><circle r="11" fill="#0f766e" stroke="#fff" stroke-width="3"/><text y="5" text-anchor="middle" font-size="12" fill="#fff" font-family="Nunito" font-weight="800">M</text></g>
+      <text x="200" y="44" text-anchor="middle" font-family="Tajawal" font-weight="800" font-size="15" fill="#5a3e2b">القمة!</text>
+    </svg>
+  </div>
+
+  <div class="grid g2">
+    <div class="card" style="margin:0">
+      <div class="lvcard"><div class="ic" id="lvIc">🌱</div><div style="flex:1">
+        <div class="muted" style="font-size:14px">مستواك · <span class="en" style="display:inline">Your level</span></div>
+        <h3 style="margin:0"><span id="lvAr"></span> <span class="en muted" style="font-size:15px;display:inline" id="lvEn"></span></h3>
+        <div class="bigbar"><i id="xpBarBig"></i></div>
+        <div style="font-size:15px" id="xpNext"></div>
+        <div style="font-size:15px;margin-top:4px">🔥 أيام متتالية: <b id="streak">0</b> · ⭐ <bdi dir="ltr"><b id="xpBig">0</b> XP</bdi></div>
+      </div></div>
+    </div>
+    <div class="card mission" style="margin:0">
+      <h3>🎯 مهمة اليوم <span class="pill" style="background:var(--sun-soft);color:#8a5a00"><bdi dir="ltr">+50 XP</bdi></span></h3>
+      <ul id="missionList"></ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px;background:linear-gradient(135deg,#fff,#f6f0ff)">
+    <h3>💡 هل تعلمين؟ <span class="en muted" style="font-size:15px">Did you know? Fun facts about Arabic</span></h3>
+    <div class="fact" id="fact"></div>
+  </div>
+
+  <h3>🏅 شاراتك <span class="muted en" style="font-size:15px;display:inline" id="badgeCount"></span></h3>
+  <div class="badges" id="badges" style="margin-bottom:22px"></div>
+
+  <h3>ماذا يأتي في الامتحان؟ <span class="en muted" style="font-size:15px">What's on the exam</span></h3>
+  <div class="grid g2" id="topics"></div>
+
+  <div class="card tip">
+    <h3>📅 خطة مذاكرة مقترحة <span class="en muted" style="font-size:15px">Suggested plan</span></h3>
+    <ol class="en" style="margin:0;padding-left:22px">
+      <li><b>Reading</b>: read the passage with English ON, then again with English OFF. Answer the 5 questions.</li>
+      <li><b>Vocabulary</b>: flip all the cards, then play the matching and fill-in games.</li>
+      <li><b>Grammar</b>: learn مبتدأ + خبر and the 4 types of خبر, then do "Tap the parts".</li>
+      <li><b>Hamza</b>: play with the Hamza Machine until you can predict the seat.</li>
+      <li><b>Writing</b>: write one paragraph using the phrase bank.</li>
+      <li><b>Practice exam</b>: aim for 3 stars ⭐⭐⭐. Repeat until you get them!</li>
+    </ol>
+  </div>
+  <div class="row"><button class="btn small" id="resetAll">↺ ابدئي من جديد (Reset progress)</button></div>
+</section>
+
+<!-- ============ READ ============ -->
+<section class="view" id="v-read">
+  <h2 class="sec">📖 نص القراءة: جَبَلُ حَفِيتٍ</h2>
+  <p class="sec-en en">Reading comprehension</p>
+
+  <div class="card en-help en">
+    <h3 class="en">Before you read: the story in English</h3>
+    The writer describes <b>Jebel Hafeet</b>, the big mountain south-east of Al Ain. She says it stands proud like <b>Thabir</b>, a mountain that the ancient poet <b>Imru' al-Qais</b> described as an old man wrapped in his cloak. Jebel Hafeet can be seen from <i>every</i> street, as if it watches over people day and night without getting tired. Then she calls it the <b>"Mona Lisa of the city"</b>: like the famous painting, when you look at it, it seems to look back at you.
+  </div>
+
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <div class="row">
+        <button class="btn" id="tEn" aria-pressed="false">🇬🇧 English under each sentence</button>
+        <button class="btn" id="tWords" aria-pressed="false">✨ Highlight new words</button>
+        <button class="btn" id="tHz" aria-pressed="false">🔍 Hamza hunt</button>
+      </div>
+      <button class="btn primary" id="readAll">🔊 اقرئي لي النص</button>
+    </div>
+    <div class="legend en"><span style="background:#d9f99d">hamza on alif (أ) in the middle</span><span style="background:#e9d5ff">hamza on ي-seat (ئ)</span><span style="background:#fecaca">hamza at the end</span></div>
+    <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+    <div class="passage" id="passage"></div>
+  </div>
+
+  <h3>أسئلة الفهم والتحليل <span class="en muted" style="font-size:15px">Comprehension questions</span> · <span class="score" id="sc-read"></span></h3>
+  <div id="q-read"></div>
+</section>
+
+<!-- ============ WORDS ============ -->
+<section class="view" id="v-words">
+  <h2 class="sec">🔤 المفردات: المعنى والمرادف والضد</h2>
+  <p class="sec-en en">Vocabulary: meanings, synonyms (مرادف) and opposites (ضد)</p>
+
+  <div class="card en-help en">
+    <b>Three words you must know for this section:</b>
+    <ul style="margin:6px 0 0;padding-left:22px">
+      <li><b>مُرادِف (muradif)</b> = synonym, a word with the <b>same</b> meaning. Relationship: <b>تَرادُف</b>. e.g. كَلَل / مَلَل</li>
+      <li><b>ضِدّ (didd)</b> = opposite. Relationship: <b>تَضادّ</b>. e.g. صَباح / مَساء</li>
+      <li><b>تَشْبيه (tashbih)</b> = a comparison/simile ("like..."). e.g. the mountain is <i>like</i> the Mona Lisa.</li>
+    </ul>
+  </div>
+
+  <h3>١. بطاقات الكلمات <span class="en muted" style="font-size:15px">Flashcards: tap a card to flip it</span></h3>
+  <div class="grid g3" id="cards"></div>
+
+  <h3 style="margin-top:22px">٢. لعبة التوصيل <span class="en muted" style="font-size:15px">Matching game: tap a word, then its meaning</span></h3>
+  <div class="card"><div id="match"></div><div class="gamefb" id="match-fb"></div></div>
+
+  <h3>٣. أكملي الفراغ بالكلمة المناسبة <span class="en muted" style="font-size:15px">Fill the blanks: tap a word, then tap the blank (one word is extra!)</span></h3>
+  <div class="card"><div id="fill"></div><div class="gamefb" id="fill-fb"></div></div>
+
+  <h3>٤. أسئلة المفردات <span class="en muted" style="font-size:15px">Vocabulary questions</span> · <span class="score" id="sc-words"></span></h3>
+  <div id="q-words"></div>
+</section>
+
+<!-- ============ GRAMMAR ============ -->
+<section class="view" id="v-grammar">
+  <h2 class="sec">🧩 الجملة الاسمية وأنواع الخبر</h2>
+  <p class="sec-en en">The nominal sentence and the 4 types of خبر</p>
+
+  <div class="card en-help en">
+    <h3 class="en">Step 1: two kinds of sentence</h3>
+    Look at the <b>first word</b>:
+    <ul style="margin:6px 0;padding-left:22px">
+      <li>Starts with a <b>verb</b> (an action: يَمُرُّ، يَرْعى، يَتَرَبَّعُ) → <b>جُمْلَة فِعْلِيَّة</b> (verbal sentence)</li>
+      <li>Starts with a <b>noun</b> (a name/thing: الجَبَلُ، الإماراتُ) → <b>جُمْلَة اسْمِيَّة</b> (nominal sentence)</li>
+    </ul>
+    A nominal sentence has two parts: the <b style="color:var(--mub)">مُبْتَدَأ</b> (the topic: who/what we talk about) and the <b style="color:var(--khb)">خَبَر</b> (the news: what we say about it). Think: <i>Topic + News</i>.
+  </div>
+  <div class="card">
+    <div class="diagram">
+      <div class="box m"><div class="w2">جَبَلُ حَفِيتٍ</div><div class="lab">مُبْتَدَأ · topic</div></div>
+      <div class="box k"><div class="w2">مَوْجُودٌ</div><div class="lab">خَبَر · the news</div></div>
+      <div class="box" style="border:2px dashed var(--line)"><div class="w2" style="color:var(--muted)">فِي كُلِّ شَارِعٍ</div><div class="lab muted">extra detail</div></div>
+    </div>
+    <p class="en muted" style="text-align:center;margin:0">"Jebel Hafeet <b>is present</b> in every street." The news about the mountain is that it is <b>موجود</b>, so the خبر is <b>موجودٌ</b>.</p>
+  </div>
+
+  <h3>لعبة: اسمية أم فعلية؟ <span class="en muted" style="font-size:15px">Sort the sentences: tap a sentence, then its basket</span></h3>
+  <div class="card"><div id="sortType"></div></div>
+
+  <div class="card en-help en">
+    <h3 class="en">Step 2: the 4 types of خبر (tap each card)</h3>
+    Ask: <b>what does the news part look like?</b>
+  </div>
+  <div class="types" id="types"></div>
+  <div class="card" id="typeDetail" style="margin-top:14px"></div>
+
+  <h3 style="margin-top:22px">لوّني الجملة: المبتدأ والخبر <span class="en muted" style="font-size:15px">Tap the parts: choose a colour, tap the words, then pick the type</span></h3>
+  <div class="card" id="parser"></div>
+
+  <h3>ابني جملتك! <span class="en muted" style="font-size:15px">Sentence builder: build a sentence with the خبر type asked</span></h3>
+  <div class="card" id="builder"></div>
+
+  <h3>أسئلة الجملة الاسمية والخبر <span class="en muted" style="font-size:15px">Grammar questions</span> · <span class="score" id="sc-grammar"></span></h3>
+  <div id="q-grammar"></div>
+</section>
+
+<!-- ============ HAMZA ============ -->
+<section class="view" id="v-hamza">
+  <h2 class="sec">✏️ الهمزة المتوسطة على الألف والواو</h2>
+  <p class="sec-en en">The middle hamza (ء): where does it sit?</p>
+
+  <div class="card en-help en">
+    <h3 class="en">The rule: the strongest vowel wins 💪</h3>
+    When a hamza is in the <b>middle</b> of a word, compare <b>two vowels</b>: the vowel <b>on the hamza</b> and the vowel on the letter <b>before</b> it. The <b>stronger</b> vowel chooses the seat:
+    <ol style="margin:6px 0;padding-left:22px">
+      <li><b>kasra</b> ( ـِ , "i") is the strongest → sits on a nabra: <b class="ar" style="font-size:22px">ئ</b></li>
+      <li><b>damma</b> ( ـُ , "u") → sits on waw: <b class="ar" style="font-size:22px">ؤ</b></li>
+      <li><b>fatha</b> ( ـَ , "a") → sits on alif: <b class="ar" style="font-size:22px">أ</b></li>
+      <li><b>sukun</b> ( ـْ , no vowel) is the weakest</li>
+    </ol>
+    Memory trick: <b>i &gt; u &gt; a &gt; silent</b>. Your exam focuses on <b>أ</b> and <b>ؤ</b>.
+  </div>
+
+  <h3>آلة الهمزة <span class="en muted" style="font-size:15px">The Hamza Machine: pick the two vowels and watch who wins</span></h3>
+  <div class="card" id="machine"></div>
+
+  <h3>صلي الحروف واختاري كرسي الهمزة <span class="en muted" style="font-size:15px">Join the letters: choose the right seat (from your sheet)</span></h3>
+  <div class="card" id="join"></div>
+
+  <h3>صيد الهمزات <span class="en muted" style="font-size:15px">Hamza hunt: put each word in the right basket (look at the vowels!)</span></h3>
+  <div class="card"><div id="sortHz"></div></div>
+
+  <h3>اكتبي كلمة <span class="en muted" style="font-size:15px">Write your own word (exam question)</span></h3>
+  <div class="card" id="mywords"></div>
+
+  <h3>سؤال الإملاء <span class="en muted" style="font-size:15px">Spelling question</span> · <span class="score" id="sc-hamza"></span></h3>
+  <div id="q-hamza"></div>
+</section>
+
+<!-- ============ WRITE ============ -->
+<section class="view" id="v-write">
+  <h2 class="sec">📝 الكتابة والتعبير الوصفي</h2>
+  <p class="sec-en en">Descriptive writing: you'll get one of these two in the exam</p>
+
+  <div class="card en-help en">
+    <b>How to get full marks:</b> correct spelling (سلامة اللغة والإملاء), describing words like adjectives and "like..." comparisons (التراكيب الوصفية), and punctuation (علامات الترقيم): <span class="ar" style="font-size:22px">، . ! ؟ :</span>
+    <br>Plan in 3 parts: <b>Beginning</b> (where/when) → <b>Middle</b> (what you saw, did, felt) → <b>End</b> (why you liked it / a wish).
+  </div>
+
+  <div class="row" style="margin-bottom:12px">
+    <button class="btn on" data-task="0">١. يوم مع العائلة (٥ أسطر)</button>
+    <button class="btn" data-task="1">٢. مكان في الإمارات (٧ أسطر)</button>
+  </div>
+  <div class="card">
+    <div id="taskText" style="font-weight:700;font-size:19px"></div>
+    <div id="taskEn" class="en muted" style="font-size:15px;margin-bottom:10px"></div>
+    <div id="placeIdeas" style="margin-bottom:10px"></div>
+    <h3 style="font-size:17px">بنك العبارات <span class="en muted" style="font-size:14px">Phrase bank: tap to add it to your writing</span></h3>
+    <div class="phr" id="phrases"></div>
+    <div style="margin-top:12px"><textarea id="draft" placeholder="اكتبي هنا..." aria-label="Your paragraph"></textarea></div>
+    <div class="stats" style="margin-top:8px"><span>Words: <b id="nWords">0</b></span><span>Sentences: <b id="nSent">0</b></span><span>Punctuation marks: <b id="nPunct">0</b></span><button class="btn small" id="copyDraft">📋 Copy</button></div>
+    <h3 style="font-size:17px;margin-top:14px">قائمة التحقق <span class="en muted" style="font-size:14px">Checklist before you finish</span></h3>
+    <div id="checks"></div>
+    <div class="row" style="margin-top:10px"><button class="btn" id="showModel">👀 Show a model answer</button></div>
+    <div class="model" id="model"></div>
+  </div>
+
+  <div class="card">
+    <h3>اكتبي جملة اسمية خبرها جملة فعلية <span class="en muted" style="font-size:15px">Exam task: a nominal sentence whose خبر is a verbal sentence</span></h3>
+    <p class="en" style="margin:4px 0">Recipe: <b style="color:var(--mub)">noun</b> + <b style="color:var(--khb)">verb …</b> &nbsp; e.g. <span class="ar" style="font-size:21px"><span class="m-t">الطالبُ</span> <span class="k-t">يقرأُ القصةَ</span>.</span> &nbsp;Try the Sentence Builder in the Grammar section!</p>
+    <input class="txt" id="nomInput" placeholder="اكتبي جملتك هنا: مثلاً العصفورُ يغرّدُ">
+    <div class="gamefb" id="nomFb"></div>
+  </div>
+</section>
+
+<!-- ============ EXAM ============ -->
+<section class="view" id="v-exam">
+  <h2 class="sec">🏆 اختبار تجريبي شامل</h2>
+  <p class="sec-en en">Practice exam: all 25 multiple-choice questions, mixed up. No hints this time!</p>
+  <div class="card exambox" id="exam"></div>
+</section>
+
+</main>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="false" aria-labelledby="sh-word">
+  <div class="in">
+    <div class="row" style="justify-content:space-between">
+      <div class="row"><span class="word" id="sh-word"></span><button class="say" id="sh-say" aria-label="Listen">🔊</button></div>
+      <button class="x" id="sh-close" aria-label="Close">✕</button>
+    </div>
+    <div id="sh-ar" style="font-size:19px;font-weight:700"></div>
+    <div id="sh-en" class="en" style="font-size:16px;color:#334155"></div>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas><div class="toast" id="toast" role="status"></div>
+<footer>Made for Maria · Based on the Grade 5 Arabic review sheet (Term 1) · <span class="en">Al Dhafra Private Schools, Al Ain</span></footer>
+
+<script>
+/* ---------------- storage (safe) ---------------- */
+const KEY='maria-arabic-hafeet-v1';
+let S={ans:{},games:{},draft:['',''],exam:null};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s) S=Object.assign(S,s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} updateHome();}
+
+/* ---------------- speech ---------------- */
+const canSpeak=('speechSynthesis' in window);
+let arVoice=null;
+function pickVoice(){ if(!canSpeak) return; const sc=v=>{const n=v.name.toLowerCase(),l=(v.lang||'').toLowerCase().replace('_','-'); if(!l.startsWith('ar')) return -1; let s=0; if(/natural|neural/.test(n)) s+=60; if(n.includes('google')) s+=35; if(l==='ar-ae') s+=15; if(l==='ar-sa') s+=10; if(/hamdan|fatima|zariyah|hamed|laila|mariam|majed/.test(n)) s+=10; return s;};
+  arVoice=speechSynthesis.getVoices().map(v=>[sc(v),v]).filter(x=>x[0]>=0).sort((a,b)=>b[0]-a[0]).map(x=>x[1])[0]||null; }
+if(canSpeak){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; setTimeout(pickVoice,700);
+  const unlock=e=>{ if(e.target.closest&&e.target.closest('[data-say],.say,.fc,.w,#readAll')) return; try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(err){} document.removeEventListener('touchend',unlock,true); document.removeEventListener('click',unlock,true); };
+  document.addEventListener('touchend',unlock,true); document.addEventListener('click',unlock,true);
+  setInterval(()=>{ try{ if(speechSynthesis.paused) speechSynthesis.resume(); }catch(e){} },1000); }
+let warned=false;
+function say(t){ if(!canSpeak) return; try{ if(!arVoice) pickVoice(); if(!arVoice&&!warned){warned=true; toast('No Arabic voice on this device. Try Chrome or Edge.');}
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t.replace(/[«»()\[\]]/g,'')); if(arVoice){u.voice=arVoice;u.lang=arVoice.lang;} else u.lang='ar-AE'; u.rate=.85; speechSynthesis.speak(u);}catch(e){} }
+function sayBtn(t){ if(!canSpeak) return ''; return `<button class="say" aria-label="Listen" data-say="${t.replace(/"/g,'&quot;')}">🔊</button>`; }
+document.addEventListener('click',e=>{const b=e.target.closest('[data-say]'); if(b){e.stopPropagation(); say(b.dataset.say);}});
+
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const LET=['أ','ب','ت','ث'];
+function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}
+
+/* ---------------- glossary ---------------- */
+const G={
+ yatarabba:['يَتَرَبَّعُ','يجلسُ ثابتاً في مكانه بثقةٍ وعِزّة','sits firmly and proudly, like a king on his throne'],
+ shumukh:['شُموخ','العُلُوُّ والارتفاعُ والعِزّة','standing tall and proud; loftiness'],
+ thabir:['ثَبير','اسمُ جبلٍ مشهورٍ قربَ مكّة المكرّمة','Thabir: a famous mountain near Makkah'],
+ imru:['امْرُؤُ القَيْس','شاعرٌ عربيٌّ قديمٌ مشهور','Imru\' al-Qais: a very famous ancient Arab poet'],
+ inhimar:['انْهِمار','نزولُ المطرِ بغزارةٍ وكثرة','heavy pouring (of rain)'],
+ musinn:['مُسِنّ','كبيرٌ في العُمْر','elderly, old'],
+ multaff:['مُلْتَفٌّ بِرِدائِهِ','لافٌّ ثوبَه أو عباءتَه حولَ جسمِه','wrapped up in his cloak'],
+ yakad:['يَكادُ','يَقْرُبُ أنْ (يحدثَ الشيءُ)','almost'],
+ yaraa:['يَرْعى','يَحْرُسُ ويهتمُّ ويَعْتَني','watches over, takes care of'],
+ marra:['المارَّة','الناسُ الذين يمشون في الطريق','passers-by'],
+ kalal:['كَلَل','تَعَب','tiredness, fatigue'],
+ malal:['مَلَل','سَأَمٌ وضَجَر','boredom'],
+ tahrif:['تَحْرِفَهُما','تُميلُهما وتَصْرِفُهما (تُبعِدُ عينيك)','turn them away (your eyes)'],
+ yammamt:['يَمَّمْتَ','اتَّجَهْتَ وقَصَدْتَ','you headed towards'],
+ monalisa:['مُونَاليزا','لوحةٌ عالميّةٌ مشهورة، تبدو عيناها كأنّهما تنظران إليك أينما وقفت','the Mona Lisa: a famous painting whose eyes seem to follow you'],
+ yaghus:['يَغُوصُ','يَنْزِلُ إلى العُمْق','dives deep'],
+ aamaq:['أَعْماقِك','داخِلُك وقلبُك','deep inside you'],
+ khussis:['خُصِّصَ','جُعِلَ خاصّاً له','was reserved / set aside for it']
+};
+const SENT=[
+ ['<b class="w" data-g="yatarabba">يتربع</b> هناك جنوبَ شرقيِّ مدينةِ العين، <b class="w" data-g="shumukh">بشموخٍ</b> يُشبهُ شموخَ (<b class="w" data-g="thabir">ثبير</b>) - الجبلِ الأسودِ الذي وصفه <b class="w" data-g="imru"><i class="hz hz-e">امرؤُ</i> القيس</b> لحظةَ <b class="w" data-g="inhimar">انهمارِ</b> المطرِ عليه، وشبَّهَهُ بشيخٍ <b class="w" data-g="musinn">مُسنٍّ</b> <b class="w" data-g="multaff">مُلْتَفٍّ <i class="hz hz-y">بردائه</i></b>،',
+  'It sits proudly there, south-east of the city of Al Ain, towering like Thabir, the black mountain that the poet Imru\' al-Qais described as rain poured down on it, comparing it to an old man wrapped in his cloak.'],
+ ['إنَّهُ جبلُ حفيتٍ الذي <b class="w" data-g="yakad">يكادُ</b> يمرُّ في كلِّ الشوارع،','It is Jebel Hafeet, which almost seems to pass through every street.'],
+ ['لا لا.. هو لا يمرُّ فقط، إنَّهُ موجودٌ حقيقةً في كلِّ مكانٍ وشارعٍ،','No, no... it doesn\'t just pass by: it is truly present in every place and every street,'],
+ ['<i class="hz hz-a">وكأنَّهُ</i> <b class="w" data-g="yaraa">يرعى</b> <b class="w" data-g="marra">المارَّةَ</b> <i class="hz hz-y">والسائقين</i> صباحَ مساءٍ، دونَ <b class="w" data-g="kalal">كللٍ</b> أو <b class="w" data-g="malal">مللٍ</b>.','as if it watches over the passers-by and the drivers, morning and evening, without getting tired or bored.'],
+ ['حِينَ تَقَعُ عَيْنَاكَ عَلَيْهِ لَنْ تَسْتَطِيعَ أَنْ <b class="w" data-g="tahrif">تَحْرِفَهُمَا</b> عَنْ هَذَا الْجَبَلِ الَّذِي سَيُرَافِقُكَ أَيْنَمَا <b class="w" data-g="yammamt">يَمَّمْتَ</b>..','When your eyes fall on it, you won\'t be able to turn them away from this mountain, which will go with you wherever you head.'],
+ ['إِنَّهُ <b class="w" data-g="monalisa">مُونَالِيزَا</b> الْمَدِينَةِ،','It is the Mona Lisa of the city:'],
+ ['حِينَ تَنْظُرُ إِلَيْهِ سَتَشْعُرُ مُبَاشَرَةً أَنَّهُ يَنْظُرُ إِلَيْكَ،','when you look at it, you immediately feel that it is looking back at you,'],
+ ['وَ<b class="w" data-g="yaghus">يَغُوصُ</b> بِنَظَرَاتِهِ فِي <b class="w" data-g="aamaq">أَعْمَاقِكَ</b> حَيْثُ سَيَجِدُ لَهُ مَكَانًا وَاسِعًا يَنْتَظِرُهُ، <i class="hz hz-a">وَكَأَنَّهُ</i> قَدْ <b class="w" data-g="khussis">خُصِّصَ</b> لَهُ مُنْذُ أَنْ خُلِقْتَ.','and its gaze dives deep inside you, where it finds a wide space waiting for it, as if that space had been saved for it since the day you were born.']
+];
+
+/* ---------------- questions ---------------- */
+const Q={
+read:[
+ {id:'c1',src:'Comprehension 1',q:'يتحدّثُ النصُّ السابقُ بشكلٍ رئيسيٍّ عن:',o:['جبل جيس','حديقة الجاهلي','جبل حفيت','متحف قلعة الحصن'],a:2,h:'What is the passage mainly about? Look at the title!',wa:'عنوانُ النصّ «جبل حفيت»، والنصُّ كلُّه يصفُ هذا الجبل.',we:'The title is "Jebel Hafeet" and the whole text describes it.'},
+ {id:'c2',src:'Comprehension 2',q:'الجبلُ الذي شُبِّهَ به جبلُ حفيت في القصيدة هو:',o:['الجبل الأبيض','الجبل الأخضر','جبل جيس','الجبل الأسود'],a:3,h:'Find the word in brackets (ثبير) in the first line. What comes right after it?',wa:'في النص: «بشموخٍ يُشبه شموخَ (ثبير) - الجبلِ الأسودِ».',we:'The text says Hafeet is proud like Thabir, "the black mountain".'},
+ {id:'c3',src:'Comprehension 3',q:'يقعُ جبلُ حفيت كما جاء في الفقرة:',o:['في جنوب شرقي مدينة العين','في جنوب غربي مدينة صلالة','في مدينة دبي','غرب مدينة العين'],a:0,h:'Read the very first sentence: يتربع هناك ...',wa:'«يتربّعُ هناك جنوبَ شرقيِّ مدينةِ العين».',we:'First line: it sits south-east of Al Ain.'},
+ {id:'c4',src:'Comprehension (p.2) 1',q:'شبّهت الكاتبةُ جبلَ حفيت كما وردَ في النصّ بـ:',o:['الموناليزا','لوحة تراثية','الحوت','قلعة الحصن'],a:0,h:'Which famous painting is mentioned in the second paragraph?',wa:'«إنّه موناليزا المدينة»: كما تبدو عينا الموناليزا تنظران إليك، يبدو الجبلُ كأنّه ينظرُ إليك.',we:'"It is the Mona Lisa of the city": like the painting, it seems to look back at you.'},
+ {id:'c5',src:'Comprehension (p.2) 2',q:'«جبلُ حفيت يغوصُ بنظراته في أعماقك» الأسلوبُ في الجملة:',o:['أسلوب حقيقي','أسلوب مجازي','أسلوب وصفي'],a:1,h:'Can a mountain really look at you and dive inside you? Real or imaginative?',wa:'الجبلُ لا ينظرُ ولا يغوصُ حقيقةً، فهذا خيالٌ وتصويرٌ، أي أسلوبٌ مجازيّ.',we:'A mountain can\'t really look or dive, so this is figurative language (مجازي), not real (حقيقي).'}
+],
+words:[
+ {id:'v1',src:'Q5',q:'مُرادِفُ كلمة (المزيونة):',o:['الطويلة','السوداء','القبيحة','الجميلة'],a:3,h:'"Maziyouna" is an Emirati word for something or someone pretty.',wa:'المزيونة = الجميلة (كلمة إماراتية).',we:'Maziyouna = beautiful. Its opposite would be القبيحة (ugly).'},
+ {id:'v2',src:'Q6',q:'ضِدُّ كلمة (راحة):',o:['كَلَل','جَمال','يرعى','أسود'],a:0,h:'Opposite of "rest" is...?',wa:'الراحةُ ضدُّها الكَلَلُ (التعب).',we:'Rest ↔ tiredness. كلل means tiredness.'},
+ {id:'v3',src:'Q14',q:'العلاقةُ بين (صباح – مساء):',o:['تضاد','ترادف','تشبيه'],a:0,h:'Morning and evening: same or opposite?',wa:'الصباحُ عكسُ المساء، فالعلاقة تضاد.',we:'Morning is the opposite of evening → تضاد (opposites).'},
+ {id:'v4',src:'Q15',q:'العلاقةُ بين (كَلَل – مَلَل):',o:['تضاد','ترادف','تشبيه'],a:1,h:'Tiredness and boredom: do they mean close things or opposite things?',wa:'الكلل والملل معناهما متقارب (التعب والسأم)، فالعلاقة ترادف.',we:'Tiredness and boredom have close meanings → ترادف (synonyms). In the text: «دون كللٍ أو ملل».'},
+ {id:'v5',src:'Q16',q:'معنى كلمة (يمّمتُ) في: «يمّمتُ وجهي نحو الشاطئ»:',o:['اتّجهت','أغلقت','ابتعدت'],a:0,h:'"I ___ my face towards the beach."',wa:'يمّمتُ = اتّجهتُ وقصدتُ.',we:'يمّمت = I headed / turned towards.'},
+ {id:'v6',src:'Q17',q:'معنى كلمة (جَعْبة) في: «في جعبته الكثيرُ من المفاجآت»:',o:['حقيبة السهام أو الوعاء','عقله وفكره','سيارته الخاصة'],a:0,h:'Originally, a jaʿba is the bag an archer keeps his arrows in.',wa:'الجعبةُ: حقيبةُ السهام أو الوعاء. وتُستعملُ مجازاً: «في جعبته مفاجآت» أي عنده الكثيرُ منها.',we:'Jaʿba = a quiver (arrow bag) or container. "He has many surprises in his bag" = he has lots of surprises.'},
+ {id:'v7',src:'Q18',q:'معنى كلمة (الباسق) في: «الشجرُ الباسق»:',o:['القصير المثمر','العالي الطويل','المكسور الأغصان'],a:1,h:'Think of a very tall palm tree reaching the sky.',wa:'الباسق = العالي الطويل.',we:'Basiq = very tall.'},
+ {id:'v8',src:'Q19',q:'معنى كلمة (تحرفهما) في: «لا تحرفهما عن الحقّ»:',o:['تجمعهما','تُميلهما وتصرفهما','تحفظهما'],a:1,h:'In the passage: you can\'t ___ your eyes away from the mountain.',wa:'تحرفهما = تُميلهما وتصرفهما.',we:'Tahrifhuma = turn them away / steer them away.'},
+ {id:'v9',src:'Synonyms 1',q:'مرادفُ كلمة (تتجلّى) في: «تتجلّى قدرةُ الخالقِ في الطبيعة»:',o:['تختفي','تظهر وتتضح','تتضاءل'],a:1,h:'Allah\'s power can be clearly ___ in nature.',wa:'تتجلّى = تظهرُ وتتّضح. (تختفي ضدّها)',we:'Tatajalla = appears clearly. (تختفي "disappears" is its opposite.)'},
+ {id:'v10',src:'Synonyms 2',q:'ضدُّ كلمة (كَلَل) في: «يعملُ العاملُ دون كلل»:',o:['تعب','راحة ونشاط','حزن'],a:1,h:'كلل means tiredness. The opposite?',wa:'الكلل = التعب، وضدّه الراحة والنشاط. (تعب مرادفه وليس ضدّه)',we:'Kalal = tiredness, so the opposite is rest and energy. Careful: تعب is a synonym, not an opposite!'},
+ {id:'v11',src:'Synonyms 3',q:'ضدُّ كلمة (كَتُوم) هو:',o:['مخلص','ثرثار','هادئ'],a:1,h:'A katoum person keeps secrets. The opposite talks too much...',wa:'الكتوم يكتمُ السرّ ولا يُذيعه، وضدّه الثرثار كثيرُ الكلام.',we:'Katoum = keeps secrets. Opposite: tharthar = a chatterbox.'},
+ {id:'v12',src:'Synonyms 4',q:'مرادفُ كلمة (التضاريس):',o:['المناخ والطقس','مرتفعات','البحار والمحيطات'],a:1,h:'Tadaris = the shapes of the land: mountains and hills.',wa:'التضاريس: أشكالُ سطحِ الأرضِ من جبالٍ وتلال، وأقربُ خيارٍ لها: مرتفعات.',we:'Tadaris = landforms (mountains, hills), so the closest is "high lands" (مرتفعات).'}
+],
+grammar:[
+ {id:'g1',src:'Q7',q:'الجملةُ التالية: «يمرُّ في كلِّ الشوارع» هي:',o:['جملة اسمية','جملة فعلية','شبه جملة','تركيب'],a:1,h:'Is the first word a verb or a noun?',wa:'بدأت بالفعل «يمرُّ»، فهي جملة فعلية.',we:'It starts with the verb يمرّ (passes) → verbal sentence.'},
+ {id:'g2',src:'Q8',q:'الجملةُ التالية: «جبلُ حفيت موجودٌ في كلِّ شارع» هي:',o:['جملة اسمية','جملة فعلية','شبه جملة','اسم مفرد'],a:0,h:'First word: جبل. Verb or noun?',wa:'بدأت بالاسم «جبل»، فهي جملة اسمية.',we:'It starts with the noun جبل (mountain) → nominal sentence.'},
+ {id:'g3',src:'Q9',q:'تتكوّنُ الجملةُ الاسميةُ أساساً من:',o:['فعل وفاعل','حرف جر واسم مجرور','ظرف ومضاف إليه','مبتدأ وخبر'],a:3,h:'Topic + News',wa:'الجملة الاسمية = مبتدأ + خبر. (الفعل والفاعل للجملة الفعلية)',we:'Nominal sentence = مبتدأ (topic) + خبر (news). Verb + doer is the verbal sentence.'},
+ {id:'g4',src:'Q10',q:'الخبرُ في الجملة: «جبلُ حفيتٍ موجودٌ في كلِّ شارع» هو كلمة:',o:['جبلُ','حفيتٍ','موجودٌ','في كل شارع'],a:2,h:'What NEWS do we get about Jebel Hafeet? It is ...',wa:'المبتدأ «جبلُ» (وحفيت مضاف إليه)، والخبر «موجودٌ» وهو مرفوع بالضمة.',we:'Topic: Jebel Hafeet. News: it is موجودٌ (present). "In every street" just adds detail.'},
+ {id:'g5',src:'Q11',q:'ما نوعُ الخبر: «دولةُ الإماراتِ شعبُها جميلٌ»؟',o:['خبر مفرد','خبر جملة اسمية','خبر جملة فعلية','خبر شبه جملة'],a:1,h:'Is the news part (شعبها جميل) a noun + noun? Does it have its own topic and news?',wa:'الخبر «شعبُها جميلٌ» جملةٌ تبدأُ باسم (شعب + جميل)، فهو خبر جملة اسمية. والضمير «ها» يعود على دولة الإمارات.',we:'The news "its people are beautiful" is itself a nominal sentence (noun + noun). The ها links back to the UAE.'},
+ {id:'g6',src:'Q12',q:'ما نوعُ الخبر: «علمُ الإماراتِ يرفرفُ عالياً»؟',o:['خبر مفرد','خبر جملة اسمية','خبر جملة فعلية','خبر شبه جملة'],a:2,h:'The news part starts with يرفرف (flutters). What is that?',wa:'الخبر «يرفرفُ عالياً» يبدأ بفعل، فهو خبر جملة فعلية.',we:'The news starts with a verb (يرفرف = flutters) → verbal-sentence khabar.'},
+ {id:'g7',src:'Q13',q:'ما نوعُ الخبر: «مصلحةُ الوطنِ فوقَ كلِّ اعتبارٍ»؟',o:['خبر مفرد','خبر جملة اسمية','خبر جملة فعلية','خبر شبه جملة'],a:3,h:'فوق = "above", a place word (ظرف).',wa:'الخبر «فوقَ كلِّ اعتبار» ظرفُ مكانٍ ومضافٌ إليه، فهو خبر شبه جملة.',we:'"Above every consideration": فوق is a place word (ظرف) → شبه جملة (semi-sentence).'}
+],
+hamza:[
+ {id:'h1',src:'Q4',q:'الكلمةُ التي كُتبت فيها الهمزةُ المتوسطةُ على ألف هي:',o:['أسود','كأنّه','السائقين','امرؤ'],a:1,h:'Middle = not the first letter and not the last letter. Seat must be أ.',wa:'«كأنّه» الهمزة في وسطها على ألف. أمّا «أسود» فهمزتها في أوّلها، و«السائقين» على نبرة (ئ)، و«امرؤ» همزتها في آخرها.',we:'كأنّه has a middle hamza on alif. أسود: hamza at the start. السائقين: on a nabra (ئ). امرؤ: hamza at the end.'}
+]};
+const ALLQ=[...Q.read,...Q.words,...Q.grammar,...Q.hamza];
+
+/* ---------------- MCQ renderer ---------------- */
+function renderQs(sec){
+  const box=$('#q-'+sec); box.innerHTML='';
+  Q[sec].forEach((it,n)=>{
+    const d=document.createElement('div'); d.className='q';
+    d.innerHTML=`<div class="qh"><div class="qt">${n+1}. ${it.q}</div><span class="src">Sheet: ${it.src}</span></div>
+      <div class="opts">${it.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${LET[i]}</span>${o}</button>`).join('')}</div>
+      <div class="row" style="margin-top:8px"><button class="btn small hb">💡 Hint (English)</button>${sayBtn(it.q)}</div>
+      <div class="hint en">${it.h}</div><div class="fb"></div>`;
+    const fb=d.querySelector('.fb'), hint=d.querySelector('.hint');
+    d.querySelector('.hb').onclick=()=>hint.classList.toggle('show');
+    let tried=false;
+    d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      const i=+b.dataset.i;
+      const first=!tried;
+      if(!tried){S.ans[it.id]=(i===it.a);tried=true;save();score(sec);}
+      if(i===it.a){ beep(true); if(first) Game.hit(true,b); else Game.xp(3,b); Game.mission('q'); if(first) praise();
+        b.classList.add('ok'); d.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        fb.className='fb show ok'; fb.innerHTML=`✅ <b>أحسنتِ!</b> ${it.wa}<div class="en">${it.we}</div>`;
+      }else{
+        b.classList.add('bad'); b.disabled=true; shake(b); beep(false); Game.hit(false);
+        fb.className='fb show bad'; fb.innerHTML=`🤔 <b>حاولي مرة أخرى</b> <span class="en" style="display:inline">Try again! Read the hint.</span>`;
+        hint.classList.add('show');
+      }
+    });
+    box.appendChild(d);
+  });
+  score(sec);
+}
+function score(sec){
+  const el=$('#sc-'+sec); if(!el) return;
+  const ids=Q[sec].map(x=>x.id); const done=ids.filter(i=>i in S.ans).length; const ok=ids.filter(i=>S.ans[i]===true).length;
+  el.textContent=done?`First-try score: ${ok}/${ids.length}`:'';
+}
+
+/* ---------------- passage ---------------- */
+function renderPassage(){
+  const p=$('#passage');
+  p.innerHTML=`<h3 style="text-align:center;color:var(--teal);font-size:28px">جَبَلُ حَفِيتٍ ${sayBtn('جَبَلُ حَفِيتٍ')}</h3>`+
+   SENT.map((s,i)=>`<div class="sent"><div class="t">${s[0]}<div class="tr">${s[1]}</div></div>${canSpeak?`<button class="say" data-si="${i}" aria-label="Listen to sentence">🔊</button>`:''}</div>`).join('');
+  p.querySelectorAll('[data-si]').forEach(b=>b.onclick=()=>{const t=document.createElement('div');t.innerHTML=SENT[+b.dataset.si][0];say(t.textContent);});
+  p.querySelectorAll('.w').forEach(w=>{w.tabIndex=0;w.setAttribute('role','button');
+    const open=()=>openSheet(w.dataset.g); w.onclick=open; w.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};});
+  const tg=(btn,cls)=>{btn.onclick=()=>{const on=p.parentElement.classList.toggle(cls);btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);};};
+  tg($('#tEn'),'show-en'); tg($('#tWords'),'hl-words'); tg($('#tHz'),'hl-hz');
+  $('#readAll').onclick=()=>{const t=document.createElement('div');t.innerHTML=SENT.map(s=>s[0]).join(' ');say(t.textContent);};
+  if(!canSpeak) $('#readAll').style.display='none';
+}
+function openSheet(k){const g=G[k]; $('#sh-word').textContent=g[0]; $('#sh-ar').textContent=g[1]; $('#sh-en').textContent=g[2];
+  $('#sh-say').onclick=()=>say(g[0]); $('#sh-say').style.display=canSpeak?'':'none'; $('#sheet').classList.add('open'); $('#sh-close').focus();}
+$('#sh-close').onclick=()=>$('#sheet').classList.remove('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#sheet').classList.remove('open');});
+
+/* ---------------- flashcards ---------------- */
+const CARDS=[
+ ['المَزْيونَة','الجميلة','beautiful (Emirati word)','ضدّها: القبيحة'],
+ ['كَلَل','تَعَب','tiredness','يعمل دون كللٍ ↔ راحة ونشاط'],
+ ['مَلَل','سَأَم وضَجَر','boredom','كلل / ملل = ترادف'],
+ ['يَمَّمْتُ','اتَّجَهْتُ','I headed towards','يمّمتُ وجهي نحو الشاطئ'],
+ ['جَعْبَة','حقيبة السهام أو الوعاء','a quiver / bag','في جعبته الكثير من المفاجآت'],
+ ['البَاسِق','العالي الطويل','very tall','الشجرُ الباسقُ'],
+ ['تَحْرِفُهُما','تُميلهما وتصرفهما','turn them away','لا تحرفهما عن الحقّ'],
+ ['تَتَجَلّى','تظهرُ وتتّضح','appears clearly','ضدّها: تختفي'],
+ ['كَتُوم','يكتمُ السرَّ ولا يُذيعه','keeps secrets','ضدّها: ثرثار (chatterbox)'],
+ ['التَّضاريس','أشكال سطح الأرض من جبال وتلال','landforms: mountains, hills','مرادفها: مرتفعات'],
+ ['مَشارِف','حدودُ الشيءِ ونهاياتُه المرتفعة','outskirts, edges','وصلنا إلى مشارفِ المدينة'],
+ ['تَحْتَضِن','تضمُّ وتحوي بشوقٍ وعناية','embraces, holds lovingly','تحتضنُ الأمُّ طفلَها'],
+ ['وَقار','الهيبةُ والرزانةُ والهدوء','dignity, calm respect','يقفُ المعلمُ بكلِّ وقار'],
+ ['شُموخ','العُلُوُّ والعِزّة','standing tall and proud','جبلُ حفيت شامخ'],
+ ['يَرْعى','يحرسُ ويهتمّ','watches over','يرعى المارّة والسائقين'],
+ ['صَباح / مَساء','عكسُ بعضهما','morning / evening','العلاقة: تضاد']
+];
+function renderCards(){
+  $('#cards').innerHTML=CARDS.map((c,i)=>`<button class="fc" data-i="${i}" aria-label="Flashcard ${c[0]}"><div class="fi">
+    <div class="face front"><div class="ar">${c[0]}</div><div class="en muted" style="font-size:13px;text-align:center">tap to flip</div></div>
+    <div class="face back"><div class="m">${c[1]}</div><div class="en">${c[2]}</div><div class="ex">${c[3]}</div></div></div></button>`).join('');
+  $('#cards').querySelectorAll('.fc').forEach(b=>b.onclick=()=>{b.classList.toggle('flip'); if(b.classList.contains('flip')){ say(CARDS[+b.dataset.i][0]); Game.card(+b.dataset.i,b);} });
+}
+
+/* ---------------- matching ---------------- */
+const PAIRS=[['التضاريس','أشكالُ سطحِ الأرضِ من جبالٍ وتلال'],['مشارف','حدودُ ومشارفُ الشيءِ أو نهاياتُه المرتفعة'],['تحتضن','تضمُّ وتحوي بشوقٍ وعناية'],['تتجلّى','تظهرُ وتتّضحُ جليّاً'],['وقار','الهيبةُ والرزانةُ والهدوء'],['كتوم','يكتمُ السرَّ ولا يُذيعه']];
+function renderMatch(){
+  const L=PAIRS.map((p,i)=>({t:p[0],i})), R=shuffle(PAIRS.map((p,i)=>({t:p[1],i})));
+  $('#match').innerHTML=`<div class="match"><div class="col">${L.map(x=>`<button class="mbtn" data-s="L" data-i="${x.i}">${x.t}</button>`).join('')}</div>
+   <div class="col">${R.map(x=>`<button class="mbtn" data-s="R" data-i="${x.i}">${x.t}</button>`).join('')}</div></div>
+   <div class="row" style="margin-top:10px"><button class="btn small" id="mReset">↺ Shuffle & restart</button></div>`;
+  let sel=null, n=0; const fb=$('#match-fb'); fb.textContent='';
+  $('#match').querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>{
+    if(b.classList.contains('done')) return;
+    if(!sel||sel.dataset.s===b.dataset.s){ if(sel) sel.classList.remove('sel'); sel=b; b.classList.add('sel'); return; }
+    if(sel.dataset.i===b.dataset.i){ n++; beep(true); [sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('done');x.insertAdjacentHTML('beforeend',`<span class="n">${n}</span>`);});
+      fb.innerHTML=n===PAIRS.length?'🎉 <b>ممتاز!</b> <span class="en" style="display:inline">All matched!</span>':'✅';
+      if(n===PAIRS.length){Game.win('match',b);}
+    } else { beep(false); shake(sel); shake(b); sel.classList.remove('sel'); fb.innerHTML='<span class="en" style="display:inline">Not a match, try again. Use the flashcards above if you are unsure.</span>'; }
+    sel=null;
+  });
+  $('#mReset').onclick=renderMatch;
+}
+
+/* ---------------- fill blanks ---------------- */
+const BANK=['كلل','جعبة','وقار','الباسق','مشارف','تحتضن'];
+const FILL=[['يقفُ المعلّمُ أمامَ طلابه بكلِّ','وقار','واحترام.','The teacher stands in front of his students with full ___ and respect.'],
+ ['وصلَ المسافرون إلى','مشارف','المدينة عند غروب الشمس.','The travellers reached the ___ of the city at sunset.'],
+ ['يعملُ الجنديُّ المخلصُ لحمايةِ وطنه دون تعبٍ أو','كلل','.','The loyal soldier works to protect his country without tiredness or ___.'],
+ ['شاهدنا النخلَ','الباسق','يتطاولُ في السماء.','We saw the ___ palm trees reaching up into the sky.'],
+ ['يحملُ الطالبُ في','جعبة','عقله الكثيرَ من العلمِ والأفكار.','The student carries lots of knowledge and ideas in the ___ of his mind.']];
+function renderFill(){
+  $('#fill').innerHTML=`<div class="pool" id="bank">${shuffle(BANK).map(w=>`<button class="chip" data-w="${w}">${w}</button>`).join('')}</div>
+   <ol class="fill">${FILL.map((f,i)=>`<li>${f[0]} <button class="blank" data-i="${i}" aria-label="blank ${i+1}">؟</button> ${f[2]}<div class="en muted" style="font-size:14px">${f[3]}</div></li>`).join('')}</ol>
+   <button class="btn small" id="fReset">↺ Restart</button>`;
+  let sel=null,n=0; const fb=$('#fill-fb'); fb.textContent='';
+  $('#fill').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ if(sel) sel.classList.remove('sel'); sel=c; c.classList.add('sel'); });
+  $('#fill').querySelectorAll('.blank').forEach(b=>b.onclick=()=>{
+    if(b.classList.contains('ok')) return;
+    if(!sel){ fb.innerHTML='<span class="en">First tap a word in the box above 👆</span>'; shake($('#bank')); return; }
+    const f=FILL[+b.dataset.i];
+    if(sel.dataset.w===f[1]){ b.textContent=f[1]; b.classList.add('ok'); sel.classList.remove('sel'); sel.classList.add('used'); sel=null; n++; beep(true);
+      fb.innerHTML=n===FILL.length?'🎉 <b>رائع!</b> <span class="en" style="display:inline">All correct! The extra word was تحتضن.</span>':'✅';
+      if(n===FILL.length){Game.win('fill',b);}
+    } else { beep(false); shake(b); fb.innerHTML=`<span class="en">"${sel.dataset.w}" doesn't fit here. Read the English meaning under the sentence.</span>`; }
+  });
+  $('#fReset').onclick=renderFill;
+}
+
+/* ---------------- generic sorter ---------------- */
+function sorter(el,key,buckets,items,doneMsg){
+  el.innerHTML=`<div class="pool">${shuffle(items).map(it=>`<button class="chip" data-b="${it.b}" data-w="${encodeURIComponent(it.why||'')}">${it.t}</button>`).join('')}</div>
+   <div class="buckets">${buckets.map(b=>`<div class="bucket" role="button" tabindex="0" data-id="${b.id}"><h4>${b.label}</h4><div class="en">${b.en}</div><div class="in"></div></div>`).join('')}</div>
+   <div class="gamefb"></div><button class="btn small rs">↺ Restart</button>`;
+  let sel=null,left=items.length; const fb=el.querySelector('.gamefb');
+  el.querySelectorAll('.pool .chip').forEach(c=>c.onclick=()=>{ if(sel) sel.classList.remove('sel'); sel=c; c.classList.add('sel'); });
+  el.querySelectorAll('.bucket').forEach(b=>b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();b.click();}});
+  el.querySelectorAll('.bucket').forEach(b=>b.onclick=(ev)=>{ if(ev.target.closest('.chip.done')) return;
+    if(!sel){ fb.innerHTML='<span class="en">First tap an item above 👆</span>'; return; }
+    const why=decodeURIComponent(sel.dataset.w);
+    if(sel.dataset.b===b.dataset.id){ sel.classList.remove('sel'); sel.classList.add('done'); sel.onclick=null; b.querySelector('.in').appendChild(sel); left--; beep(true);
+      fb.innerHTML=left? `✅ ${why}`:`🎉 ${doneMsg}`; if(!left){Game.win(key,b);}
+    } else { beep(false); shake(sel); fb.innerHTML=`❌ <span class="en" style="display:inline">Not that basket.</span> ${why?'<span class="muted">Hint: look again at the first word / the vowels.</span>':''}`; }
+    sel=null;
+  });
+  el.querySelector('.rs').onclick=()=>sorter(el,key,buckets,items,doneMsg);
+}
+
+/* ---------------- grammar ---------------- */
+const TYPES=[
+ {k:'mufrad',n:'خبر مفرد',en:'Single word',d:'The news is <b>one word</b> (not a sentence), even if an adjective follows it.',ex:[['الجبلُ','شامخٌ'],['الإماراتُ','دولةٌ مجيدةٌ'],['جبلُ حفيتٍ','موجودٌ في كلِّ شارعٍ']],tip:'«مجيدةٌ» صفةٌ لـ «دولة»، فالخبرُ كلمةٌ واحدة: دولةٌ.'},
+ {k:'fi3liya',n:'خبر جملة فعلية',en:'Verb sentence',d:'The news part <b>starts with a verb</b>.',ex:[['علمُ الإماراتِ','يرفرفُ عالياً'],['الظبيُ','يُسرعُ في العدوِ'],['الجبلُ','يرعى المارّةَ']],tip:'ابحثي عن فعلٍ بعد المبتدأ مباشرةً.'},
+ {k:'ismiya',n:'خبر جملة اسمية',en:'Noun sentence',d:'The news is <b>its own little nominal sentence</b> (noun + noun), usually with a pronoun like ـها / ـه pointing back to the مبتدأ.',ex:[['دولةُ الإماراتِ','شعبُها جميلٌ'],['الحديقةُ','أزهارُها جميلةٌ'],['الطالبُ','خطُّه جميلٌ']],tip:'ابحثي عن الضمير (ها / ه) الذي يعودُ على المبتدأ.'},
+ {k:'shibh',n:'خبر شبه جملة',en:'Semi-sentence',d:'The news is <b>a preposition + noun</b> (في، على، من، إلى...) <b>or a place/time word</b> (فوق، تحت، عند، أمام...).',ex:[['العصفورُ','في العشِّ'],['مصلحةُ الوطنِ','فوقَ كلِّ اعتبارٍ'],['الكتابُ','على الطاولةِ']],tip:'جار ومجرور (في العش) أو ظرف (فوقَ).'}];
+function renderTypes(){
+  $('#types').innerHTML=TYPES.map((t,i)=>`<button class="type" data-i="${i}"><div class="tn" style="color:var(--khb)">${t.n}</div><div class="en muted" style="font-size:14px">${t.en}</div><div class="ex"><span class="m-t">${t.ex[0][0]}</span> <span class="k-t">${t.ex[0][1]}</span></div></button>`).join('');
+  const show=i=>{const t=TYPES[i]; $('#types').querySelectorAll('.type').forEach((b,j)=>b.classList.toggle('active',i===j));
+    $('#typeDetail').innerHTML=`<h3 style="color:var(--khb)">${t.n} <span class="en muted" style="font-size:15px">${t.en}</span></h3><p class="en" style="margin:0 0 8px">${t.d}</p>
+     ${t.ex.map(e=>`<div class="diagram" style="margin:6px 0"><div class="box m"><div class="w2">${e[0]}</div><div class="lab">مبتدأ</div></div><div class="box k"><div class="w2">${e[1]}</div><div class="lab">خبر</div></div>${sayBtn(e[0]+' '+e[1])}</div>`).join('')}
+     <p style="margin:6px 0 0">💡 ${t.tip}</p>`;};
+  $('#types').querySelectorAll('.type').forEach(b=>b.onclick=()=>show(+b.dataset.i)); show(0);
+}
+const PARSE=[
+ {w:['العصفورُ','في','العشِّ'],m:[[0],[0]],k:[[1],[1,2]],t:'shibh',src:'Sheet Q5'},
+ {w:['الحديقةُ','أزهارُها','جميلةٌ'],m:[[0],[0]],k:[[1,2],[1,2]],t:'ismiya',src:'Sheet Q6'},
+ {w:['الظبيُ','يُسرعُ','في','العدوِ'],m:[[0],[0]],k:[[1],[1,2,3]],t:'fi3liya',src:'Sheet Q7'},
+ {w:['الإماراتُ','دولةٌ','مجيدةٌ'],m:[[0],[0]],k:[[1],[1,2]],t:'mufrad',src:'Sheet Q8'},
+ {w:['دولةُ','الإماراتِ','شعبُها','جميلٌ'],m:[[0],[0,1]],k:[[2,3],[2,3]],t:'ismiya',src:'Q11'},
+ {w:['علمُ','الإماراتِ','يرفرفُ','عالياً'],m:[[0],[0,1]],k:[[2],[2,3]],t:'fi3liya',src:'Q12'},
+ {w:['مصلحةُ','الوطنِ','فوقَ','كلِّ','اعتبارٍ'],m:[[0],[0,1]],k:[[2],[2,3,4]],t:'shibh',src:'Q13'},
+ {w:['جبلُ','حفيتٍ','موجودٌ','في','كلِّ','شارعٍ'],m:[[0],[0,1]],k:[[2],[2,3,4,5]],t:'mufrad',src:'Q10'}];
+let pi=0, brush='m';
+function renderParser(){
+  const it=PARSE[pi]; const roles=it.w.map(()=>null); let type=null;
+  $('#parser').innerHTML=`<div class="row" style="justify-content:space-between"><span class="pill">${pi+1} من ${PARSE.length} · <span class="en">${it.src}</span></span>
+     <div class="row"><button class="btn small" id="pPrev">→ السابق</button><button class="btn small" id="pNext">التالي ←</button></div></div>
+   <p class="en muted" style="margin:8px 0">1) Choose a colour  2) tap the words  3) choose the type of <bdi>خبر</bdi> 4) Check</p>
+   <div class="row"><button class="btn brush m ${brush==='m'?'on':''}" data-b="m">🟦 مبتدأ</button><button class="btn brush k ${brush==='k'?'on':''}" data-b="k">🟧 خبر</button><button class="btn brush ${brush==='x'?'on':''}" data-b="x">🧽 ممحاة</button>${sayBtn(it.w.join(' '))}</div>
+   <div class="row" style="justify-content:center;margin:16px 0" id="toks">${it.w.map((w,i)=>`<button class="tok" data-i="${i}">${w}</button>`).join('')}</div>
+   <div class="row" id="ptypes">${TYPES.map(t=>`<button class="btn small" data-t="${t.k}">${t.n}</button>`).join('')}</div>
+   <div class="row" style="margin-top:12px"><button class="btn primary" id="pCheck">✔ تحقّقي</button><button class="btn" id="pShow">👀 Show answer</button></div>
+   <div class="gamefb" id="pFb"></div>`;
+  $('#parser').querySelectorAll('.brush').forEach(b=>b.onclick=()=>{brush=b.dataset.b;$('#parser').querySelectorAll('.brush').forEach(x=>x.classList.toggle('on',x===b));});
+  const paint=()=>$('#toks').querySelectorAll('.tok').forEach((t,i)=>{t.className='tok'+(roles[i]?' '+roles[i]:'');});
+  $('#toks').querySelectorAll('.tok').forEach(t=>t.onclick=()=>{const i=+t.dataset.i; roles[i]=brush==='x'?null:(roles[i]===brush?null:brush); paint();});
+  $('#ptypes').querySelectorAll('button').forEach(b=>b.onclick=()=>{type=b.dataset.t;$('#ptypes').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));});
+  const ok=(sel,[core,allow])=>core.every(i=>sel.includes(i))&&sel.every(i=>allow.includes(i));
+  $('#pCheck').onclick=()=>{
+    const M=roles.map((r,i)=>r==='m'?i:-1).filter(i=>i>=0), K=roles.map((r,i)=>r==='k'?i:-1).filter(i=>i>=0);
+    const mo=ok(M,it.m), ko=ok(K,it.k), to=type===it.t; const fb=$('#pFb');
+    if(mo&&ko&&to){ fb.innerHTML=`🎉 <b>صحيح تماماً!</b> <span class="en" style="display:inline">Perfect!</span>`; Game.win('parse'+pi,$('#pCheck')); }
+    else { beep(false); fb.innerHTML=[
+      mo?'✅ المبتدأ صحيح':'❌ <b>المبتدأ</b>: <span class="en" style="display:inline">the topic is the first noun the sentence talks about (blue).</span>',
+      ko?'✅ الخبر صحيح':'❌ <b>الخبر</b>: <span class="en" style="display:inline">the news part comes after the topic (orange). Colour its main word.</span>',
+      to?'✅ نوع الخبر صحيح':(type?'❌ <b>نوع الخبر</b>: <span class="en" style="display:inline">look at the news part again: verb? noun+noun? في/فوق? one word?</span>':'❓ <span class="en" style="display:inline">Choose the type of خبر.</span>')
+    ].join('<br>'); }
+  };
+  $('#pShow').onclick=()=>{const kk=it.t==='mufrad'?it.k[0]:it.k[1]; it.w.forEach((_,i)=>roles[i]=it.m[1].includes(i)?'m':(kk.includes(i)?'k':null)); paint();
+    type=it.t; $('#ptypes').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.t===it.t));
+    const tt=TYPES.find(t=>t.k===it.t); $('#pFb').innerHTML=`💡 ${tt.n}. ${tt.tip}`;};
+  $('#pPrev').onclick=()=>{pi=(pi-1+PARSE.length)%PARSE.length;renderParser();};
+  $('#pNext').onclick=()=>{pi=(pi+1)%PARSE.length;renderParser();};
+}
+const MUB=['الطالبُ','العصفورُ','الجبلُ','المعلّمُ'];
+const KHB=[['يقرأُ كتاباً','fi3liya'],['في الحديقةِ','shibh'],['نشيطٌ','mufrad'],['صوتُه جميلٌ','ismiya'],['يبتسمُ دائماً','fi3liya'],['فوقَ التلِّ','shibh'],['قلبُه طيّبٌ','ismiya'],['كبيرٌ','mufrad']];
+function renderBuilder(){
+  let m=null,k=null,target=shuffle(TYPES)[0];
+  const el=$('#builder');
+  const draw=()=>{
+    el.innerHTML=`<div class="row" style="justify-content:space-between"><div><b>🎯 المهمة:</b> ابني جملة اسمية <b style="color:var(--khb)">${target.n}</b> <span class="en muted" style="font-size:14px">(${target.en})</span></div><button class="btn small" id="bNew">🎲 New task</button></div>
+     <p style="margin:10px 0 4px"><b class="m-t">١. اختاري المبتدأ:</b></p><div class="row">${MUB.map((w,i)=>`<button class="chip ${m===i?'sel':''}" data-m="${i}">${w}</button>`).join('')}</div>
+     <p style="margin:10px 0 4px"><b class="k-t">٢. اختاري الخبر:</b></p><div class="row">${KHB.map((w,i)=>`<button class="chip ${k===i?'sel':''}" data-k="${i}">${w[0]}</button>`).join('')}</div>
+     <div class="built" style="margin-top:14px">${m===null&&k===null?'<span class="muted" style="font-size:18px">جملتك تظهر هنا</span>':`<span class="m-t">${m!==null?MUB[m]:'…'}</span> <span class="k-t">${k!==null?KHB[k][0]:'…'}</span>`}</div>
+     <div class="gamefb" id="bFb"></div>`;
+    el.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{m=+b.dataset.m;draw();});
+    el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{k=+b.dataset.k;draw();});
+    el.querySelector('#bNew').onclick=()=>{target=shuffle(TYPES.filter(t=>t!==target))[0];m=null;k=null;draw();};
+    if(m!==null&&k!==null){const kt=TYPES.find(t=>t.k===KHB[k][1]); const fb=el.querySelector('#bFb');
+      if(kt===target){fb.innerHTML=`🎉 <b>أحسنتِ!</b> هذه جملة اسمية ${kt.n}. ${sayBtn(MUB[m]+' '+KHB[k][0])} <span class="en" style="display:inline">Press New task for another!</span>`; Game.win('build',fb);}
+      else fb.innerHTML=`🤔 جملتك صحيحة، لكنّ خبرها <b>${kt.n}</b>. <span class="en" style="display:inline">The task asks for ${target.en}. Try another خبر.</span>`;}
+  };
+  draw();
+}
+
+/* ---------------- hamza machine ---------------- */
+const V={k:['كسرة','ـِ','kasra (i)',4],d:['ضمة','ـُ','damma (u)',3],f:['فتحة','ـَ','fatha (a)',2],s:['سكون','ـْ','sukun',1]};
+const SEAT={k:'ئ',d:'ؤ',f:'أ'};
+const EX={'f-f':'سَ<em>أَ</em>لَ','f-s':'رَ<em>أْ</em>سٌ','f-d':'رَ<em>ؤُ</em>وفٌ','f-k':'يَ<em>ئِ</em>سَ','d-f':'مُ<em>ؤَ</em>سَّسَةٌ','d-s':'مُ<em>ؤْ</em>تَمَرٌ','d-d':'رُ<em>ؤُ</em>وسٌ','d-k':'سُ<em>ئِ</em>لَ','k-f':'مِ<em>ئَ</em>ةٌ','k-s':'بِ<em>ئْ</em>رٌ','k-d':'مُنْشِ<em>ئُ</em>ونَ','k-k':'قارِ<em>ئِ</em>ينَ','s-f':'يَسْ<em>أَ</em>لُ','s-d':'أَرْ<em>ؤُ</em>سٌ','s-k':'أَفْ<em>ئِ</em>دَةٌ'};
+let hb='d',ho='s';
+function renderMachine(){
+  const el=$('#machine');
+  const vbtns=(sel,attr)=>Object.keys(V).map(k=>`<button class="vbtn ${sel===k?'on':''}" data-${attr}="${k}"><div class="sym">${V[k][1]}</div>${V[k][0]}<div class="en" style="font-size:12px;text-align:center">${V[k][2]}</div></button>`).join('');
+  let out;
+  if(hb==='s'&&ho==='s') out=`<div class="en" style="text-align:center;padding:20px">Two sukuns can't meet in Arabic! Choose a vowel for one of them. 🙂</div>`;
+  else{const win=V[hb][3]>=V[ho][3]?hb:ho; out=`<div class="power">${['k','d','f','s'].map(k=>`<div class="pw ${k===win?'win':(k===hb||k===ho?'in':'')}"><div class="col" style="height:${V[k][3]*22}px"></div>${V[k][0]}</div>`).join('')}</div>
+    <div class="seat"><div class="big">${SEAT[win]}</div><div><div class="en">Winner: <b>${V[win][2]}</b> → the hamza sits on <b class="ar" style="font-size:22px">${SEAT[win]}</b></div><div class="exw">${EX[hb+'-'+ho]} ${sayBtn(EX[hb+'-'+ho].replace(/<\/?em>/g,''))}</div></div></div>`;}
+  el.innerHTML=`<div class="grid g2"><div><b>حركة الحرف الذي قبل الهمزة</b><div class="en muted" style="font-size:14px">Vowel on the letter BEFORE</div><div class="vow">${vbtns(hb,'b')}</div></div>
+    <div><b>حركة الهمزة نفسها</b><div class="en muted" style="font-size:14px">Vowel ON the hamza</div><div class="vow">${vbtns(ho,'o')}</div></div></div>${out}`;
+  el.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{hb=b.dataset.b;renderMachine();});
+  el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{ho=b.dataset.o;renderMachine();});
+}
+const JOIN=[
+ {l:'مُـ  ء  تَـ  مَـ  ر',w:'مُؤْتَمَرٌ',s:'ؤ',why:'قبلها ضمّة (مُـ) والهمزة ساكنة، والضمّة أقوى ← ؤ',en:'Before: damma. On hamza: sukun. Damma wins → ؤ'},
+ {l:'مُـ  ء  سَّـ  سَـ  ة',w:'مُؤَسَّسَةٌ',s:'ؤ',why:'قبلها ضمّة والهمزة مفتوحة، والضمّة أقوى من الفتحة ← ؤ',en:'Before: damma. On hamza: fatha. Damma is stronger → ؤ'},
+ {l:'يَـ  تَـ  ء  ثَّـ  ر',w:'يَتَأَثَّرُ',s:'أ',why:'قبلها فتحة والهمزة مفتوحة ← أ',en:'Fatha + fatha → alif: أ'},
+ {l:'تَـ  ء  سَّـ  سَـ  ت',w:'تَأَسَّسَتْ',s:'أ',why:'قبلها فتحة والهمزة مفتوحة ← أ',en:'Fatha + fatha → alif: أ'}];
+function renderJoin(){
+  $('#join').innerHTML=JOIN.map((j,i)=>`<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0" data-i="${i}">
+    <div class="letters">[ ${j.l} ]</div><div class="seatpick">${['أ','ؤ','ئ'].map(s=>`<button data-s="${s}" aria-label="seat ${s}">${s}</button>`).join('')}</div>
+    <div style="flex-basis:100%" class="jfb"></div></div>`).join('');
+  $('#join').querySelectorAll('[data-i]').forEach(r=>{const j=JOIN[+r.dataset.i];
+    r.querySelectorAll('.seatpick button').forEach(b=>b.onclick=()=>{
+      if(b.dataset.s===j.s){b.classList.add('ok'); r.querySelectorAll('.seatpick button').forEach(x=>x.disabled=true);
+        r.querySelector('.jfb').innerHTML=`<span class="ar" style="font-size:30px;font-weight:700;color:var(--purple)">${j.w}</span> ${sayBtn(j.w)} ✅ ${j.why}<div class="en muted" style="font-size:14px">${j.en}</div>`;
+        beep(true); if($('#join').querySelectorAll('.seatpick button.ok').length===JOIN.length){Game.win('join',b);}}
+      else{beep(false); b.classList.add('bad');shake(b);r.querySelector('.jfb').innerHTML='<span class="en">Look at the vowel on the letter before the hamza (ء). Which vowel is stronger?</span>';}
+    });});
+}
+function renderHzSort(){
+  const items=[['سَأَلَ','a','فتحة + فتحة'],['كَأَنَّهُ','a','فتحة + فتحة'],['رَأْسٌ','a','فتحة + سكون ← الفتحة أقوى'],['يَأْكُلُ','a','فتحة + سكون'],['تَأَخَّرَ','a','فتحة + فتحة'],['فَأْرٌ','a','فتحة + سكون'],
+    ['مُؤْمِنٌ','w','ضمة + سكون ← الضمة أقوى'],['سُؤَالٌ','w','ضمة + فتحة ← الضمة أقوى'],['يُؤَدِّي','w','ضمة + فتحة'],['رُؤُوسٌ','w','ضمة + ضمة'],['لُؤْلُؤَةٌ','w','ضمة + سكون'],['مُؤَسَّسَةٌ','w','ضمة + فتحة']]
+    .map(x=>({t:x[0],b:x[1],why:x[0]+': '+x[2]}));
+  sorter($('#sortHz'),'hzsort',[{id:'a',label:'همزة على ألف (أ)',en:'Hamza on alif'},{id:'w',label:'همزة على واو (ؤ)',en:'Hamza on waw'}],items,'<b>ممتاز!</b> <span class="en" style="display:inline">You found all the hamzas!</span>');
+}
+function renderMyWords(){
+  $('#mywords').innerHTML=`<p class="en" style="margin:0 0 8px">Write a word with a <b>middle</b> hamza: (a) on alif, (b) on waw. Ideas if you're stuck: think of words like <i>ask, head, believer, question</i>...</p>
+   <div class="grid g2"><div><b>أ) على ألف</b><input class="txt" id="mwA" placeholder="مثلاً: ..."><div class="gamefb" id="mwAf"></div></div>
+   <div><b>ب) على واو</b><input class="txt" id="mwW" placeholder="مثلاً: ..."><div class="gamefb" id="mwWf"></div></div></div>`;
+  const chk=(inp,fb,seat)=>{inp.oninput=()=>{const w=inp.value.replace(/[ً-ْٰـ\s]/g,'');
+    const el=$(fb); if(!w){el.textContent='';return;}
+    const idx=[...w].findIndex((c,i)=>c===seat&&i>0&&i<[...w].length-1);
+    const pref=/^(ال)/.test(w)?2:0;
+    if(idx>pref) {el.innerHTML='✅ <b>ممتاز!</b> <span class="en" style="display:inline">A middle hamza on '+(seat==='أ'?'alif':'waw')+'.</span>'; if(!S.games['my'+seat]) Game.win('my'+seat,inp); }
+    else if(w.includes(seat)) el.innerHTML='<span class="en">The hamza must be in the <b>middle</b>, not the first or last letter.</span>';
+    else el.innerHTML=`<span class="en">I can't see <b class="ar">${seat}</b> in the middle yet. (Arabic keyboard: hamza seats are usually on the shift layer.)</span>`;};};
+  chk($('#mwA'),'#mwAf','أ'); chk($('#mwW'),'#mwWf','ؤ');
+}
+
+/* ---------------- writing ---------------- */
+const TASKS=[
+ {ar:'اكتبي فقرةً من خمسةِ أسطرٍ تتحدّثين فيها عن يومٍ قضيتِه مع عائلتك، مراعيةً: سلامةَ اللغةِ والإملاء، وتوظيفَ التراكيبِ الوصفية، واستخدامَ علاماتِ الترقيمِ المناسبة.',
+  en:'Write a 5-line paragraph about a day you spent with your family. Use correct spelling, describing words and punctuation.',
+  model:'في يومِ الجمعةِ الماضي، خرجتُ مع عائلتي إلى حديقةٍ كبيرةٍ في مدينةِ العينِ. كان الجوُّ لطيفاً، والنسيمُ عليلاً، والأشجارُ الباسقةُ تُظلِّلُ المكانَ. لعبتُ مع إخوتي بالكرةِ، بينما جلسَ أبي وأمّي على العشبِ الأخضرِ يتحدّثانِ ويضحكانِ. وفي المساءِ تناولنا طعامَ العشاءِ معاً، فشعرتُ بالسعادةِ والراحةِ. ما أجملَ الأوقاتَ التي نقضيها مع العائلةِ!',
+  modelEn:'Last Friday I went out with my family to a big park in Al Ain. The weather was nice, the breeze was gentle, and the tall trees shaded the place. I played ball with my siblings while Mum and Dad sat on the green grass talking and laughing. In the evening we had dinner together, and I felt happy and relaxed. How lovely is the time we spend with family!'},
+ {ar:'دولةُ الإماراتِ العربيةِ المتحدةِ تزخرُ بالأماكنِ الجميلةِ والساحرةِ التي جعلت الدولةَ مقصداً للسيّاحِ. اكتبي فيما يقاربُ السبعةَ أسطرٍ موضوعاً تصفين فيه مكاناً زرتِه وأعجبكِ في دولةِ الإماراتِ العربيةِ المتحدة، مراعيةً: سلامةَ اللغةِ والإملاء، وتوظيفَ التراكيبِ الوصفية، واستخدامَ علاماتِ الترقيمِ المناسبة.',
+  en:'The UAE is full of beautiful places that attract tourists. In about 7 lines, describe a place in the UAE that you visited and liked. Use correct spelling, describing words and punctuation.',
+  model:'زرتُ مع عائلتي جبلَ حفيتٍ، الذي يقعُ جنوبَ شرقيِّ مدينةِ العينِ. صعدنا إليه بالسيارةِ في طريقٍ متعرّجٍ يلتفُّ حولَ الجبلِ كأنّه أفعى طويلةٌ. وعندما وصلنا إلى القمّةِ، رأيتُ مدينةَ العينِ تحتَنا كأنّها لوحةٌ خضراءُ جميلةٌ. كان الهواءُ هناك بارداً منعشاً، والسماءُ صافيةً زرقاءَ. وعند الغروبِ تلوّنت الصخورُ باللونِ الذهبيِّ، فبدا الجبلُ شامخاً مهيباً. أعجبني المكانُ كثيراً لأنّه هادئٌ وجميلٌ، وتتجلّى فيه قدرةُ الخالقِ. أتمنّى أن أزورَه مرّةً أخرى قريباً!',
+  modelEn:'I visited Jebel Hafeet with my family; it lies south-east of Al Ain. We drove up a winding road that wraps around the mountain like a long snake. When we reached the top, I saw Al Ain below us like a beautiful green painting. The air was cool and fresh, and the sky was clear and blue. At sunset the rocks turned golden and the mountain looked tall and majestic. I loved the place because it is calm and beautiful, and the Creator\'s power shows clearly in it. I hope to visit it again soon!'}];
+const PHR=[['كأنّه لوحةٌ جميلةٌ','like a beautiful painting'],['يا لَهُ مِنْ مكانٍ رائعٍ!','What a wonderful place!'],['كان الجوُّ لطيفاً، والنسيمُ عليلاً','the weather was nice, the breeze gentle'],['الأشجارُ الباسقةُ','the tall trees'],['شعرتُ بالسعادةِ والراحةِ','I felt happy and relaxed'],['في الصباحِ الباكرِ','early in the morning'],['قضينا وقتاً ممتعاً','we had a fun time'],['ثمّ','then'],['بعد ذلك','after that'],['وفي النهايةِ','in the end'],['أعجبني المكانُ لأنّ','I liked the place because'],['أتمنّى أن أزورَه مرّةً أخرى','I hope to visit it again'],['المياهُ الزرقاءُ الصافيةُ','the clear blue water'],['تتجلّى قدرةُ الخالقِ','the Creator\'s power shows clearly']];
+const PLACES=['جبل حفيت','واحة العين','قصر الحصن','جامع الشيخ زايد الكبير','برج خليفة','حديقة الحيوانات بالعين','جزيرة ياس','متحف اللوفر أبوظبي'];
+const CHECKS=['بدأتُ بمقدّمة: أين ومتى؟ (Beginning: where & when)','وصفتُ ما رأيتُ بالصفات (Adjectives: جميل، باسق، صافٍ...)','استعملتُ تشبيهاً واحداً على الأقلّ: «كأنّه...» (A comparison)','ذكرتُ شعوري (How I felt)','ختمتُ بخاتمة أو أمنية (An ending or a wish)','وضعتُ الفاصلة (،) والنقطة (.) وعلامة التعجب (!) (Punctuation)','راجعتُ الهمزات والتاء المربوطة (ة) (Checked spelling)'];
+let task=0;
+function renderWrite(){
+  const t=TASKS[task];
+  $('#taskText').textContent=t.ar; $('#taskEn').textContent=t.en;
+  $('#placeIdeas').innerHTML=task===1?`<span class="en muted" style="font-size:14px">Place ideas: </span>${PLACES.map(p=>`<span class="pill" style="margin:2px">${p}</span>`).join(' ')}`:'';
+  $('#phrases').innerHTML=PHR.map((p,i)=>`<button data-i="${i}"><span class="a">${p[0]}</span><span class="en">${p[1]}</span></button>`).join('');
+  const ta=$('#draft'); ta.value=S.draft[task]||'';
+  $('#phrases').querySelectorAll('button').forEach(b=>b.onclick=()=>{const p=PHR[+b.dataset.i][0]; const s=ta.selectionStart??ta.value.length, e=ta.selectionEnd??s;
+    const pre=ta.value.slice(0,s), sp=pre&&!/\s$/.test(pre)?' ':''; ta.value=pre+sp+p+' '+ta.value.slice(e); ta.focus(); const c=(pre+sp+p+' ').length; ta.setSelectionRange(c,c); stats();});
+  $('#checks').innerHTML=CHECKS.map((c,i)=>`<label class="chk"><input type="checkbox"><span>${c}</span></label>`).join('');
+  $('#model').innerHTML=`<div class="card" style="background:#f7fbf9;margin:0"><b>نموذج للاستئناس <span class="en muted" style="font-size:14px">(a model to learn from: write your own!)</span></b><p class="ar" style="font-size:21px;line-height:2.1;margin:8px 0">${t.model} ${sayBtn(t.model)}</p><p class="en muted" style="font-size:15px;margin:0">${t.modelEn}</p></div>`;
+  $('#model').classList.remove('show'); $('#showModel').textContent='👀 Show a model answer';
+  stats();
+}
+function stats(){const v=$('#draft').value; S.draft[task]=v; try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+  $('#nWords').textContent=(v.trim().match(/\S+/g)||[]).length; if(typeof Game!=='undefined' && (v.trim().match(/\S+/g)||[]).length>=40) Game.badges(); $('#nSent').textContent=(v.match(/[.!؟?]+/g)||[]).length; $('#nPunct').textContent=(v.match(/[،,.!؟?:؛]/g)||[]).length;}
+$('#draft').addEventListener('input',stats);
+document.querySelectorAll('[data-task]').forEach(b=>b.onclick=()=>{task=+b.dataset.task;document.querySelectorAll('[data-task]').forEach(x=>x.classList.toggle('on',x===b));renderWrite();});
+$('#showModel').onclick=()=>{const m=$('#model'); m.classList.toggle('show'); $('#showModel').textContent=m.classList.contains('show')?'🙈 Hide the model':'👀 Show a model answer';};
+$('#copyDraft').onclick=async()=>{try{await navigator.clipboard.writeText($('#draft').value);$('#copyDraft').textContent='✓ Copied';}catch(e){$('#draft').select();$('#copyDraft').textContent='Selected: press Ctrl+C';} setTimeout(()=>$('#copyDraft').textContent='📋 Copy',1800);};
+$('#nomInput').addEventListener('input',e=>{
+  const v=e.target.value.trim(), fb=$('#nomFb'); const words=v.replace(/[ً-ْ]/g,'').split(/\s+/).filter(Boolean);
+  if(words.length<2){fb.textContent='';return;}
+  const first=words[0], second=words[1];
+  const verbStart=w=>/^(ي|ت|ن)/.test(w)&&!/^(ال)/.test(w);
+  if(/^ي/.test(first)) fb.innerHTML='<span class="en">Your sentence seems to start with a verb (ي...). A nominal sentence must start with a <b>noun</b>, e.g. <span class="ar">العصفورُ يغرّدُ</span>.</span>';
+  else if(verbStart(second)) fb.innerHTML='✅ <b>أحسنتِ!</b> <span class="en" style="display:inline">Noun first, then a verb: that\'s a خبر جملة فعلية. (Show it to your teacher to be sure!)</span>';
+  else fb.innerHTML='<span class="en">Start with a noun, then make the <b>second word a present-tense verb</b> (starting with يـ / تـ), e.g. <span class="ar">الطائرةُ تطيرُ عالياً</span>.</span>';
+});
+
+/* ---------------- exam ---------------- */
+let EXAM=null;
+function startExam(){EXAM={order:shuffle(ALLQ.map((_,i)=>i)),i:0,ok:0,wrong:[]};drawExam();}
+function drawExam(){
+  const el=$('#exam');
+  if(!EXAM){const best=S.exam; el.innerHTML=`<div class="result"><div style="font-size:48px">🏔️</div><h3>Ready, Maria?</h3><p class="en">25 questions from your review sheet, in random order. Try to get 3 stars!</p>${best!=null?`<p class="en muted">Your best score: <b>${best}/25</b></p>`:''}<button class="btn primary" id="go">ابدئي الاختبار · Start</button></div>`; $('#go').onclick=startExam; return;}
+  if(EXAM.i>=EXAM.order.length){const n=EXAM.order.length, s=EXAM.ok, st=s>=23?3:s>=18?2:s>=12?1:0;
+    if(S.exam==null||s>S.exam){S.exam=s;save();}
+    if(!EXAM.paid){EXAM.paid=1; Game.xp(20+(st===3?50:st===2?20:0)); if(st>=2) celebrate(st===3?'🏆':'👏',st===3?'Exam Ready!':'Great Job!',st===3?'ثلاث نجوم! أنتِ جاهزة للامتحان يا ماريا':'نجمتان! اقتربتِ من القمّة',st===3?'ما شاء الله! أنتِ بطلة!':'أحسنتِ يا ماريا!');}
+    el.innerHTML=`<div class="result"><div class="stars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</div><div class="big">${s} / ${n}</div>
+     <p>${st===3?'🎉 <b>ممتاز يا ماريا! أنتِ جاهزة للامتحان!</b>':st===2?'👏 <b>أحسنتِ! قليلٌ من المراجعة وتصلين إلى القمّة.</b>':'💪 <b>بداية جيدة! راجعي الأقسام ثم حاولي مرة أخرى.</b>'}</p>
+     ${EXAM.wrong.length?`<div class="card" style="text-align:right"><b>راجعي هذه الأسئلة <span class="en muted" style="font-size:14px">Review these</span>:</b>${EXAM.wrong.map(i=>{const q=ALLQ[i];return `<p style="margin:8px 0">• ${q.q}<br><span style="color:var(--ok);font-weight:700">✔ ${q.o[q.a]}</span><span class="en muted" style="display:block;font-size:14px">${q.we}</span></p>`;}).join('')}</div>`:''}
+     <button class="btn primary" id="again">↺ حاولي مرة أخرى · Try again</button></div>`;
+    $('#again').onclick=startExam; return;}
+  const q=ALLQ[EXAM.order[EXAM.i]];
+  el.innerHTML=`<div class="row" style="justify-content:space-between"><span class="pill">سؤال ${EXAM.i+1} من ${EXAM.order.length}</span><span class="score">✔ ${EXAM.ok}</span></div>
+   <div class="prog"><i style="width:${EXAM.i/EXAM.order.length*100}%"></i></div>
+   <div class="q" style="border:none;padding:0"><div class="qt">${q.q} ${sayBtn(q.q)}</div><div class="opts">${q.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${LET[i]}</span>${o}</button>`).join('')}</div><div class="fb"></div></div>
+   <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary" id="nx" style="display:none">التالي ←  Next</button></div>`;
+  el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const i=+b.dataset.i; el.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+    el.querySelectorAll('.opt')[q.a].classList.add('ok'); const fb=el.querySelector('.fb');
+    Game.hit(i===q.a,b); beep(i===q.a); if(i===q.a){EXAM.ok++; fb.className='fb show ok'; fb.innerHTML=`✅ ${q.wa}`;} else {b.classList.add('bad'); EXAM.wrong.push(EXAM.order[EXAM.i]); fb.className='fb show bad'; fb.innerHTML=`❌ ${q.wa}<div class="en">${q.we}</div>`;}
+    const nx=$('#nx'); nx.style.display=''; nx.focus(); nx.onclick=()=>{EXAM.i++;drawExam();};});
+}
+
+/* ---------------- home ---------------- */
+const TOP=[
+ {id:'read',ico:'📖',bg:'#e0f4f1',ar:'نص القراءة والفهم',en:'Reading: the Jebel Hafeet passage + 5 questions',qs:'read',games:[]},
+ {id:'words',ico:'🔤',bg:'#fff3c4',ar:'المفردات: معنى، مرادف، ضد',en:'Vocabulary: meanings, synonyms, opposites',qs:'words',games:['match','fill']},
+ {id:'grammar',ico:'🧩',bg:'#e3ecff',ar:'الجملة الاسمية وأنواع الخبر',en:'Nominal sentence & 4 types of خبر',qs:'grammar',games:['typesort','build',...PARSE.map((_,i)=>'parse'+i)]},
+ {id:'hamza',ico:'✏️',bg:'#efe7ff',ar:'الهمزة المتوسطة على الألف والواو',en:'Middle hamza on alif and waw',qs:'hamza',games:['join','hzsort','myأ','myؤ']},
+ {id:'write',ico:'📝',bg:'#ffe8dc',ar:'الكتابة والتعبير الوصفي',en:'Descriptive writing (5-7 lines)',qs:null,games:[]},
+ {id:'exam',ico:'🏆',bg:'#dcfce7',ar:'اختبار تجريبي',en:'Practice exam: 25 questions',qs:null,games:[]}];
+function pct(t){
+  if(t.id==='write') return Math.min(1,((S.draft[0]||'').trim().split(/\s+/).filter(Boolean).length+(S.draft[1]||'').trim().split(/\s+/).filter(Boolean).length)/120);
+  if(t.id==='exam') return S.exam==null?0:S.exam/25;
+  const ids=Q[t.qs].map(q=>q.id); const a=ids.filter(i=>i in S.ans).length; const g=t.games.filter(k=>S.games[k]).length;
+  return (a+g)/(ids.length+t.games.length);
+}
+function updateHome(){
+  if(typeof Game!=='undefined') Game.ui();
+  const box=$('#topics'); if(!box) return; let sum=0;
+  box.innerHTML=TOP.map(t=>{const p=pct(t); sum+=p; return `<a class="card topic" href="#${t.id}" style="margin:0"><div class="ico" style="background:${t.bg}">${t.ico}</div><div style="flex:1"><h3>${t.ar}</h3><div class="en">${t.en}</div><div class="bar"><i style="width:${Math.round(p*100)}%"></i></div></div></a>`;}).join('');
+  const f=sum/TOP.length, road=document.getElementById('road'), c=document.getElementById('climber');
+  try{const L=road.getTotalLength(), pt=road.getPointAtLength(L*f); c.setAttribute('transform',`translate(${pt.x},${pt.y})`);}catch(e){c.setAttribute('transform','translate(140,232)');}
+}
+$('#resetAll').onclick=()=>{const b=$('#resetAll'); if(b.dataset.c){S={ans:{},games:{},draft:['',''],exam:null,g:null};save();location.hash='#home';location.reload();} else {b.dataset.c=1;b.textContent='Tap again to confirm reset';setTimeout(()=>{delete b.dataset.c;b.textContent='↺ ابدئي من جديد (Reset progress)';},3000);}};
+
+/* ---------------- router ---------------- */
+const VIEWS=['home','read','words','grammar','hamza','write','exam'];
+function route(){const h=(location.hash||'#home').slice(1); const v=VIEWS.includes(h)?h:'home';
+  VIEWS.forEach(x=>$('#v-'+x).classList.toggle('on',x===v));
+  document.querySelectorAll('nav.tabs a').forEach(a=>{if(a.getAttribute('href')==='#'+v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  $('#sheet').classList.remove('open'); if(v==='home') updateHome(); if(v==='exam'&&!EXAM) drawExam();
+  window.scrollTo(0,0);}
+window.addEventListener('hashchange',route);
+
+
+/* ================= GAMIFICATION ================= */
+const MASCOT=`<svg viewBox="0 0 120 130" role="img" aria-label="Shaheen the falcon">
+ <ellipse cx="60" cy="122" rx="34" ry="5" fill="rgba(0,0,0,.12)"/>
+ <path d="M24 74 C 10 88, 14 108, 30 112 L 40 96Z" fill="#6b4226"/><path d="M96 74 C 110 88, 106 108, 90 112 L 80 96Z" fill="#6b4226"/>
+ <ellipse cx="60" cy="82" rx="36" ry="38" fill="#8b5e3c"/>
+ <ellipse cx="60" cy="90" rx="23" ry="27" fill="#f7e7c6"/>
+ <path d="M48 82 l4 4 l4-4 M64 82 l4 4 l4-4 M52 96 l4 4 l4-4 M60 96 l4 4 l4-4 M56 108 l4 3 l4-3" stroke="#c9a57a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+ <circle cx="60" cy="42" r="30" fill="#8b5e3c"/>
+ <path d="M38 40 C 38 24, 82 24, 82 40 C 82 54, 70 60, 60 60 C 50 60, 38 54, 38 40Z" fill="#f7e7c6"/>
+ <path d="M41 46 C 43 54, 46 58, 49 60" stroke="#4a2f1b" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M79 46 C 77 54, 74 58, 71 60" stroke="#4a2f1b" stroke-width="4" fill="none" stroke-linecap="round"/>
+ <circle cx="49" cy="40" r="9.5" fill="#fff"/><circle cx="71" cy="40" r="9.5" fill="#fff"/>
+ <circle cx="50" cy="41" r="5.5" fill="#2b2340"/><circle cx="72" cy="41" r="5.5" fill="#2b2340"/>
+ <circle cx="52" cy="38.5" r="2" fill="#fff"/><circle cx="74" cy="38.5" r="2" fill="#fff"/>
+ <path d="M54 50 Q60 46 66 50 Q64 58 60 61 Q58 57 54 50Z" fill="#ffb020" stroke="#d18a00" stroke-width="1.5"/>
+ <circle cx="40" cy="52" r="4" fill="#ff9aa8" opacity=".6"/><circle cx="80" cy="52" r="4" fill="#ff9aa8" opacity=".6"/>
+ <path d="M48 116 l-6 4 M48 116 l0 6 M48 116 l6 4 M72 116 l-6 4 M72 116 l0 6 M72 116 l6 4" stroke="#ffb020" stroke-width="3.4" stroke-linecap="round"/>
+ <path d="M50 14 Q60 4 70 14" stroke="#6b4226" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>`;
+document.querySelectorAll('.mascot').forEach(m=>m.innerHTML=MASCOT);
+
+const LEVELS=[[0,'بذرة صغيرة','Little Seed','🌱'],[100,'مستكشفة الواحة','Oasis Explorer','🌴'],[250,'راكبة الجمل','Camel Rider','🐪'],[450,'الصقر الذهبي','Golden Falcon','🦅'],[700,'متسلّقة الجبال','Mountain Climber','🧗‍♀️'],[1000,'قمّة حفيت','Hafeet Summit','🏔️'],[1400,'شاعرة صغيرة','Little Poet','📜'],[1900,'نجمة العربية','Arabic Star','🌟'],[2500,'ملكة الضاد','Queen of the Daad','👑']];
+const PRAISE=[['شاطرة يا ماريا! 🌟','Clever girl!'],['ما شاء الله! 🤩','Amazing!'],['أحسنتِ! 👏','Well done!'],['رائع جداً! 💜','Brilliant!'],['بطلة! 🏆','Champion!'],['ممتاز! ✨','Excellent!'],['عبقرية! 🧠','Genius!']];
+const GREET=[['أهلاً يا ماريا! أنا شاهين 🦅','Hi Maria! I\'m Shaheen the falcon. Let\'s fly to the top!'],['صباح الخير يا بطلة! ☀️','Good morning, champion! Ready to learn?'],['العربية لغة جميلة، وأنتِ تتعلّمينها بسرعة! 💜','Arabic is beautiful, and you\'re learning fast!'],['كلّ يوم كلمة جديدة! 📚','A new word every day!'],['هيا نصعد الجبل معاً! ⛰️','Let\'s climb the mountain together!']];
+const FACTS=[
+ ['🍬','The English word <b>sugar</b> came from the Arabic <b>سُكَّر</b>. So did <b>coffee</b> (قَهْوَة), <b>cotton</b> (قُطْن) and <b>lemon</b> (لَيْمون).','كلمات إنجليزية كثيرة أصلها عربي: سُكَّر، قَهْوَة، قُطْن، لَيْمون. أنتِ تعرفين العربية أكثر مما تظنّين!'],
+ ['🦒','<b>Giraffe</b> comes from the Arabic word <b>زَرافة</b>!','كلمة Giraffe الإنجليزية أصلها كلمة «زرافة» العربية.'],
+ ['➗','<b>Algebra</b> comes from the Arabic <b>الجَبْر</b>, from a book by the mathematician al-Khwarizmi. <b>Algorithm</b> comes from his name!','كلمة Algebra من «الجبر»، وكلمة Algorithm من اسم العالم الخوارزمي.'],
+ ['ض','Arabic is called <b>لُغَةُ الضّاد</b> (the language of the Daad) because the sound <b>ض</b> is so special to Arabic.','تُسمّى العربية «لغة الضاد» لأن حرف الضاد مميّز فيها.'],
+ ['🌍','Arabic is spoken by more than <b>400 million</b> people and is one of the six official languages of the United Nations.','يتحدّث العربيةَ أكثرُ من 400 مليون إنسان، وهي من اللغات الرسمية الست في الأمم المتحدة.'],
+ ['📅','<b>18 December</b> is World Arabic Language Day!','يوم 18 ديسمبر هو اليوم العالمي للغة العربية.'],
+ ['🛋️','<b>Sofa</b> comes from <b>صُفَّة</b>, and <b>magazine</b> comes from <b>مَخازِن</b> (storehouses)!','كلمة Sofa من «صُفّة»، وكلمة Magazine من «مخازن».'],
+ ['✍️','Arabic is written from right to left, and most letters join their neighbours, like joined-up handwriting.','العربية تُكتب من اليمين إلى اليسار، ومعظم حروفها تتصل ببعضها.']];
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();};
+const wcount=t=>((t||'').trim().match(/\S+/g)||[]).length;
+const BADGES=[
+ {id:'start',i:'👣',n:'أول خطوة',d:'First points',ok:()=>S.g.xp>0},
+ {id:'cards',i:'🃏',n:'جامعة البطاقات',d:'Flip all 16 cards',ok:()=>S.g.flipped.length>=CARDS.length},
+ {id:'reader',i:'📖',n:'قارئة ماهرة',d:'All reading questions',ok:()=>Q.read.every(q=>q.id in S.ans)},
+ {id:'words',i:'🔤',n:'صائدة الكلمات',d:'Matching + fill-in',ok:()=>S.games.match&&S.games.fill},
+ {id:'detect',i:'🕵️‍♀️',n:'محقّقة القواعد',d:'All 8 "tap the parts"',ok:()=>PARSE.every((_,i)=>S.games['parse'+i])},
+ {id:'builder',i:'🧱',n:'مهندسة الجمل',d:'Sentence builder',ok:()=>!!S.games.build},
+ {id:'hamza',i:'✏️',n:'سيّدة الهمزات',d:'Join letters + hamza hunt',ok:()=>S.games.join&&S.games.hzsort},
+ {id:'writer',i:'🖋️',n:'الكاتبة الصغيرة',d:'Write 40+ words',ok:()=>wcount(S.draft[0])>=40||wcount(S.draft[1])>=40},
+ {id:'fire',i:'🔥',n:'على نار!',d:'5 right in a row',ok:()=>S.g.best>=5},
+ {id:'streak',i:'📅',n:'مثابرة',d:'3-day streak',ok:()=>S.g.streak>=3},
+ {id:'ready',i:'🏆',n:'جاهزة للامتحان',d:'Exam 23/25 or more',ok:()=>S.exam!=null&&S.exam>=23},
+ {id:'perfect',i:'👑',n:'العلامة الكاملة',d:'Exam 25/25',ok:()=>S.exam===25}];
+
+let soundOn=true; try{ soundOn=localStorage.getItem(KEY+'-snd')!=='0'; }catch(e){}
+let actx;
+function tone(freqs,type,gap,vol){ if(!soundOn) return; try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume();
+  freqs.forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain(); o.type=type; o.frequency.value=f; o.connect(g); g.connect(actx.destination); const t=actx.currentTime+i*gap; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.2); o.start(t); o.stop(t+0.22);}); }catch(e){} }
+function beep(ok){ ok?tone([660,880],'sine',.1,.16):tone([240,190],'triangle',.11,.14); }
+function fanfare(){ tone([523,659,784,1047],'sine',.11,.16); }
+function setMute(){ $('#mute').textContent=soundOn?'🔔':'🔕'; $('#mute').setAttribute('aria-pressed',!soundOn); }
+$('#mute').onclick=()=>{ soundOn=!soundOn; try{localStorage.setItem(KEY+'-snd',soundOn?'1':'0');}catch(e){} setMute(); if(soundOn) beep(true); }; setMute();
+
+let toastT; function toast(m,ms=2200){ const t=$('#toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',ms); }
+function praise(){ if(Math.random()<.45){ const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  '+p[1]); } }
+function floatXP(n,el){ const r=el&&el.getBoundingClientRect?el.getBoundingClientRect():{left:innerWidth/2,top:innerHeight/2,width:0}; const f=document.createElement('div'); f.className='xpfloat'; f.textContent='+'+n+' XP'; f.style.left=(r.left+r.width/2-30)+'px'; f.style.top=(r.top-10)+'px'; document.body.appendChild(f); setTimeout(()=>f.remove(),1000); }
+function showCombo(n){ const c=document.createElement('div'); c.className='combo'; c.textContent='🔥 Combo x'+n+'!'; document.body.appendChild(c); setTimeout(()=>c.remove(),950); }
+function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; const cv=$('#confetti'),ctx=cv.getContext('2d'); cv.width=innerWidth; cv.height=innerHeight;
+  const cols=['#ffd166','#ef476f','#06d6a0','#7c4dff','#ff7a59','#9b5de5'];
+  const ps=Array.from({length:130},()=>({x:innerWidth/2+(Math.random()-.5)*220,y:innerHeight/3,vx:(Math.random()-.5)*14,vy:Math.random()*-12-4,s:Math.random()*8+4,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6,vr:(Math.random()-.5)*.3}));
+  let t=0; (function step(){ ctx.clearRect(0,0,cv.width,cv.height); ps.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);ctx.restore();}); if(++t<120) requestAnimationFrame(step); else ctx.clearRect(0,0,cv.width,cv.height); })(); }
+let celebQ=[],celebOn=false;
+function celebrate(icon,title,sub,line){ celebQ.push([icon,title,sub,line]); if(!celebOn) nextCeleb(); }
+function nextCeleb(){ const c=celebQ.shift(); if(!c){celebOn=false;return;} celebOn=true; const d=document.createElement('div'); d.className='celebrate'; d.setAttribute('role','dialog');
+  d.innerHTML=`<div class="box"><div class="mascot big" style="margin:0 auto;width:96px">${MASCOT}</div><div class="big">${c[0]}</div><h3 class="en" style="text-align:center">${c[1]}</h3><div style="font-size:18px">${c[2]}</div><button class="btn sun" style="margin-top:16px">يلّا نكمل! 💪</button></div>`;
+  document.body.appendChild(d); confetti(); fanfare(); const b=d.querySelector('button'); b.focus();
+  const close=()=>{d.remove();setTimeout(nextCeleb,150);}; b.onclick=close; d.onclick=e=>{if(e.target===d)close();}; }
+
+const Game={
+  combo:0,
+  init(){ S.g=Object.assign({xp:0,streak:0,last:'',badges:[],best:0,mission:{},flipped:[]},S.g||{}); },
+  lvl(xp){ let i=0; LEVELS.forEach((l,j)=>{if(xp>=l[0]) i=j;}); return i; },
+  xp(n,el){ this.init(); const before=this.lvl(S.g.xp); const t=today();
+    if(S.g.last!==t){ const y=new Date(); y.setDate(y.getDate()-1); const ys=y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate(); S.g.streak=S.g.last===ys?(S.g.streak||0)+1:1; S.g.last=t; }
+    S.g.xp+=n; floatXP(n,el); const after=this.lvl(S.g.xp);
+    if(after>before){ const L=LEVELS[after]; setTimeout(()=>celebrate(L[3],'Level Up!',`وصلتِ إلى مستوى <b>${L[1]}</b><br><span class="en muted" style="display:block;text-align:center">${L[2]}</span>`),500); }
+    save(); this.badges(); },
+  hit(right,el){ this.init(); if(right){ this.combo++; this.xp(10,el); if(this.combo===3||this.combo===5||this.combo%10===0){ showCombo(this.combo); this.xp(this.combo>=5?15:5); } if(this.combo>S.g.best){S.g.best=this.combo; save();} } else this.combo=0; },
+  win(key,el){ S.games[key]=true; this.xp(30,el); this.mission('game'); confetti(); const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  '+p[1]); },
+  card(i,el){ this.init(); if(!S.g.flipped.includes(i)){ S.g.flipped.push(i); this.xp(2,el); } this.mission('cards'); },
+  mission(kind){ this.init(); const t=today(); if(S.g.mission.date!==t) S.g.mission={date:t,cards:0,game:0,q:0,done:false};
+    const m=S.g.mission; m[kind]=(m[kind]||0)+1; save();
+    if(!m.done&&m.cards>=5&&m.game>=1&&m.q>=5){ m.done=true; save(); this.xp(50); setTimeout(()=>celebrate('🎯','Mission Complete!','أنجزتِ مهمّة اليوم! <bdi dir="ltr">+50 XP</bdi><br>نراكِ غداً يا ماريا 💜'),400); }
+    this.ui(); },
+  badges(){ this.init(); let ch=false; BADGES.forEach(b=>{ if(!S.g.badges.includes(b.id)&&b.ok()){ S.g.badges.push(b.id); ch=true; setTimeout(()=>celebrate(b.i,'New Badge!',`شارة جديدة: <b>${b.n}</b><br><span class="en muted" style="display:block;text-align:center">${b.d}</span>`),900); } }); if(ch){ save(); } this.ui(); },
+  ui(){ this.init(); const xp=S.g.xp, i=this.lvl(xp), L=LEVELS[i], N=LEVELS[i+1]; const pc=N?Math.round(100*(xp-L[0])/(N[0]-L[0])):100;
+    $('#xpLvl').textContent=L[3]; $('#xpTop').textContent=xp+' XP'; $('#xpMini').style.width=pc+'%';
+    if(!$('#xpBig')) return;
+    $('#xpBig').textContent=xp; $('#lvAr').textContent=L[1]; $('#lvEn').textContent=L[2]; $('#lvIc').textContent=L[3]; $('#xpBarBig').style.width=pc+'%';
+    $('#xpNext').innerHTML=N?`باقي <b>${N[0]-xp}</b> نقطة للمستوى التالي: ${N[1]} ${N[3]}`:'وصلتِ إلى أعلى مستوى! 👑';
+    $('#streak').textContent=S.g.streak||0;
+    const m=S.g.mission.date===today()?S.g.mission:{cards:0,game:0,q:0};
+    const tasks=[['cards',5,'🃏 اقلبي 5 بطاقات كلمات','Flip 5 word cards','words'],['q',5,'✅ أجيبي عن 5 أسئلة صحيحة','Answer 5 questions right','read'],['game',1,'🎮 أكملي لعبة واحدة','Finish one game','words']];
+    $('#missionList').innerHTML=tasks.map(t=>{const v=Math.min(m[t[0]]||0,t[1]),d=v>=t[1];return `<li class="${d?'done':''}"><span class="ck">${d?'✓':''}</span><span class="t">${t[2]}<span class="en muted" style="font-size:12px;display:block">${t[3]}</span></span><span class="cnt">${v}/${t[1]}</span>${d?'':`<a class="btn small" href="#${t[4]}" style="text-decoration:none">يلّا</a>`}</li>`;}).join('');
+    $('#badges').innerHTML=BADGES.map(b=>`<div class="bdg ${S.g.badges.includes(b.id)?'':'locked'}"><span class="i">${b.i}</span><span class="n">${b.n}</span><span class="d">${b.d}</span></div>`).join('');
+    $('#badgeCount').textContent=`(${S.g.badges.length} / ${BADGES.length})`; }
+};
+Game.init();
+let factI=Math.floor(Math.random()*FACTS.length);
+function renderFact(){ const f=FACTS[factI]; $('#fact').innerHTML=`<div class="fi">${f[0]}</div><div style="flex:1;min-width:220px"><div class="en" style="font-size:17px">${f[1]}</div><div class="ar2" style="margin-top:4px">${f[2]}</div></div><button class="btn small" id="factNext">التالي ←</button>`; $('#factNext').onclick=()=>{factI=(factI+1)%FACTS.length;renderFact();}; }
+renderFact();
+const gr=GREET[Math.floor(Math.random()*GREET.length)]; $('#greet').textContent=gr[0]; $('#greetEn').textContent=gr[1];
+
+/* ---------------- init ---------------- */
+renderPassage(); ['read','words','grammar','hamza'].forEach(renderQs);
+renderCards(); renderMatch(); renderFill();
+sorter($('#sortType'),'typesort',[{id:'i',label:'جملة اسمية',en:'Starts with a noun'},{id:'f',label:'جملة فعلية',en:'Starts with a verb'}],
+ [['يمرُّ الجبلُ في كلِّ الشوارعِ','f'],['جبلُ حفيتٍ موجودٌ في كلِّ شارعٍ','i'],['يتربّعُ الجبلُ جنوبَ شرقيِّ العينِ','f'],['الجبلُ شامخٌ','i'],['يرعى الجبلُ المارّةَ','f'],['المطرُ غزيرٌ','i'],['العصفورُ في العشِّ','i'],['تتجلّى قدرةُ الخالقِ في الطبيعةِ','f']]
+ .map(x=>({t:x[0],b:x[1],why:x[1]==='f'?'«'+x[0].split(' ')[0]+'» فعل ← جملة فعلية':'«'+x[0].split(' ')[0]+'» اسم ← جملة اسمية'})),
+ '<b>رائع!</b> <span class="en" style="display:inline">All sorted!</span>');
+renderTypes(); renderParser(); renderBuilder();
+renderMachine(); renderJoin(); renderHzSort(); renderMyWords();
+renderWrite(); updateHome(); Game.badges(); route();
+if(canSpeak){try{speechSynthesis.getVoices();}catch(e){}}
+</script>
+</body>
