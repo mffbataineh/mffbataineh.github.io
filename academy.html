@@ -153,12 +153,21 @@ footer .cta{justify-content:center}
 .topnav a.on{background:#ffb547;color:#140c33}
 .topnav .home{display:flex;align-items:center;gap:8px;margin-inline-end:auto}
 .topnav .home i{font:normal 700 20px "Times New Roman",serif;color:#ffb547;width:30px;height:30px;display:grid;place-items:center;border:1.5px solid #ffb547;border-radius:9px}
+.pls{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:8px 0 18px}
+.pl{display:flex;flex-direction:column;gap:4px;background:var(--card,#FBF8F1);border:1.5px solid var(--line,#D9D1BF);border-radius:20px;padding:18px 20px;position:relative;overflow:hidden}
+.pl .gl{position:absolute;inset-inline-end:14px;top:4px;font:italic 700 54px "Times New Roman",serif;opacity:.1;direction:ltr}
+.pl i{font-style:normal;font-size:13px;font-weight:600;color:var(--gold,#B9821F)}
+.pl b{font-size:18.5px;line-height:1.4}.pl span{font-size:15px;opacity:.8;margin-bottom:8px}
+.pl .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;justify-content:flex-start}
+.pl .btn{font-size:14px;padding:7px 13px}
+.pls.more .pl{border-style:dashed}
+.plh{margin:22px 0 6px;font-size:21px}
 @media(max-width:560px){.topnav .home span{display:none}.topnav a{padding:6px 10px;font-size:14px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<nav class="topnav" aria-label="أكاديمية البطاينة"><a class="home" href="academy.html"><i aria-hidden="true">π</i><span>أكاديمية البطاينة</span></a><a href="tawjihi.html">الرياضيات</a><a href="physics.html">الفيزياء</a><a href="academy/">المذكرات</a></nav>
+<nav class="topnav" aria-label="أكاديمية البطاينة"><a class="home" href="academy.html"><i aria-hidden="true">π</i><span>أكاديمية البطاينة</span></a><a href="tawjihi.html">الرياضيات</a><a href="physics.html">الفيزياء</a><a href="#playlists">قوائم التشغيل</a><a href="academy/">المذكرات</a></nav>
 <section class="hero ac">
  <div class="hero-in">
   <div>
@@ -207,6 +216,25 @@ footer .cta{justify-content:center}
   <div class="acts"><a class="btn main" href="physics.html">صفحة السلسلة</a><a class="btn alt" href="physics-foundation-test.html">اختبار الجاهزية</a></div></section>
  <section class="subj soon"><div class="gl" aria-hidden="true">+</div><h3>مواد أخرى</h3><p>قريبًا بإذن الله.</p>
   <ul><li>بالطريقة نفسها: تأسيس، ثم شرح، ثم حلول</li></ul></section>
+</div>
+
+<div class="sem" id="playlists"><h2>قوائم التشغيل</h2><span>كل سلسلة في قائمة واحدة على يوتيوب، بالترتيب من أول حلقة</span></div>
+<h3 class="plh">التوجيهي 2027</h3>
+<div class="pls">
+ <div class="pl"><div class="gl" aria-hidden="true">1</div><i>رياضيات · ابدأ هنا إن كان أساسك ضعيفًا</i><b>سلسلة تأسيس الرياضيات</b><span>21 حلقة تبني ما تحتاجه قبل كتاب التوجيهي.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLZEoqlLloS0I" target="_blank" rel="noopener">شاهد القائمة</a><a class="btn alt" href="foundation-test.html">اختبار الجاهزية</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">∫</div><i>رياضيات</i><b>رياضيات التوجيهي 2027</b><span>كل دروس الكتاب للفصلين، مع حل كل الأسئلة ومراجعات الوحدات واختباراتها.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLZ4xRutIsGd8" target="_blank" rel="noopener">شاهد القائمة</a><a class="btn alt" href="tawjihi.html">صفحة السلسلة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">1</div><i>فيزياء · ابدأ هنا إن كان أساسك ضعيفًا</i><b>سلسلة تأسيس الفيزياء</b><span>21 حلقة تمهّد لكتاب فيزياء التوجيهي.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLbpkoIHQs3-M" target="_blank" rel="noopener">شاهد القائمة</a><a class="btn alt" href="physics-foundation-test.html">اختبار الجاهزية</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">F</div><i>فيزياء</i><b>فيزياء التوجيهي 2027</b><span>الوحدات الثماني من الكتاب الجديد، مع حل كل الأسئلة ومراجعة لكل وحدة.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLFSzDr1cgXq4" target="_blank" rel="noopener">شاهد القائمة</a><a class="btn alt" href="physics.html">صفحة السلسلة</a></div></div>
+</div>
+<h3 class="plh">ما بعد التوجيهي</h3>
+<div class="pls more">
+ <div class="pl"><div class="gl" aria-hidden="true">∇</div><i>للجامعة</i><b>تعلّم الآلة من الصفر</b><span>Machine Learning from Scratch: الفكرة ثم الكود بلغة بايثون خطوة بخطوة.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLZmaF7rDJzj8" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">∑</div><i>للمتميزين</i><b>مسائل الأولمبياد</b><span>أشهر مسائل IMO والأولمبياد محلولة بالتفصيل.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLBUsiS554Sus" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">∫</div><i>للمتميزين</i><b>التكامل</b><span>أصعب التكاملات بطرق ذكية.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BQLmWOKNct_0fUGNWSgXzIc" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">∞</div><i>للفضوليين</i><b>مفارقات رياضية</b><span>نتائج تبدو مستحيلة، ولماذا هي صحيحة.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLNJtsKSnaxUc" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">?</div><i>للفضوليين</i><b>ألغاز وتحديات</b><span>Brain Teasers: هل تستطيع حلها؟</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BSR_e33vmBesPmLyzY1UwxG" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">2ⁿ</div><i>للفضوليين</i><b>التفكير الأُسّي</b><span>Exponential Thinking: كيف يكبر الشيء الصغير بسرعة مذهلة.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BRVc9Fzc8DsW_bXEl6nb2Un" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
+ <div class="pl"><div class="gl" aria-hidden="true">π</div><i>للفضوليين</i><b>عظماء العلم</b><span>The Great Minds Series: قصص العلماء الذين غيّروا العالم.</span><div class="acts"><a class="btn main" href="https://www.youtube.com/playlist?list=PLxgtB2cou2BTxFS3HUOKWchv7jxMSH_EJ" target="_blank" rel="noopener">شاهد القائمة</a></div></div>
 </div>
 
 <div class="sem"><h2>كيف تُبنى دروسنا؟</h2><span>أربعة مبادئ في كل فيديو</span></div>
