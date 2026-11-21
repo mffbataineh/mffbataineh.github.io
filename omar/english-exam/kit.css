@@ -1,0 +1,36 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#0f1530;overflow:hidden;font-family:'CairoK','Baloo',sans-serif;direction:rtl}
+#wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#stage{position:relative;width:1280px;height:720px;overflow:hidden;transform-origin:center center;flex:none;background:var(--bg1);color:var(--ink);
+ --bg1:#FFF7E8;--bg2:#DDF1FF;--ink:#1B2A49;--accent:#2F6FED;--accent2:#FF9F1C;--good:#19B37D;--pink:#FF5D8F;--purple:#7B5CFA;--sun:#FFC93C}
+#stage .abs,.abs{position:absolute}
+#bg{position:absolute;inset:0;background:linear-gradient(160deg,var(--bg1),var(--bg2))}
+#bg i{position:absolute;border-radius:50%;opacity:.55;filter:blur(2px)}
+#scenes,#hud{position:absolute;inset:0;pointer-events:none}
+.scene{position:absolute;inset:0;visibility:hidden}
+.card{position:absolute;background:#fff;border-radius:28px;box-shadow:0 10px 30px rgba(30,50,100,.16)}
+.h1{font-family:'Baloo','CairoK';font-weight:800;line-height:1.25}
+.txt{position:absolute;font-family:'Baloo','CairoK';font-weight:700;line-height:1.45;text-align:center}
+.pill{position:absolute;border-radius:999px;font-family:'Baloo';font-weight:800;color:#fff;text-align:center;padding:6px 28px;box-shadow:0 6px 16px rgba(30,50,100,.2)}
+.cap{position:absolute;left:90px;right:90px;bottom:26px;visibility:hidden;text-align:center;background:rgba(255,255,255,.94);border-radius:26px;
+ padding:10px 26px;font-family:'Baloo','CairoK';font-weight:800;font-size:34px;line-height:1.45;color:var(--ink);box-shadow:0 8px 24px rgba(30,50,100,.18)}
+.cap .w{display:inline-block;margin:0 .12em}
+.opt{position:absolute}
+.opt .shake,.opt .shake *{pointer-events:auto}
+.opt .shake{position:absolute;inset:0;background:#fff;border-radius:26px;box-shadow:0 8px 22px rgba(30,50,100,.16);border:5px solid #E4ECFA;display:flex;align-items:center;overflow:hidden;cursor:pointer}
+.opt .lt{flex:none;width:62px;height:62px;border-radius:50%;color:#fff;font-family:'Baloo';font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center;margin:0 18px}
+.opt .ot{flex:1;font-family:'Baloo','CairoK';font-weight:800;font-size:38px;line-height:1.3;color:var(--ink);padding-left:14px}
+.opt.row .shake{flex-direction:column;justify-content:flex-start;padding:0}
+.opt .badge{position:absolute;top:-14px;left:-14px;width:64px;height:64px;border-radius:50%;background:var(--good);visibility:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(0,0,0,.2)}
+.opt.sel .shake{border-color:var(--accent);background:#EEF4FF}
+#controls{display:flex;gap:14px;align-items:center;justify-content:center;height:84px;flex:none;direction:rtl}
+#controls button{border:0;border-radius:22px;height:64px;min-width:64px;padding:0 22px;font-family:'Baloo';font-weight:800;font-size:26px;color:#fff;background:#3b4a7a;cursor:pointer;display:flex;align-items:center;gap:10px;justify-content:center}
+#controls button svg{width:30px;height:30px;fill:#fff}
+#controls button:active{transform:scale(.95)}
+#controls #bNext{background:#19B37D;font-size:30px;padding:0 34px;min-width:170px}
+#controls #bNext.pulse{animation:pls 1s infinite}
+@keyframes pls{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
+#splash{position:absolute;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;background:linear-gradient(160deg,var(--bg1),var(--bg2));pointer-events:auto}
+#splash button{border:0;border-radius:40px;padding:18px 70px;font-family:'Baloo';font-weight:800;font-size:54px;color:#fff;background:var(--good);box-shadow:0 12px 28px rgba(25,179,125,.45);cursor:pointer;animation:pls 1.2s infinite}
+#stage.video #controls,#stage.video #splash{display:none}
+@media (max-width:700px){#controls{gap:8px}#controls button{height:56px;min-width:56px;padding:0 12px;border-radius:18px;font-size:22px}#controls button svg{width:26px;height:26px}#controls #bNext{font-size:24px;padding:0 20px;min-width:120px}#controls button:not(#bNext) span{display:none}}
