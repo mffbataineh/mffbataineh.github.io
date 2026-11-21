@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>أكاديمية البطاينة: مذكرات توجيهي 2027 للرياضيات والفيزياء</title>
-<meta name="description" content="مذكرات مجانية لتوجيهي 2027 في الرياضيات والفيزياء، مرافقة للسلسلتين المجانيتين على يوتيوب: مذكرة الدروس وكتاب حلول أسئلة الكتاب للفصلين الأول والثاني.">
+<meta name="description" content="مذكرات مجانية لتوجيهي 2027 في الرياضيات والفيزياء، مرافقة للسلسلتين المجانيتين على يوتيوب، ومذكرة التفاضل والتكامل 1 لطلاب الجامعة بالعربية والإنجليزية.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_AR">
 <meta property="og:title" content="مذكرات الرياضيات والفيزياء، توجيهي 2027 | د. محمد البطاينة">
@@ -88,6 +88,8 @@ h1 em{font-style:normal;color:var(--chalk)}
 .btn:hover{transform:translateY(-2px);background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .btn.soon{background:transparent;color:var(--ink2);border-color:var(--line);cursor:default}.bun .btn.soon{background:transparent;color:#D6DEEE;border-color:#D6DEEE}
 .price.free{color:var(--ok)}
+.wasp{text-decoration:line-through;color:var(--ink2);font-size:16px;margin-inline-start:6px}
+.early{margin:8px 0 0;font-size:13px;font-weight:600;color:#B7791F}
 .gift{margin:22px auto 0;max-width:760px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:var(--shadow);line-height:1.9}.gift b{color:var(--ok)}
 .btn.ghost{background:transparent;color:var(--ink)}
 
@@ -174,7 +176,7 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
     <div>
       <p class="kick">رفيق سلسلتي «توجيهي 2027» للرياضيات والفيزياء على يوتيوب</p>
       <h1>كل ما في الفيديو،<br><em>على الورق.</em></h1>
-      <p class="lead">لكل مادة مذكرة للدروس وكتاب لحلول أسئلة الكتاب. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR. <b>كل المذكرات مجانية.</b></p>
+      <p class="lead">لكل مادة مذكرة للدروس وكتاب لحلول أسئلة الكتاب. ملخّصات مرتبة وأمثلة محلولة خطوة بخطوة، وكل درس يفتح فيديو شرحه برمز QR. <b>كل مذكرات التوجيهي مجانية.</b></p>
       <div class="cta">
         <a class="pill p" href="#products" data-go="all">حمّل المذكرات مجانًا</a>
         <a class="pill s" href="#products">شاهد صفحات من المذكرات</a>
@@ -192,28 +194,31 @@ dialog::backdrop{background:rgba(10,16,27,.6)}
   <div><b>8 مذكرات</b>للمادتين والفصلين</div>
   <div><b>15 وحدة</b>7 للرياضيات و8 للفيزياء، المنهاج كاملًا</div>
   <div><b>رموز QR</b>لكل درس ولحلول أسئلته</div>
-  <div><b>كلها مجانًا</b>صدقة عن روح الوالدين</div>
+  <div><b>مذكرات التوجيهي مجانًا</b>صدقة عن روح الوالدين</div>
 </div>
 
-<p class="gift"><b>كل المذكرات مجانية لكل طالب</b>، في الرياضيات والفيزياء، صدقة جارية عن روح والديّ رحمهما الله. حمّلها واطبعها وشاركها مع زملائك، ولا تنسَهما من دعائك.</p>
+<p class="gift"><b>كل مذكرات التوجيهي مجانية لكل طالب</b>، في الرياضيات والفيزياء، صدقة جارية عن روح والديّ رحمهما الله. حمّلها واطبعها وشاركها مع زملائك، ولا تنسَهما من دعائك.</p>
 
-<div class="subj" role="tablist" aria-label="اختر المادة"><button type="button" role="tab" data-subj="all">الكل</button><button type="button" role="tab" data-subj="math">الرياضيات</button><button type="button" role="tab" data-subj="physics">الفيزياء</button></div>
+<div class="subj" role="tablist" aria-label="اختر المادة"><button type="button" role="tab" data-subj="all">الكل</button><button type="button" role="tab" data-subj="math">الرياضيات</button><button type="button" role="tab" data-subj="physics">الفيزياء</button><button type="button" role="tab" data-subj="calculus">الجامعة</button></div>
 
 <section id="products">
   <div class="sh"><h2>المذكرات</h2><span>اضغط على الصورة لترى صفحة حقيقية من المذكرة</span></div>
   <div class="grid" id="grid"></div>
+  <div class="bundles" id="bgrid" style="margin-top:18px"></div>
 </section>
 
 <section id="faq">
   <div class="sh"><h2>أسئلة شائعة</h2></div>
   <details><summary>هل الفيديوهات مجانية؟</summary><p>نعم، كل فيديوهات السلسلتين مجانية على يوتيوب وستبقى كذلك.</p></details>
-  <details><summary>هل المذكرات مجانية فعلًا؟</summary><p>نعم، مذكرات الرياضيات والفيزياء كلها مجانية بالكامل، صدقة جارية عن روح والديّ رحمهما الله. حمّلها مباشرة بلا تسجيل، واطبعها وشاركها كما تشاء.</p></details>
+  <details><summary>هل المذكرات مجانية فعلًا؟</summary><p>نعم، مذكرات التوجيهي في الرياضيات والفيزياء كلها مجانية بالكامل، صدقة جارية عن روح والديّ رحمهما الله. حمّلها مباشرة بلا تسجيل، واطبعها وشاركها كما تشاء.</p></details>
   <details><summary>هل مذكرات الفيزياء متاحة الآن؟</summary><p>نعم، للفصلين الأول والثاني ومجانًا. والمذكرة مرتبطة بفيديوهات سلسلة فيزياء التوجيهي 2027 عبر رموز QR.</p></details>
   <details><summary>ما الفرق بين المذكرة وكتاب الحلول؟</summary><p>المذكرة تلخّص كل درس: المفاهيم والقوانين والأمثلة المحلولة والأخطاء الشائعة وتمارين إضافية. كتاب الحلول يحلّ تمارين كتاب الطالب كلها خطوة بخطوة، مرتبة حسب الصفحة ورقم السؤال.</p></details>
   <details><summary>هل يناسب الطبعة الجديدة من الكتاب؟</summary><p>نعم. مذكرات الرياضيات مبنية على كتاب الطالب للمسار الأكاديمي (طبعة 2025 للفصل الأول، والطبعة التجريبية للفصل الثاني)، ومذكرات الفيزياء على كتاب الفيزياء للصف الثاني عشر، المسار الأكاديمي، بفصليه. إذا تغيّر شيء في الكتاب، تصلك النسخة المحدّثة مجانًا.</p></details>
   <details><summary>كيف قُسّمت مذكرات الفيزياء؟</summary><p>مثل الرياضيات: مذكرة وكتاب حلول للفصل الأول (الوحدات 1 إلى 4)، ومذكرة وكتاب حلول للفصل الثاني (الوحدات 5 إلى 8)، وتبدأ كل وحدة بصفحات تذكير بالأساسيات من سلسلة «تأسيس الفيزياء».</p></details>
-  <details><summary>متى تصلني المذكرة؟</summary><p>فورًا: كل المذكرات تُحمَّل مباشرة بضغطة زر، بلا تسجيل.</p></details>
-  <details><summary>هل يمكن مشاركة الملف مع الأصدقاء؟</summary><p>نعم، شاركها مع من تشاء، فالدال على الخير كفاعله.</p></details>
+  <details><summary>متى تصلني المذكرة؟</summary><p>مذكرات التوجيهي فورًا: تُحمَّل مباشرة بضغطة زر، بلا تسجيل. ومذكرة التفاضل والتكامل 1 تصلك على واتساب بعد تأكيد الدفع، وعليها اسمك.</p></details>
+  <details><summary>هل يمكن مشاركة الملف مع الأصدقاء؟</summary><p>مذكرات التوجيهي نعم، شاركها مع من تشاء، فالدال على الخير كفاعله. أما مذكرة التفاضل والتكامل 1 فنسخة شخصية مطبوع عليها اسم المشتري.</p></details>
+  <details><summary>ما مذكرة التفاضل والتكامل 1؟</summary><p>رفيقة سلسلة «التفاضل والتكامل 1» المجانية على يوتيوب لطلاب الجامعة: 46 درسًا في 5 وحدات، من النهايات إلى تطبيقات التكامل. لكل درس شرح مكتوب ورسوم وأمثلة محلولة وأخطاء شائعة، ورمز QR يفتح فيديو الدرس. متوفرة بالعربية وبالإنجليزية.</p></details>
+  <details><summary>كيف أشتري مذكرة التفاضل والتكامل 1؟</summary><p>اضغط «اشترِ الآن»، واكتب اسمك ورقم هاتفك، وحوّل المبلغ عبر كليك، ثم أرسل صورة الإيصال على واتساب. تصلك نسختك وعليها اسمك ورقمك.</p></details>
   <details><summary>هل أستطيع الطباعة؟</summary><p>نعم، الملف بحجم A4 ومصمم ليُطبع بالألوان أو بالأبيض والأسود.</p></details>
 </section>
 
@@ -281,6 +286,7 @@ const CONFIG = {
   // Lemon Squeezy checkout links per item (leave empty to hide card payment for that item)
   card: { s1:"", s1sol:"", s2:"", s2sol:"", phy1:"", phy1sol:"", phy2:"", phy2sol:"", b1:"", b2:"", year:"", bphy:"", ball:"" }
 };
+const EARLY_UNTIL = "2026-11-28T23:59:59+04:00";   // launch price ends (Dubai time)
 const PRODUCTS = [
   {id:"s1",   cat:"m", free:"pdf/Tawjihi2027_Math_Sem1.pdf", tag:"الفصل الأول · الوحدات 1 إلى 4", name:"مذكرة الرياضيات: الفصل الأول", price:4,
    desc:"ملخّص كل درس مع أمثلة محلولة وأخطاء شائعة وتمارين إضافية، واختبار تجريبي شامل.",
@@ -305,16 +311,27 @@ const PRODUCTS = [
    pts:["الوحدة 5: المغناطيسية","الوحدة 6: التيار المتردد والدارات الإلكترونية","الوحدة 7: الفيزياء الحديثة","الوحدة 8: الفيزياء النووية"]},
   {id:"phy2sol",cat:"p", free:"pdf/Tawjihi2027_Physics_Sem2_Solutions.pdf", tag:"الفصل الثاني · الوحدات 5 إلى 8", name:"حلول أسئلة كتاب الفيزياء: الفصل الثاني", price:5,
    desc:"حل كل أسئلة كتاب الطالب بكل الخطوات: المعطيات، والقانون، والتعويض بالوحدات، والجواب في إطار، مع رسوم توضيحية حيث تلزم.",
-   pts:["أتحقق، أفكر، والأسئلة داخل الدروس","مراجعة الدرس ومراجعة الوحدة","مرتبة حسب الوحدة والدرس ورقم السؤال"]}
+   pts:["أتحقق، أفكر، والأسئلة داخل الدروس","مراجعة الدرس ومراجعة الوحدة","مرتبة حسب الوحدة والدرس ورقم السؤال"]},
+  {id:"calc1ar", cat:"c", tag:"للجامعة · بالعربية · 46 درسًا", name:"مذكرة التفاضل والتكامل 1 (بالعربية)", price:5, early:3,
+   desc:"الدورة كاملة على الورق: شرح مكتوب لكل درس برسوم وأمثلة محلولة خطوة بخطوة وأخطاء شائعة، ولكل درس رمز QR يفتح فيديو شرحه.",
+   pts:["النهايات والاتصال","المشتقة وقواعد الاشتقاق","تطبيقات المشتقة","التكامل والنظرية الأساسية","تطبيقات التكامل والمراجعة النهائية"]},
+  {id:"calc1en", cat:"c", tag:"للجامعة · بالإنجليزية · 46 درسًا", name:"مذكرة التفاضل والتكامل 1 (بالإنجليزية)", price:5, early:3,
+   desc:"الدورة نفسها بالإنجليزية لمن يدرس المادة بالإنجليزية: شرح مكتوب لكل درس برسوم وأمثلة محلولة وأخطاء شائعة، ورمز QR لفيديو كل درس.",
+   pts:["النهايات والاتصال","المشتقة وقواعد الاشتقاق","تطبيقات المشتقة","التكامل والنظرية الأساسية","تطبيقات التكامل والمراجعة النهائية"]}
 ];
-const BUNDLES = [];
+const BUNDLES = [
+  {id:"bcalc", cat:"c", best:true, name:"التفاضل والتكامل 1: النسختان", sub:"العربية والإنجليزية معًا، لمن يدرس بالإنجليزية ويريد الشرح بالعربية أيضًا", items:["calc1ar","calc1en"], price:8, early:5}
+];
 /* =========================== */
 
 const $=s=>document.querySelector(s);
 const byId=Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
 const money=n=>`${n} ${CONFIG.currency}`;
+const isEarly=()=>Date.now()<Date.parse(EARLY_UNTIL);
+const eff=p=>(p.early&&isEarly())?p.early:p.price;
+const earlyNote=`سعر الإطلاق حتى 28 نوفمبر`;
 
-const CATS={m:"الرياضيات",p:"الفيزياء"};
+const CATS={m:"الرياضيات",p:"الفيزياء",c:"الجامعة: التفاضل والتكامل 1"};
 const card=p=>`
   <article class="prod">
     <button class="thumb" type="button" data-prev="${p.id}" aria-label="معاينة ${p.name}">
@@ -327,24 +344,24 @@ const card=p=>`
       <ul>${p.pts.map(x=>`<li>${x}</li>`).join("")}</ul>
       <div class="buyrow">${p.free?`<span class="price free">مجانًا</span>${p.free==="soon"?'<span class="btn soon" aria-disabled="true">قريبًا</span>':`<a class="btn" href="${p.free}" download>تحميل مجاني</a>`}`
         :p.soon?`<span class="price">${p.price} <small>${CONFIG.currency}</small></span><span class="btn soon" aria-disabled="true">قريبًا</span>`
-        :`<span class="price">${p.price} <small>${CONFIG.currency}</small></span><button class="btn" type="button" data-buy="${p.id}">اشترِ الآن</button>`}</div>
+        :`<span class="price">${eff(p)} <small>${CONFIG.currency}</small></span>${eff(p)<p.price?`<span class="wasp">${p.price}</span>`:""}<button class="btn" type="button" data-buy="${p.id}">اشترِ الآن</button>`}</div>${p.early&&isEarly()?`<p class="early">${earlyNote}</p>`:""}
     </div>
   </article>`;
 $("#grid").innerHTML=Object.keys(CATS).map(c=>`<h3 class="cat" data-cat="${c}">${CATS[c]}</h3>`+PRODUCTS.filter(p=>p.cat===c).map(p=>card(p).replace('<article class="prod">',`<article class="prod" data-cat="${c}">`)).join("")).join("");
 
 if($("#bgrid"))$("#bgrid").innerHTML=BUNDLES.map(b=>{
-  const full=b.items.reduce((s,i)=>s+byId[i].price,0);
+  const full=b.items.reduce((s,i)=>s+byId[i].price,0), bp=eff(b);
   return `<article class="bun${b.best?" best":""}" data-cat="${b.cat}">
     ${b.best?'<span class="ribbon">الأوفر</span>':""}
     <h3>${b.name}</h3><p>${b.sub}</p>
     <ul>${b.items.map(i=>`<li>${byId[i].name}</li>`).join("")}</ul>
-    <div><span class="price">${b.price} <small>${CONFIG.currency}</small></span><span class="was">${full}</span></div>
-    <span class="save">توفّر ${full-b.price} ${CONFIG.currency}</span>
+    <div><span class="price">${bp} <small>${CONFIG.currency}</small></span><span class="was">${full}</span></div>
+    <span class="save">توفّر ${full-bp} ${CONFIG.currency}${b.early&&isEarly()?` · ${earlyNote}`:""}</span>
     ${b.soon?'<span class="btn soon" aria-disabled="true">قريبًا</span>':`<button class="btn" type="button" data-buy="${b.id}">اشترِ الباقة</button>`}
   </article>`}).join("");
 
 /* subject switch: #math, #physics or all */
-const SUBJ={math:"m",physics:"p"};
+const SUBJ={math:"m",physics:"p",calculus:"c"};
 function setSubj(k){
   if(!(k in SUBJ))k="all";
   document.querySelectorAll(".subj button").forEach(b=>b.setAttribute("aria-selected",b.dataset.subj===k?"true":"false"));
@@ -373,8 +390,8 @@ const ref=()=>"TJ-"+Math.random().toString(36).slice(2,6).toUpperCase();
 document.addEventListener("click",e=>{
   const b=e.target.closest("[data-buy]");if(!b)return;
   item=find(b.dataset.buy);
-  $("#buyName").textContent=item.name;$("#buyPrice").textContent=money(item.price);
-  $("#cAlias").textContent=CONFIG.cliqAlias;$("#cAmt").textContent=item.price.toFixed(2)+" JOD";$("#cRef").textContent=ref();
+  $("#buyName").textContent=item.name;$("#buyPrice").textContent=money(eff(item));
+  $("#cAlias").textContent=CONFIG.cliqAlias;$("#cAmt").textContent=eff(item).toFixed(2)+" JOD";$("#cRef").textContent=ref();
   $("#cliqReady").hidden=!CONFIG.cliqAlias||!CONFIG.whatsapp;$("#cliqSoon").hidden=!!(CONFIG.cliqAlias&&CONFIG.whatsapp);
   const hasCard=!!(CONFIG.card[item.id]&&CONFIG.whatsapp);$("#cardReady").hidden=!hasCard;$("#cardSoon").hidden=hasCard;
   $("#err").textContent="";dlg.showModal();
@@ -391,7 +408,7 @@ function buyer(){
 }
 $("#waBtn").onclick=()=>{
   const b=buyer();if(!b)return;
-  const msg=`مرحبًا د. محمد، حوّلت عبر كليك ثمن:\n${item.name}\nالمبلغ: ${item.price} د.أ\nرقم الطلب: ${$("#cRef").textContent}\nالاسم على المذكرة: ${b.n}\nالهاتف: ${b.p}\n(مرفق صورة الإيصال)`;
+  const msg=`مرحبًا د. محمد، حوّلت عبر كليك ثمن:\n${item.name}\nالمبلغ: ${eff(item)} د.أ\nرقم الطلب: ${$("#cRef").textContent}\nالاسم على المذكرة: ${b.n}\nالهاتف: ${b.p}\n(مرفق صورة الإيصال)`;
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
 };
 $("#cardBtn").onclick=()=>{
