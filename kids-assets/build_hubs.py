@@ -37,6 +37,7 @@ CHILDREN = {
    lessons=[
     ("maths-quiz", "الرياضيات", "Maths Revision Quiz", "Year 6 · Term 1: Decimals, Circles, Nets, Triangle angles and area", "#2563eb", "🧮", "English"),
     ("arabic-hafeet", "اللغة العربية", "جَبَلُ حَفِيتٍ", "مراجعة امتحان اللغة العربية: الصف الخامس، الفصل الأول", "#0f8f7e", "⛰️", "عربي"),
+    ("social-studies", "الدراسات الاجتماعية", "ماجان ودلمون وتراثنا", "ماجان ودلمون، العادات والسنع، التراث الثقافي، يوم الشهيد، ونموذج المدرسة التدريبي", "#c2410c", "🏺", "عربي"),
    ]),
 }
 ORDER = ["fayez", "omar", "yousef", "maria"]
