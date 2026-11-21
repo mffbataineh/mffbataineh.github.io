@@ -74,6 +74,7 @@ h1,h2,h3,h4,.btn,.pill,nav.tabs a,.qt,.chip,.tn{font-family:var(--disp)}
 .celebrate .box .big{font-size:64px;line-height:1}
 .celebrate .box h3{font-size:26px;color:var(--teal);margin:6px 0}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:98}
+.xpfloat{direction:ltr;unicode-bidi:isolate}
 .brand{display:flex;align-items:center;gap:14px;justify-content:space-between;flex-wrap:wrap}
 .brand h1{margin:0;font-size:28px;font-weight:800;line-height:1.25;text-shadow:0 2px 0 rgba(0,0,0,.12)}
 .brand .sub{opacity:.85;font-size:15px}
@@ -809,7 +810,7 @@ function sorter(el,key,buckets,items,doneMsg){
   let sel=null,left=items.length; const fb=el.querySelector('.gamefb');
   el.querySelectorAll('.pool .chip').forEach(c=>c.onclick=()=>{ if(sel) sel.classList.remove('sel'); sel=c; c.classList.add('sel'); });
   el.querySelectorAll('.bucket').forEach(b=>b.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();b.click();}});
-  el.querySelectorAll('.bucket').forEach(b=>b.onclick=(ev)=>{ if(ev.target.closest('.chip.done')) return;
+  el.querySelectorAll('.bucket').forEach(b=>b.onclick=(ev)=>{
     if(!sel){ fb.innerHTML='<span class="en">First tap an item above 👆</span>'; return; }
     const why=decodeURIComponent(sel.dataset.w);
     if(sel.dataset.b===b.dataset.id){ sel.classList.remove('sel'); sel.classList.add('done'); sel.onclick=null; b.querySelector('.in').appendChild(sel); left--; beep(true);
@@ -1113,7 +1114,7 @@ function setMute(){ $('#mute').textContent=soundOn?'🔔':'🔕'; $('#mute').set
 $('#mute').onclick=()=>{ soundOn=!soundOn; try{localStorage.setItem(KEY+'-snd',soundOn?'1':'0');}catch(e){} setMute(); if(soundOn) beep(true); }; setMute();
 
 let toastT; function toast(m,ms=2200){ const t=$('#toast'); t.textContent=m; t.style.display='block'; clearTimeout(toastT); toastT=setTimeout(()=>t.style.display='none',ms); }
-function praise(){ if(Math.random()<.45){ const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  '+p[1]); } }
+function praise(){ if(Math.random()<.45){ const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  \u2066'+p[1]+'\u2069'); } }
 function floatXP(n,el){ const r=el&&el.getBoundingClientRect?el.getBoundingClientRect():{left:innerWidth/2,top:innerHeight/2,width:0}; const f=document.createElement('div'); f.className='xpfloat'; f.textContent='+'+n+' XP'; f.style.left=(r.left+r.width/2-30)+'px'; f.style.top=(r.top-10)+'px'; document.body.appendChild(f); setTimeout(()=>f.remove(),1000); }
 function showCombo(n){ const c=document.createElement('div'); c.className='combo'; c.textContent='🔥 Combo x'+n+'!'; document.body.appendChild(c); setTimeout(()=>c.remove(),950); }
 function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; const cv=$('#confetti'),ctx=cv.getContext('2d'); cv.width=innerWidth; cv.height=innerHeight;
@@ -1137,7 +1138,7 @@ const Game={
     if(after>before){ const L=LEVELS[after]; setTimeout(()=>celebrate(L[3],'Level Up!',`وصلتِ إلى مستوى <b>${L[1]}</b><br><span class="en muted" style="display:block;text-align:center">${L[2]}</span>`),500); }
     save(); this.badges(); },
   hit(right,el){ this.init(); if(right){ this.combo++; this.xp(10,el); if(this.combo===3||this.combo===5||this.combo%10===0){ showCombo(this.combo); this.xp(this.combo>=5?15:5); } if(this.combo>S.g.best){S.g.best=this.combo; save();} } else this.combo=0; },
-  win(key,el){ S.games[key]=true; this.xp(30,el); this.mission('game'); confetti(); const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  '+p[1]); },
+  win(key,el){ S.games[key]=true; this.xp(30,el); this.mission('game'); confetti(); const p=PRAISE[Math.floor(Math.random()*PRAISE.length)]; toast(p[0]+'  \u2066'+p[1]+'\u2069'); },
   card(i,el){ this.init(); if(!S.g.flipped.includes(i)){ S.g.flipped.push(i); this.xp(2,el); } this.mission('cards'); },
   mission(kind){ this.init(); const t=today(); if(S.g.mission.date!==t) S.g.mission={date:t,cards:0,game:0,q:0,done:false};
     const m=S.g.mission; m[kind]=(m[kind]||0)+1; save();
