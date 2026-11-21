@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculus III | Dr. Mohammad Al Bataineh</title>
+<meta name="description" content="Calculus III, multivariable calculus in 44 video lessons, English and Arabic, by Dr. Mohammad Al Bataineh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1a3b6d; --mid:#0b1630; --deep:#1e4fa3; --gold:#e0a640; --ink:#e9eef8; --muted:#9fb0cf; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink);
+         background: radial-gradient(1200px 700px at 70% -10%, #23508f 0%, transparent 60%),
+                     linear-gradient(160deg, var(--mid) 0%, var(--navy) 55%, var(--deep) 100%);
+         background-attachment: fixed; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+         background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+         background-size: 40px 40px; }
+  .wrap { position: relative; max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+  .brand { color: var(--gold); letter-spacing: .14em; font-weight: 800; font-size: 13px; text-transform: uppercase; }
+  h1 { font-size: clamp(34px, 6vw, 56px); margin: 8px 0 4px; font-weight: 800; }
+  .sub { color: var(--muted); margin: 0 0 6px; }
+  .ar { font-family: Amiri, "Times New Roman", serif; direction: rtl; }
+  .rule { height: 2px; width: 90px; background: var(--gold); margin: 22px 0; border-radius: 2px; }
+  .card { background: rgba(11,22,48,.55); border: 1px solid rgba(224,166,64,.35); border-radius: 18px;
+          padding: 28px; margin: 18px 0; backdrop-filter: blur(4px); }
+  .ep { color: var(--gold); font-weight: 800; letter-spacing: .1em; font-size: 13px; }
+  .t-en { font-size: 28px; font-weight: 800; margin: 8px 0 2px; }
+  .t-ar { font-size: 30px; font-weight: 700; margin: 2px 0 10px; }
+  .soon { display: inline-block; margin-top: 10px; padding: 6px 14px; border-radius: 999px;
+          background: rgba(224,166,64,.15); color: var(--gold); font-weight: 600; }
+  .soon .ar { font-size: 19px; margin-inline-start: 10px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 12px;
+         font-weight: 700; text-decoration: none; color: var(--mid); background: var(--gold); }
+  .btn.alt { background: transparent; color: var(--ink); border: 1px solid rgba(255,255,255,.35); }
+  .btn .ar { font-size: 18px; font-weight: 700; }
+  .unit { margin-top: 26px; }
+  .unit h2 { font-size: 15px; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; }
+  .unit h2 .ar { text-transform: none; letter-spacing: 0; font-size: 19px; float: right; }
+  .row { display: grid; grid-template-columns: 46px 1fr 1fr auto; gap: 12px; align-items: center;
+         padding: 9px 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .row .n { color: var(--gold); font-weight: 800; }
+  .row .ar { text-align: right; font-size: 18px; }
+  .row .links a { color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 600; margin-left: 8px;
+                  padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,.25); }
+  .row .links a.live { background: var(--gold); color: var(--mid); border-color: var(--gold); }
+  footer { color: var(--muted); font-size: 13px; margin-top: 34px; }
+  @media (max-width: 640px) { .row { grid-template-columns: 36px 1fr auto; } .row .ar { grid-column: 2 / 3; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+// Video ids: fill "long" (and "short") with the YouTube id when an episode is published.
+// A lesson QR code in the booklets opens #enNN or #arNN; with a long id set the page redirects at once.
+/*VIDEOS-BEGIN*/
+const VIDEOS = {
+  "en00": {"long": "", "short": ""},
+  "ar00": {"long": "", "short": ""},
+  "en01": {"long": "", "short": ""},
+  "ar01": {"long": "", "short": ""},
+  "en02": {"long": "", "short": ""},
+  "ar02": {"long": "", "short": ""},
+  "en03": {"long": "", "short": ""},
+  "ar03": {"long": "", "short": ""},
+  "en04": {"long": "", "short": ""},
+  "ar04": {"long": "", "short": ""},
+  "en05": {"long": "", "short": ""},
+  "ar05": {"long": "", "short": ""},
+  "en06": {"long": "", "short": ""},
+  "ar06": {"long": "", "short": ""},
+  "en07": {"long": "", "short": ""},
+  "ar07": {"long": "", "short": ""},
+  "en08": {"long": "", "short": ""},
+  "ar08": {"long": "", "short": ""},
+  "en09": {"long": "", "short": ""},
+  "ar09": {"long": "", "short": ""},
+  "en10": {"long": "", "short": ""},
+  "ar10": {"long": "", "short": ""},
+  "en11": {"long": "", "short": ""},
+  "ar11": {"long": "", "short": ""},
+  "en12": {"long": "", "short": ""},
+  "ar12": {"long": "", "short": ""},
+  "en13": {"long": "", "short": ""},
+  "ar13": {"long": "", "short": ""},
+  "en14": {"long": "", "short": ""},
+  "ar14": {"long": "", "short": ""},
+  "en15": {"long": "", "short": ""},
+  "ar15": {"long": "", "short": ""},
+  "en16": {"long": "", "short": ""},
+  "ar16": {"long": "", "short": ""},
+  "en17": {"long": "", "short": ""},
+  "ar17": {"long": "", "short": ""},
+  "en18": {"long": "", "short": ""},
+  "ar18": {"long": "", "short": ""},
+  "en19": {"long": "", "short": ""},
+  "ar19": {"long": "", "short": ""},
+  "en20": {"long": "", "short": ""},
+  "ar20": {"long": "", "short": ""},
+  "en21": {"long": "", "short": ""},
+  "ar21": {"long": "", "short": ""},
+  "en22": {"long": "", "short": ""},
+  "ar22": {"long": "", "short": ""},
+  "en23": {"long": "", "short": ""},
+  "ar23": {"long": "", "short": ""},
+  "en24": {"long": "", "short": ""},
+  "ar24": {"long": "", "short": ""},
+  "en25": {"long": "", "short": ""},
+  "ar25": {"long": "", "short": ""},
+  "en26": {"long": "", "short": ""},
+  "ar26": {"long": "", "short": ""},
+  "en27": {"long": "", "short": ""},
+  "ar27": {"long": "", "short": ""},
+  "en28": {"long": "", "short": ""},
+  "ar28": {"long": "", "short": ""},
+  "en29": {"long": "", "short": ""},
+  "ar29": {"long": "", "short": ""},
+  "en30": {"long": "", "short": ""},
+  "ar30": {"long": "", "short": ""},
+  "en31": {"long": "", "short": ""},
+  "ar31": {"long": "", "short": ""},
+  "en32": {"long": "", "short": ""},
+  "ar32": {"long": "", "short": ""},
+  "en33": {"long": "", "short": ""},
+  "ar33": {"long": "", "short": ""},
+  "en34": {"long": "", "short": ""},
+  "ar34": {"long": "", "short": ""},
+  "en35": {"long": "", "short": ""},
+  "ar35": {"long": "", "short": ""},
+  "en36": {"long": "", "short": ""},
+  "ar36": {"long": "", "short": ""},
+  "en37": {"long": "", "short": ""},
+  "ar37": {"long": "", "short": ""},
+  "en38": {"long": "", "short": ""},
+  "ar38": {"long": "", "short": ""},
+  "en39": {"long": "", "short": ""},
+  "ar39": {"long": "", "short": ""},
+  "en40": {"long": "", "short": ""},
+  "ar40": {"long": "", "short": ""},
+  "en41": {"long": "", "short": ""},
+  "ar41": {"long": "", "short": ""},
+  "en42": {"long": "", "short": ""},
+  "ar42": {"long": "", "short": ""},
+  "en43": {"long": "", "short": ""},
+  "ar43": {"long": "", "short": ""}
+};
+/*VIDEOS-END*/
+const EPISODES = {"0": {"en": "Welcome to Calculus III: calculus in space", "ar": "مرحبا بك في التفاضل والتكامل 3: التفاضل والتكامل في الفضاء"}, "1": {"en": "Points and distance in 3D space", "ar": "النقاط والمسافة في الفضاء الثلاثي"}, "2": {"en": "Vectors", "ar": "المتجهات"}, "3": {"en": "The Dot Product and Projections", "ar": "الضرب القياسي والإسقاطات"}, "4": {"en": "The Cross Product", "ar": "الضرب الاتجاهي"}, "5": {"en": "Lines and Planes in Space", "ar": "المستقيمات والمستويات في الفضاء"}, "6": {"en": "Cylinders and quadric surfaces", "ar": "الأسطوانات والسطوح التربيعية"}, "7": {"en": "Unit 1 solved problems", "ar": "حل مسائل الوحدة الأولى"}, "8": {"en": "Vector functions and space curves", "ar": "الاقترانات المتجهة والمنحنيات الفضائية"}, "9": {"en": "Derivatives and integrals of vector functions", "ar": "مشتقات وتكاملات الاقترانات المتجهة"}, "10": {"en": "Arc length and curvature", "ar": "طول القوس والانحناء"}, "11": {"en": "The TNB frame: tangent, normal, binormal", "ar": "الإطار TNB: المماس والعمودي والعمودي الثنائي"}, "12": {"en": "Motion in space: velocity and acceleration", "ar": "الحركة في الفضاء: السرعة والتسارع"}, "13": {"en": "Unit 2 solved problems", "ar": "حل مسائل الوحدة الثانية"}, "14": {"en": "Functions of several variables and level curves", "ar": "الاقترانات بعدة متغيرات ومنحنيات المستوى"}, "15": {"en": "Limits and continuity in two variables", "ar": "النهايات والاتصال في متغيرين"}, "16": {"en": "Partial Derivatives", "ar": "المشتقات الجزئية"}, "17": {"en": "Tangent planes and linear approximation", "ar": "المستويات المماسة والتقريب الخطي"}, "18": {"en": "The Chain Rule for Several Variables", "ar": "قاعدة السلسلة لعدة متغيرات"}, "19": {"en": "Directional Derivatives and the Gradient", "ar": "المشتقة الاتجاهية والتدرج"}, "20": {"en": "Maximum and Minimum Values", "ar": "القيم العظمى والصغرى"}, "21": {"en": "Lagrange Multipliers", "ar": "مضاعفات لاغرانج"}, "22": {"en": "Unit 3 Solved Problems", "ar": "حل مسائل الوحدة الثالثة"}, "23": {"en": "Double Integrals over Rectangles", "ar": "التكاملات الثنائية على المستطيلات"}, "24": {"en": "Double Integrals over General Regions", "ar": "التكاملات الثنائية على مناطق عامة"}, "25": {"en": "Double Integrals in Polar Coordinates", "ar": "التكاملات الثنائية بالإحداثيات القطبية"}, "26": {"en": "Applications: Mass and Center of Mass", "ar": "التطبيقات: الكتلة ومركز الكتلة"}, "27": {"en": "Surface area", "ar": "مساحة السطح"}, "28": {"en": "Triple integrals", "ar": "التكاملات الثلاثية"}, "29": {"en": "Triple integrals in cylindrical coordinates", "ar": "التكاملات الثلاثية بالإحداثيات الأسطوانية"}, "30": {"en": "Triple integrals in spherical coordinates", "ar": "التكاملات الثلاثية بالإحداثيات الكروية"}, "31": {"en": "Change of variables and the Jacobian", "ar": "تغيير المتغيرات والجاكوبيان"}, "32": {"en": "Unit 4 solved problems", "ar": "حل مسائل الوحدة الرابعة"}, "33": {"en": "Vector Fields", "ar": "الحقول المتجهة"}, "34": {"en": "Line Integrals", "ar": "التكاملات الخطية"}, "35": {"en": "The Fundamental Theorem for Line Integrals", "ar": "النظرية الأساسية للتكاملات الخطية"}, "36": {"en": "Green's theorem", "ar": "نظرية غرين"}, "37": {"en": "Curl and divergence", "ar": "الدوران والتباعد"}, "38": {"en": "Parametric surfaces", "ar": "السطوح الوسيطية"}, "39": {"en": "Surface Integrals and Flux", "ar": "التكاملات السطحية والتدفق"}, "40": {"en": "Stokes' Theorem", "ar": "نظرية ستوكس"}, "41": {"en": "The Divergence Theorem", "ar": "نظرية التباعد"}, "42": {"en": "Unit 5 solved problems", "ar": "حل مسائل الوحدة الخامسة"}, "43": {"en": "Calculus III final exam review", "ar": "مراجعة الامتحان النهائي للتفاضل والتكامل 3"}};
+const UNITS = [{"en": "Welcome", "ar": "مرحبًا بك", "eps": [0]}, {"en": "Unit 1: Vectors and the Geometry of Space", "ar": "الوحدة الأولى: المتجهات وهندسة الفضاء", "eps": [1, 2, 3, 4, 5, 6, 7]}, {"en": "Unit 2: Vector Functions and Space Curves", "ar": "الوحدة الثانية: الاقترانات المتجهة والمنحنيات الفضائية", "eps": [8, 9, 10, 11, 12, 13]}, {"en": "Unit 3: Partial Derivatives", "ar": "الوحدة الثالثة: المشتقات الجزئية", "eps": [14, 15, 16, 17, 18, 19, 20, 21, 22]}, {"en": "Unit 4: Multiple Integrals", "ar": "الوحدة الرابعة: التكاملات المتعددة", "eps": [23, 24, 25, 26, 27, 28, 29, 30, 31, 32]}, {"en": "Unit 5: Vector Calculus", "ar": "الوحدة الخامسة: التفاضل والتكامل المتجه", "eps": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42]}, {"en": "Final Review", "ar": "المراجعة النهائية", "eps": [43]}];
+const SUB = "https://www.youtube.com/@mffbataineh?sub_confirmation=1";
+const WA = "https://whatsapp.com/channel/0029Vb9OfTmH5JLti8KH480T";
+const pad = n => String(n).padStart(2, "0");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+
+function buttons() {
+  return `<div class="btns">
+    <a class="btn" href="${SUB}" target="_blank" rel="noopener">Subscribe on YouTube <span class="ar">اشترك في القناة</span></a>
+    <a class="btn alt" href="${WA}" target="_blank" rel="noopener">WhatsApp channel <span class="ar">قناة واتساب</span></a>
+  </div>`;
+}
+
+function episodePage(lang, n) {
+  const e = EPISODES[n];
+  const v = VIDEOS[lang + pad(n)] || {};
+  if (v.long) { location.replace("https://youtu.be/" + v.long); return; }
+  document.title = `Calculus III, Episode ${pad(n)} | ${e.en}`;
+  const short = v.short ? `<a class="btn alt" href="https://youtube.com/shorts/${v.short}" target="_blank" rel="noopener">Watch the Short <span class="ar">شاهد المقطع القصير</span></a>` : "";
+  const other = lang === "en" ? "ar" : "en";
+  const ov = VIDEOS[other + pad(n)] || {};
+  const otherLink = ov.long ? `<a class="btn alt" href="https://youtu.be/${ov.long}">${other === "ar" ? "<span class='ar'>النسخة العربية</span>" : "English version"}</a>` : "";
+  const titles = lang === "ar"
+    ? `<div class="t-ar ar">${esc(e.ar)}</div><div class="t-en">${esc(e.en)}</div>`
+    : `<div class="t-en">${esc(e.en)}</div><div class="t-ar ar">${esc(e.ar)}</div>`;
+  document.getElementById("app").innerHTML = `
+    <div class="brand">Calculus III · Dr. Mohammad Al Bataineh</div>
+    <div class="card">
+      <div class="ep">EPISODE ${pad(n)} · <span class="ar">الحلقة ${pad(n)}</span></div>
+      ${titles}
+      <div class="soon">Coming soon on YouTube <span class="ar">قريبًا على يوتيوب</span></div>
+      <p class="sub" style="margin-top:16px">Subscribe so you do not miss it. <span class="ar" style="font-size:18px">اشترك حتى لا تفوتك الحلقة.</span></p>
+      ${buttons().replace('<div class="btns">', '<div class="btns">' + short + otherLink)}
+    </div>
+    <p><a href="./" style="color:var(--gold)">All 44 episodes · جميع الحلقات</a></p>`;
+}
+
+function indexPage() {
+  let html = `<div class="brand">Dr. Mohammad Al Bataineh · <span class="ar">د. محمد البطاينة</span></div>
+    <h1>Calculus III</h1>
+    <p class="sub">Multivariable Calculus in 44 Video Lessons, in English and Arabic</p>
+    <p class="ar" style="font-size:26px;margin:4px 0">التفاضل والتكامل 3: التفاضل والتكامل بعدة متغيرات في 44 درسًا مصوّرًا</p>
+    <div class="rule"></div>${buttons()}`;
+  for (const u of UNITS) {
+    html += `<div class="unit"><h2>${esc(u.en)} <span class="ar">${esc(u.ar)}</span></h2>`;
+    for (const n of u.eps) {
+      const e = EPISODES[n];
+      const link = l => {
+        const v = VIDEOS[l + pad(n)] || {};
+        return v.long ? `<a class="live" href="https://youtu.be/${v.long}">${l.toUpperCase()}</a>` : `<a href="#${l}${pad(n)}">${l.toUpperCase()}</a>`;
+      };
+      html += `<div class="row"><span class="n">${pad(n)}</span><span>${esc(e.en)}</span><span class="ar">${esc(e.ar)}</span><span class="links">${link("en")}${link("ar")}</span></div>`;
+    }
+    html += `</div>`;
+  }
+  html += `<footer>© 2026 Dr. Mohammad Al Bataineh · <a style="color:var(--gold)" href="https://www.youtube.com/@mffbataineh">youtube.com/@mffbataineh</a></footer>`;
+  document.getElementById("app").innerHTML = html;
+  document.title = "Calculus III | Dr. Mohammad Al Bataineh";
+}
+
+function route() {
+  const m = /^#?(en|ar)(\d{2})$/.exec(location.hash);
+  if (m && EPISODES[+m[2]]) episodePage(m[1], +m[2]); else indexPage();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
