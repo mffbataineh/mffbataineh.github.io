@@ -151,6 +151,7 @@ footer .cta{justify-content:center}
 .how div{background:var(--card,#FBF8F1);border:1px solid var(--line,#D9D1BF);border-radius:18px;padding:18px}.how b{display:block;font-size:17px;margin-bottom:4px}.how span{font-size:15px;opacity:.8}
 .topnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 14px;padding:8px 10px;border-radius:999px;background:rgba(20,12,51,.92);position:sticky;top:8px;z-index:50;backdrop-filter:blur(6px)}
 .topnav a{color:#efe9ff;text-decoration:none;font-weight:600;font-size:15px;padding:7px 14px;border-radius:999px}
+@media(min-width:561px){.topnav a{padding:7px 10px}}
 .topnav a:hover{background:rgba(255,181,71,.15)}
 .topnav a.on{background:#ffb547;color:#140c33}
 .topnav .home{display:flex;align-items:center;gap:8px;margin-inline-end:auto}
@@ -194,14 +195,14 @@ footer .cta{justify-content:center}
 </head>
 <body>
 <div class="wrap">
-<nav class="topnav" aria-label="Bataineh Academy"><a class="home" href="academy.html"><i aria-hidden="true">π</i><span>Bataineh Academy</span></a><a href="tawjihi.html">Math</a><a href="physics.html">Physics</a><a href="calculus-en.html">Calculus I</a><a href="calculus2-en.html">Calculus II</a><a href="#uni">University</a><a href="testimonials.html">Testimonials</a><a href="academy/">Booklets</a><a href="academy.html" lang="ar" hreflang="ar">العربية</a></nav>
+<nav class="topnav" aria-label="Bataineh Academy"><a class="home" href="academy.html"><i aria-hidden="true">π</i><span>Bataineh Academy</span></a><a href="tawjihi.html">Math</a><a href="physics.html">Physics</a><a href="calculus-en.html">Calculus I</a><a href="calculus2-en.html">Calculus II</a><a href="calculus3-en.html">Calculus III</a><a href="#uni">University</a><a href="testimonials.html">Testimonials</a><a href="academy/">Booklets</a><a href="academy.html" lang="ar" hreflang="ar">العربية</a></nav>
 <section class="hero ac">
  <div class="hero-in">
   <div>
    <div class="logo" aria-hidden="true">π</div>
    <p class="kick">Free · Jordanian Tawjihi 2027 and university</p>
    <h1>Bataineh <em>Academy</em></h1>
-   <p class="lead">Complete Tawjihi math and physics lessons, free: every idea drawn and animated, every question in the textbook solved step by step, plus two foundation series and a readiness test that tells you where to start. For university: Calculus I in English and in Arabic, Calculus II in English and in Arabic, and Machine Learning from Scratch.</p>
+   <p class="lead">Complete Tawjihi math and physics lessons, free: every idea drawn and animated, every question in the textbook solved step by step, plus two foundation series and a readiness test that tells you where to start. For university: Calculus I in English and in Arabic, Calculus II in English and in Arabic, Calculus III in English, and Machine Learning from Scratch.</p>
    <div class="cta">
     <a class="pill p" href="#tawjihi">I'm a Tawjihi student</a>
     <a class="pill p" href="#uni">I'm a university student</a>
@@ -250,6 +251,7 @@ footer .cta{justify-content:center}
  <a class="path" href="calculus-en.html"><i>Calculus I</i><b>I study Calculus I</b><span>46 lessons in English: from limits to applications of integration</span></a>
  <a class="path" href="calculus.html"><i>بالعربية</i><b>I prefer Arabic</b><span>The same 46 lessons, in Arabic</span></a>
  <a class="path" href="calculus2-en.html"><i>Calculus II</i><b>I study Calculus II</b><span>41 lessons in English and Arabic: integration techniques, differential equations, polar curves and series</span></a>
+ <a class="path" href="calculus3-en.html"><i>Calculus III</i><b>I study Calculus III</b><span>44 lessons in English: vectors, partial derivatives, multiple integrals and vector calculus</span></a>
  <a class="path" href="ml-en.html"><i>AI</i><b>I want to learn Machine Learning</b><span>The idea first, then the Python code, step by step</span></a>
  <a class="path" href="olympiad-en.html"><i>Advanced</i><b>I love hard problems</b><span>Olympiad problems and the hardest integrals, solved in detail</span></a>
 </div>
@@ -260,6 +262,9 @@ footer .cta{justify-content:center}
  <section class="subj" data-href="calculus2-en.html"><div class="gl" aria-hidden="true">∑</div><h3>Calculus II</h3><p>University course, in English and Arabic.</p>
   <ul><li>41 lessons in 5 units: techniques of integration to power and Taylor series</li><li>Every idea animated, with worked examples</li><li>Solved problems for each unit, plus a final exam review</li></ul>
   <div class="acts"><a class="btn main" href="calculus2-en.html">Series page</a><a class="btn alt" href="https://www.youtube.com/playlist?list=PLZwDyCZCm1YY" target="_blank" rel="noopener">YouTube playlist · Arabic</a><a class="btn alt" href="https://www.youtube.com/playlist?list=PLfT7qhxJb4Ho" target="_blank" rel="noopener">YouTube playlist · English</a><a class="btn alt" href="academy/#calculus">Booklet</a></div></section>
+ <section class="subj" data-href="calculus3-en.html"><div class="gl" aria-hidden="true">∬</div><h3>Calculus III</h3><p>University course, in English (Arabic coming soon).</p>
+  <ul><li>44 lessons in 5 units: from vectors in space to the theorems of Green, Stokes and Gauss</li><li>Every idea animated in 3D, with worked examples</li><li>Solved problems for each unit, plus a final exam review</li></ul>
+  <div class="acts"><a class="btn main" href="calculus3-en.html">Series page</a><a class="btn alt" data-c3pl href="https://www.youtube.com/playlist?list=PLKs8XUOOQv6Q" target="_blank" rel="noopener">YouTube playlist · English</a><a class="btn alt" href="academy/#calculus">Booklet</a></div></section>
  <section class="subj" data-href="ml-en.html"><div class="gl" aria-hidden="true">∇</div><h3>Machine Learning from Scratch</h3><p>The idea first, then the code.</p>
   <ul><li>Intuition first, then Python code</li><li>From linear regression to networks and trees</li><li>Every algorithm built step by step</li></ul>
   <div class="acts"><a class="btn main" href="ml-en.html">Series page</a><a class="btn alt" href="https://www.youtube.com/playlist?list=PLZmaF7rDJzj8" target="_blank" rel="noopener">YouTube playlist</a></div></section>
